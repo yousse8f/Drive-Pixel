@@ -29,15 +29,15 @@ class PublicApiClient {
   }
 
   async getServices() {
-    return this.request('/public/services');
+    return this.request<any[]>('/public/services');
   }
 
   async getPortfolio() {
-    return this.request('/public/portfolio');
+    return this.request<any[]>('/public/portfolio');
   }
 
   async getBlogPosts() {
-    return this.request('/public/blog');
+    return this.request<any[]>('/public/blog');
   }
 
   async getBlogPost(slug: string) {
@@ -45,11 +45,11 @@ class PublicApiClient {
   }
 
   async getTestimonials() {
-    return this.request('/public/testimonials');
+    return this.request<any[]>('/public/testimonials');
   }
 
   async getHeroTexts() {
-    return this.request('/public/hero-texts');
+    return this.request<any[]>('/public/hero-texts');
   }
 }
 

@@ -32,9 +32,8 @@ class ApiClient {
     options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseURL}${endpoint}`;
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ...options.headers,
     };
 
     if (this.token) {
@@ -44,7 +43,10 @@ class ApiClient {
     try {
       const response = await fetch(url, {
         ...options,
-        headers,
+        headers: {
+          ...headers,
+          ...options.headers,
+        },
       });
 
       const data = await response.json();
@@ -84,7 +86,7 @@ class ApiClient {
 
   // Users
   async getUsers(page = 1, limit = 50) {
-    return this.request(`/users?page=${page}&limit=${limit}`);
+    return this.request<{ users: any[]; pagination: any }>(`/users?page=${page}&limit=${limit}`);
   }
 
   async getUser(id: string) {
@@ -119,7 +121,7 @@ class ApiClient {
 
   // Content - Services
   async getServices(includeInactive = false) {
-    return this.request(`/admin/content/services?includeInactive=${includeInactive}`);
+    return this.request<any[]>(`/admin/content/services?includeInactive=${includeInactive}`);
   }
 
   async createService(data: any) {
@@ -144,7 +146,7 @@ class ApiClient {
 
   // Content - Portfolio
   async getPortfolio(includeInactive = false) {
-    return this.request(`/admin/content/portfolio?includeInactive=${includeInactive}`);
+    return this.request<any[]>(`/admin/content/portfolio?includeInactive=${includeInactive}`);
   }
 
   async createPortfolio(data: any) {
@@ -169,7 +171,7 @@ class ApiClient {
 
   // Content - Blog
   async getBlogPosts(includeUnpublished = false) {
-    return this.request(`/admin/content/blog?includeUnpublished=${includeUnpublished}`);
+    return this.request<any[]>(`/admin/content/blog?includeUnpublished=${includeUnpublished}`);
   }
 
   async createBlogPost(data: any) {
@@ -194,7 +196,7 @@ class ApiClient {
 
   // Content - Testimonials
   async getTestimonials(includeInactive = false) {
-    return this.request(`/admin/content/testimonials?includeInactive=${includeInactive}`);
+    return this.request<any[]>(`/admin/content/testimonials?includeInactive=${includeInactive}`);
   }
 
   async createTestimonial(data: any) {
@@ -219,7 +221,7 @@ class ApiClient {
 
   // Content - Hero Texts
   async getHeroTexts(includeInactive = false) {
-    return this.request(`/admin/content/hero-texts?includeInactive=${includeInactive}`);
+    return this.request<any[]>(`/admin/content/hero-texts?includeInactive=${includeInactive}`);
   }
 
   async createHeroText(data: any) {
@@ -244,7 +246,7 @@ class ApiClient {
 
   // Settings
   async getSettings(key?: string) {
-    return this.request(key ? `/admin/settings?key=${key}` : '/admin/settings');
+    return this.request<any[]>(key ? `/admin/settings?key=${key}` : '/admin/settings');
   }
 
   async createSetting(data: any) {
@@ -270,7 +272,7 @@ class ApiClient {
   // Logs
   async getLogs(params: any = {}) {
     const queryString = new URLSearchParams(params).toString();
-    return this.request(`/admin/logs?${queryString}`);
+    return this.request<{ logs: any[]; pagination: any }>(`/admin/logs?${queryString}`);
   }
 
   async getLog(id: string) {
@@ -285,7 +287,7 @@ class ApiClient {
 
   // Leads
   async getLeads() {
-    return this.request('/leads');
+    return this.request<any[]>('/leads');
   }
 
   async createLead(data: any) {
