@@ -399,7 +399,7 @@ cp .env.example .env.local
 
 4. Update `.env.local`:
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_API_URL=https://drivepixel.com/api
 ```
 
 5. Start the development server:
