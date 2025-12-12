@@ -1,128 +1,304 @@
--- Drive Pixel Database Seed Data
--- This file contains CREATE TABLE and INSERT statements for all tables with realistic dummy data
+-- ============================================================================
+-- DRIVE PIXEL DATABASE SCHEMA
+-- Production-ready consolidated database for all website and backend data
+-- ============================================================================
+-- This file contains all CREATE TABLE, indexes, and seed data for the project
+-- All data used across the website is sourced exclusively from this file
+-- ============================================================================
 
--- Create Tables
+-- ============================================================================
+-- CORE TABLES
+-- ============================================================================
+
+-- Users table: Admin and editor accounts for content management
 CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    role VARCHAR(50) NOT NULL DEFAULT 'editor',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Services table: Core services offered by the company
 CREATE TABLE IF NOT EXISTS services (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    image_url VARCHAR(500),
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    icon VARCHAR(50) NOT NULL,
+    items TEXT[] DEFAULT '{}',
+    "order" INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS properties (
-    id SERIAL PRIMARY KEY,
+-- Portfolio table: Showcase of completed projects
+CREATE TABLE IF NOT EXISTS portfolio (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
     category VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
+    tech_stack TEXT[] DEFAULT '{}',
+    results VARCHAR(255),
     image_url VARCHAR(500),
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "order" INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Blog Posts table: Articles and insights published on the blog
 CREATE TABLE IF NOT EXISTS blog_posts (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
     category VARCHAR(100) NOT NULL,
     author VARCHAR(255) NOT NULL,
-    published_at TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    date VARCHAR(50) NOT NULL,
+    excerpt TEXT NOT NULL,
+    content TEXT,
+    image VARCHAR(50),
+    slug VARCHAR(255) UNIQUE NOT NULL,
+    is_published BOOLEAN DEFAULT false,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS contact_submissions (
-    id SERIAL PRIMARY KEY,
+-- Testimonials table: Client testimonials and reviews
+CREATE TABLE IF NOT EXISTS testimonials (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    subject VARCHAR(255) NOT NULL,
-    message TEXT NOT NULL,
-    user_id INTEGER REFERENCES users(id),
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    text TEXT NOT NULL,
+    "order" INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Hero Texts table: Dynamic hero section content on homepage
+CREATE TABLE IF NOT EXISTS hero_texts (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title VARCHAR(500) NOT NULL,
+    subtitle TEXT NOT NULL,
+    "order" INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ============================================================================
+-- USER-GENERATED DATA TABLES
+-- ============================================================================
+
+-- Leads table: Contact form submissions and lead tracking
+CREATE TABLE IF NOT EXISTS leads (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    status VARCHAR(50) DEFAULT 'new',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Properties table: Real estate or product listings (user-specific)
+CREATE TABLE IF NOT EXISTS properties (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(12, 2) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    bedrooms INT,
+    bathrooms INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ============================================================================
+-- ADMINISTRATIVE TABLES
+-- ============================================================================
+
+-- Jobs table: Job openings and career opportunities
 CREATE TABLE IF NOT EXISTS jobs (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
     type VARCHAR(100) NOT NULL,
+    location VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
     benefits TEXT,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "order" INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insert Data
+-- Contact Info table: Company contact information
+CREATE TABLE IF NOT EXISTS contact_info (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    type VARCHAR(50) NOT NULL UNIQUE,
+    value VARCHAR(255) NOT NULL,
+    label VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
--- Users (1 admin, 4 editors)
-INSERT INTO users (id, username, email, password_hash, role, created_at, updated_at) VALUES
-(1, 'admin_user', 'admin@drivepixel.com', '$2b$10$YourHashedPasswordHere1', 'admin', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
-(2, 'sarah_editor', 'sarah.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere2', 'editor', '2025-01-05T09:15:00Z', '2025-12-12T10:00:00Z'),
-(3, 'john_editor', 'john.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere3', 'editor', '2025-01-10T10:30:00Z', '2025-12-12T10:00:00Z'),
-(4, 'emma_editor', 'emma.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere4', 'editor', '2025-01-15T11:45:00Z', '2025-12-12T10:00:00Z'),
-(5, 'michael_editor', 'michael.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere5', 'editor', '2025-01-20T13:00:00Z', '2025-12-12T10:00:00Z');
+-- Settings table: Global application settings
+CREATE TABLE IF NOT EXISTS settings (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    key VARCHAR(255) UNIQUE NOT NULL,
+    value TEXT NOT NULL,
+    type VARCHAR(50) NOT NULL DEFAULT 'string',
+    description TEXT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
--- Services (10 services)
-INSERT INTO services (id, title, description, image_url, created_at, updated_at) VALUES
-(1, 'Web Development', 'Custom web applications built with modern frameworks like React, Next.js, and Node.js for scalable solutions.', '/images/services/web-development.jpg', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
-(2, 'Mobile App Development', 'Native and cross-platform mobile applications for iOS and Android using Flutter and React Native.', '/images/services/mobile-development.jpg', '2025-01-01T08:15:00Z', '2025-12-12T10:00:00Z'),
-(3, 'Cloud Infrastructure', 'AWS, Google Cloud, and Azure solutions for scalable, secure, and reliable cloud deployments.', '/images/services/cloud-infrastructure.jpg', '2025-01-01T08:30:00Z', '2025-12-12T10:00:00Z'),
-(4, 'AI & Machine Learning', 'Intelligent automation and predictive analytics powered by machine learning and artificial intelligence.', '/images/services/ai-ml.jpg', '2025-01-01T08:45:00Z', '2025-12-12T10:00:00Z'),
-(5, 'DevOps & CI/CD', 'Continuous integration and deployment pipelines with Docker, Kubernetes, and automated testing frameworks.', '/images/services/devops.jpg', '2025-01-01T09:00:00Z', '2025-12-12T10:00:00Z'),
-(6, 'Database Design & Optimization', 'PostgreSQL, MongoDB, and Redis solutions optimized for performance and scalability.', '/images/services/database.jpg', '2025-01-01T09:15:00Z', '2025-12-12T10:00:00Z'),
-(7, 'API Development', 'RESTful and GraphQL APIs with comprehensive documentation and security best practices.', '/images/services/api-development.jpg', '2025-01-01T09:30:00Z', '2025-12-12T10:00:00Z'),
-(8, 'UI/UX Design', 'Beautiful, intuitive user interfaces with modern design principles and accessibility standards.', '/images/services/ui-ux-design.jpg', '2025-01-01T09:45:00Z', '2025-12-12T10:00:00Z'),
-(9, 'Security & Compliance', 'End-to-end security audits, penetration testing, and compliance with GDPR, HIPAA, and SOC 2.', '/images/services/security.jpg', '2025-01-01T10:00:00Z', '2025-12-12T10:00:00Z'),
-(10, 'Consulting & Strategy', 'Technology strategy, architecture design, and digital transformation consulting for enterprises.', '/images/services/consulting.jpg', '2025-01-01T10:15:00Z', '2025-12-12T10:00:00Z');
+-- Logs table: Activity and audit logs
+CREATE TABLE IF NOT EXISTS logs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES users(id) ON DELETE SET NULL,
+    action VARCHAR(100) NOT NULL,
+    resource VARCHAR(100) NOT NULL,
+    resource_id UUID,
+    details TEXT,
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
--- Properties (10 properties)
-INSERT INTO properties (id, title, category, description, image_url, created_at, updated_at) VALUES
-(1, 'Modern Downtown Loft', 'residential', 'Stunning 2-bedroom loft in the heart of downtown with floor-to-ceiling windows and exposed brick.', '/images/properties/downtown-loft.jpg', '2025-01-05T10:00:00Z', '2025-12-12T10:00:00Z'),
-(2, 'Luxury Penthouse Suite', 'residential', 'Exclusive 4-bedroom penthouse with panoramic city views, private terrace, and smart home automation.', '/images/properties/penthouse.jpg', '2025-01-06T10:00:00Z', '2025-12-12T10:00:00Z'),
-(3, 'Suburban Family Home', 'residential', '3-bedroom family home in quiet neighborhood with large backyard, garage, and modern amenities.', '/images/properties/family-home.jpg', '2025-01-07T10:00:00Z', '2025-12-12T10:00:00Z'),
-(4, 'Tech Park Office Space', 'commercial', 'Premium office space in tech park with high-speed internet, meeting rooms, and collaborative workspace.', '/images/properties/tech-park.jpg', '2025-01-08T10:00:00Z', '2025-12-12T10:00:00Z'),
-(5, 'Retail Shopping Center', 'commercial', 'High-traffic retail center with 20,000 sq ft of space, perfect for retail or restaurant concepts.', '/images/properties/shopping-center.jpg', '2025-01-09T10:00:00Z', '2025-12-12T10:00:00Z'),
-(6, 'Industrial Warehouse', 'commercial', 'State-of-the-art warehouse facility with loading docks, climate control, and logistics infrastructure.', '/images/properties/warehouse.jpg', '2025-01-10T10:00:00Z', '2025-12-12T10:00:00Z'),
-(7, 'Beachfront Villa', 'residential', 'Luxurious beachfront villa with 5 bedrooms, private beach access, and infinity pool overlooking the ocean.', '/images/properties/beachfront-villa.jpg', '2025-01-11T10:00:00Z', '2025-12-12T10:00:00Z'),
-(8, 'Corporate Headquarters', 'commercial', 'Modern corporate headquarters with 50,000 sq ft, executive suites, and state-of-the-art facilities.', '/images/properties/headquarters.jpg', '2025-01-12T10:00:00Z', '2025-12-12T10:00:00Z'),
-(9, 'Mountain Retreat', 'residential', 'Secluded mountain cabin with 3 bedrooms, fireplace, and stunning views of the surrounding peaks.', '/images/properties/mountain-retreat.jpg', '2025-01-13T10:00:00Z', '2025-12-12T10:00:00Z'),
-(10, 'Mixed-Use Development', 'commercial', 'Integrated mixed-use development with retail, offices, and residential units in prime location.', '/images/properties/mixed-use.jpg', '2025-01-14T10:00:00Z', '2025-12-12T10:00:00Z');
+-- ============================================================================
+-- INDEXES FOR PERFORMANCE OPTIMIZATION
+-- ============================================================================
 
--- Blog Posts (10 blog posts)
-INSERT INTO blog_posts (id, title, content, category, author, published_at, created_at, updated_at) VALUES
-(1, 'The Future of Cloud Computing in 2025', 'Cloud computing continues to evolve with serverless architectures, edge computing, and AI integration becoming mainstream. Organizations are leveraging multi-cloud strategies for flexibility and cost optimization. Discover how to prepare your infrastructure for the next generation of cloud technologies.', 'technology', 'Sarah Editor', '2025-12-10T10:00:00Z', '2025-12-10T09:00:00Z', '2025-12-10T10:00:00Z'),
-(2, 'Building Scalable APIs with Node.js', 'Learn best practices for designing and implementing scalable APIs using Node.js and Express. This comprehensive guide covers authentication, rate limiting, caching strategies, and monitoring. Perfect for developers looking to build production-ready APIs.', 'development', 'John Editor', '2025-12-09T10:00:00Z', '2025-12-09T09:00:00Z', '2025-12-09T10:00:00Z'),
-(3, 'AI-Powered Automation: Transforming Business Processes', 'Artificial intelligence is revolutionizing how businesses operate. From customer service chatbots to predictive analytics, AI automation is reducing costs and improving efficiency. Explore real-world case studies and implementation strategies.', 'innovation', 'Emma Editor', '2025-12-08T10:00:00Z', '2025-12-08T09:00:00Z', '2025-12-08T10:00:00Z'),
-(4, 'React Hooks: A Comprehensive Guide', 'React Hooks have transformed how we write functional components. This in-depth guide covers useState, useEffect, useContext, and custom hooks. Learn patterns and best practices for modern React development.', 'development', 'Michael Editor', '2025-12-07T10:00:00Z', '2025-12-07T09:00:00Z', '2025-12-07T10:00:00Z'),
-(5, 'Cybersecurity Best Practices for 2025', 'With cyber threats evolving constantly, organizations must stay vigilant. This article covers zero-trust architecture, encryption strategies, and incident response planning. Protect your digital assets with proven security measures.', 'security', 'Sarah Editor', '2025-12-06T10:00:00Z', '2025-12-06T09:00:00Z', '2025-12-06T10:00:00Z'),
-(6, 'PostgreSQL Performance Tuning Tips', 'Optimize your PostgreSQL database for maximum performance. Learn about indexing strategies, query optimization, connection pooling, and monitoring tools. Improve your database efficiency with these practical tips.', 'database', 'John Editor', '2025-12-05T10:00:00Z', '2025-12-05T09:00:00Z', '2025-12-05T10:00:00Z'),
-(7, 'Microservices Architecture: Challenges and Solutions', 'Microservices offer flexibility and scalability but come with complexity. Understand service discovery, API gateways, distributed tracing, and resilience patterns. Build robust microservices systems with confidence.', 'architecture', 'Emma Editor', '2025-12-04T10:00:00Z', '2025-12-04T09:00:00Z', '2025-12-04T10:00:00Z'),
-(8, 'User Experience Design Principles', 'Great UX design goes beyond aesthetics. Learn about user research, wireframing, prototyping, and usability testing. Create intuitive interfaces that delight your users and drive engagement.', 'design', 'Michael Editor', '2025-12-03T10:00:00Z', '2025-12-03T09:00:00Z', '2025-12-03T10:00:00Z'),
-(9, 'Docker and Kubernetes: Container Orchestration Mastery', 'Containerization has become essential for modern development. Master Docker fundamentals and Kubernetes orchestration. Learn deployment strategies, scaling, and monitoring for containerized applications.', 'devops', 'Sarah Editor', '2025-12-02T10:00:00Z', '2025-12-02T09:00:00Z', '2025-12-02T10:00:00Z'),
-(10, 'Web Performance Optimization Strategies', 'Website speed directly impacts user experience and SEO rankings. Discover techniques for image optimization, code splitting, caching strategies, and CDN usage. Boost your website performance and user satisfaction.', 'performance', 'John Editor', '2025-12-01T10:00:00Z', '2025-12-01T09:00:00Z', '2025-12-01T10:00:00Z');
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_services_order ON services("order");
+CREATE INDEX IF NOT EXISTS idx_services_active ON services(is_active);
+CREATE INDEX IF NOT EXISTS idx_portfolio_active ON portfolio(is_active);
+CREATE INDEX IF NOT EXISTS idx_portfolio_order ON portfolio("order");
+CREATE INDEX IF NOT EXISTS idx_blog_published ON blog_posts(is_published);
+CREATE INDEX IF NOT EXISTS idx_blog_slug ON blog_posts(slug);
+CREATE INDEX IF NOT EXISTS idx_blog_category ON blog_posts(category);
+CREATE INDEX IF NOT EXISTS idx_testimonials_active ON testimonials(is_active);
+CREATE INDEX IF NOT EXISTS idx_testimonials_order ON testimonials("order");
+CREATE INDEX IF NOT EXISTS idx_hero_texts_active ON hero_texts(is_active);
+CREATE INDEX IF NOT EXISTS idx_hero_texts_order ON hero_texts("order");
+CREATE INDEX IF NOT EXISTS idx_leads_user_id ON leads(user_id);
+CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
+CREATE INDEX IF NOT EXISTS idx_properties_user_id ON properties(user_id);
+CREATE INDEX IF NOT EXISTS idx_jobs_active ON jobs(is_active);
+CREATE INDEX IF NOT EXISTS idx_jobs_order ON jobs("order");
+CREATE INDEX IF NOT EXISTS idx_logs_user_id ON logs(user_id);
+CREATE INDEX IF NOT EXISTS idx_logs_created_at ON logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_logs_resource ON logs(resource);
 
--- Contact Submissions (5 contact submissions)
-INSERT INTO contact_submissions (id, name, email, subject, message, user_id, created_at) VALUES
-(1, 'Alice Johnson', 'alice.johnson@company.com', 'Web Development Inquiry', 'We are interested in building a custom web application for our e-commerce platform. Could you provide a quote and timeline?', 2, '2025-12-11T14:30:00Z'),
-(2, 'Robert Chen', 'robert.chen@startup.io', 'Cloud Migration Project', 'We need to migrate our legacy system to AWS. What is your experience with cloud migrations and what would be the estimated cost?', 3, '2025-12-10T11:15:00Z'),
-(3, 'Maria Garcia', 'maria.garcia@enterprise.com', 'AI Implementation', 'We want to implement AI-powered analytics in our business intelligence platform. Can you help us with this?', 4, '2025-12-09T16:45:00Z'),
-(4, 'David Thompson', 'david.thompson@tech.com', 'Mobile App Development', 'Looking to develop a cross-platform mobile app for iOS and Android. What technologies do you recommend?', 5, '2025-12-08T09:20:00Z'),
-(5, 'Lisa Anderson', 'lisa.anderson@finance.co', 'Security Audit', 'We need a comprehensive security audit of our infrastructure. Please provide details about your security assessment services.', 2, '2025-12-07T13:50:00Z');
+-- ============================================================================
+-- SEED DATA - USERS
+-- ============================================================================
 
--- Jobs (5 job openings)
-INSERT INTO jobs (id, title, type, description, benefits, created_at, updated_at) VALUES
-(1, 'Senior Full-Stack Developer', 'full-time', 'We are looking for an experienced full-stack developer with expertise in React, Node.js, and PostgreSQL. You will work on building scalable web applications for our clients. Requirements: 5+ years experience, strong problem-solving skills, and experience with cloud platforms.', 'Competitive salary, health insurance, 401k, flexible work hours, remote options, professional development budget', '2025-12-01T08:00:00Z', '2025-12-12T10:00:00Z'),
-(2, 'DevOps Engineer', 'full-time', 'Join our infrastructure team to design and maintain cloud infrastructure using AWS and Kubernetes. You will work on CI/CD pipelines, infrastructure automation, and system reliability. Requirements: 3+ years DevOps experience, Kubernetes knowledge, and scripting skills.', 'Competitive salary, comprehensive health coverage, stock options, learning budget, flexible schedule', '2025-12-02T08:00:00Z', '2025-12-12T10:00:00Z'),
-(3, 'UI/UX Designer', 'full-time', 'We need a creative UI/UX designer to create beautiful and intuitive user interfaces. You will work with product and development teams to deliver exceptional user experiences. Requirements: 4+ years design experience, Figma proficiency, and portfolio.', 'Competitive salary, health insurance, creative freedom, collaborative environment, professional growth', '2025-12-03T08:00:00Z', '2025-12-12T10:00:00Z'),
-(4, 'Machine Learning Engineer', 'full-time', 'Help us build AI-powered solutions using Python, TensorFlow, and PyTorch. You will develop and deploy machine learning models for various applications. Requirements: 3+ years ML experience, strong Python skills, and ML frameworks knowledge.', 'Competitive salary, equity, health benefits, research opportunities, flexible work arrangement', '2025-12-04T08:00:00Z', '2025-12-12T10:00:00Z'),
-(5, 'Quality Assurance Engineer', 'full-time', 'Ensure product quality through comprehensive testing and automation. You will develop test strategies, create automated test suites, and work with development teams. Requirements: 2+ years QA experience, automation testing knowledge, and attention to detail.', 'Competitive salary, health insurance, career development, team bonding activities, flexible hours', '2025-12-05T08:00:00Z', '2025-12-12T10:00:00Z');
+INSERT INTO users (email, password, first_name, last_name, role, created_at, updated_at) VALUES
+('admin@drivepixel.com', '$2b$10$YourHashedPasswordHere1', 'Admin', 'User', 'admin', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
+('sarah.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere2', 'Sarah', 'Editor', 'editor', '2025-01-05T09:15:00Z', '2025-12-12T10:00:00Z'),
+('john.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere3', 'John', 'Editor', 'editor', '2025-01-10T10:30:00Z', '2025-12-12T10:00:00Z'),
+('emma.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere4', 'Emma', 'Editor', 'editor', '2025-01-15T11:45:00Z', '2025-12-12T10:00:00Z'),
+('michael.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere5', 'Michael', 'Editor', 'editor', '2025-01-20T13:00:00Z', '2025-12-12T10:00:00Z');
+
+-- ============================================================================
+-- SEED DATA - SERVICES
+-- ============================================================================
+
+INSERT INTO services (title, description, icon, items, "order", is_active, created_at, updated_at) VALUES
+('Web Development', 'Custom web applications built with modern frameworks like React, Next.js, and Node.js for scalable solutions.', '💻', ARRAY['React & Next.js', 'Node.js & Express', 'Full-stack development', 'Responsive design'], 1, true, '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
+('Mobile App Development', 'Native and cross-platform mobile applications for iOS and Android using Flutter and React Native.', '📱', ARRAY['iOS Development', 'Android Development', 'Cross-platform apps', 'App store deployment'], 2, true, '2025-01-01T08:15:00Z', '2025-12-12T10:00:00Z'),
+('Cloud Infrastructure', 'AWS, Google Cloud, and Azure solutions for scalable, secure, and reliable cloud deployments.', '☁️', ARRAY['AWS & Azure', 'Cloud architecture', 'Serverless solutions', 'Infrastructure automation'], 3, true, '2025-01-01T08:30:00Z', '2025-12-12T10:00:00Z'),
+('AI & Machine Learning', 'Intelligent automation and predictive analytics powered by machine learning and artificial intelligence.', '🤖', ARRAY['Machine learning models', 'Predictive analytics', 'NLP solutions', 'Computer vision'], 4, true, '2025-01-01T08:45:00Z', '2025-12-12T10:00:00Z'),
+('DevOps & CI/CD', 'Continuous integration and deployment pipelines with Docker, Kubernetes, and automated testing frameworks.', '⚙️', ARRAY['Docker & Kubernetes', 'CI/CD pipelines', 'Infrastructure as code', 'Monitoring & logging'], 5, true, '2025-01-01T09:00:00Z', '2025-12-12T10:00:00Z'),
+('Database Design & Optimization', 'PostgreSQL, MongoDB, and Redis solutions optimized for performance and scalability.', '🗄️', ARRAY['PostgreSQL', 'MongoDB', 'Redis caching', 'Query optimization'], 6, true, '2025-01-01T09:15:00Z', '2025-12-12T10:00:00Z'),
+('API Development', 'RESTful and GraphQL APIs with comprehensive documentation and security best practices.', '🔌', ARRAY['REST APIs', 'GraphQL', 'API documentation', 'Security & authentication'], 7, true, '2025-01-01T09:30:00Z', '2025-12-12T10:00:00Z'),
+('UI/UX Design', 'Beautiful, intuitive user interfaces with modern design principles and accessibility standards.', '🎨', ARRAY['UI Design', 'UX Research', 'Prototyping', 'Accessibility'], 8, true, '2025-01-01T09:45:00Z', '2025-12-12T10:00:00Z'),
+('Security & Compliance', 'End-to-end security audits, penetration testing, and compliance with GDPR, HIPAA, and SOC 2.', '🔒', ARRAY['Security audits', 'Penetration testing', 'GDPR compliance', 'Data protection'], 9, true, '2025-01-01T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Consulting & Strategy', 'Technology strategy, architecture design, and digital transformation consulting for enterprises.', '📈', ARRAY['Tech strategy', 'Architecture design', 'Digital transformation', 'Business consulting'], 10, true, '2025-01-01T10:15:00Z', '2025-12-12T10:00:00Z');
+
+-- ============================================================================
+-- SEED DATA - PORTFOLIO
+-- ============================================================================
+
+INSERT INTO portfolio (title, category, description, tech_stack, results, "order", is_active, created_at, updated_at) VALUES
+('E-Commerce Platform Redesign', 'SaaS', 'Complete redesign and modernization of a major e-commerce platform serving 100K+ users.', ARRAY['React', 'Node.js', 'PostgreSQL', 'AWS'], '40% increase in conversion rate', 1, true, '2025-01-05T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Enterprise Cloud Migration', 'Enterprise', 'Migrated legacy monolithic system to microservices architecture on AWS.', ARRAY['Kubernetes', 'Docker', 'AWS', 'Node.js'], '60% reduction in infrastructure costs', 2, true, '2025-01-06T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Healthcare Analytics Dashboard', 'Healthcare', 'Real-time analytics dashboard for healthcare provider with 500+ hospitals.', ARRAY['React', 'Python', 'TensorFlow', 'PostgreSQL'], '30% improvement in data insights', 3, true, '2025-01-07T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Retail Mobile App', 'Retail', 'Cross-platform mobile app for retail chain with 200+ stores nationwide.', ARRAY['React Native', 'Firebase', 'Node.js'], '50K+ downloads in first month', 4, true, '2025-01-08T10:00:00Z', '2025-12-12T10:00:00Z'),
+('AI-Powered Chatbot System', 'SaaS', 'Intelligent chatbot system using NLP for customer support automation.', ARRAY['Python', 'TensorFlow', 'Node.js', 'MongoDB'], '70% reduction in support tickets', 5, true, '2025-01-09T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Financial Dashboard', 'Enterprise', 'Real-time financial reporting dashboard for investment firm.', ARRAY['React', 'D3.js', 'Node.js', 'PostgreSQL'], '99.9% uptime achieved', 6, true, '2025-01-10T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Supply Chain Optimization', 'Enterprise', 'IoT-enabled supply chain management system for logistics company.', ARRAY['Node.js', 'IoT', 'MongoDB', 'AWS'], '25% reduction in delivery time', 7, true, '2025-01-11T10:00:00Z', '2025-12-12T10:00:00Z'),
+('SaaS Booking Platform', 'SaaS', 'Multi-tenant booking platform for service industry.', ARRAY['Next.js', 'PostgreSQL', 'Stripe', 'AWS'], '$2M ARR achieved', 8, true, '2025-01-12T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Educational Learning Platform', 'SaaS', 'Interactive learning platform with video streaming and progress tracking.', ARRAY['React', 'Node.js', 'PostgreSQL', 'AWS'], '50K+ active learners', 9, true, '2025-01-13T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Real Estate Management System', 'Enterprise', 'Comprehensive property management system for real estate portfolio.', ARRAY['React', 'Node.js', 'PostgreSQL', 'Maps API'], '500+ properties managed', 10, true, '2025-01-14T10:00:00Z', '2025-12-12T10:00:00Z');
+
+-- ============================================================================
+-- SEED DATA - BLOG POSTS
+-- ============================================================================
+
+INSERT INTO blog_posts (title, category, author, date, excerpt, content, image, slug, is_published, created_at, updated_at) VALUES
+('The Future of Cloud Computing in 2025', 'technology', 'Sarah Editor', '2025-12-10', 'Cloud computing continues to evolve with serverless architectures, edge computing, and AI integration becoming mainstream.', 'Cloud computing continues to evolve with serverless architectures, edge computing, and AI integration becoming mainstream. Organizations are leveraging multi-cloud strategies for flexibility and cost optimization. Discover how to prepare your infrastructure for the next generation of cloud technologies.', '☁️', 'future-cloud-computing-2025', true, '2025-12-10T09:00:00Z', '2025-12-10T10:00:00Z'),
+('Building Scalable APIs with Node.js', 'development', 'John Editor', '2025-12-09', 'Learn best practices for designing and implementing scalable APIs using Node.js and Express.', 'Learn best practices for designing and implementing scalable APIs using Node.js and Express. This comprehensive guide covers authentication, rate limiting, caching strategies, and monitoring. Perfect for developers looking to build production-ready APIs.', '🔌', 'building-scalable-apis-nodejs', true, '2025-12-09T09:00:00Z', '2025-12-09T10:00:00Z'),
+('AI-Powered Automation: Transforming Business Processes', 'innovation', 'Emma Editor', '2025-12-08', 'Artificial intelligence is revolutionizing how businesses operate. From customer service chatbots to predictive analytics.', 'Artificial intelligence is revolutionizing how businesses operate. From customer service chatbots to predictive analytics, AI automation is reducing costs and improving efficiency. Explore real-world case studies and implementation strategies.', '🤖', 'ai-powered-automation-business', true, '2025-12-08T09:00:00Z', '2025-12-08T10:00:00Z'),
+('React Hooks: A Comprehensive Guide', 'development', 'Michael Editor', '2025-12-07', 'React Hooks have transformed how we write functional components. This in-depth guide covers useState, useEffect, useContext, and custom hooks.', 'React Hooks have transformed how we write functional components. This in-depth guide covers useState, useEffect, useContext, and custom hooks. Learn patterns and best practices for modern React development.', '⚛️', 'react-hooks-comprehensive-guide', true, '2025-12-07T09:00:00Z', '2025-12-07T10:00:00Z'),
+('Cybersecurity Best Practices for 2025', 'security', 'Sarah Editor', '2025-12-06', 'With cyber threats evolving constantly, organizations must stay vigilant. This article covers zero-trust architecture, encryption strategies.', 'With cyber threats evolving constantly, organizations must stay vigilant. This article covers zero-trust architecture, encryption strategies, and incident response planning. Protect your digital assets with proven security measures.', '🔒', 'cybersecurity-best-practices-2025', true, '2025-12-06T09:00:00Z', '2025-12-06T10:00:00Z'),
+('PostgreSQL Performance Tuning Tips', 'database', 'John Editor', '2025-12-05', 'Optimize your PostgreSQL database for maximum performance. Learn about indexing strategies, query optimization, connection pooling.', 'Optimize your PostgreSQL database for maximum performance. Learn about indexing strategies, query optimization, connection pooling, and monitoring tools. Improve your database efficiency with these practical tips.', '🗄️', 'postgresql-performance-tuning', true, '2025-12-05T09:00:00Z', '2025-12-05T10:00:00Z'),
+('Microservices Architecture: Challenges and Solutions', 'architecture', 'Emma Editor', '2025-12-04', 'Microservices offer flexibility and scalability but come with complexity. Understand service discovery, API gateways, distributed tracing.', 'Microservices offer flexibility and scalability but come with complexity. Understand service discovery, API gateways, distributed tracing, and resilience patterns. Build robust microservices systems with confidence.', '🏗️', 'microservices-architecture-guide', true, '2025-12-04T09:00:00Z', '2025-12-04T10:00:00Z'),
+('User Experience Design Principles', 'design', 'Michael Editor', '2025-12-03', 'Great UX design goes beyond aesthetics. Learn about user research, wireframing, prototyping, and usability testing.', 'Great UX design goes beyond aesthetics. Learn about user research, wireframing, prototyping, and usability testing. Create intuitive interfaces that delight your users and drive engagement.', '🎨', 'ux-design-principles', true, '2025-12-03T09:00:00Z', '2025-12-03T10:00:00Z'),
+('Docker and Kubernetes: Container Orchestration Mastery', 'devops', 'Sarah Editor', '2025-12-02', 'Containerization has become essential for modern development. Master Docker fundamentals and Kubernetes orchestration.', 'Containerization has become essential for modern development. Master Docker fundamentals and Kubernetes orchestration. Learn deployment strategies, scaling, and monitoring for containerized applications.', '🐳', 'docker-kubernetes-orchestration', true, '2025-12-02T09:00:00Z', '2025-12-02T10:00:00Z'),
+('Web Performance Optimization Strategies', 'performance', 'John Editor', '2025-12-01', 'Website speed directly impacts user experience and SEO rankings. Discover techniques for image optimization, code splitting, caching.', 'Website speed directly impacts user experience and SEO rankings. Discover techniques for image optimization, code splitting, caching strategies, and CDN usage. Boost your website performance and user satisfaction.', '⚡', 'web-performance-optimization', true, '2025-12-01T09:00:00Z', '2025-12-01T10:00:00Z');
+
+-- ============================================================================
+-- SEED DATA - TESTIMONIALS
+-- ============================================================================
+
+INSERT INTO testimonials (name, email, rating, text, "order", is_active, created_at, updated_at) VALUES
+('CEO, Digital Venture', 'ceo@digitalventure.com', 5, '"DrivePixel delivered a flawless system that scaled our operations instantly. Their technical expertise and attention to detail made all the difference in our success."', 1, true, '2025-12-11T10:00:00Z', '2025-12-12T10:00:00Z'),
+('CTO, TechStart Inc', 'cto@techstart.com', 5, '"Working with DrivePixel was transformative. They understood our complex requirements and delivered a solution that exceeded expectations."', 2, true, '2025-12-10T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Founder, CloudSolutions', 'founder@cloudsolutions.com', 5, '"The team at DrivePixel is exceptional. They brought innovation and expertise to every aspect of our project."', 3, true, '2025-12-09T10:00:00Z', '2025-12-12T10:00:00Z'),
+('VP Product, RetailCorp', 'vp@retailcorp.com', 5, '"DrivePixel helped us modernize our infrastructure and improve performance by 40%. Highly recommended!"', 4, true, '2025-12-08T10:00:00Z', '2025-12-12T10:00:00Z'),
+('Director, FinanceHub', 'director@financehub.com', 5, '"Outstanding service and support. DrivePixel is a trusted partner for our digital transformation journey."', 5, true, '2025-12-07T10:00:00Z', '2025-12-12T10:00:00Z');
+
+-- ============================================================================
+-- SEED DATA - HERO TEXTS
+-- ============================================================================
+
+INSERT INTO hero_texts (title, subtitle, "order", is_active, created_at, updated_at) VALUES
+('Build Future-Ready Platforms', 'We create smart applications, AI-powered tools, and seamless cloud infrastructure that help brands grow faster.', 1, true, '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
+('Transform Your Digital Vision', 'From concept to deployment, we deliver world-class solutions that drive innovation and business growth.', 2, true, '2025-01-02T08:00:00Z', '2025-12-12T10:00:00Z'),
+('Scale With Confidence', 'Enterprise-grade infrastructure and expert guidance to take your business to the next level.', 3, true, '2025-01-03T08:00:00Z', '2025-12-12T10:00:00Z');
+
+-- ============================================================================
+-- SEED DATA - JOBS
+-- ============================================================================
+
+INSERT INTO jobs (title, type, location, description, benefits, "order", is_active, created_at, updated_at) VALUES
+('Senior Full-Stack Developer', 'full-time', 'New Delhi', 'We are looking for an experienced full-stack developer with expertise in React, Node.js, and PostgreSQL. You will work on building scalable web applications for our clients. Requirements: 5+ years experience, strong problem-solving skills, and experience with cloud platforms.', 'Competitive salary, health insurance, 401k, flexible work hours, remote options, professional development budget', 1, true, '2025-12-01T08:00:00Z', '2025-12-12T10:00:00Z'),
+('DevOps Engineer', 'full-time', 'Remote', 'Join our infrastructure team to design and maintain cloud infrastructure using AWS and Kubernetes. You will work on CI/CD pipelines, infrastructure automation, and system reliability. Requirements: 3+ years DevOps experience, Kubernetes knowledge, and scripting skills.', 'Competitive salary, comprehensive health coverage, stock options, learning budget, flexible schedule', 2, true, '2025-12-02T08:00:00Z', '2025-12-12T10:00:00Z'),
+('UI/UX Designer', 'full-time', 'New Delhi', 'We need a creative UI/UX designer to create beautiful and intuitive user interfaces. You will work with product and development teams to deliver exceptional user experiences. Requirements: 4+ years design experience, Figma proficiency, and portfolio.', 'Competitive salary, health insurance, creative freedom, collaborative environment, professional growth', 3, true, '2025-12-03T08:00:00Z', '2025-12-12T10:00:00Z'),
+('Machine Learning Engineer', 'full-time', 'Remote', 'Help us build AI-powered solutions using Python, TensorFlow, and PyTorch. You will develop and deploy machine learning models for various applications. Requirements: 3+ years ML experience, strong Python skills, and ML frameworks knowledge.', 'Competitive salary, equity, health benefits, research opportunities, flexible work arrangement', 4, true, '2025-12-04T08:00:00Z', '2025-12-12T10:00:00Z'),
+('Quality Assurance Engineer', 'full-time', 'New Delhi', 'Ensure product quality through comprehensive testing and automation. You will develop test strategies, create automated test suites, and work with development teams. Requirements: 2+ years QA experience, automation testing knowledge, and attention to detail.', 'Competitive salary, health insurance, career development, team bonding activities, flexible hours', 5, true, '2025-12-05T08:00:00Z', '2025-12-12T10:00:00Z'),
+('Cloud Architect', 'full-time', 'Remote', 'Design and implement scalable cloud solutions for our enterprise clients. Requirements: 5+ years cloud architecture experience, AWS/Azure expertise, and enterprise solutions knowledge.', 'Competitive salary, stock options, health benefits, learning budget, remote flexibility', 6, true, '2025-12-06T08:00:00Z', '2025-12-12T10:00:00Z');
+
+-- ============================================================================
+-- SEED DATA - CONTACT INFO
+-- ============================================================================
+
+INSERT INTO contact_info (type, value, label, created_at, updated_at) VALUES
+('email', 'Info@OneDriveRealty.com', 'Primary Email', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
+('phone', '+1-206-788-7190', 'Main Phone', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
+('address', 'NYC', 'Office Location', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z');
+
+-- ============================================================================
+-- END OF CONSOLIDATED DATABASE SCHEMA
+-- ============================================================================
+-- All data is now centralized in drivepixel.sql
+-- No hardcoded data should exist in the codebase
+-- ============================================================================
