@@ -54,6 +54,7 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                         >
                             Home
                         </Link>
+
                         <div className="relative group">
                             <button
                                 className={`${linkColorClass} transition-colors flex items-center gap-1`}
@@ -92,6 +93,11 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                                     <Link href="/about/we-work-in" className="block">
                                         <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
                                             We Work In
+                                        </div>
+                                    </Link>
+                                    <Link href="/portfolio" className="block">
+                                        <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
+                                            Portfolio
                                         </div>
                                     </Link>
                                 </div>
@@ -150,13 +156,8 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                                 </div>
                             )}
                         </div>
-                        
-                        <Link
-                            href="/portfolio"
-                            className={`${linkColorClass} transition-colors`}
-                        >
-                            Portfolio
-                        </Link>
+
+
                         <Link
                             href="/blog"
                             className={`${linkColorClass} transition-colors`}
@@ -170,11 +171,18 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                             Careers
                         </Link>
                         <Link
+                            href="/shop"
+                            className={`${linkColorClass} transition-colors`}
+                        >
+                            Shop
+                        </Link>
+                        <Link
                             href="/contact"
                             className={`${linkColorClass} transition-colors`}
                         >
                             Contact
                         </Link>
+
                         <Link href="mailto:support@drivepixel.com">
                             <Button className="bg-cta hover:bg-cta-600 text-white flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95">
                                 <Mail className="h-5 w-5" />
@@ -198,216 +206,224 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                 </div>
 
                 {/* Mobile Menu */}
-                {mobileMenuOpen && (
-                    <div className="md:hidden py-4 space-y-4 bg-primary-700">
-                        <Link
-                            href="/"
-                            className={`block ${linkColorClass} transition-colors`}
-                        >
-                            Home
-                        </Link>
-                        <div>
-                            <button
-                                className={`block w-full text-left ${linkColorClass} transition-colors flex items-center justify-between`}
-                                onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                {
+                    mobileMenuOpen && (
+                        <div className="md:hidden py-4 space-y-4 bg-primary-700">
+                            <Link
+                                href="/"
+                                className={`block ${linkColorClass} transition-colors`}
                             >
-                                About Us
-                                <ChevronDown className={`h-4 w-4 transition-transform ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
-                            </button>
-                            {aboutDropdownOpen && (
-                                <div className="mt-2 space-y-2 pl-4">
-                                    <Link href="/about" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">About Us</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/about/company-overview" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Company Overview</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/about/history" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Our History</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/about/clients" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Clients</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/about/we-work-in" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">We Work In</h3>
-                                        </div>
-                                    </Link>
-                                </div>
-                            )}
-                        </div>
-                        <div>
-                            <button
-                                className={`block w-full text-left ${linkColorClass} transition-colors flex items-center justify-between`}
-                                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                            >
-                                Services
-                                <ChevronDown className={`h-4 w-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
-                            </button>
-                            {servicesDropdownOpen && (
-                                <div className="mt-2 space-y-2 pl-4">
-                                    <Link href="/services" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">All Services</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/services/web-development" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Web Development</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/services/mobile-app-development" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Mobile App Development</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/services/software-solutions" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Software Solutions</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/services/it-consulting" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">IT Consulting & Support</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/services/cybersecurity" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Cybersecurity Services</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/services/real-estate" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Real Estate IT Solutions</h3>
-                                        </div>
-                                    </Link>
-                                </div>
-                            )}
-                        </div>
-                        <div>
-                            <button
-                                className={`block w-full text-left ${linkColorClass} transition-colors flex items-center justify-between`}
-                                onClick={() => setTechnologyDropdownOpen(!technologyDropdownOpen)}
-                            >
-                                Technology
-                                <ChevronDown className={`h-4 w-4 transition-transform ${technologyDropdownOpen ? 'rotate-180' : ''}`} />
-                            </button>
-                            {technologyDropdownOpen && (
-                                <div className="mt-2 space-y-2 pl-4">
-                                    <div className="p-3 text-neutral-0 font-bold text-sm bg-primary-700 rounded-lg">
-                                        UI/UX
+                                Home
+                            </Link>
+
+                            <div>
+                                <button
+                                    className={`block w-full text-left ${linkColorClass} transition-colors flex items-center justify-between`}
+                                    onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                                >
+                                    About Us
+                                    <ChevronDown className={`h-4 w-4 transition-transform ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                {aboutDropdownOpen && (
+                                    <div className="mt-2 space-y-2 pl-4">
+                                        <Link href="/about" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">About Us</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/about/company-overview" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Company Overview</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/about/history" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Our History</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/about/clients" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Clients</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/about/we-work-in" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">We Work In</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/portfolio" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Portfolio</h3>
+                                            </div>
+                                        </Link>
                                     </div>
-                                    <Link href="/technology/frontend" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Frontend</h3>
+                                )}
+                            </div>
+                            <div>
+                                <button
+                                    className={`block w-full text-left ${linkColorClass} transition-colors flex items-center justify-between`}
+                                    onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                                >
+                                    Services
+                                    <ChevronDown className={`h-4 w-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                {servicesDropdownOpen && (
+                                    <div className="mt-2 space-y-2 pl-4">
+                                        <Link href="/services" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">All Services</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/services/web-development" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Web Development</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/services/mobile-app-development" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Mobile App Development</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/services/software-solutions" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Software Solutions</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/services/it-consulting" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">IT Consulting & Support</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/services/cybersecurity" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Cybersecurity Services</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/services/real-estate" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Real Estate IT Solutions</h3>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+                            <div>
+                                <button
+                                    className={`block w-full text-left ${linkColorClass} transition-colors flex items-center justify-between`}
+                                    onClick={() => setTechnologyDropdownOpen(!technologyDropdownOpen)}
+                                >
+                                    Technology
+                                    <ChevronDown className={`h-4 w-4 transition-transform ${technologyDropdownOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                {technologyDropdownOpen && (
+                                    <div className="mt-2 space-y-2 pl-4">
+                                        <div className="p-3 text-neutral-0 font-bold text-sm bg-primary-700 rounded-lg">
+                                            UI/UX
                                         </div>
-                                    </Link>
-                                    <Link href="/technology/backend" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Backend</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/technology/ecommerce" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">eCommerce</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/technology/framework" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Framework</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/technology/mobile" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Mobile</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/technology/database" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Database</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/technology/cloud" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Cloud</h3>
-                                        </div>
-                                    </Link>
-                                </div>
-                            )}
-                        </div>
-                        <div>
-                            <button
-                                className={`block w-full text-left ${linkColorClass} transition-colors flex items-center justify-between`}
-                                onClick={() => setIndustryDropdownOpen(!industryDropdownOpen)}
+                                        <Link href="/technology/frontend" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Frontend</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/technology/backend" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Backend</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/technology/ecommerce" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">eCommerce</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/technology/framework" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Framework</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/technology/mobile" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Mobile</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/technology/database" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Database</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/technology/cloud" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Cloud</h3>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+                            <div>
+                                <button
+                                    className={`block w-full text-left ${linkColorClass} transition-colors flex items-center justify-between`}
+                                    onClick={() => setIndustryDropdownOpen(!industryDropdownOpen)}
+                                >
+                                    Industry
+                                    <ChevronDown className={`h-4 w-4 transition-transform ${industryDropdownOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                {industryDropdownOpen && (
+                                    <div className="mt-2 space-y-2 pl-4">
+                                        <Link href="/industry/education" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Education</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/industry/retail" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Retail</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/industry/food-travel-hotel" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Food, Travel & Hotel</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/industry/media-entertainment" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Media & Entertainment</h3>
+                                            </div>
+                                        </Link>
+                                        <Link href="/industry/real-estate" className="block">
+                                            <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                                <h3 className="font-semibold">Real Estate</h3>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+
+                            <Link
+                                href="/blog"
+                                className={`block ${linkColorClass} transition-colors`}
                             >
-                                Industry
-                                <ChevronDown className={`h-4 w-4 transition-transform ${industryDropdownOpen ? 'rotate-180' : ''}`} />
-                            </button>
-                            {industryDropdownOpen && (
-                                <div className="mt-2 space-y-2 pl-4">
-                                    <Link href="/industry/education" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Education</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/industry/retail" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Retail</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/industry/food-travel-hotel" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Food, Travel & Hotel</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/industry/media-entertainment" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Media & Entertainment</h3>
-                                        </div>
-                                    </Link>
-                                    <Link href="/industry/real-estate" className="block">
-                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
-                                            <h3 className="font-semibold">Real Estate</h3>
-                                        </div>
-                                    </Link>
-                                </div>
-                            )}
+                                Blog
+                            </Link>
+                            <Link
+                                href="/careers"
+                                className={`block ${linkColorClass} transition-colors`}
+                            >
+                                Careers
+                            </Link>
+                            <Link
+                                href="/shop"
+                                className={`block ${linkColorClass} transition-colors`}
+                            >
+                                Shop
+                            </Link>
+                            <Link
+                                href="/contact"
+                                className={`block ${linkColorClass} transition-colors`}
+                            >
+                                Contact
+                            </Link>
                         </div>
-                        <Link
-                            href="/portfolio"
-                            className={`block ${linkColorClass} transition-colors`}
-                        >
-                            Portfolio
-                        </Link>
-                        <Link
-                            href="/blog"
-                            className={`block ${linkColorClass} transition-colors`}
-                        >
-                            Blog
-                        </Link>
-                        <Link
-                            href="/careers"
-                            className={`block ${linkColorClass} transition-colors`}
-                        >
-                            Careers
-                        </Link>
-                        <Link
-                            href="/contact"
-                            className={`block ${linkColorClass} transition-colors`}
-                        >
-                            Contact
-                        </Link>
-                    </div>
-                )}
-            </div>
-        </nav>
+                    )}
+            </div >
+        </nav >
     );
 }

@@ -1,5 +1,6 @@
 import { Pool, PoolClient } from "pg";
 import dotenv from "dotenv";
+import { hashPassword } from "../utils/authUtils";
 
 dotenv.config();
 
@@ -45,6 +46,151 @@ export const initializeDatabase = async () => {
         last_name VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Seed admin user
+    const adminCount = await query("SELECT count(*) FROM users WHERE email = 'admin@drivepixel.com'");
+    if (parseInt(adminCount.rows[0].count) === 0) {
+      console.log("Seeding admin user...");
+      const adminPassword = await hashPassword("admin123");
+      await query(
+        `INSERT INTO users (email, password, first_name, last_name, role) 
+         VALUES ($1, $2, $3, $4, $5)`,
+        ["admin@drivepixel.com", adminPassword, "Admin", "User", "admin"]
+      );
+      console.log("Admin user seeded successfully");
+    }
+
+    // Create products table (e-commerce)
+    await query(`
+      CREATE TABLE IF NOT EXISTS products (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        name VARCHAR(255) NOT NULL,
+        description TEXT,
+        price DECIMAL(12, 2) NOT NULL,
+        image_url TEXT,
+        category VARCHAR(100),
+        availability INT DEFAULT 0,
+        is_active BOOLEAN DEFAULT true,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Seed products if empty
+    const productCount = await query('SELECT count(*) FROM products');
+    if (parseInt(productCount.rows[0].count) === 0) {
+      console.log("Seeding initial products...");
+      const productsToSeed = [
+        {
+          name: "Enterprise Web Development Package",
+          description: "Complete custom website capability with React, Next.js, and scaling architecture. Include SEO optimization and 3 months of support.",
+          price: 2499.00,
+          category: "Services",
+          availability: 10,
+          image_url: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "UI/UX Design Sprint",
+          description: "One-week intensive design sprint to prototype your app idea. Delivered as high-fidelity Figma files and interactive prototypes.",
+          price: 899.00,
+          category: "Design",
+          availability: 5,
+          image_url: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "Cloud Infrastructure Audit",
+          description: "Comprehensive security and performance review of your AWS/Azure infrastructure with actionable report.",
+          price: 499.00,
+          category: "Consulting",
+          availability: 20,
+          image_url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "E-Commerce Starter Kit",
+          description: "Pre-built Next.js e-commerce template with Stripe integration, admin dashboard, and inventory management.",
+          price: 199.00,
+          category: "Software",
+          availability: 100,
+          image_url: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "SEO Optimization Services",
+          description: "Boost your search rankings with our comprehensive on-page and off-page SEO strategies.",
+          price: 750.00,
+          category: "Marketing",
+          availability: 15,
+          image_url: "https://images.unsplash.com/photo-1571721795195-ad25d6d4a853?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          name: "Mobile App MVP Development",
+          description: "Rapid development of a Minimum Viable Product for iOS and Android using React Native.",
+          price: 3500.00,
+          category: "Development",
+          availability: 3,
+          image_url: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+        }
+      ];
+
+      for (const p of productsToSeed) {
+        await query(
+          `INSERT INTO products (name, description, price, image_url, category, availability, is_active) 
+                 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [p.name, p.description, p.price, p.image_url, p.category, p.availability, true]
+        );
+      }
+      console.log("Products seeded successfully");
+    }
+
+    // Carts and cart items
+    await query(`
+      CREATE TABLE IF NOT EXISTS carts (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        session_id VARCHAR(255),
+        status VARCHAR(50) DEFAULT 'active',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    await query(`
+      CREATE TABLE IF NOT EXISTS cart_items (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        cart_id UUID REFERENCES carts(id) ON DELETE CASCADE,
+        product_id UUID REFERENCES products(id),
+        quantity INT NOT NULL DEFAULT 1,
+        price_each DECIMAL(12, 2) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Orders and order items
+    await query(`
+      CREATE TABLE IF NOT EXISTS orders (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        cart_id UUID REFERENCES carts(id) ON DELETE SET NULL,
+        customer_name VARCHAR(255) NOT NULL,
+        customer_email VARCHAR(255) NOT NULL,
+        customer_phone VARCHAR(50),
+        customer_address TEXT NOT NULL,
+        total DECIMAL(12, 2) NOT NULL,
+        payment_provider VARCHAR(50),
+        payment_status VARCHAR(50) DEFAULT 'pending',
+        status VARCHAR(50) DEFAULT 'pending',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    await query(`
+      CREATE TABLE IF NOT EXISTS order_items (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        order_id UUID REFERENCES orders(id) ON DELETE CASCADE,
+        product_id UUID REFERENCES products(id),
+        quantity INT NOT NULL,
+        price_each DECIMAL(12, 2) NOT NULL
       );
     `);
 

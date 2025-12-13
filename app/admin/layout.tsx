@@ -47,11 +47,13 @@ export default function AdminLayout({
     { href: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
     { href: '/admin/users', icon: Users, label: 'Users' },
     { href: '/admin/analytics', icon: BarChart3, label: 'Analytics' },
+    { href: '/admin/products', icon: Briefcase, label: 'Products' },
     { href: '/admin/content/services', icon: Briefcase, label: 'Services' },
     { href: '/admin/content/portfolio', icon: Sparkles, label: 'Portfolio' },
     { href: '/admin/content/blog', icon: BookOpen, label: 'Blog' },
     { href: '/admin/content/testimonials', icon: MessageSquare, label: 'Testimonials' },
     { href: '/admin/content/hero-texts', icon: FileText, label: 'Hero Texts' },
+    { href: '/admin/orders', icon: Activity, label: 'Orders' },
     { href: '/admin/settings', icon: Settings, label: 'Settings' },
     { href: '/admin/logs', icon: Activity, label: 'Logs' },
   ];

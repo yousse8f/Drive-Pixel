@@ -80,6 +80,13 @@ class ApiClient {
     return response;
   }
 
+  async signup(firstName: string, lastName: string, email: string, password: string) {
+    return this.request<{ user: any; token?: string }>('/auth/signup', {
+      method: 'POST',
+      body: JSON.stringify({ firstName, lastName, email, password }),
+    });
+  }
+
   async logout() {
     this.setToken(null);
   }
@@ -102,6 +109,35 @@ class ApiClient {
 
   async deleteUser(id: string) {
     return this.request(`/users/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
+  // Admin - Products
+  async getProducts(includeInactive = true) {
+    return this.request<any[]>(`/admin/products?includeInactive=${includeInactive}`);
+  }
+
+  async getProduct(id: string) {
+    return this.request<any>(`/admin/products/${id}`);
+  }
+
+  async createProduct(data: any) {
+    return this.request('/admin/products', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async updateProduct(id: string, data: any) {
+    return this.request(`/admin/products/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async deleteProduct(id: string) {
+    return this.request(`/admin/products/${id}`, {
       method: 'DELETE',
     });
   }
@@ -216,6 +252,22 @@ class ApiClient {
   async deleteTestimonial(id: string) {
     return this.request(`/admin/content/testimonials/${id}`, {
       method: 'DELETE',
+    });
+  }
+
+  // Admin - Orders
+  async getOrders() {
+    return this.request<any[]>(`/admin/orders`);
+  }
+
+  async getOrder(id: string) {
+    return this.request(`/admin/orders/${id}`);
+  }
+
+  async updateOrderStatus(id: string, data: { status?: string; paymentStatus?: string }) {
+    return this.request(`/admin/orders/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
     });
   }
 

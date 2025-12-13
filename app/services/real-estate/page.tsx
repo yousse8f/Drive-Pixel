@@ -247,7 +247,7 @@ export default function RealEstateITSolutionsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -290,7 +290,7 @@ export default function RealEstateITSolutionsPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-r from-primary-900 to-primary-700 text-white">
         <div className="container-custom text-center">
@@ -307,8 +307,8 @@ export default function RealEstateITSolutionsPage() {
           <h2 className="text-4xl font-bold text-center text-primary-900 mb-16">Our Real Estate Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex flex-col bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 {service.icon}
@@ -347,11 +347,10 @@ export default function RealEstateITSolutionsPage() {
                 return (
                   <div
                     key={index}
-                    className={`w-full xs:w-80 sm:w-72 lg:w-80 flex flex-col rounded-xl border-2 transition-all duration-300 max-w-sm ${
-                      isPopular
+                    className={`w-full xs:w-80 sm:w-72 lg:w-80 flex flex-col rounded-xl border-2 transition-all duration-300 max-w-sm ${isPopular
                         ? 'border-primary-500 shadow-lg'
                         : 'border-gray-300 shadow-md hover:shadow-lg hover:border-primary-400'
-                    } ${isPopular ? 'bg-gradient-to-br from-primary-50 to-white' : 'bg-white'}`}
+                      } ${isPopular ? 'bg-gradient-to-br from-primary-50 to-white' : 'bg-white'}`}
                   >
                     {isPopular && (
                       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -370,11 +369,10 @@ export default function RealEstateITSolutionsPage() {
                             <button
                               key={period}
                               onClick={() => handlePeriodChange(plan.service, period)}
-                              className={`py-2 px-2 rounded text-xs font-semibold transition-all duration-200 ${
-                                selectedPeriod === period
+                              className={`py-2 px-2 rounded text-xs font-semibold transition-all duration-200 ${selectedPeriod === period
                                   ? 'bg-primary-500 text-white'
                                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                              }`}
+                                }`}
                             >
                               {getPeriodLabel(period)}
                             </button>
@@ -409,11 +407,10 @@ export default function RealEstateITSolutionsPage() {
                       <button
                         onClick={() => handlePurchase(plan.service, displayPrice, selectedPeriod)}
                         disabled={isProcessing}
-                        className={`w-full py-2 px-4 rounded font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-1 ${
-                          isPopular
+                        className={`w-full py-2 px-4 rounded font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-1 ${isPopular
                             ? 'bg-primary-500 text-white hover:bg-primary-600 disabled:opacity-50'
                             : 'bg-gray-100 text-primary-900 hover:bg-primary-100 disabled:opacity-50'
-                        }`}
+                          }`}
                       >
                         {isProcessing ? 'Processing...' : 'Get Started'}
                         <ArrowRight className="h-3 w-3" />
@@ -435,11 +432,10 @@ export default function RealEstateITSolutionsPage() {
                 return (
                   <div
                     key={actualIndex}
-                    className={`w-full xs:w-80 sm:w-72 lg:w-80 flex flex-col rounded-xl border-2 transition-all duration-300 max-w-sm ${
-                      isPopular
+                    className={`w-full xs:w-80 sm:w-72 lg:w-80 flex flex-col rounded-xl border-2 transition-all duration-300 max-w-sm ${isPopular
                         ? 'border-primary-500 shadow-lg'
                         : 'border-gray-300 shadow-md hover:shadow-lg hover:border-primary-400'
-                    } ${isPopular ? 'bg-gradient-to-br from-primary-50 to-white' : 'bg-white'}`}
+                      } ${isPopular ? 'bg-gradient-to-br from-primary-50 to-white' : 'bg-white'}`}
                   >
                     {isPopular && (
                       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -458,11 +454,10 @@ export default function RealEstateITSolutionsPage() {
                             <button
                               key={period}
                               onClick={() => handlePeriodChange(plan.service, period)}
-                              className={`py-2 px-2 rounded text-xs font-semibold transition-all duration-200 ${
-                                selectedPeriod === period
+                              className={`py-2 px-2 rounded text-xs font-semibold transition-all duration-200 ${selectedPeriod === period
                                   ? 'bg-primary-500 text-white'
                                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                              }`}
+                                }`}
                             >
                               {getPeriodLabel(period)}
                             </button>
@@ -497,11 +492,10 @@ export default function RealEstateITSolutionsPage() {
                       <button
                         onClick={() => handlePurchase(plan.service, displayPrice, selectedPeriod)}
                         disabled={isProcessing}
-                        className={`w-full py-2 px-4 rounded font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-1 ${
-                          isPopular
+                        className={`w-full py-2 px-4 rounded font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-1 ${isPopular
                             ? 'bg-primary-500 text-white hover:bg-primary-600 disabled:opacity-50'
                             : 'bg-gray-100 text-primary-900 hover:bg-primary-100 disabled:opacity-50'
-                        }`}
+                          }`}
                       >
                         {isProcessing ? 'Processing...' : 'Get Started'}
                         <ArrowRight className="h-3 w-3" />
@@ -524,14 +518,14 @@ export default function RealEstateITSolutionsPage() {
         <div className="container-custom max-w-2xl">
           <h2 className="text-4xl font-bold text-center text-primary-900 mb-4">Get Started Today</h2>
           <p className="text-center text-gray-600 mb-12">Submit your inquiry and our team will contact you within 24 hours to discuss your real estate IT needs.</p>
-          
+
           <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-8 rounded-xl">
             {formError && (
               <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
                 {formError}
               </div>
             )}
-            
+
             {formSuccess && (
               <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
                 Thank you! Your inquiry has been submitted successfully. We'll contact you soon.

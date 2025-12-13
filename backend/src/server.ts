@@ -10,6 +10,9 @@ import settingsRoutes from "./routes/settingsRoutes";
 import analyticsRoutes from "./routes/analyticsRoutes";
 import logsRoutes from "./routes/logsRoutes";
 import publicRoutes from "./routes/publicRoutes";
+import productRoutes from "./routes/productRoutes";
+import cartRoutes from "./routes/cartRoutes";
+import orderRoutes from "./routes/orderRoutes";
 import { verifyToken } from "./utils/authUtils";
 import { adminMiddleware } from "./utils/adminMiddleware";
 import { initializeDatabase } from "./config/database";
@@ -82,12 +85,15 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", authMiddleware, usersRoutes);
 app.use("/api/leads", authMiddleware, leadsRoutes);
 app.use("/api/properties", authMiddleware, propertiesRoutes);
+app.use("/api/cart", cartRoutes);
 
 // Admin routes (admin authentication required)
 app.use("/api/admin/content", adminMiddleware, contentRoutes);
 app.use("/api/admin/settings", adminMiddleware, settingsRoutes);
 app.use("/api/admin/analytics", adminMiddleware, analyticsRoutes);
 app.use("/api/admin/logs", adminMiddleware, logsRoutes);
+app.use("/api/admin/products", adminMiddleware, productRoutes);
+app.use("/api/admin/orders", adminMiddleware, orderRoutes);
 
 // Health check
 app.get("/api/health", (req: Request, res: Response) => {

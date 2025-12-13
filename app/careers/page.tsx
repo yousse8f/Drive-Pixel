@@ -13,7 +13,7 @@ export default function CareersPage() {
             id: 1,
             title: 'Senior Full Stack Developer',
             type: 'Full-time',
-            location: 'New Delhi',
+            location: 'Remote',
             description: 'We\'re looking for an experienced Full Stack Developer to join our growing team.'
         },
         {
@@ -27,7 +27,7 @@ export default function CareersPage() {
             id: 3,
             title: 'AI/ML Engineer',
             type: 'Full-time',
-            location: 'New Delhi',
+            location: 'Remote',
             description: 'Build intelligent systems and machine learning models that drive business value.'
         },
         {
@@ -41,14 +41,14 @@ export default function CareersPage() {
             id: 5,
             title: 'DevOps Engineer',
             type: 'Full-time',
-            location: 'New Delhi',
+            location: 'Remote',
             description: 'Manage and optimize our infrastructure and deployment pipelines.'
         },
         {
             id: 6,
             title: 'Internship - Web Development',
             type: 'Internship',
-            location: 'New Delhi',
+            location: 'Remote',
             description: 'Join our team as an intern and learn from experienced developers.'
         }
     ];
