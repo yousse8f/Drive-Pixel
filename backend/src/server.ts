@@ -13,7 +13,7 @@ import publicRoutes from "./routes/publicRoutes";
 import productRoutes from "./routes/productRoutes";
 import cartRoutes from "./routes/cartRoutes";
 import orderRoutes from "./routes/orderRoutes";
-import { verifyToken } from "./utils/authUtils";
+import { authMiddleware } from "./utils/authUtils";
 import { adminMiddleware } from "./utils/adminMiddleware";
 import { initializeDatabase } from "./config/database";
 import { randomUUID } from "crypto";
@@ -50,30 +50,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Auth middleware
-const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.headers.authorization?.split(" ")[1];
-
-  if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized",
-      error: "No token provided",
-    });
-  }
-
-  const decoded = verifyToken(token);
-  if (!decoded) {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized",
-      error: "Invalid token",
-    });
-  }
-
-  (req as any).userId = decoded.userId;
-  next();
-};
 
 // Public routes (no authentication required)
 app.use("/api/public", publicRoutes);

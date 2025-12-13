@@ -22,7 +22,6 @@ export const query = async (text: string, params?: any[]) => {
   try {
     const res = await pool.query(text, params);
     const duration = Date.now() - start;
-    console.log("Executed query", { text, duration, rows: res.rowCount });
     return res;
   } catch (error) {
     console.error("Database query error", { text, error });
@@ -32,7 +31,6 @@ export const query = async (text: string, params?: any[]) => {
 
 export const initializeDatabase = async () => {
   try {
-    console.log("Initializing database...");
 
     await query(`CREATE EXTENSION IF NOT EXISTS pgcrypto;`);
 
@@ -52,14 +50,12 @@ export const initializeDatabase = async () => {
     // Seed admin user
     const adminCount = await query("SELECT count(*) FROM users WHERE email = 'admin@drivepixel.com'");
     if (parseInt(adminCount.rows[0].count) === 0) {
-      console.log("Seeding admin user...");
       const adminPassword = await hashPassword("admin123");
       await query(
         `INSERT INTO users (email, password, first_name, last_name, role) 
          VALUES ($1, $2, $3, $4, $5)`,
         ["admin@drivepixel.com", adminPassword, "Admin", "User", "admin"]
       );
-      console.log("Admin user seeded successfully");
     }
 
     // Create products table (e-commerce)
@@ -81,7 +77,6 @@ export const initializeDatabase = async () => {
     // Seed products if empty
     const productCount = await query('SELECT count(*) FROM products');
     if (parseInt(productCount.rows[0].count) === 0) {
-      console.log("Seeding initial products...");
       const productsToSeed = [
         {
           name: "Enterprise Web Development Package",
@@ -140,7 +135,6 @@ export const initializeDatabase = async () => {
           [p.name, p.description, p.price, p.image_url, p.category, p.availability, true]
         );
       }
-      console.log("Products seeded successfully");
     }
 
     // Carts and cart items
@@ -400,7 +394,6 @@ export const initializeDatabase = async () => {
     await query(`CREATE INDEX IF NOT EXISTS idx_logs_created_at ON logs(created_at);`);
     await query(`CREATE INDEX IF NOT EXISTS idx_logs_resource ON logs(resource);`);
 
-    console.log("Database initialized successfully");
   } catch (error) {
     console.error("Error initializing database", error);
     throw error;

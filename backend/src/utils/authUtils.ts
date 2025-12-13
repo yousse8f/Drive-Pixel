@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { Request, Response, NextFunction } from "express";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 const SALT_ROUNDS = 10;
@@ -25,4 +26,28 @@ export const verifyToken = (token: string): { userId: string } | null => {
   } catch {
     return null;
   }
+};
+
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  const token = req.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized",
+      error: "No token provided",
+    });
+  }
+
+  const decoded = verifyToken(token);
+  if (!decoded) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized",
+      error: "Invalid token",
+    });
+  }
+
+  (req as any).userId = decoded.userId;
+  next();
 };

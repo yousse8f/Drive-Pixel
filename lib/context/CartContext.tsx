@@ -50,10 +50,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const initCart = async () => {
       if (isMixedContent) {
-        console.warn(
-          "[Cart] Skipping cart fetch because API_URL is HTTP while site is HTTPS (mixed content would be blocked).",
-          { API_URL }
-        );
         setLoading(false);
         return;
       }

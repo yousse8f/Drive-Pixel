@@ -112,7 +112,7 @@ export default function Footer() {
                     <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 text-xs md:text-sm flex-wrap">
                         {/* Copyright */}
                         <div className="text-primary-100 text-center md:text-left order-2 md:order-1">
-                            <p>Copyright © 2024-2025 DrivePixel. All rights reserved.</p>
+                            <p>Copyright © {year} DrivePixel. All rights reserved.</p>
                         </div>
 
                         {/* Links */}

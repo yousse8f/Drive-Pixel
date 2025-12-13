@@ -57,7 +57,6 @@ const products = [
     }
 ];
 const seed = async () => {
-    console.log("Seeding products via API...");
     let successCount = 0;
     for (const product of products) {
         try {
@@ -68,7 +67,6 @@ const seed = async () => {
             });
             const data = await res.json();
             if (res.ok && data.success) {
-                console.log(`Created: ${product.name}`);
                 successCount++;
             }
             else {
@@ -79,6 +77,5 @@ const seed = async () => {
             console.error(`Error connecting to API for ${product.name}:`, err);
         }
     }
-    console.log(`Seeding complete. Successfully created ${successCount} of ${products.length} products.`);
 };
 seed();
