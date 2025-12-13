@@ -7,7 +7,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Building2, Truck, Package, ChevronLeft, ChevronRight, Star, MessageCircle, Phone, Briefcase, Clock, Users, Award, Globe, Code, Megaphone, Cloud } from 'lucide-react';
+import { ArrowRight, Building2, Truck, Package, ChevronLeft, ChevronRight, Star, MessageCircle, Phone, Briefcase, Clock, Users, Award, Globe, Code, Megaphone, Cloud, Smartphone, Settings, Database, Server, Terminal, Lightbulb, Rocket, Cog, BarChart3, Calendar, Zap, ShoppingCart, BarChart2, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Navbar from '@/components/Navbar';
@@ -271,8 +271,8 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Advisory */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6">
-                                <span className="text-2xl">📊</span>
+                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                                <BarChart2 className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
                             <h3 className="text-2xl font-bold text-primary-900 mb-4">Advisory</h3>
                             <p className="text-gray-700 leading-relaxed">
@@ -282,8 +282,8 @@ export default function HomePage() {
 
                         {/* Build */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6">
-                                <span className="text-2xl">⚙️</span>
+                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                                <Cog className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
                             <h3 className="text-2xl font-bold text-primary-900 mb-4">Build</h3>
                             <p className="text-gray-700 leading-relaxed">
@@ -293,14 +293,74 @@ export default function HomePage() {
 
                         {/* Operate */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6">
-                                <span className="text-2xl">🚀</span>
+                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                                <Rocket className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
                             <h3 className="text-2xl font-bold text-primary-900 mb-4">Operate</h3>
                             <p className="text-gray-700 leading-relaxed">
                                 We ensure your product stays fast, secure, monitored, and continuously optimized with long-term support and proactive improvements.
                             </p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Real Estate IT Solutions Section */}
+            <section className="py-16 bg-white">
+                <div className="container-custom">
+                    <div className="text-center mb-12">
+                        <p className="text-sm font-semibold text-primary-500 mb-2">SPECIALIZED SOLUTIONS</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                            Real Estate IT Solutions – Streamline Your Property Business
+                        </h2>
+                        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                            Specialized IT services designed for real estate agencies and property managers to manage listings, track leads, and grow their business efficiently.
+                        </p>
+                    </div>
+
+                    {/* Features Cards Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-primary-200">
+                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                                <Users className="h-6 w-6 text-white" />
+                            </div>
+                            <h3 className="text-lg font-bold text-primary-900 mb-3">Centralized CRM</h3>
+                            <p className="text-gray-700 text-sm">Manage clients, leads, and follow-ups in one unified platform</p>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-primary-200">
+                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                                <Home className="h-6 w-6 text-white" />
+                            </div>
+                            <h3 className="text-lg font-bold text-primary-900 mb-3">Property Management</h3>
+                            <p className="text-gray-700 text-sm">Automated tools for listings, marketing, and tenant communication</p>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-primary-200">
+                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                                <BarChart3 className="h-6 w-6 text-white" />
+                            </div>
+                            <h3 className="text-lg font-bold text-primary-900 mb-3">Analytics & Insights</h3>
+                            <p className="text-gray-700 text-sm">Real-time dashboards and performance metrics for data-driven decisions</p>
+                        </div>
+
+                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-primary-200">
+                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                                <Globe className="h-6 w-6 text-white" />
+                            </div>
+                            <h3 className="text-lg font-bold text-primary-900 mb-3">MLS Integration</h3>
+                            <p className="text-gray-700 text-sm">Seamless integration with MLS and property portals</p>
+                        </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="text-center">
+                        <Link href="/services/real-estate">
+                            <Button size="lg" className="bg-cta hover:bg-cta-600 text-white transition-all duration-300 transform hover:scale-105">
+                                Learn More About Real Estate Solutions
+                                <ArrowRight className="ml-2 h-5 w-5" />
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -319,12 +379,39 @@ export default function HomePage() {
                     </div>
 
                     {/* Tech Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                         {['React.js / Next.js', 'Node.js / Express', 'Python / Django / FastAPI', 'Flutter / React Native', 'AWS / Google Cloud / Azure', 'Docker / Kubernetes', 'CI/CD & DevOps Automation', 'PostgreSQL / MongoDB / Redis'].map((tech, index) => (
-                            <div key={index} className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200">
+                            <div key={index} className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-all border border-gray-200 group">
+                                <div className="flex justify-center mb-4">
+                                    {index === 0 && <Code className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                    {index === 1 && <Server className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                    {index === 2 && <Terminal className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                    {index === 3 && <Smartphone className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                    {index === 4 && <Cloud className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                    {index === 5 && <Package className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                    {index === 6 && <Settings className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                    {index === 7 && <Database className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                </div>
                                 <p className="font-semibold text-primary-900">{tech}</p>
                             </div>
                         ))}
+                    </div>
+
+                    {/* Service Links CTA */}
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                        <Link href="/services/mobile-app-development">
+                            <Button size="lg" className="bg-cta hover:bg-cta-600 text-white transition-all duration-300 transform hover:scale-105">
+                                Learn More About Mobile App Development
+                                <ArrowRight className="ml-2 h-5 w-5" />
+                            </Button>
+                        </Link>
+
+                        <Link href="/services/software-solutions">
+                            <Button size="lg" className="bg-cta hover:bg-cta-600 text-white transition-all duration-300 transform hover:scale-105">
+                                Learn More About Software Solutions
+                                <ArrowRight className="ml-2 h-5 w-5" />
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -345,8 +432,10 @@ export default function HomePage() {
                     {/* Portfolio Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Smart Booking Platform */}
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all">
-                            <div className="text-4xl mb-4">📅</div>
+                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all group">
+                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                                <Calendar className="h-6 w-6 text-white" />
+                            </div>
                             <h3 className="text-xl font-bold text-primary-900 mb-2">Smart Booking Platform</h3>
                             <p className="text-sm text-gray-600 mb-2 font-semibold">SaaS</p>
                             <p className="text-gray-700 leading-relaxed">
@@ -355,8 +444,10 @@ export default function HomePage() {
                         </div>
 
                         {/* AI Workflow Automation */}
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all">
-                            <div className="text-4xl mb-4">🤖</div>
+                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all group">
+                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                                <Zap className="h-6 w-6 text-white" />
+                            </div>
                             <h3 className="text-xl font-bold text-primary-900 mb-2">AI Workflow Automation</h3>
                             <p className="text-sm text-gray-600 mb-2 font-semibold">Enterprise</p>
                             <p className="text-gray-700 leading-relaxed">
@@ -365,13 +456,122 @@ export default function HomePage() {
                         </div>
 
                         {/* E-Commerce PWA */}
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all">
-                            <div className="text-4xl mb-4">🛍️</div>
+                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all group">
+                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                                <ShoppingCart className="h-6 w-6 text-white" />
+                            </div>
                             <h3 className="text-xl font-bold text-primary-900 mb-2">E-Commerce PWA</h3>
                             <p className="text-sm text-gray-600 mb-2 font-semibold">Retail</p>
                             <p className="text-gray-700 leading-relaxed">
                                 Lightning-fast shopping experience with a modern UI and high conversion performance.
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* End-to-End Digital Solutions Section */}
+            <section className="py-16 bg-gray-50">
+                <div className="container-custom">
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                            End-to-End Digital Solutions
+                        </h2>
+                        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                            From custom applications and mobile development to cloud and email solutions, we provide scalable, secure, and future-ready services.
+                        </p>
+                    </div>
+
+                    {/* Solutions Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {/* Advisory & Strategy */}
+                        <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-all">
+                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                                <Lightbulb className="h-7 w-7 text-white transition-colors duration-300" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Advisory & Strategy</h3>
+                            <ul className="space-y-3 text-gray-700">
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Requirement Analysis & Technology Consultation</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Solution Architecture & Scalability Planning</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>UI/UX Consulting for Web & Mobile Apps</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Security, Compliance & Performance Reviews</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Digital Transformation & Automation Roadmaps</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Build & Deploy */}
+                        <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-all">
+                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                                <Rocket className="h-7 w-7 text-white transition-colors duration-300" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Build & Deploy</h3>
+                            <ul className="space-y-3 text-gray-700">
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Custom Web & Enterprise Application Development</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Mobile App Development (iOS, Android, React Native, Flutter)</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>API Development & Third-Party Integrations</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Cloud-Native Applications (AWS, Azure, GCP)</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Email & Communication Solutions (Google Workspace, Microsoft 365, WhatsApp API)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Operate & Enhance */}
+                        <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-all">
+                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                                <Cog className="h-7 w-7 text-white transition-colors duration-300" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Operate & Enhance</h3>
+                            <ul className="space-y-3 text-gray-700">
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Future Readdy, Managed Services & Maintenance</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Application Optimization & Version Upgrades</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Continuous Monitoring, Backup & Disaster Recovery</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>DevOps & CI/CD Automation</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span>Cost Optimization</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

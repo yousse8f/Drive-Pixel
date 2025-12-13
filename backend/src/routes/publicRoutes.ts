@@ -7,6 +7,7 @@ import {
   getTestimonials,
   getHeroTexts,
 } from "../controllers/contentController";
+import { submitInquiry } from "../controllers/inquiryController";
 
 const router = Router();
 
@@ -18,5 +19,7 @@ router.get("/blog/:slug", getBlogPost);
 router.get("/testimonials", getTestimonials);
 router.get("/hero-texts", getHeroTexts);
 
-export default router;
+// Inquiry routes
+router.post("/inquiries", submitInquiry);
 
+export default router;

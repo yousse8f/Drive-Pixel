@@ -13,6 +13,7 @@ import publicRoutes from "./routes/publicRoutes";
 import { verifyToken } from "./utils/authUtils";
 import { adminMiddleware } from "./utils/adminMiddleware";
 import { initializeDatabase } from "./config/database";
+import { randomUUID } from "crypto";
 
 dotenv.config();
 
@@ -22,6 +23,29 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const requestId = randomUUID();
+  const start = Date.now();
+  (req as any).requestId = requestId;
+
+  res.on("finish", () => {
+    const durationMs = Date.now() - start;
+    const userId = (req as any).userId;
+    console.log(
+      JSON.stringify({
+        requestId,
+        method: req.method,
+        path: req.originalUrl,
+        statusCode: res.statusCode,
+        durationMs,
+        userId,
+      })
+    );
+  });
+
+  next();
+});
 
 // Auth middleware
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {

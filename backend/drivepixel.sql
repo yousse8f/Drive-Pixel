@@ -6,6 +6,9 @@
 -- All data used across the website is sourced exclusively from this file
 -- ============================================================================
 
+ -- Required for gen_random_uuid()
+ CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 -- ============================================================================
 -- CORE TABLES
 -- ============================================================================
@@ -88,6 +91,18 @@ CREATE TABLE IF NOT EXISTS hero_texts (
     is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Inquiries table: Stores client inquiries and routes them to appropriate departments
+CREATE TABLE IF NOT EXISTS inquiries (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    service_id UUID REFERENCES services(id),
+    client_full_name VARCHAR(255) NOT NULL,
+    client_email VARCHAR(255) NOT NULL,
+    client_phone VARCHAR(20),
+    message TEXT NOT NULL,
+    freelancer_id UUID,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ============================================================================
@@ -201,11 +216,11 @@ CREATE INDEX IF NOT EXISTS idx_logs_resource ON logs(resource);
 -- ============================================================================
 
 INSERT INTO users (email, password, first_name, last_name, role, created_at, updated_at) VALUES
-('admin@drivepixel.com', '$2b$10$YourHashedPasswordHere1', 'Admin', 'User', 'admin', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
-('sarah.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere2', 'Sarah', 'Editor', 'editor', '2025-01-05T09:15:00Z', '2025-12-12T10:00:00Z'),
-('john.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere3', 'John', 'Editor', 'editor', '2025-01-10T10:30:00Z', '2025-12-12T10:00:00Z'),
-('emma.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere4', 'Emma', 'Editor', 'editor', '2025-01-15T11:45:00Z', '2025-12-12T10:00:00Z'),
-('michael.editor@drivepixel.com', '$2b$10$YourHashedPasswordHere5', 'Michael', 'Editor', 'editor', '2025-01-20T13:00:00Z', '2025-12-12T10:00:00Z');
+('admin@drivepixel.com', '$2b$10$zHKXz6KYoEKFkPbhX/SUpeOxWsH4AzSE/L6Wz9VdOzyTpaIyhYGYq', 'Admin', 'User', 'admin', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
+('sarah.editor@drivepixel.com', '$2b$10$TYgT7zHOPB/uZQk59hRq5.pmELgfocM0cDoN8Icw.fvsLjd.y1J4m', 'Sarah', 'Editor', 'editor', '2025-01-05T09:15:00Z', '2025-12-12T10:00:00Z'),
+('john.editor@drivepixel.com', '$2b$10$TYgT7zHOPB/uZQk59hRq5.pmELgfocM0cDoN8Icw.fvsLjd.y1J4m', 'John', 'Editor', 'editor', '2025-01-10T10:30:00Z', '2025-12-12T10:00:00Z'),
+('emma.editor@drivepixel.com', '$2b$10$TYgT7zHOPB/uZQk59hRq5.pmELgfocM0cDoN8Icw.fvsLjd.y1J4m', 'Emma', 'Editor', 'editor', '2025-01-15T11:45:00Z', '2025-12-12T10:00:00Z'),
+('michael.editor@drivepixel.com', '$2b$10$TYgT7zHOPB/uZQk59hRq5.pmELgfocM0cDoN8Icw.fvsLjd.y1J4m', 'Michael', 'Editor', 'editor', '2025-01-20T13:00:00Z', '2025-12-12T10:00:00Z');
 
 -- ============================================================================
 -- SEED DATA - SERVICES
@@ -293,8 +308,7 @@ INSERT INTO jobs (title, type, location, description, benefits, "order", is_acti
 
 INSERT INTO contact_info (type, value, label, created_at, updated_at) VALUES
 ('email', 'Info@OneDriveRealty.com', 'Primary Email', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
-('phone', '+1-206-788-7190', 'Main Phone', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z'),
-('address', 'NYC', 'Office Location', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z');
+('address', 'WA', 'Office Location', '2025-01-01T08:00:00Z', '2025-12-12T10:00:00Z');
 
 -- ============================================================================
 -- END OF CONSOLIDATED DATABASE SCHEMA

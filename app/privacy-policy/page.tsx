@@ -75,26 +75,6 @@ export default function PrivacyPolicyPage() {
                             </div>
                         </div>
 
-                        {/* Your Rights */}
-                        <div className="bg-primary-100 p-8 rounded-lg border border-primary-300">
-                            <h2 className="text-3xl font-bold mb-6">Your Rights</h2>
-                            <p className="text-neutral-700 mb-6">You have the right to:</p>
-                            <ul className="space-y-3">
-                                <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 mt-1">✓</span>
-                                    <span className="text-neutral-700"><strong>Access your information</strong> - Request a copy of your personal data</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 mt-1">✓</span>
-                                    <span className="text-neutral-700"><strong>Correct inaccuracies</strong> - Update or correct your information</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 mt-1">✓</span>
-                                    <span className="text-neutral-700"><strong>Delete your information</strong> - Request deletion of your data (deleting also deletes the account)</span>
-                                </li>
-                            </ul>
-                        </div>
-
                         {/* Data Security */}
                         <div>
                             <h2 className="text-3xl font-bold mb-6">Data Security & Cookies</h2>
@@ -182,18 +162,11 @@ export default function PrivacyPolicyPage() {
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="flex items-start gap-3">
-                                    <Phone className="h-5 w-5 text-gold-300 mt-1" />
-                                    <div>
-                                        <p className="font-semibold">Phone</p>
-                                        <p className="text-primary-100">+1-800-123-4567</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <Mail className="h-5 w-5 text-gold-300 mt-1" />
-                                    <div>
-                                        <p className="font-semibold">Email</p>
-                                        <p className="text-primary-100">privacy@company.com</p>
-                                    </div>
+                                    <a href="/contact" className="flex items-center gap-2 text-primary-100 hover:text-neutral-0 transition-colors">
+                                        <Mail className="h-4 w-4 text-highlight" />
+                                        <span className="text-highlight font-semibold">Email:</span>
+                                        <span className="hover:underline">Contact@drivepixel.com</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

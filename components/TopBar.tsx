@@ -23,12 +23,12 @@ export default function TopBar() {
                             <span className="hover:underline">Info@OneDriveRealty.com</span>
                         </a>
                         <a 
-                            href="tel:+12067887190" 
+                            href="mailto:Contact@drivepixel.com" 
                             className="flex items-center gap-2 text-white hover:text-primary-100 transition-colors"
                         >
-                            <Phone className="h-4 w-4 text-highlight" />
-                            <span className="text-highlight font-semibold">Phone:</span>
-                            <span className="hover:underline">+1-206-788-7190</span>
+                            <Mail className="h-4 w-4 text-highlight" />
+                            <span className="text-highlight font-semibold">Email:</span>
+                            <span className="hover:underline">Contact@drivepixel.com</span>
                         </a>
                     </div>
 

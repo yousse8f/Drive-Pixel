@@ -74,7 +74,7 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                                             About Us
                                         </div>
                                     </Link>
-                                    <Link href="/about" className="block">
+                                    <Link href="/about/company-overview" className="block">
                                         <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
                                             Company Overview
                                         </div>
@@ -89,7 +89,7 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                                             Clients
                                         </div>
                                     </Link>
-                                    <Link href="/about?section=we-work-in" className="block">
+                                    <Link href="/about/we-work-in" className="block">
                                         <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
                                             We Work In
                                         </div>
@@ -117,19 +117,34 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                                             All Services
                                         </div>
                                     </Link>
-                                    <Link href="/services/website" className="block">
+                                    <Link href="/services/web-development" className="block">
                                         <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
-                                            Website
+                                            Web Development
                                         </div>
                                     </Link>
-                                    <Link href="/services/web-application" className="block">
+                                    <Link href="/services/mobile-app-development" className="block">
                                         <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
-                                            Web Application
+                                            Mobile App Development
                                         </div>
                                     </Link>
-                                    <Link href="/services/custom-application" className="block">
+                                    <Link href="/services/software-solutions" className="block">
                                         <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
-                                            Custom Application
+                                            Software Solutions
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/it-consulting" className="block">
+                                        <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
+                                            IT Consulting & Support
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/cybersecurity" className="block">
+                                        <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
+                                            Cybersecurity Services
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/real-estate" className="block">
+                                        <div className="px-4 py-3 text-neutral-0 hover:bg-primary-500 hover:text-white transition-all duration-300 font-medium cursor-pointer border-b border-primary-600">
+                                            Real Estate IT Solutions
                                         </div>
                                     </Link>
                                 </div>
@@ -206,19 +221,24 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                                             <h3 className="font-semibold">About Us</h3>
                                         </div>
                                     </Link>
-                                    <Link href="/about" className="block">
+                                    <Link href="/about/company-overview" className="block">
                                         <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
                                             <h3 className="font-semibold">Company Overview</h3>
                                         </div>
                                     </Link>
-                                    <Link href="/about?section=history" className="block">
+                                    <Link href="/about/history" className="block">
                                         <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
                                             <h3 className="font-semibold">Our History</h3>
                                         </div>
                                     </Link>
-                                    <Link href="/about?section=clients" className="block">
+                                    <Link href="/about/clients" className="block">
                                         <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
                                             <h3 className="font-semibold">Clients</h3>
+                                        </div>
+                                    </Link>
+                                    <Link href="/about/we-work-in" className="block">
+                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                            <h3 className="font-semibold">We Work In</h3>
                                         </div>
                                     </Link>
                                 </div>
@@ -237,6 +257,36 @@ export default function Navbar({ darkBg = false }: NavbarProps) {
                                     <Link href="/services" className="block">
                                         <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
                                             <h3 className="font-semibold">All Services</h3>
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/web-development" className="block">
+                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                            <h3 className="font-semibold">Web Development</h3>
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/mobile-app-development" className="block">
+                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                            <h3 className="font-semibold">Mobile App Development</h3>
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/software-solutions" className="block">
+                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                            <h3 className="font-semibold">Software Solutions</h3>
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/it-consulting" className="block">
+                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                            <h3 className="font-semibold">IT Consulting & Support</h3>
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/cybersecurity" className="block">
+                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                            <h3 className="font-semibold">Cybersecurity Services</h3>
+                                        </div>
+                                    </Link>
+                                    <Link href="/services/real-estate" className="block">
+                                        <div className="p-3 text-neutral-0 hover:bg-primary-700 rounded-lg transition-colors">
+                                            <h3 className="font-semibold">Real Estate IT Solutions</h3>
                                         </div>
                                     </Link>
                                 </div>

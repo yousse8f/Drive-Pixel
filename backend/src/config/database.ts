@@ -33,6 +33,8 @@ export const initializeDatabase = async () => {
   try {
     console.log("Initializing database...");
 
+    await query(`CREATE EXTENSION IF NOT EXISTS pgcrypto;`);
+
     // Create users table
     await query(`
       CREATE TABLE IF NOT EXISTS users (
@@ -103,6 +105,20 @@ export const initializeDatabase = async () => {
         is_active BOOLEAN DEFAULT true,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Create inquiries table
+    await query(`
+      CREATE TABLE IF NOT EXISTS inquiries (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        service_id UUID REFERENCES services(id),
+        client_full_name VARCHAR(255) NOT NULL,
+        client_email VARCHAR(255) NOT NULL,
+        client_phone VARCHAR(20),
+        message TEXT NOT NULL,
+        freelancer_id UUID,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
 
@@ -196,10 +212,40 @@ export const initializeDatabase = async () => {
       );
     `);
 
+    // Create jobs table
+    await query(`
+      CREATE TABLE IF NOT EXISTS jobs (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        title VARCHAR(255) NOT NULL,
+        type VARCHAR(100) NOT NULL,
+        location VARCHAR(100) NOT NULL,
+        description TEXT NOT NULL,
+        benefits TEXT,
+        "order" INT DEFAULT 0,
+        is_active BOOLEAN DEFAULT true,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Create contact_info table
+    await query(`
+      CREATE TABLE IF NOT EXISTS contact_info (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        type VARCHAR(50) NOT NULL UNIQUE,
+        value VARCHAR(255) NOT NULL,
+        label VARCHAR(100),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
     // Create additional indexes
     await query(`CREATE INDEX IF NOT EXISTS idx_services_order ON services("order");`);
     await query(`CREATE INDEX IF NOT EXISTS idx_services_active ON services(is_active);`);
     await query(`CREATE INDEX IF NOT EXISTS idx_portfolio_active ON portfolio(is_active);`);
+    await query(`CREATE INDEX IF NOT EXISTS idx_jobs_active ON jobs(is_active);`);
+    await query(`CREATE INDEX IF NOT EXISTS idx_jobs_order ON jobs("order");`);
     await query(`CREATE INDEX IF NOT EXISTS idx_blog_published ON blog_posts(is_published);`);
     await query(`CREATE INDEX IF NOT EXISTS idx_blog_slug ON blog_posts(slug);`);
     await query(`CREATE INDEX IF NOT EXISTS idx_testimonials_active ON testimonials(is_active);`);
