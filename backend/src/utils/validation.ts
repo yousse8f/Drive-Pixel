@@ -21,6 +21,20 @@ export const leadSchema = z.object({
   status: z.enum(["new", "contacted", "qualified", "converted"]).default("new"),
 });
 
+// Chat message validation schema
+export const chatMessageSchema = z.object({
+  sessionId: z.string().uuid().optional(),
+  sender: z.enum(["user", "bot"]),
+  message: z
+    .string()
+    .min(1, "Message is required")
+    .max(2000, "Message is too long"),
+  pageUrl: z.string().url().optional(),
+  name: z.string().min(1).max(120).optional(),
+  email: z.string().email().max(255).optional(),
+  sessionComplete: z.boolean().optional(),
+});
+
 // Property validation schemas
 export const propertySchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -35,3 +49,4 @@ export type UserSignup = z.infer<typeof userSignupSchema>;
 export type UserLogin = z.infer<typeof userLoginSchema>;
 export type Lead = z.infer<typeof leadSchema>;
 export type Property = z.infer<typeof propertySchema>;
+export type ChatMessageInput = z.infer<typeof chatMessageSchema>;

@@ -1,11 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Users, Home, Megaphone, Code, BarChart3, Check } from 'lucide-react';
+import { ArrowRight, Users, Home, Megaphone, Code, BarChart3, Check, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { publicApiClient } from '@/lib/public-api-client';
+import { useCart } from '@/lib/hooks/useCart';
 
 export default function RealEstateITSolutionsPage() {
   const [formData, setFormData] = useState({
@@ -26,6 +28,60 @@ export default function RealEstateITSolutionsPage() {
     'Data Analysis & Insights': 'monthly',
   });
   const [isProcessing, setIsProcessing] = useState(false);
+  const [purchaseMessage, setPurchaseMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [products, setProducts] = useState<{ id: string; name: string }[]>([]);
+  const [productsLoading, setProductsLoading] = useState(false);
+  const { addItem } = useCart();
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      setProductsLoading(true);
+      try {
+        const res = await publicApiClient.getProducts();
+        if (res.success && res.data) {
+          const parsed = (res.data as any[]).map((p) => ({
+            id: p.id,
+            name: p.name as string,
+          }));
+          setProducts(parsed);
+        }
+      } catch (error) {
+        console.error('Failed to load products for plans', error);
+      } finally {
+        setProductsLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
+
+  const productLookup = useMemo(() => {
+    const map = new Map<string, string>();
+    products.forEach((p) => {
+      map.set(p.name.toLowerCase(), p.id);
+    });
+    return map;
+  }, [products]);
+
+  const findProductIdForService = (service: string, period?: string) => {
+    const normalized = service.toLowerCase();
+    const candidates: string[] = [normalized];
+
+    if (period) {
+      const periodLabel = getPeriodLabel(period as any).toLowerCase();
+      candidates.push(`${normalized} - ${periodLabel}`);
+      candidates.push(`${normalized} (${periodLabel})`);
+      candidates.push(`${normalized} ${periodLabel}`);
+      candidates.push(`${normalized} ${period}`);
+    }
+
+    for (const key of candidates) {
+      if (productLookup.has(key)) return productLookup.get(key)!;
+    }
+
+    const fuzzy = products.find((p) => candidates.some((cand) => p.name.toLowerCase().includes(cand)));
+    return fuzzy?.id;
+  };
 
   const services = [
     {
@@ -177,40 +233,35 @@ export default function RealEstateITSolutionsPage() {
   };
 
   const handlePurchase = async (service: string, price: string, period: string) => {
+    setPurchaseMessage(null);
     if (price === 'Custom') {
+      setPurchaseMessage({ type: 'error', text: 'Custom plans are handled via Contact. Redirecting you now.' });
       window.location.href = '/contact';
+      return;
+    }
+
+    const productId = findProductIdForService(service, period);
+    if (!productId) {
+      setPurchaseMessage({
+        type: 'error',
+        text: 'We could not find a matching product for this plan. Please reach out via the contact form.',
+      });
       return;
     }
 
     setIsProcessing(true);
     try {
-      const response = await fetch('/api/payments/initiate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service,
-          price: parseInt(price.replace('$', '')),
-          billingPeriod: period,
-          userEmail: formData.email || '',
-          userName: formData.fullName || '',
-        }),
+      await addItem(productId, 1);
+      setPurchaseMessage({
+        type: 'success',
+        text: `${service} (${getPeriodLabel(period as any)}) added to cart.`,
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data.paymentUrl) {
-          window.location.href = data.paymentUrl;
-        } else if (data.sessionId) {
-          window.location.href = `/checkout?sessionId=${data.sessionId}`;
-        }
-      } else {
-        alert('Failed to initiate payment. Please try again.');
-      }
     } catch (error) {
-      console.error('Payment initiation error:', error);
-      alert('An error occurred. Please try again later.');
+      console.error('Failed to add plan to cart', error);
+      setPurchaseMessage({
+        type: 'error',
+        text: 'Could not add to cart. Please try again or contact support.',
+      });
     } finally {
       setIsProcessing(false);
     }
@@ -333,6 +384,27 @@ export default function RealEstateITSolutionsPage() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-primary-900 mb-6">Pricing Plans for Real Estate Professionals</h2>
             <p className="text-gray-600 mb-8">Choose the plan that fits your business needs. All plans include 24/7 support and regular updates.</p>
+            {purchaseMessage && (
+              <div
+                className={`mx-auto max-w-2xl rounded-lg px-4 py-3 text-sm font-medium flex items-center justify-center gap-2 border ${purchaseMessage.type === 'success'
+                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                  : 'bg-red-50 text-red-700 border-red-200'
+                  }`}
+              >
+                {purchaseMessage.type === 'success' ? (
+                  <Check className="h-4 w-4 text-emerald-500" />
+                ) : (
+                  <BarChart3 className="h-4 w-4 text-red-500" />
+                )}
+                {purchaseMessage.text}
+              </div>
+            )}
+            {productsLoading && (
+              <div className="flex items-center justify-center gap-2 text-primary-700 text-sm mt-3">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Syncing products with catalogue...
+              </div>
+            )}
           </div>
 
           {/* Pricing Cards - 3 Top, 2 Bottom */}

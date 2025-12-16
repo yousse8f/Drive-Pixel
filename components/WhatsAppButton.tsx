@@ -15,7 +15,7 @@ export default function WhatsAppButton() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-2">
+        <div className="fixed bottom-6 left-6 z-40 flex flex-col items-center gap-2">
             {/* Call Now Label */}
             <div className="bg-cta text-white px-4 py-2 rounded-lg font-semibold text-sm shadow-lg whitespace-nowrap animate-pulse">
                 Call Now

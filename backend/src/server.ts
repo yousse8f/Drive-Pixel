@@ -13,6 +13,8 @@ import publicRoutes from "./routes/publicRoutes";
 import productRoutes from "./routes/productRoutes";
 import cartRoutes from "./routes/cartRoutes";
 import orderRoutes from "./routes/orderRoutes";
+import chatRoutes from "./routes/chatRoutes";
+import chatAdminRoutes from "./routes/chatAdminRoutes";
 import { authMiddleware } from "./utils/authUtils";
 import { adminMiddleware } from "./utils/adminMiddleware";
 import { initializeDatabase } from "./config/database";
@@ -62,6 +64,7 @@ app.use("/api/users", authMiddleware, usersRoutes);
 app.use("/api/leads", authMiddleware, leadsRoutes);
 app.use("/api/properties", authMiddleware, propertiesRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/chat", chatRoutes);
 
 // Admin routes (admin authentication required)
 app.use("/api/admin/content", adminMiddleware, contentRoutes);
@@ -70,6 +73,7 @@ app.use("/api/admin/analytics", adminMiddleware, analyticsRoutes);
 app.use("/api/admin/logs", adminMiddleware, logsRoutes);
 app.use("/api/admin/products", adminMiddleware, productRoutes);
 app.use("/api/admin/orders", adminMiddleware, orderRoutes);
+app.use("/api/admin/chat", adminMiddleware, chatAdminRoutes);
 
 // Health check
 app.get("/api/health", (req: Request, res: Response) => {

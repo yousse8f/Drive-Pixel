@@ -304,6 +304,57 @@ export const initializeDatabase = async () => {
       );
     `);
 
+    // Chat sessions and messages
+    await query(`
+      CREATE TABLE IF NOT EXISTS chat_sessions (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        page_url TEXT,
+        ip_address VARCHAR(45),
+        user_agent TEXT,
+        name VARCHAR(255),
+        email VARCHAR(255),
+        email_sent_status VARCHAR(20) DEFAULT 'not_sent',
+        email_sent_at TIMESTAMP,
+        email_error TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        last_activity TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    await query(`
+      CREATE TABLE IF NOT EXISTS chat_messages (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        session_id UUID REFERENCES chat_sessions(id) ON DELETE CASCADE,
+        sender VARCHAR(10) NOT NULL,
+        message TEXT NOT NULL,
+        page_url TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Ensure chat_sessions new columns exist (idempotent)
+    await query(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='chat_sessions' AND column_name='name') THEN
+          ALTER TABLE chat_sessions ADD COLUMN name VARCHAR(255);
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='chat_sessions' AND column_name='email') THEN
+          ALTER TABLE chat_sessions ADD COLUMN email VARCHAR(255);
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='chat_sessions' AND column_name='email_sent_status') THEN
+          ALTER TABLE chat_sessions ADD COLUMN email_sent_status VARCHAR(20) DEFAULT 'not_sent';
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='chat_sessions' AND column_name='email_sent_at') THEN
+          ALTER TABLE chat_sessions ADD COLUMN email_sent_at TIMESTAMP;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='chat_sessions' AND column_name='email_error') THEN
+          ALTER TABLE chat_sessions ADD COLUMN email_error TEXT;
+        END IF;
+      END $$;
+    `);
+
     // Create additional indexes
     await query(`CREATE INDEX IF NOT EXISTS idx_services_order ON services("order");`);
     await query(`CREATE INDEX IF NOT EXISTS idx_services_active ON services(is_active);`);
@@ -317,6 +368,21 @@ export const initializeDatabase = async () => {
     await query(`CREATE INDEX IF NOT EXISTS idx_logs_user_id ON logs(user_id);`);
     await query(`CREATE INDEX IF NOT EXISTS idx_logs_created_at ON logs(created_at);`);
     await query(`CREATE INDEX IF NOT EXISTS idx_logs_resource ON logs(resource);`);
+    await query(`CREATE INDEX IF NOT EXISTS idx_chat_messages_session_id ON chat_messages(session_id);`);
+    await query(`CREATE INDEX IF NOT EXISTS idx_chat_messages_created_at ON chat_messages(created_at);`);
+    await query(`CREATE INDEX IF NOT EXISTS idx_chat_sessions_last_activity ON chat_sessions(last_activity);`);
+    await query(`CREATE INDEX IF NOT EXISTS idx_chat_sessions_email ON chat_sessions(email);`);
+    await query(`CREATE INDEX IF NOT EXISTS idx_chat_sessions_created_at ON chat_sessions(created_at);`);
+    await query(`
+      CREATE TABLE IF NOT EXISTS chat_email_logs (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        session_id UUID REFERENCES chat_sessions(id) ON DELETE CASCADE,
+        status VARCHAR(20) NOT NULL,
+        error TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    await query(`CREATE INDEX IF NOT EXISTS idx_chat_email_logs_session_id ON chat_email_logs(session_id);`);
 
   } catch (error) {
     console.error("Error initializing database", error);
