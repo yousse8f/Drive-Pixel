@@ -13,8 +13,11 @@ type Session = {
   name: string | null;
   email: string | null;
   ip_address: string | null;
+  initial_email_sent?: boolean | null;
   email_sent_status: string | null;
   email_sent_at: string | null;
+  last_email_status?: string | null;
+  last_email_at?: string | null;
   last_activity: string | null;
   created_at: string;
   last_message: string | null;
@@ -103,16 +106,16 @@ export default function ChatbotAdminPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-slate-900">Chatbot</h1>
-        <p className="text-slate-600">عرض الجلسات والرسائل (قراءة فقط)</p>
+        <p className="text-slate-600">View sessions and messages (read-only)</p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>الفلاتر</CardTitle>
+          <CardTitle>Filters</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Input
-            placeholder="البحث بالبريد"
+            placeholder="Search by email"
             value={emailFilter}
             onChange={(e) => setEmailFilter(e.target.value)}
           />
@@ -127,7 +130,7 @@ export default function ChatbotAdminPage() {
             onChange={(e) => setDateTo(e.target.value)}
           />
           <Button onClick={applyFilters} className="w-full md:w-auto">
-            تطبيق الفلاتر
+            Apply Filters
           </Button>
         </CardContent>
       </Card>
@@ -135,9 +138,9 @@ export default function ChatbotAdminPage() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <Card className="overflow-hidden">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>الجلسات</CardTitle>
+            <CardTitle>Sessions</CardTitle>
             <div className="text-sm text-slate-500">
-              الصفحة {page} من {totalPages} ({total} جلسة)
+              Page {page} of {totalPages} ({total} sessions)
             </div>
           </CardHeader>
           <CardContent className="p-0">
@@ -145,24 +148,26 @@ export default function ChatbotAdminPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>العميل</TableHead>
-                    <TableHead>الإيميل</TableHead>
+                    <TableHead>Client</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Initial Email</TableHead>
+                    <TableHead>Email Status</TableHead>
                     <TableHead>IP</TableHead>
-                    <TableHead>آخر رسالة</TableHead>
-                    <TableHead>تاريخ</TableHead>
+                    <TableHead>Last Message</TableHead>
+                    <TableHead>Date</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {loadingSessions ? (
                     <TableRow>
-                      <TableCell colSpan={5} className="text-center text-slate-500">
-                        جارِ التحميل...
+                      <TableCell colSpan={7} className="text-center text-slate-500">
+                        Loading...
                       </TableCell>
                     </TableRow>
                   ) : sessions.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={5} className="text-center text-slate-500">
-                        لا توجد نتائج
+                      <TableCell colSpan={7} className="text-center text-slate-500">
+                        No results
                       </TableCell>
                     </TableRow>
                   ) : (
@@ -176,6 +181,17 @@ export default function ChatbotAdminPage() {
                           {s.name || '—'}
                         </TableCell>
                         <TableCell>{s.email || '—'}</TableCell>
+                        <TableCell className="text-sm">
+                          {s.initial_email_sent ? 'Yes' : 'No'}
+                        </TableCell>
+                        <TableCell className="text-xs text-slate-600">
+                          <div className="font-semibold">{s.last_email_status || s.email_sent_status || '—'}</div>
+                          <div className="text-[11px] text-slate-500">
+                            {s.last_email_at || s.email_sent_at
+                              ? format(new Date(s.last_email_at || s.email_sent_at as string), 'yyyy-MM-dd HH:mm')
+                              : '—'}
+                          </div>
+                        </TableCell>
                         <TableCell className="text-xs text-slate-500">
                           {s.ip_address || '—'}
                         </TableCell>
@@ -194,7 +210,7 @@ export default function ChatbotAdminPage() {
           </CardContent>
           <div className="flex items-center justify-between px-4 py-3 border-t bg-slate-50">
             <div className="text-sm text-slate-600">
-              عرض {sessions.length} من {total}
+              Showing {sessions.length} of {total}
             </div>
             <div className="flex gap-2">
               <Button
@@ -203,7 +219,7 @@ export default function ChatbotAdminPage() {
                 disabled={page <= 1}
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
               >
-                السابق
+                Previous
               </Button>
               <Button
                 variant="outline"
@@ -211,7 +227,7 @@ export default function ChatbotAdminPage() {
                 disabled={page >= totalPages}
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               >
-                التالي
+                Next
               </Button>
             </div>
           </div>
@@ -219,15 +235,15 @@ export default function ChatbotAdminPage() {
 
         <Card className="overflow-hidden">
           <CardHeader>
-            <CardTitle>المحادثة</CardTitle>
+            <CardTitle>Conversation</CardTitle>
           </CardHeader>
           <CardContent className="h-[480px] overflow-auto space-y-3">
             {loadingMessages ? (
-              <div className="text-center text-slate-500">جارِ التحميل...</div>
+              <div className="text-center text-slate-500">Loading...</div>
             ) : !selectedSessionId ? (
-              <div className="text-center text-slate-500">اختر جلسة لعرض التفاصيل</div>
+              <div className="text-center text-slate-500">Select a session to view details</div>
             ) : messages.length === 0 ? (
-              <div className="text-center text-slate-500">لا توجد رسائل</div>
+              <div className="text-center text-slate-500">No messages</div>
             ) : (
               messages.map((m) => (
                 <div

@@ -36,6 +36,7 @@ export const listChatSessions = async (req: Request, res: Response) => {
         cs.name,
         cs.email,
         cs.ip_address,
+        cs.initial_email_sent,
         cs.email_sent_status,
         cs.email_sent_at,
         cs.last_activity,
@@ -45,7 +46,19 @@ export const listChatSessions = async (req: Request, res: Response) => {
           WHERE session_id = cs.id
           ORDER BY created_at DESC
           LIMIT 1
-        ) AS last_message
+        ) AS last_message,
+        (
+          SELECT status FROM chat_email_logs
+          WHERE session_id = cs.id
+          ORDER BY created_at DESC
+          LIMIT 1
+        ) AS last_email_status,
+        (
+          SELECT created_at FROM chat_email_logs
+          WHERE session_id = cs.id
+          ORDER BY created_at DESC
+          LIMIT 1
+        ) AS last_email_at
       FROM chat_sessions cs
       ${whereClause}
       ORDER BY cs.created_at DESC

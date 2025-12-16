@@ -105,8 +105,8 @@ function ChatBody() {
   const [input, setInput] = useState('');
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
-   const [leadName, setLeadName] = useState<string | null>(null);
-   const [leadEmail, setLeadEmail] = useState<string | null>(null);
+  const [leadName, setLeadName] = useState<string | null>(null);
+  const [leadEmail, setLeadEmail] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
 
   const apiBase = process.env.NEXT_PUBLIC_API_URL || '/api';
@@ -179,10 +179,13 @@ function ChatBody() {
 
   const handleLeadEmail = (value: string) => {
     appendUser(value || 'Skipped email');
-    setLeadEmail(value || null);
-    persistMessage('user', value || 'Skipped email', {
+    const emailValue = value || null;
+    setLeadEmail(emailValue);
+    const serviceTitle = selectedService ? servicePrompts[selectedService]?.title : 'General inquiry';
+    const leadSummary = `Lead details: Service=${serviceTitle}; Name=${leadName || 'N/A'}; Email=${emailValue || 'N/A'}`;
+    persistMessage('user', leadSummary, {
       name: leadName || undefined,
-      email: value || undefined,
+      email: emailValue || undefined,
     });
     appendBot('Got it. Share any context so we can prepare the right answer for you.');
     setStep('context');

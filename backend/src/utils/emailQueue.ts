@@ -8,6 +8,7 @@ type EmailJob = {
   sessionId: string;
   to: string;
   name?: string | null;
+  ipAddress?: string | null;
 };
 
 const queue: EmailJob[] = [];
@@ -42,7 +43,7 @@ const processQueue = async () => {
   const job = queue.shift();
   if (!job) return;
 
-  const { sessionId, to, name } = job;
+  const { sessionId, to, name, ipAddress } = job;
 
   try {
     // Double-check not sent already
@@ -57,8 +58,8 @@ const processQueue = async () => {
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to,
       subject: "Thank you for contacting DrivePixel",
-      text: `Hello${name ? ` ${name}` : ""},\n\nThank you for reaching out. Our team will follow up shortly.\n\nDrivePixel`,
-      html: `<p>Hello${name ? ` ${name}` : ""},</p><p>Thank you for reaching out. Our team will follow up shortly.</p><p>DrivePixel</p>`,
+      text: `Hello${name ? ` ${name}` : ""},\n\nThank you for reaching out. Our team will follow up shortly.\n\nSession: ${sessionId}\nIP: ${ipAddress || "unknown"}\n\nDrivePixel`,
+      html: `<p>Hello${name ? ` ${name}` : ""},</p><p>Thank you for reaching out. Our team will follow up shortly.</p><p><strong>Session:</strong> ${sessionId}<br/><strong>IP:</strong> ${ipAddress || "unknown"}</p><p>DrivePixel</p>`,
     });
 
     await query(

@@ -313,6 +313,7 @@ export const initializeDatabase = async () => {
         user_agent TEXT,
         name VARCHAR(255),
         email VARCHAR(255),
+        initial_email_sent BOOLEAN DEFAULT FALSE,
         email_sent_status VARCHAR(20) DEFAULT 'not_sent',
         email_sent_at TIMESTAMP,
         email_error TEXT,
@@ -342,6 +343,9 @@ export const initializeDatabase = async () => {
         END IF;
         IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='chat_sessions' AND column_name='email') THEN
           ALTER TABLE chat_sessions ADD COLUMN email VARCHAR(255);
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='chat_sessions' AND column_name='initial_email_sent') THEN
+          ALTER TABLE chat_sessions ADD COLUMN initial_email_sent BOOLEAN DEFAULT FALSE;
         END IF;
         IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='chat_sessions' AND column_name='email_sent_status') THEN
           ALTER TABLE chat_sessions ADD COLUMN email_sent_status VARCHAR(20) DEFAULT 'not_sent';

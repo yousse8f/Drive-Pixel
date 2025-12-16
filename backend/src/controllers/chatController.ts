@@ -37,11 +37,19 @@ export const postChatMessage = async (req: Request, res: Response) => {
     }
 
     let sessionId = validated.sessionId;
+    let sessionInitialEmailSent = false;
+    let sessionEmailSentStatus: string | null = null;
 
     if (sessionId) {
-      const existing = await query("SELECT id FROM chat_sessions WHERE id = $1", [sessionId]);
+      const existing = await query(
+        "SELECT id, initial_email_sent, email_sent_status FROM chat_sessions WHERE id = $1",
+        [sessionId]
+      );
       if (existing.rowCount === 0) {
         sessionId = undefined; // Create a new session if provided one is invalid
+      } else {
+        sessionInitialEmailSent = Boolean(existing.rows[0].initial_email_sent);
+        sessionEmailSentStatus = existing.rows[0].email_sent_status || null;
       }
     }
 
@@ -49,10 +57,12 @@ export const postChatMessage = async (req: Request, res: Response) => {
       const sessionInsert = await query(
         `INSERT INTO chat_sessions (page_url, ip_address, user_agent, name, email) 
          VALUES ($1, $2, $3, $4, $5) 
-         RETURNING id`,
+         RETURNING id, initial_email_sent, email_sent_status`,
         [pageUrl || null, ipAddress, userAgent || null, name || null, email || null]
       );
       sessionId = sessionInsert.rows[0].id;
+      sessionInitialEmailSent = Boolean(sessionInsert.rows[0].initial_email_sent);
+      sessionEmailSentStatus = sessionInsert.rows[0].email_sent_status || null;
     } else if (name || email) {
       await query(
         `UPDATE chat_sessions SET 
@@ -77,9 +87,34 @@ export const postChatMessage = async (req: Request, res: Response) => {
 
     const finalSessionId = sessionId as string;
 
+    const hasLeadDetails = Boolean(name && email);
+
+    if (hasLeadDetails && !sessionInitialEmailSent) {
+      const updated = await query(
+        `UPDATE chat_sessions 
+         SET initial_email_sent = TRUE, name = COALESCE($2, name), email = COALESCE($3, email) 
+         WHERE id = $1 AND initial_email_sent = FALSE 
+         RETURNING id`,
+        [finalSessionId, name || null, email || null]
+      );
+      if ((updated?.rowCount || 0) > 0) {
+        sessionInitialEmailSent = true;
+        enqueueThankYouEmail({ sessionId: finalSessionId, to: email, name, ipAddress });
+      }
+    }
+
     // Trigger thank-you email only once per session when completed and email present
-    if (validated.sessionComplete && email) {
-      enqueueThankYouEmail({ sessionId: finalSessionId, to: email, name });
+    if (validated.sessionComplete && email && !sessionInitialEmailSent && sessionEmailSentStatus !== "sent") {
+      const updated = await query(
+        `UPDATE chat_sessions 
+         SET initial_email_sent = TRUE 
+         WHERE id = $1 AND initial_email_sent = FALSE 
+         RETURNING id`,
+        [finalSessionId]
+      );
+      if ((updated?.rowCount || 0) > 0) {
+        enqueueThankYouEmail({ sessionId: finalSessionId, to: email, name, ipAddress });
+      }
     }
 
     return res.status(201).json(
