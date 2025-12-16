@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https://drivepixel.com/api";
+  process.env.NEXT_PUBLIC_API_URL || "https://www.drivepixel.com/api";
 
 type CartItem = {
   id: string; // Cart item ID

@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://drivepixel.com/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.drivepixel.com/api';
 
 export interface ApiResponse<T = any> {
   success: boolean;
@@ -253,6 +253,22 @@ class ApiClient {
     return this.request(`/admin/content/testimonials/${id}`, {
       method: 'DELETE',
     });
+  }
+
+  // Chatbot (admin)
+  async getChatSessions(params?: { page?: number; limit?: number; email?: string; dateFrom?: string; dateTo?: string }) {
+    const search = new URLSearchParams();
+    if (params?.page) search.append('page', String(params.page));
+    if (params?.limit) search.append('limit', String(params.limit));
+    if (params?.email) search.append('email', params.email);
+    if (params?.dateFrom) search.append('dateFrom', params.dateFrom);
+    if (params?.dateTo) search.append('dateTo', params.dateTo);
+    const query = search.toString() ? `?${search.toString()}` : '';
+    return this.request(`/admin/chat/sessions${query}`);
+  }
+
+  async getChatMessages(sessionId: string) {
+    return this.request(`/admin/chat/sessions/${sessionId}/messages`);
   }
 
   // Admin - Orders

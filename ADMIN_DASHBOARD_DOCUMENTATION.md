@@ -1,3 +1,35 @@
+## Chatbot additions (backend + admin + frontend)
+
+### Data flow
+1) Frontend chatbot (client-only) sends messages to `/api/chat/message` with optional `name`, `email`, and `sessionComplete`.
+2) Backend stores/creates `chat_sessions` and `chat_messages`, captures IP/user-agent on the server, and updates `last_activity`.
+3) When `sessionComplete` is true and an email is present, a background email job is enqueued; status tracked in `chat_sessions.email_sent_status` and `chat_email_logs`.
+4) Admin can view sessions/messages via `/api/admin/chat` routes and the `/admin/chatbot` UI page.
+
+### Email trigger logic
+- Triggered only when `sessionComplete` is sent with a valid email.
+- Queue: `enqueueThankYouEmail` (nodemailer). It checks `email_sent_status`; skips if already `sent`.
+- On success: `email_sent_status = sent`, `email_sent_at` set, log row in `chat_email_logs`.
+- On failure: `email_sent_status = failed`, error stored, log row with error.
+- SMTP envs needed: `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE` (true/false), `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`.
+
+### IP handling
+- IP captured on backend using `x-forwarded-for` (first value) or socket IP.
+- Stored in `chat_sessions.ip_address`. Not shown to end-users; visible in admin list.
+
+### Admin chatbot module
+- Routes: `/api/admin/chat/sessions` (with filters: email, dateFrom, dateTo, pagination) and `/api/admin/chat/sessions/:id/messages`.
+- UI: `/admin/chatbot` shows sessions table (name, email, IP, last message, created date) with filters and pagination, plus a read-only conversation viewer.
+
+### Frontend chatbot flow
+- Steps: greeting -> service selection -> (optional) name -> (optional) email -> context -> completion.
+- Sends `sessionComplete` with name/email on context step to trigger email queue once per session.
+- Lazy-loaded client component; no SSR impact.
+
+### DB changes (idempotent)
+- `chat_sessions`: page_url, ip_address, user_agent, name, email, email_sent_status, email_sent_at, email_error, timestamps, last_activity.
+- `chat_messages`: session_id, sender, message, page_url, created_at.
+- `chat_email_logs`: session_id, status, error, created_at.
 # Admin Dashboard Documentation
 
 ## Overview
@@ -399,7 +431,7 @@ cp .env.example .env.local
 
 4. Update `.env.local`:
 ```env
-NEXT_PUBLIC_API_URL=https://drivepixel.com/api
+NEXT_PUBLIC_API_URL=https://www.drivepixel.com/api
 ```
 
 5. Start the development server:
