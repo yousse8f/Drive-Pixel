@@ -80,27 +80,27 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-primary-900 mb-2">Dashboard</h1>
-        <p className="text-gray-600">Welcome to the admin dashboard</p>
+        <h1 className="text-3xl font-bold text-slate-900 mb-2">Dashboard</h1>
+        <p className="text-slate-600">Welcome to the admin dashboard</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {statCards.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <Card key={index}>
+            <Card key={index} className="border border-gray-100 shadow-sm bg-white">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-gray-600">
+                <CardTitle className="text-sm font-medium text-slate-600">
                   {stat.title}
                 </CardTitle>
-                <div className={`${stat.bgColor} p-2 rounded-lg`}>
-                  <Icon className={`h-5 w-5 ${stat.color}`} />
+                <div className="bg-gray-100 p-2 rounded-lg">
+                  <Icon className="h-5 w-5 text-slate-900" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-primary-900">{stat.value}</div>
+                <div className="text-3xl font-bold text-slate-900">{stat.value}</div>
               </CardContent>
             </Card>
           );
@@ -108,19 +108,19 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
+        <Card className="border border-gray-100 shadow-sm bg-white">
           <CardHeader>
             <CardTitle>Recent Leads (7 days)</CardTitle>
             <CardDescription>New leads in the last week</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-primary-900">
+            <div className="text-4xl font-bold text-slate-900">
               {stats?.recentLeads || 0}
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border border-gray-100 shadow-sm bg-white">
           <CardHeader>
             <CardTitle>Active Content</CardTitle>
             <CardDescription>Currently published content</CardDescription>
@@ -128,19 +128,19 @@ export default function AdminDashboard() {
           <CardContent>
             <div className="space-y-4">
               <div className="flex justify-between">
-                <span className="text-gray-600">Active Services</span>
+                <span className="text-slate-600">Active Services</span>
                 <span className="font-semibold">{stats?.activeContent?.active_services || 0}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Active Portfolio</span>
+                <span className="text-slate-600">Active Portfolio</span>
                 <span className="font-semibold">{stats?.activeContent?.active_portfolio || 0}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Published Blogs</span>
+                <span className="text-slate-600">Published Blogs</span>
                 <span className="font-semibold">{stats?.activeContent?.published_blogs || 0}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Active Testimonials</span>
+                <span className="text-slate-600">Active Testimonials</span>
                 <span className="font-semibold">{stats?.activeContent?.active_testimonials || 0}</span>
               </div>
             </div>
@@ -149,7 +149,7 @@ export default function AdminDashboard() {
       </div>
 
       {stats?.recentActivity && stats.recentActivity.length > 0 && (
-        <Card>
+        <Card className="border border-gray-100 shadow-sm bg-white">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>Latest system activities</CardDescription>
@@ -157,14 +157,14 @@ export default function AdminDashboard() {
           <CardContent>
             <div className="space-y-3">
               {stats.recentActivity.slice(0, 5).map((activity: any, index: number) => (
-                <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
-                  <Activity className="h-5 w-5 text-gray-400 mt-0.5" />
+                <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-100 rounded-lg">
+                  <Activity className="h-5 w-5 text-slate-500 mt-0.5" />
                   <div className="flex-1">
-                    <div className="font-medium text-gray-900">{activity.action}</div>
-                    <div className="text-sm text-gray-500">
+                    <div className="font-medium text-slate-900">{activity.action}</div>
+                    <div className="text-sm text-slate-600">
                       {activity.resource} {activity.resource_id ? `#${activity.resource_id.slice(0, 8)}` : ''}
                     </div>
-                    <div className="text-xs text-gray-400 mt-1">
+                    <div className="text-xs text-slate-400 mt-1">
                       {new Date(activity.created_at).toLocaleString()}
                     </div>
                   </div>

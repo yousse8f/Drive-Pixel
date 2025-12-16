@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { CartProvider } from "@/lib/context/CartContext";
-import FloatingCartButton from "@/components/ui/FloatingCartButton";
-import Chatbot from "@/components/Chatbot";
+import ConditionalLayoutWrapper from "@/components/ConditionalLayoutWrapper";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,10 +33,9 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body className={inter.className} suppressHydrationWarning>
                 <CartProvider>
-                    {children}
-                    <WhatsAppButton />
-                    <FloatingCartButton />
-                    <Chatbot />
+                    <ConditionalLayoutWrapper>
+                        {children}
+                    </ConditionalLayoutWrapper>
                 </CartProvider>
             </body>
         </html>

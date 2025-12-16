@@ -6,27 +6,27 @@
   :root {
     /* New Optimized Conversion-Focused Color Palette */
     --background: 0 0% 100%; /* Cloud Dancer White */
-    --foreground: 220 36% 19%; /* Deep Blue - main text */
+    --foreground: 0 0% 3.9%; /* Deep Blue - main text */
     --card: 0 0% 100%; /* Cloud Dancer White */
-    --card-foreground: 220 36% 19%; /* Deep Blue */
+    --card-foreground: 0 0% 3.9%; /* Deep Blue */
     --popover: 0 0% 100%; /* Cloud Dancer White */
-    --popover-foreground: 220 36% 19%; /* Deep Blue */
+    --popover-foreground: 0 0% 3.9%; /* Deep Blue */
     
     /* Primary Colors - Deep Blue Palette */
-    --primary: 224 28% 50%; /* Waikawa Gray - primary UI elements */
-    --primary-foreground: 0 0% 100%; /* White text on primary */
+    --primary: 0 0% 9%; /* Waikawa Gray - primary UI elements */
+    --primary-foreground: 0 0% 98%; /* White text on primary */
     
     /* Secondary Colors - Slate Blue */
-    --secondary: 221 32% 34%; /* Slate Blue - secondary backgrounds */
-    --secondary-foreground: 0 0% 100%; /* White text on secondary */
+    --secondary: 0 0% 96.1%; /* Slate Blue - secondary backgrounds */
+    --secondary-foreground: 0 0% 9%; /* White text on secondary */
     
     /* Muted/Neutral Colors */
-    --muted: 208 40% 79%; /* Modern Teal - light backgrounds */
-    --muted-foreground: 220 36% 19%; /* Deep Blue text */
+    --muted: 0 0% 96.1%; /* Modern Teal - light backgrounds */
+    --muted-foreground: 0 0% 45.1%; /* Deep Blue text */
     
     /* Accent Colors */
-    --accent: 224 28% 50%; /* Waikawa Gray - accent elements */
-    --accent-foreground: 0 0% 100%; /* White text on accent */
+    --accent: 0 0% 96.1%; /* Waikawa Gray - accent elements */
+    --accent-foreground: 0 0% 9%; /* White text on accent */
     
     /* CTA - Bright Coral */
     --cta: 6 100% 70%; /* Bright Coral - main CTA buttons */
@@ -46,35 +46,45 @@
     
     /* Destructive */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
     
     /* Borders and Inputs */
-    --border: 224 28% 50%; /* Waikawa Gray - borders */
-    --input: 208 40% 79%; /* Modern Teal - input borders */
-    --ring: 224 28% 50%; /* Waikawa Gray - focus rings */
+    --border: 0 0% 89.8%; /* Waikawa Gray - borders */
+    --input: 0 0% 89.8%; /* Modern Teal - input borders */
+    --ring: 0 0% 3.9%; /* Waikawa Gray - focus rings */
     
     --radius: 0.5rem;
+    
+    --chart-1: 12 76% 61%;
+    
+    --chart-2: 173 58% 39%;
+    
+    --chart-3: 197 37% 24%;
+    
+    --chart-4: 43 74% 66%;
+    
+    --chart-5: 27 87% 67%;
   }
 
   .dark {
-    --background: 220 36% 19%; /* Deep Blue - dark background */
-    --foreground: 0 0% 100%; /* White text */
-    --card: 221 32% 34%; /* Slate Blue - dark cards */
-    --card-foreground: 0 0% 100%; /* White text */
-    --popover: 221 32% 34%; /* Slate Blue */
-    --popover-foreground: 0 0% 100%; /* White text */
+    --background: 0 0% 3.9%; /* Deep Blue - dark background */
+    --foreground: 0 0% 98%; /* White text */
+    --card: 0 0% 3.9%; /* Slate Blue - dark cards */
+    --card-foreground: 0 0% 98%; /* White text */
+    --popover: 0 0% 3.9%; /* Slate Blue */
+    --popover-foreground: 0 0% 98%; /* White text */
     
-    --primary: 224 28% 50%; /* Waikawa Gray */
-    --primary-foreground: 0 0% 100%; /* White text */
+    --primary: 0 0% 98%; /* Waikawa Gray */
+    --primary-foreground: 0 0% 9%; /* White text */
     
-    --secondary: 221 32% 34%; /* Slate Blue */
-    --secondary-foreground: 0 0% 100%; /* White text */
+    --secondary: 0 0% 14.9%; /* Slate Blue */
+    --secondary-foreground: 0 0% 98%; /* White text */
     
-    --muted: 221 32% 34%; /* Slate Blue */
-    --muted-foreground: 208 40% 79%; /* Modern Teal text */
+    --muted: 0 0% 14.9%; /* Slate Blue */
+    --muted-foreground: 0 0% 63.9%; /* Modern Teal text */
     
-    --accent: 224 28% 50%; /* Waikawa Gray */
-    --accent-foreground: 0 0% 100%; /* White text */
+    --accent: 0 0% 14.9%; /* Waikawa Gray */
+    --accent-foreground: 0 0% 98%; /* White text */
     
     --cta: 6 100% 70%; /* Bright Coral */
     --cta-foreground: 0 0% 100%; /* White text */
@@ -89,11 +99,11 @@
     --success-foreground: 0 0% 100%; /* White text */
     
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
     
-    --border: 224 28% 50%; /* Waikawa Gray */
-    --input: 224 28% 50%; /* Waikawa Gray */
-    --ring: 224 28% 50%; /* Waikawa Gray */
+    --border: 0 0% 14.9%; /* Waikawa Gray */
+    --input: 0 0% 14.9%; /* Waikawa Gray */
+    --ring: 0 0% 83.1%; /* Waikawa Gray */ --chart-1: 220 70% 50%; --chart-2: 160 60% 45%; --chart-3: 30 80% 55%; --chart-4: 280 65% 60%; --chart-5: 340 75% 55%;
   }
 }
 
