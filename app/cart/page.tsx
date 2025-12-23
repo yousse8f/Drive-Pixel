@@ -198,14 +198,14 @@ function CartContent() {
                                                         </div>
                                                         <div className="flex items-center justify-between mt-4">
                                                             <div className="flex items-center gap-3">
-                                                                <label className="text-sm font-medium text-gray-600" htmlFor={`qty-${item.id}`}>
+                                                                <label className="text-sm font-semibold text-gray-900" htmlFor={`qty-${item.id}`}>
                                                                     Qty:
                                                                 </label>
                                                                 <Input
                                                                     id={`qty-${item.id}`}
                                                                     type="number"
                                                                     min={1}
-                                                                    className="w-20 h-9 text-center"
+                                                                    className="w-20 h-9 text-center bg-white border-gray-300 text-gray-900 font-semibold"
                                                                     value={item.quantity}
                                                                     onChange={(e) => handleUpdateQuantity(item.id, parseInt(e.target.value) || 1)}
                                                                 />
@@ -247,34 +247,37 @@ function CartContent() {
 
                                         <div className="space-y-4">
                                             <div>
-                                                <label className="text-sm font-medium text-gray-700 mb-1 block">Full Name</label>
+                                                <label className="text-sm font-semibold text-gray-900 mb-2 block">Full Name</label>
                                                 <Input
                                                     value={checkoutForm.customerName}
                                                     onChange={(e) => setCheckoutForm({ ...checkoutForm, customerName: e.target.value })}
                                                     placeholder="Enter your full name"
+                                                    className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="text-sm font-medium text-gray-700 mb-1 block">Email Address</label>
+                                                <label className="text-sm font-semibold text-gray-900 mb-2 block">Email Address</label>
                                                 <Input
                                                     type="email"
                                                     value={checkoutForm.customerEmail}
                                                     onChange={(e) => setCheckoutForm({ ...checkoutForm, customerEmail: e.target.value })}
                                                     placeholder="Enter your email"
+                                                    className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="text-sm font-medium text-gray-700 mb-1 block">Phone (Optional)</label>
+                                                <label className="text-sm font-semibold text-gray-900 mb-2 block">Phone (Optional)</label>
                                                 <Input
                                                     value={checkoutForm.customerPhone}
                                                     onChange={(e) => setCheckoutForm({ ...checkoutForm, customerPhone: e.target.value })}
                                                     placeholder="Enter your phone number"
+                                                    className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="text-sm font-medium text-gray-700 mb-1 block">Shipping Address</label>
+                                                <label className="text-sm font-semibold text-gray-900 mb-2 block">Shipping Address</label>
                                                 <textarea
-                                                    className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 min-h-[80px]"
+                                                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 min-h-[80px]"
                                                     value={checkoutForm.customerAddress}
                                                     onChange={(e) => setCheckoutForm({ ...checkoutForm, customerAddress: e.target.value })}
                                                     placeholder="Enter your full address"
@@ -282,23 +285,23 @@ function CartContent() {
                                             </div>
                                         </div>
 
-                                        <div className="pt-4 border-t border-gray-100 space-y-3">
+                                        <div className="pt-4 border-t border-gray-200 space-y-3">
                                             <div className="flex justify-between text-base">
-                                                <span className="text-gray-600">Subtotal</span>
-                                                <span className="font-medium">${total.toFixed(2)}</span>
+                                                <span className="text-gray-700 font-medium">Subtotal</span>
+                                                <span className="font-semibold text-gray-900">${total.toFixed(2)}</span>
                                             </div>
                                             <div className="flex justify-between text-base">
-                                                <span className="text-gray-600">Taxes</span>
-                                                <span className="font-medium">$0.00</span>
+                                                <span className="text-gray-700 font-medium">Taxes</span>
+                                                <span className="font-semibold text-gray-900">$0.00</span>
                                             </div>
-                                            <div className="flex justify-between text-xl font-bold text-primary-900 border-t border-gray-100 pt-4">
+                                            <div className="flex justify-between text-xl font-bold text-gray-900 border-t-2 border-gray-300 pt-4">
                                                 <span>Total</span>
-                                                <span>${total.toFixed(2)}</span>
+                                                <span className="text-primary-600">${total.toFixed(2)}</span>
                                             </div>
 
                                             {!showPayPal ? (
                                                 <Button
-                                                    className="w-full bg-cta hover:bg-cta-600 text-[#041028] py-3 text-lg font-semibold"
+                                                    className="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 text-lg font-semibold shadow-md hover:shadow-lg transition-all"
                                                     onClick={handleProceedToPayment}
                                                     disabled={checkoutLoading || items.length === 0}
                                                 >
