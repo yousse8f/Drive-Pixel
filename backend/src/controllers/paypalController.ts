@@ -17,14 +17,14 @@ const getSessionId = (req: Request): string => {
 export const createPayPalOrder = async (req: Request, res: Response) => {
   try {
     const sessionId = getSessionId(req);
-    const { customerName, customerEmail, customerPhone, customerAddress } = req.body;
+    const { customerName, customerEmail } = req.body;
 
     if (!sessionId) {
       return res.status(400).json(errorResponse("Session ID required"));
     }
 
-    if (!customerName || !customerEmail || !customerAddress) {
-      return res.status(400).json(errorResponse("Customer details required"));
+    if (!customerName || !customerEmail) {
+      return res.status(400).json(errorResponse("Customer name and email required"));
     }
 
     const cartResult = await query(
@@ -68,9 +68,9 @@ export const createPayPalOrder = async (req: Request, res: Response) => {
     const orderResult = await query(
       `INSERT INTO orders 
         (cart_id, customer_name, customer_email, customer_phone, customer_address, total, payment_provider, payment_status, status)
-       VALUES ($1, $2, $3, $4, $5, $6, 'paypal', 'pending', 'pending')
+       VALUES ($1, $2, $3, NULL, 'Digital Product - No Shipping Required', $4, 'paypal', 'pending', 'pending')
        RETURNING id`,
-      [cartId, customerName, customerEmail, customerPhone || null, customerAddress, total]
+      [cartId, customerName, customerEmail, total]
     );
 
     const orderId = orderResult.rows[0].id;

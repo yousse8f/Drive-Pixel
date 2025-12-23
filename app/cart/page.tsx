@@ -27,8 +27,6 @@ function CartContent() {
     const [checkoutForm, setCheckoutForm] = useState({
         customerName: '',
         customerEmail: '',
-        customerPhone: '',
-        customerAddress: '',
     });
 
     useEffect(() => {
@@ -49,10 +47,6 @@ function CartContent() {
         }
         if (!checkoutForm.customerEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(checkoutForm.customerEmail)) {
             setStatusMessage({ type: 'error', text: 'Please enter a valid email address.' });
-            return false;
-        }
-        if (!checkoutForm.customerAddress.trim()) {
-            setStatusMessage({ type: 'error', text: 'Please enter your shipping address.' });
             return false;
         }
         return true;
@@ -77,8 +71,6 @@ function CartContent() {
                 body: JSON.stringify({
                     customerName: checkoutForm.customerName,
                     customerEmail: checkoutForm.customerEmail,
-                    customerPhone: checkoutForm.customerPhone,
-                    customerAddress: checkoutForm.customerAddress,
                 }),
             });
 
@@ -263,24 +255,6 @@ function CartContent() {
                                                     onChange={(e) => setCheckoutForm({ ...checkoutForm, customerEmail: e.target.value })}
                                                     placeholder="Enter your email"
                                                     className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="text-sm font-semibold text-gray-900 mb-2 block">Phone (Optional)</label>
-                                                <Input
-                                                    value={checkoutForm.customerPhone}
-                                                    onChange={(e) => setCheckoutForm({ ...checkoutForm, customerPhone: e.target.value })}
-                                                    placeholder="Enter your phone number"
-                                                    className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="text-sm font-semibold text-gray-900 mb-2 block">Shipping Address</label>
-                                                <textarea
-                                                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 min-h-[80px]"
-                                                    value={checkoutForm.customerAddress}
-                                                    onChange={(e) => setCheckoutForm({ ...checkoutForm, customerAddress: e.target.value })}
-                                                    placeholder="Enter your full address"
                                                 />
                                             </div>
                                         </div>
