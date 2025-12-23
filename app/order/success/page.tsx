@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle2, Download, Mail, Package, Loader2, AlertCircle, Home } from 'lucide-react';
@@ -36,7 +36,7 @@ type OrderDetails = {
     items: OrderItem[];
 };
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
     const searchParams = useSearchParams();
     const orderId = searchParams.get('orderId');
     const [order, setOrder] = useState<OrderDetails | null>(null);
@@ -310,5 +310,18 @@ export default function OrderSuccessPage() {
                 }
             `}</style>
         </div>
+    );
+}
+
+export default function OrderSuccessPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
+                <Loader2 className="h-12 w-12 animate-spin text-primary-600 mb-4" />
+                <p className="text-lg text-gray-600">Loading order details...</p>
+            </div>
+        }>
+            <OrderSuccessContent />
+        </Suspense>
     );
 }

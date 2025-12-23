@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,7 +10,7 @@ import { customerApi } from "@/lib/customer-api";
 
 type Step = "validating" | "set-password" | "done" | "error";
 
-export default function FirstLoginPage() {
+function FirstLoginContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = useMemo(() => searchParams.get("token") || "", [searchParams]);
@@ -126,5 +126,17 @@ export default function FirstLoginPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function FirstLoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-gray-900">
+        <div className="text-xl font-semibold">Loading...</div>
+      </div>
+    }>
+      <FirstLoginContent />
+    </Suspense>
   );
 }

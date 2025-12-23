@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShoppingCart, CreditCard, CheckCircle2, X, Loader2, AlertCircle } from 'lucide-react';
@@ -16,7 +16,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.drivepixel.com/api';
 const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || '';
 
-export default function CartPage() {
+function CartContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { items, total, updateItem, removeItem, sessionId, loading } = useCart();
@@ -132,6 +132,7 @@ export default function CartPage() {
     if (loading) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-gray-900">
+                <Loader2 className="h-12 w-12 animate-spin text-primary-600 mb-4" />
                 <div className="text-xl font-semibold">Loading Cart...</div>
             </div>
         );
@@ -360,5 +361,18 @@ export default function CartPage() {
             </main>
             <Footer />
         </div>
+    );
+}
+
+export default function CartPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-gray-900">
+                <Loader2 className="h-12 w-12 animate-spin text-primary-600 mb-4" />
+                <div className="text-xl font-semibold">Loading Cart...</div>
+            </div>
+        }>
+            <CartContent />
+        </Suspense>
     );
 }
