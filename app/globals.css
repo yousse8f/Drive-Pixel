@@ -4,54 +4,50 @@
 
 @layer base {
   :root {
-    /* New Optimized Conversion-Focused Color Palette */
-    --background: 0 0% 100%; /* Cloud Dancer White */
-    --foreground: 0 0% 3.9%; /* Deep Blue - main text */
-    --card: 0 0% 100%; /* Cloud Dancer White */
-    --card-foreground: 0 0% 3.9%; /* Deep Blue */
-    --popover: 0 0% 100%; /* Cloud Dancer White */
-    --popover-foreground: 0 0% 3.9%; /* Deep Blue */
+    /* Dark Navy & Emerald Color Palette */
+    --background: 228 45% 11%; /* Dark Navy - main background #0f1629 */
+    --foreground: 0 0% 100%; /* Pure White - main text */
+    --card: 228 40% 14%; /* Slightly lighter navy for cards */
+    --card-foreground: 0 0% 100%; /* White text on cards */
+    --popover: 228 40% 14%; /* Matching card color for popovers */
+    --popover-foreground: 0 0% 100%; /* White text on popovers */
     
-    /* Primary Colors - Deep Blue Palette */
-    --primary: 0 0% 9%; /* Waikawa Gray - primary UI elements */
-    --primary-foreground: 0 0% 98%; /* White text on primary */
+    /* Primary Colors - Dark Navy */
+    --primary: 0 0% 100%; /* White - primary UI elements */
+    --primary-foreground: 228 45% 11%; /* Dark Navy text on primary */
     
-    /* Secondary Colors - Slate Blue */
-    --secondary: 0 0% 96.1%; /* Slate Blue - secondary backgrounds */
-    --secondary-foreground: 0 0% 9%; /* White text on secondary */
+    /* Secondary Colors - Navy Blue */
+    --secondary: 228 40% 18%; /* Lighter navy for secondary elements */
+    --secondary-foreground: 0 0% 100%; /* White text on secondary */
     
     /* Muted/Neutral Colors */
-    --muted: 0 0% 96.1%; /* Modern Teal - light backgrounds */
-    --muted-foreground: 0 0% 45.1%; /* Deep Blue text */
+    --muted: 228 35% 20%; /* Muted navy for backgrounds */
+    --muted-foreground: 0 0% 85%; /* Light gray for muted text */
     
-    /* Accent Colors */
-    --accent: 0 0% 96.1%; /* Waikawa Gray - accent elements */
-    --accent-foreground: 0 0% 9%; /* White text on accent */
+    /* Accent Colors - Emerald Green */
+    --accent: 160 84% 39%; /* Emerald accent #10b981 */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
     
-    /* CTA - Bright Coral */
-    --cta: 6 100% 70%; /* Bright Coral - main CTA buttons */
+    /* CTA - Emerald Green */
+    --cta: 160 84% 39%; /* Emerald - main CTA buttons #10b981 */
     --cta-foreground: 0 0% 100%; /* White text on CTA */
     
     /* Highlight - Gold */
-    --highlight: 51 100% 50%; /* Gold - accents and highlights */
-    --highlight-foreground: 220 36% 19%; /* Deep Blue text on gold */
+    --highlight: 45 100% 50%; /* Gold - accents and highlights */
+    --highlight-foreground: 228 45% 11%; /* Dark Navy text on gold */
     
-    /* Premium - Royal Purple */
-    --premium: 273 20% 58%; /* Royal Purple - special sections */
-    --premium-foreground: 0 0% 100%; /* White text on premium */
-    
-    /* Success - Green */
-    --success: 145 63% 42%; /* Green Accent - success indicators */
+    /* Success - Emerald Green */
+    --success: 160 84% 39%; /* Emerald - success indicators */
     --success-foreground: 0 0% 100%; /* White text on success */
     
-    /* Destructive */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    /* Destructive - Red */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
     
     /* Borders and Inputs */
-    --border: 0 0% 89.8%; /* Waikawa Gray - borders */
-    --input: 0 0% 89.8%; /* Modern Teal - input borders */
-    --ring: 0 0% 3.9%; /* Waikawa Gray - focus rings */
+    --border: 228 30% 25%; /* Lighter navy for borders */
+    --input: 228 30% 25%; /* Matching border color for inputs */
+    --ring: 160 84% 39%; /* Emerald for focus rings */
     
     --radius: 0.5rem;
     
@@ -67,43 +63,41 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%; /* Deep Blue - dark background */
-    --foreground: 0 0% 98%; /* White text */
-    --card: 0 0% 3.9%; /* Slate Blue - dark cards */
-    --card-foreground: 0 0% 98%; /* White text */
-    --popover: 0 0% 3.9%; /* Slate Blue */
-    --popover-foreground: 0 0% 98%; /* White text */
+    /* Dark theme - even darker navy */
+    --background: 228 50% 8%; /* Very dark navy for dark mode */
+    --foreground: 0 0% 100%; /* White text */
+    --card: 228 45% 11%; /* Slightly lighter than background */
+    --card-foreground: 0 0% 100%; /* White text */
+    --popover: 228 45% 11%; /* Matching card color */
+    --popover-foreground: 0 0% 100%; /* White text */
     
-    --primary: 0 0% 98%; /* Waikawa Gray */
-    --primary-foreground: 0 0% 9%; /* White text */
+    --primary: 0 0% 100%; /* White for primary elements */
+    --primary-foreground: 228 50% 8%; /* Very dark navy text */
     
-    --secondary: 0 0% 14.9%; /* Slate Blue */
-    --secondary-foreground: 0 0% 98%; /* White text */
+    --secondary: 228 40% 15%; /* Slightly lighter than background */
+    --secondary-foreground: 0 0% 100%; /* White text */
     
-    --muted: 0 0% 14.9%; /* Slate Blue */
-    --muted-foreground: 0 0% 63.9%; /* Modern Teal text */
+    --muted: 228 35% 18%; /* Matching secondary */
+    --muted-foreground: 0 0% 75%; /* Light gray for muted text */
     
-    --accent: 0 0% 14.9%; /* Waikawa Gray */
-    --accent-foreground: 0 0% 98%; /* White text */
+    --accent: 160 84% 39%; /* Emerald accent */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
     
-    --cta: 6 100% 70%; /* Bright Coral */
-    --cta-foreground: 0 0% 100%; /* White text */
+    --cta: 160 84% 39%; /* Emerald - main CTA buttons */
+    --cta-foreground: 0 0% 100%; /* White text on CTA */
     
-    --highlight: 51 100% 50%; /* Gold */
-    --highlight-foreground: 220 36% 19%; /* Deep Blue text */
+    --highlight: 45 100% 50%; /* Gold */
+    --highlight-foreground: 228 50% 8%; /* Very dark navy text on gold */
     
-    --premium: 273 20% 58%; /* Royal Purple */
-    --premium-foreground: 0 0% 100%; /* White text */
-    
-    --success: 145 63% 42%; /* Green */
+    --success: 160 84% 39%; /* Emerald */
     --success-foreground: 0 0% 100%; /* White text */
     
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
     
-    --border: 0 0% 14.9%; /* Waikawa Gray */
-    --input: 0 0% 14.9%; /* Waikawa Gray */
-    --ring: 0 0% 83.1%; /* Waikawa Gray */ --chart-1: 220 70% 50%; --chart-2: 160 60% 45%; --chart-3: 30 80% 55%; --chart-4: 280 65% 60%; --chart-5: 340 75% 55%;
+    --border: 228 25% 22%; /* Lighter navy for borders */
+    --input: 228 25% 22%; /* Matching border */
+    --ring: 160 84% 39%; /* Emerald for focus */ --chart-1: 160 84% 39%; --chart-2: 228 70% 50%; --chart-3: 45 100% 50%; --chart-4: 280 65% 60%; --chart-5: 340 75% 55%;
   }
 }
 
@@ -187,6 +181,18 @@
   to {
     opacity: 0;
     transform: translateX(-100px);
+  }
+}
+
+@keyframes colorWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 

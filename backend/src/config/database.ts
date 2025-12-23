@@ -112,6 +112,51 @@ export const initializeDatabase = async () => {
       );
     `);
 
+    // Idempotent columns for order linkage and confirmation metadata
+    await query(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='user_id') THEN
+          ALTER TABLE orders ADD COLUMN user_id UUID REFERENCES users(id) ON DELETE SET NULL;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='payment_reference') THEN
+          ALTER TABLE orders ADD COLUMN payment_reference VARCHAR(255);
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='subscription_type') THEN
+          ALTER TABLE orders ADD COLUMN subscription_type VARCHAR(50) DEFAULT 'one_time';
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='orders' AND column_name='confirmation_email_sent_at') THEN
+          ALTER TABLE orders ADD COLUMN confirmation_email_sent_at TIMESTAMP;
+        END IF;
+      END $$;
+    `);
+
+    // Payment events table for webhook idempotency
+    await query(`
+      CREATE TABLE IF NOT EXISTS payment_events (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        provider VARCHAR(50) NOT NULL,
+        event_id VARCHAR(255) UNIQUE NOT NULL,
+        order_id UUID REFERENCES orders(id) ON DELETE SET NULL,
+        status VARCHAR(50),
+        payload JSONB,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // One-time access links for first login and dashboard entry
+    await query(`
+      CREATE TABLE IF NOT EXISTS user_access_links (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+        order_id UUID REFERENCES orders(id) ON DELETE SET NULL,
+        token UUID UNIQUE NOT NULL,
+        expires_at TIMESTAMP NOT NULL,
+        used_at TIMESTAMP,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
     // Create leads table
     await query(`
       CREATE TABLE IF NOT EXISTS leads (
@@ -153,6 +198,25 @@ export const initializeDatabase = async () => {
       BEGIN
         IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='role') THEN
           ALTER TABLE users ADD COLUMN role VARCHAR(50) DEFAULT 'user';
+        END IF;
+      END $$;
+    `);
+
+    // Add client activation columns to users table (idempotent)
+    await query(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='password_set') THEN
+          ALTER TABLE users ADD COLUMN password_set BOOLEAN DEFAULT TRUE;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='first_login_token') THEN
+          ALTER TABLE users ADD COLUMN first_login_token UUID;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='first_login_token_expires_at') THEN
+          ALTER TABLE users ADD COLUMN first_login_token_expires_at TIMESTAMP;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='first_login_consumed_at') THEN
+          ALTER TABLE users ADD COLUMN first_login_consumed_at TIMESTAMP;
         END IF;
       END $$;
     `);

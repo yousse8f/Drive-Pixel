@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { ArrowRight, Building2, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
-import TopBar from '@/components/TopBar';
 import Footer from '@/components/Footer';
 
 const exampleClients = [
@@ -27,13 +26,23 @@ const testimonials = [
 export default function ClientsPage() {
   return (
     <div className="min-h-screen flex flex-col">
-      <TopBar />
       <Navbar />
 
-      <section className="py-20 bg-gradient-to-r from-primary-900 to-primary-700 text-white">
-        <div className="container-custom text-center">
+      <section className="relative py-20 text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{
+            backgroundImage: 'url(/images/contact.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
+        </div>
+        <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Valued Clients</h1>
-          <p className="text-xl text-primary-100 max-w-4xl mx-auto">
+          <p className="text-xl text-white/90 max-w-4xl mx-auto">
             Drive Pixel has worked with a diverse range of clients across industries, delivering tailored IT solutions that enhance operations and boost business growth. Our clients include real estate firms, small and medium businesses, and creative enterprises seeking a one-stop IT partner.
           </p>
         </div>
@@ -41,15 +50,15 @@ export default function ClientsPage() {
 
       <section className="py-16 bg-gray-50">
         <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10 text-center">Client Highlights</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1f3a] mb-10 text-center">Client Highlights</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {exampleClients.map((c, idx) => (
               <div key={idx} className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-primary-100 mb-6">
-                  <Building2 className="h-8 w-8 text-primary-600" />
+                <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-[#10b981]/10 mb-6">
+                  <Building2 className="h-8 w-8 text-[#10b981]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{c.name}</h3>
+                <h3 className="text-xl font-bold text-[#1a1f3a] mb-3">{c.name}</h3>
                 <p className="text-gray-600">{c.description}</p>
               </div>
             ))}
@@ -58,8 +67,8 @@ export default function ClientsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((t, idx) => (
               <div key={idx} className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-primary-100 mb-6">
-                  <Quote className="h-8 w-8 text-primary-600" />
+                <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-[#10b981]/10 mb-6">
+                  <Quote className="h-8 w-8 text-[#10b981]" />
                 </div>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">“{t.quote}”</p>
                 <div className="text-gray-600">
@@ -72,11 +81,11 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-primary-700 text-white">
+      <section className="py-16 bg-[#1a1f3a] text-white">
         <div className="container-custom text-center">
           <h2 className="text-3xl font-bold mb-6">Want results like our clients?</h2>
           <Link href="/contact">
-            <Button size="lg" className="bg-cta hover:bg-cta-600 text-white">
+            <Button size="lg" className="bg-[#10b981] hover:bg-[#059669] text-white">
               Contact Us
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

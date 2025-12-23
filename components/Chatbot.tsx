@@ -76,22 +76,22 @@ const initialBotMessages: ChatMessage[] = [
 ];
 
 const bubbleClasses =
-  'fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full bg-cta text-white shadow-lg hover:shadow-xl transition hover:scale-110 focus:outline-none focus:ring-4 focus:ring-cta-300 animate-bounce';
+  'fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full bg-[#10b981] text-white shadow-lg hover:shadow-xl transition hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#10b981]/30 animate-bounce';
 
 const containerClasses =
-  'fixed bottom-20 right-4 sm:right-6 z-50 w-[360px] max-w-[95vw] max-h-[70vh] bg-white shadow-2xl rounded-2xl border border-primary-100 flex flex-col overflow-hidden';
+  'fixed bottom-20 right-4 sm:right-6 z-50 w-[360px] max-w-[95vw] max-h-[70vh] bg-white shadow-2xl rounded-2xl border border-gray-200 flex flex-col overflow-hidden';
 
 const headerClasses =
-  'flex items-center justify-between bg-primary-700 text-white px-4 py-3';
+  'flex items-center justify-between bg-[#1a1f3a] text-white px-4 py-3';
 
 const buttonBase =
-  'rounded-full px-3 py-2 text-sm font-semibold border transition focus:outline-none focus:ring-2 focus:ring-primary-200';
+  'rounded-full px-3 py-2 text-sm font-semibold border transition focus:outline-none focus:ring-2 focus:ring-[#10b981]/20';
 
 const serviceBtn =
-  'bg-primary-100 text-primary-800 hover:bg-primary-200 border-primary-200';
+  'bg-[#10b981]/10 text-[#1a1f3a] hover:bg-[#10b981]/20 border-[#10b981]/30';
 
 const inputClasses =
-  'flex-1 bg-transparent px-3 py-2 outline-none text-sm placeholder:text-gray-400';
+  'flex-1 bg-transparent px-3 py-2 outline-none text-sm text-gray-900 placeholder:text-gray-400';
 
 const ChatWindow = dynamic(async () => Promise.resolve(ChatBody), {
   ssr: false,
@@ -287,7 +287,7 @@ function ChatBody() {
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="rounded-full p-1 hover:bg-primary-600 transition"
+              className="rounded-full p-1 hover:bg-[#1a1f3a]/80 transition"
               aria-label="Close chat"
             >
               <X className="h-4 w-4" />
@@ -296,7 +296,7 @@ function ChatBody() {
 
           <div
             ref={listRef}
-            className="flex-1 px-4 py-3 space-y-3 overflow-y-auto bg-primary-50"
+            className="flex-1 px-4 py-3 space-y-3 overflow-y-auto bg-gray-50"
           >
             {messages.map((m) => (
               <div
@@ -306,8 +306,8 @@ function ChatBody() {
                 <div
                   className={`px-3 py-2 rounded-2xl text-sm max-w-[85%] ${
                     m.sender === 'user'
-                      ? 'bg-primary-600 text-white rounded-br-none'
-                      : 'bg-white text-gray-900 border border-primary-100 rounded-bl-none'
+                      ? 'bg-[#10b981] text-white rounded-br-none'
+                      : 'bg-white text-gray-900 border border-gray-200 rounded-bl-none'
                   }`}
                 >
                   {m.text}
@@ -320,11 +320,11 @@ function ChatBody() {
             )}
           </div>
 
-          <div className="border-t border-primary-100 bg-white">
+          <div className="border-t border-gray-200 bg-white">
             <div className="flex items-center px-2 py-1">
               {(step === 'lead-name' || step === 'lead-email' || step === 'context') && (
                 <button
-                  className="px-3 py-2 text-xs font-semibold text-primary-700 hover:text-primary-900"
+                  className="px-3 py-2 text-xs font-semibold text-[#10b981] hover:text-[#059669]"
                   onClick={() => {
                     if (step === 'lead-name') handleLeadName('');
                     else if (step === 'lead-email') handleLeadEmail('');
@@ -348,7 +348,7 @@ function ChatBody() {
                 }}
               />
               <button
-                className="p-2 text-primary-700 hover:text-primary-900 disabled:text-gray-300"
+                className="p-2 text-[#10b981] hover:text-[#059669] disabled:text-gray-300"
                 onClick={handleSend}
                 disabled={!input.trim()}
                 aria-label="Send"

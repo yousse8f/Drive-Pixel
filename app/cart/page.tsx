@@ -1,63 +1,132 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShoppingCart, CreditCard, CheckCircle2, X } from 'lucide-react';
-import TopBar from '@/components/TopBar';
+import { ShoppingCart, CreditCard, CheckCircle2, X, Loader2, AlertCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useCart } from '@/lib/hooks/useCart';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { useRouter, useSearchParams } from 'next/navigation';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.drivepixel.com/api';
+const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || '';
 
 export default function CartPage() {
-    const { items, total, updateItem, removeItem, checkout, loading } = useCart();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const { items, total, updateItem, removeItem, sessionId, loading } = useCart();
     const [checkoutLoading, setCheckoutLoading] = useState(false);
     const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+    const [showPayPal, setShowPayPal] = useState(false);
+    const [orderId, setOrderId] = useState<string | null>(null);
     const [checkoutForm, setCheckoutForm] = useState({
         customerName: '',
         customerEmail: '',
         customerPhone: '',
         customerAddress: '',
-        paymentProvider: 'stripe',
     });
+
+    useEffect(() => {
+        if (searchParams.get('cancelled') === 'true') {
+            setStatusMessage({ type: 'error', text: 'Payment was cancelled. Please try again.' });
+        }
+    }, [searchParams]);
 
     const handleUpdateQuantity = async (itemId: string, quantity: number) => {
         if (quantity < 1) return;
         await updateItem(itemId, quantity);
     };
 
-    const handleCheckout = async () => {
-        if (!checkoutForm.customerName || !checkoutForm.customerEmail || !checkoutForm.customerAddress) {
-            setStatusMessage({ type: 'error', text: 'Please fill in name, email, and address.' });
+    const validateForm = () => {
+        if (!checkoutForm.customerName.trim()) {
+            setStatusMessage({ type: 'error', text: 'Please enter your full name.' });
+            return false;
+        }
+        if (!checkoutForm.customerEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(checkoutForm.customerEmail)) {
+            setStatusMessage({ type: 'error', text: 'Please enter a valid email address.' });
+            return false;
+        }
+        if (!checkoutForm.customerAddress.trim()) {
+            setStatusMessage({ type: 'error', text: 'Please enter your shipping address.' });
+            return false;
+        }
+        return true;
+    };
+
+    const handleProceedToPayment = () => {
+        if (!validateForm()) {
             return;
         }
-        setCheckoutLoading(true);
         setStatusMessage(null);
+        setShowPayPal(true);
+    };
+
+    const createOrder = async () => {
         try {
-            await checkout({
-                customerName: checkoutForm.customerName,
-                customerEmail: checkoutForm.customerEmail,
-                customerPhone: checkoutForm.customerPhone,
-                customerAddress: checkoutForm.customerAddress,
-                paymentProvider: checkoutForm.paymentProvider,
+            const headers: any = { 'Content-Type': 'application/json' };
+            if (sessionId) headers['x-session-id'] = sessionId;
+
+            const response = await fetch(`${API_URL}/paypal/create-order`, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({
+                    customerName: checkoutForm.customerName,
+                    customerEmail: checkoutForm.customerEmail,
+                    customerPhone: checkoutForm.customerPhone,
+                    customerAddress: checkoutForm.customerAddress,
+                }),
             });
-            setStatusMessage({ type: 'success', text: 'Order placed successfully! Payment pending.' });
-            // Optional: reset form or redirect
-            setCheckoutForm({
-                customerName: '',
-                customerEmail: '',
-                customerPhone: '',
-                customerAddress: '',
-                paymentProvider: 'stripe',
-            });
+
+            const data = await response.json();
+
+            if (data.success && data.data) {
+                setOrderId(data.data.orderId);
+                return data.data.paypalOrderId;
+            } else {
+                throw new Error(data.message || 'Failed to create order');
+            }
         } catch (error: any) {
-            setStatusMessage({ type: 'error', text: error.message || 'Checkout failed.' });
-        } finally {
+            console.error('Create order error:', error);
+            setStatusMessage({ type: 'error', text: error.message || 'Failed to create order' });
+            throw error;
+        }
+    };
+
+    const onApprove = async (data: any) => {
+        try {
+            setCheckoutLoading(true);
+            const response = await fetch(`${API_URL}/paypal/capture-order`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    paypalOrderId: data.orderID,
+                    orderId: orderId,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                router.push(`/order/success?orderId=${orderId}`);
+            } else {
+                throw new Error(result.message || 'Payment capture failed');
+            }
+        } catch (error: any) {
+            console.error('Capture error:', error);
+            setStatusMessage({ type: 'error', text: error.message || 'Payment processing failed' });
             setCheckoutLoading(false);
         }
+    };
+
+    const onError = (err: any) => {
+        console.error('PayPal error:', err);
+        setStatusMessage({ type: 'error', text: 'Payment failed. Please try again.' });
+        setShowPayPal(false);
     };
 
     if (loading) {
@@ -70,8 +139,7 @@ export default function CartPage() {
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
-            <TopBar />
-            <Navbar darkBg={false} />
+            <Navbar />
 
             <main className="flex-1 py-12">
                 <div className="container-custom">
@@ -91,7 +159,7 @@ export default function CartPage() {
                                             <h2 className="text-xl font-semibold text-gray-700 mb-2">Your cart is empty</h2>
                                             <p className="text-gray-500 mb-6">Looks like you haven't added anything yet.</p>
                                             <Link href="/shop">
-                                                <Button className="bg-primary-600 hover:bg-primary-700 text-white">
+                                                <Button className="bg-cta hover:bg-cta-600 text-[#041028] font-semibold">
                                                     Start Shopping
                                                 </Button>
                                             </Link>
@@ -213,12 +281,12 @@ export default function CartPage() {
                                             </div>
                                         </div>
 
-                                        <div className="pt-4 border-t border-gray-100">
-                                            <div className="flex justify-between text-base mb-2">
+                                        <div className="pt-4 border-t border-gray-100 space-y-3">
+                                            <div className="flex justify-between text-base">
                                                 <span className="text-gray-600">Subtotal</span>
                                                 <span className="font-medium">${total.toFixed(2)}</span>
                                             </div>
-                                            <div className="flex justify-between text-base mb-4">
+                                            <div className="flex justify-between text-base">
                                                 <span className="text-gray-600">Taxes</span>
                                                 <span className="font-medium">$0.00</span>
                                             </div>
@@ -226,19 +294,62 @@ export default function CartPage() {
                                                 <span>Total</span>
                                                 <span>${total.toFixed(2)}</span>
                                             </div>
-                                        </div>
 
-                                        <Button
-                                            className="w-full bg-cta hover:bg-cta-600 text-white py-6 text-lg"
-                                            onClick={handleCheckout}
-                                            disabled={checkoutLoading}
-                                        >
-                                            {checkoutLoading ? 'Processing...' : `Pay $${total.toFixed(2)}`}
-                                        </Button>
-
-                                        <div className="flex items-center justify-center gap-2 text-xs text-gray-500 mt-2">
-                                            <CheckCircle2 className="h-3 w-3" />
-                                            Secure Checkout powered by Stripe/PayPal
+                                            {!showPayPal ? (
+                                                <Button
+                                                    className="w-full bg-cta hover:bg-cta-600 text-[#041028] py-3 text-lg font-semibold"
+                                                    onClick={handleProceedToPayment}
+                                                    disabled={checkoutLoading || items.length === 0}
+                                                >
+                                                    Proceed to Payment
+                                                </Button>
+                                            ) : (
+                                                <div className="space-y-3">
+                                                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+                                                        <div className="flex items-start gap-2">
+                                                            <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                                                            <div>
+                                                                <p className="font-semibold mb-1">Secure PayPal Checkout</p>
+                                                                <p className="text-xs">Click the PayPal button below to complete your purchase securely.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {PAYPAL_CLIENT_ID ? (
+                                                        <PayPalScriptProvider
+                                                            options={{
+                                                                clientId: PAYPAL_CLIENT_ID,
+                                                                currency: 'USD',
+                                                                intent: 'capture',
+                                                            }}
+                                                        >
+                                                            <PayPalButtons
+                                                                style={{
+                                                                    layout: 'vertical',
+                                                                    color: 'gold',
+                                                                    shape: 'rect',
+                                                                    label: 'paypal',
+                                                                }}
+                                                                createOrder={createOrder}
+                                                                onApprove={onApprove}
+                                                                onError={onError}
+                                                                disabled={checkoutLoading}
+                                                            />
+                                                        </PayPalScriptProvider>
+                                                    ) : (
+                                                        <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-800">
+                                                            PayPal is not configured. Please contact support.
+                                                        </div>
+                                                    )}
+                                                    <Button
+                                                        variant="outline"
+                                                        className="w-full"
+                                                        onClick={() => setShowPayPal(false)}
+                                                        disabled={checkoutLoading}
+                                                    >
+                                                        Back to Cart
+                                                    </Button>
+                                                </div>
+                                            )}
                                         </div>
                                     </CardContent>
                                 </Card>

@@ -13,7 +13,6 @@ export default function RealEstateITSolutionsPage() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    phone: '',
     company: '',
     message: '',
   });
@@ -85,7 +84,7 @@ export default function RealEstateITSolutionsPage() {
 
   const services = [
     {
-      icon: <Users className="h-12 w-12 text-primary-500 mb-4" />,
+      icon: <Users className="h-12 w-12 text-[#10b981] mb-4" />,
       title: 'CRM Systems for Real Estate',
       description: [
         'Centralized client and lead management',
@@ -94,7 +93,7 @@ export default function RealEstateITSolutionsPage() {
       ]
     },
     {
-      icon: <Home className="h-12 w-12 text-primary-500 mb-4" />,
+      icon: <Home className="h-12 w-12 text-[#10b981] mb-4" />,
       title: 'Property Management Automation',
       description: [
         'Track listings, rentals, and maintenance schedules',
@@ -103,7 +102,7 @@ export default function RealEstateITSolutionsPage() {
       ]
     },
     {
-      icon: <Megaphone className="h-12 w-12 text-primary-500 mb-4" />,
+      icon: <Megaphone className="h-12 w-12 text-[#10b981] mb-4" />,
       title: 'Marketing & Lead Generation Tools',
       description: [
         'Email campaign management and automation',
@@ -112,7 +111,7 @@ export default function RealEstateITSolutionsPage() {
       ]
     },
     {
-      icon: <Code className="h-12 w-12 text-primary-500 mb-4" />,
+      icon: <Code className="h-12 w-12 text-[#10b981] mb-4" />,
       title: 'Custom Real Estate Software',
       description: [
         'MLS integration and property database management',
@@ -121,7 +120,7 @@ export default function RealEstateITSolutionsPage() {
       ]
     },
     {
-      icon: <BarChart3 className="h-12 w-12 text-primary-500 mb-4" />,
+      icon: <BarChart3 className="h-12 w-12 text-[#10b981] mb-4" />,
       title: 'Data Analysis & Insights',
       description: [
         'Market trend analysis and forecasting',
@@ -285,10 +284,6 @@ export default function RealEstateITSolutionsPage() {
       setFormError('Valid email is required');
       return false;
     }
-    if (!formData.phone.trim()) {
-      setFormError('Phone number is required');
-      return false;
-    }
     if (!formData.message.trim()) {
       setFormError('Message is required');
       return false;
@@ -322,7 +317,6 @@ export default function RealEstateITSolutionsPage() {
         setFormData({
           fullName: '',
           email: '',
-          phone: '',
           company: '',
           message: '',
         });
@@ -343,10 +337,21 @@ export default function RealEstateITSolutionsPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-900 to-primary-700 text-white">
-        <div className="container-custom text-center">
+      <section className="relative py-32 text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{
+            backgroundImage: 'url(/images/Real%20Estate.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
+        </div>
+        <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Real Estate IT Solutions – Smart Tools for Property Professionals</h1>
-          <p className="text-xl text-primary-100 max-w-3xl mx-auto">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto">
             Our specialized IT solutions help real estate agencies and property managers streamline operations, improve client communication, and grow their business efficiently.
           </p>
         </div>
@@ -355,19 +360,19 @@ export default function RealEstateITSolutionsPage() {
       {/* Services Section */}
       <section className="py-20 bg-white">
         <div className="container-custom">
-          <h2 className="text-4xl font-bold text-center text-primary-900 mb-16">Our Real Estate Services</h2>
+          <h2 className="text-4xl font-bold text-center text-[#1a1f3a] mb-16">Our Real Estate Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="flex flex-col bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="flex flex-col bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#10b981]/20"
               >
                 {service.icon}
-                <h3 className="text-2xl font-bold text-primary-900 mb-4">{service.title}</h3>
+                <h3 className="text-2xl font-bold text-[#1a1f3a] mb-4">{service.title}</h3>
                 <ul className="space-y-3 flex-grow">
                   {service.description.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                      <Check className="h-5 w-5 text-[#10b981] flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{item}</span>
                     </li>
                   ))}
@@ -379,17 +384,26 @@ export default function RealEstateITSolutionsPage() {
       </section>
 
       {/* Dynamic Pricing Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+      <section className="py-20 relative text-white">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-black/70"></div>
+          <img 
+            src="/images/Real Estate.png" 
+            alt="Real Estate Background" 
+            className="w-full h-full object-cover"
+          />
+        </div>
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary-900 mb-6">Pricing Plans for Real Estate Professionals</h2>
-            <p className="text-gray-600 mb-8">Choose the plan that fits your business needs. All plans include 24/7 support and regular updates.</p>
+            <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">Pricing Plans for Real Estate Professionals</h2>
+            <p className="text-white/90 mb-6 text-lg font-medium drop-shadow-md">Choose the plan that fits your business — all plans include 24/7 support and continuous updates.</p>
             {purchaseMessage && (
               <div
                 className={`mx-auto max-w-2xl rounded-lg px-4 py-3 text-sm font-medium flex items-center justify-center gap-2 border ${purchaseMessage.type === 'success'
-                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                  : 'bg-red-50 text-red-700 border-red-200'
-                  }`}
+                  ? 'bg-emerald-100/90 text-emerald-900 border-emerald-300'
+                  : 'bg-red-100/90 text-red-900 border-red-300'
+                  } shadow-lg`}
               >
                 {purchaseMessage.type === 'success' ? (
                   <Check className="h-4 w-4 text-emerald-500" />
@@ -400,7 +414,7 @@ export default function RealEstateITSolutionsPage() {
               </div>
             )}
             {productsLoading && (
-              <div className="flex items-center justify-center gap-2 text-primary-700 text-sm mt-3">
+              <div className="flex items-center justify-center gap-2 text-[#1a1f3a] text-sm mt-3">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 Syncing products with catalogue...
               </div>
@@ -414,26 +428,14 @@ export default function RealEstateITSolutionsPage() {
               {pricingPlans.slice(0, 3).map((plan, index) => {
                 const selectedPeriod = selectedPeriods[plan.service] || 'monthly';
                 const displayPrice = getPriceByPeriod(plan, selectedPeriod);
-                const isPopular = index === 1;
 
                 return (
                   <div
                     key={index}
-                    className={`w-full xs:w-80 sm:w-72 lg:w-80 flex flex-col rounded-xl border-2 transition-all duration-300 max-w-sm ${isPopular
-                        ? 'border-primary-500 shadow-lg'
-                        : 'border-gray-300 shadow-md hover:shadow-lg hover:border-primary-400'
-                      } ${isPopular ? 'bg-gradient-to-br from-primary-50 to-white' : 'bg-white'}`}
+                    className="relative w-full xs:w-80 sm:w-72 lg:w-80 flex flex-col rounded-2xl transition-all duration-300 max-w-sm bg-white/95 border border-white/20 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] hover:shadow-[0_25px_50px_-20px_rgba(0,0,0,0.55)] hover:-translate-y-1"
                   >
-                    {isPopular && (
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <span className="bg-primary-500 text-white px-4 py-1 rounded-full text-xs font-bold">
-                          Popular
-                        </span>
-                      </div>
-                    )}
-
                     <div className="p-5 flex flex-col flex-grow">
-                      <h3 className="text-lg font-bold text-primary-900 mb-4 leading-tight line-clamp-2">{plan.service}</h3>
+                      <h3 className="text-lg font-bold text-[#1a1f3a] mb-4 leading-tight line-clamp-2">{plan.service}</h3>
 
                       <div className="mb-5">
                         <div className="grid grid-cols-2 gap-1.5">
@@ -441,9 +443,9 @@ export default function RealEstateITSolutionsPage() {
                             <button
                               key={period}
                               onClick={() => handlePeriodChange(plan.service, period)}
-                              className={`py-2 px-2 rounded text-xs font-semibold transition-all duration-200 ${selectedPeriod === period
-                                  ? 'bg-primary-500 text-white'
-                                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                              className={`py-2 px-2 rounded text-xs font-semibold transition-all duration-200 border ${selectedPeriod === period
+                                  ? 'bg-[#10b981] text-white border-[#10b981] shadow'
+                                  : 'bg-gray-100/70 text-gray-800 border-gray-200 hover:bg-gray-200'
                                 }`}
                             >
                               {getPeriodLabel(period)}
@@ -455,22 +457,22 @@ export default function RealEstateITSolutionsPage() {
                       {plan.monthly !== 'Custom' ? (
                         <div className="mb-5">
                           <div className="flex items-baseline gap-1">
-                            <span className="text-3xl font-bold text-primary-700">{displayPrice}</span>
-                            <span className="text-gray-600 font-semibold text-xs">
+                            <span className="text-3xl font-extrabold text-[#1a1f3a]">{displayPrice}</span>
+                            <span className="text-gray-700 font-semibold text-xs">
                               {selectedPeriod === 'monthly' ? '/mo' : '/yr'}
                             </span>
                           </div>
                         </div>
                       ) : (
                         <div className="mb-5">
-                          <p className="text-2xl font-bold text-primary-700">Custom</p>
+                          <p className="text-2xl font-bold text-[#1a1f3a]">Custom</p>
                         </div>
                       )}
 
                       <ul className="space-y-2 mb-5 flex-grow">
                         {getFeaturesByService(plan.service).slice(0, 3).map((feature: string, idx: number) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <Check className="h-4 w-4 text-primary-500 flex-shrink-0 mt-0.5" />
+                            <Check className="h-4 w-4 text-[#10b981] flex-shrink-0 mt-0.5" />
                             <span className="text-xs text-gray-700 leading-tight">{feature}</span>
                           </li>
                         ))}
@@ -479,12 +481,9 @@ export default function RealEstateITSolutionsPage() {
                       <button
                         onClick={() => handlePurchase(plan.service, displayPrice, selectedPeriod)}
                         disabled={isProcessing}
-                        className={`w-full py-2 px-4 rounded font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-1 ${isPopular
-                            ? 'bg-primary-500 text-white hover:bg-primary-600 disabled:opacity-50'
-                            : 'bg-gray-100 text-primary-900 hover:bg-primary-100 disabled:opacity-50'
-                          }`}
+                        className="w-full py-2.5 px-4 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-[#10b981] text-white hover:bg-[#059669] shadow hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        {isProcessing ? 'Processing...' : 'Get Started'}
+                        {isProcessing ? 'Processing...' : 'Add to Cart'}
                         <ArrowRight className="h-3 w-3" />
                       </button>
                     </div>
@@ -496,29 +495,16 @@ export default function RealEstateITSolutionsPage() {
             {/* Bottom Row - 2 Cards Centered */}
             <div className="flex flex-wrap gap-3 sm:gap-4 justify-center w-full mt-4">
               {pricingPlans.slice(3, 5).map((plan, index) => {
-                const actualIndex = index + 3;
                 const selectedPeriod = selectedPeriods[plan.service] || 'monthly';
                 const displayPrice = getPriceByPeriod(plan, selectedPeriod);
-                const isPopular = actualIndex === 1;
 
                 return (
                   <div
-                    key={actualIndex}
-                    className={`w-full xs:w-80 sm:w-72 lg:w-80 flex flex-col rounded-xl border-2 transition-all duration-300 max-w-sm ${isPopular
-                        ? 'border-primary-500 shadow-lg'
-                        : 'border-gray-300 shadow-md hover:shadow-lg hover:border-primary-400'
-                      } ${isPopular ? 'bg-gradient-to-br from-primary-50 to-white' : 'bg-white'}`}
+                    key={index}
+                    className="relative w-full xs:w-80 sm:w-72 lg:w-80 flex flex-col rounded-2xl transition-all duration-300 max-w-sm bg-white/95 border border-white/20 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] hover:shadow-[0_25px_50px_-20px_rgba(0,0,0,0.55)] hover:-translate-y-1"
                   >
-                    {isPopular && (
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <span className="bg-primary-500 text-white px-4 py-1 rounded-full text-xs font-bold">
-                          Popular
-                        </span>
-                      </div>
-                    )}
-
                     <div className="p-5 flex flex-col flex-grow">
-                      <h3 className="text-lg font-bold text-primary-900 mb-4 leading-tight line-clamp-2">{plan.service}</h3>
+                      <h3 className="text-lg font-bold text-[#1a1f3a] mb-4 leading-tight line-clamp-2">{plan.service}</h3>
 
                       <div className="mb-5">
                         <div className="grid grid-cols-2 gap-1.5">
@@ -526,9 +512,9 @@ export default function RealEstateITSolutionsPage() {
                             <button
                               key={period}
                               onClick={() => handlePeriodChange(plan.service, period)}
-                              className={`py-2 px-2 rounded text-xs font-semibold transition-all duration-200 ${selectedPeriod === period
-                                  ? 'bg-primary-500 text-white'
-                                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                              className={`py-2 px-2 rounded text-xs font-semibold transition-all duration-200 border ${selectedPeriod === period
+                                  ? 'bg-[#10b981] text-white border-[#10b981] shadow'
+                                  : 'bg-gray-100/70 text-gray-800 border-gray-200 hover:bg-gray-200'
                                 }`}
                             >
                               {getPeriodLabel(period)}
@@ -538,24 +524,20 @@ export default function RealEstateITSolutionsPage() {
                       </div>
 
                       {plan.monthly !== 'Custom' ? (
-                        <div className="mb-5">
-                          <div className="flex items-baseline gap-1">
-                            <span className="text-3xl font-bold text-primary-700">{displayPrice}</span>
-                            <span className="text-gray-600 font-semibold text-xs">
-                              {selectedPeriod === 'monthly' ? '/mo' : '/yr'}
-                            </span>
-                          </div>
+                        <div className="text-center mb-5 mt-auto">
+                          <span className="text-4xl font-extrabold text-[#1a1f3a]">{displayPrice}</span>
+                          <span className="text-sm text-[#1a1f3a]">/{selectedPeriod === 'monthly' ? 'mo' : 'yr'}</span>
                         </div>
                       ) : (
                         <div className="mb-5">
-                          <p className="text-2xl font-bold text-primary-700">Custom</p>
+                          <p className="text-2xl font-bold text-[#1a1f3a]">Custom</p>
                         </div>
                       )}
 
                       <ul className="space-y-2 mb-5 flex-grow">
                         {getFeaturesByService(plan.service).slice(0, 3).map((feature: string, idx: number) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <Check className="h-4 w-4 text-primary-500 flex-shrink-0 mt-0.5" />
+                            <Check className="h-4 w-4 text-[#10b981] flex-shrink-0 mt-0.5" />
                             <span className="text-xs text-gray-700 leading-tight">{feature}</span>
                           </li>
                         ))}
@@ -564,12 +546,9 @@ export default function RealEstateITSolutionsPage() {
                       <button
                         onClick={() => handlePurchase(plan.service, displayPrice, selectedPeriod)}
                         disabled={isProcessing}
-                        className={`w-full py-2 px-4 rounded font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-1 ${isPopular
-                            ? 'bg-primary-500 text-white hover:bg-primary-600 disabled:opacity-50'
-                            : 'bg-gray-100 text-primary-900 hover:bg-primary-100 disabled:opacity-50'
-                          }`}
+                        className="w-full py-2.5 px-4 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-[#10b981] text-white hover:bg-[#059669] shadow hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        {isProcessing ? 'Processing...' : 'Get Started'}
+                        {isProcessing ? 'Processing...' : 'Add to Cart'}
                         <ArrowRight className="h-3 w-3" />
                       </button>
                     </div>
@@ -579,7 +558,7 @@ export default function RealEstateITSolutionsPage() {
             </div>
           </div>
 
-          <p className="text-center text-gray-600 mt-12 text-sm">
+          <p className="text-center text-white/80 mt-12 text-sm">
             *Custom solutions available. All plans include 24/7 support, regular updates, and a 14-day free trial.
           </p>
         </div>
@@ -588,7 +567,7 @@ export default function RealEstateITSolutionsPage() {
       {/* Contact Form Section */}
       <section className="py-20 bg-white">
         <div className="container-custom max-w-2xl">
-          <h2 className="text-4xl font-bold text-center text-primary-900 mb-4">Get Started Today</h2>
+          <h2 className="text-4xl font-bold text-center text-[#1a1f3a] mb-4">Get Started Today</h2>
           <p className="text-center text-gray-600 mb-12">Submit your inquiry and our team will contact you within 24 hours to discuss your real estate IT needs.</p>
 
           <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-8 rounded-xl">
@@ -606,63 +585,50 @@ export default function RealEstateITSolutionsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-semibold text-primary-900 mb-2">Full Name *</label>
+                <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Full Name *</label>
                 <input
                   type="text"
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-primary-900 mb-2">Email *</label>
+                <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Email *</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your@email.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-semibold text-primary-900 mb-2">Phone *</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder="Your Phone"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-primary-900 mb-2">Company/Agency</label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  placeholder="Your Company Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-primary-900 mb-2">Message *</label>
+              <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Company/Agency</label>
+              <input
+                type="text"
+                name="company"
+                value={formData.company}
+                onChange={handleInputChange}
+                placeholder="Your Company Name"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Message *</label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={6}
                 placeholder="Tell us about your real estate business and what solutions you're interested in..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all resize-none"
               />
             </div>
 
@@ -681,7 +647,7 @@ export default function RealEstateITSolutionsPage() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
         <div className="container-custom text-center">
-          <h2 className="text-3xl font-bold mb-6 text-primary-900">Ready to Transform Your Real Estate Business?</h2>
+          <h2 className="text-3xl font-bold mb-6 text-[#1a1f3a]">Ready to Transform Your Real Estate Business?</h2>
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
             Join hundreds of real estate professionals who are already using our solutions to streamline operations and increase productivity.
           </p>

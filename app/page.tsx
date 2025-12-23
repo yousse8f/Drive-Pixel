@@ -7,11 +7,10 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Building2, Truck, Package, ChevronLeft, ChevronRight, Star, MessageCircle, Phone, Briefcase, Clock, Users, Award, Globe, Code, Megaphone, Cloud, Smartphone, Settings, Database, Server, Terminal, Lightbulb, Rocket, Cog, BarChart3, Calendar, Zap, ShoppingCart, BarChart2, Home } from 'lucide-react';
+import { ArrowRight, Building2, Truck, Package, ChevronLeft, ChevronRight, Star, MessageCircle, Briefcase, Clock, Users, Award, Globe, Code, Megaphone, Cloud, Smartphone, Settings, Database, Server, Terminal, Lightbulb, Rocket, Cog, BarChart3, Calendar, Zap, ShoppingCart, BarChart2, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Navbar from '@/components/Navbar';
-import TopBar from '@/components/TopBar';
 import Footer from '@/components/Footer';
 import { useRef, useState, useEffect } from 'react';
 import { publicApiClient } from '@/lib/public-api-client';
@@ -148,7 +147,6 @@ export default function HomePage() {
     return (
         <div className="min-h-screen flex flex-col" suppressHydrationWarning>
             <style>{flipAnimationStyle}</style>
-            <TopBar />
             <Navbar />
 
             {/* Hero Section with Image Background */}
@@ -160,8 +158,8 @@ export default function HomePage() {
                     backgroundPosition: 'center',
                 }}
             >
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40"></div>
+                {/* Light Overlay */}
+                <div className="absolute inset-0 bg-[#1a1f3a]/50"></div>
 
                 {/* Content */}
                 <div className="container-custom relative z-10 flex justify-center">
@@ -171,7 +169,7 @@ export default function HomePage() {
                             {/* Left Arrow */}
                             <button
                                 onClick={() => setCurrentHeroText((prev) => (prev - 1 + heroTexts.length) % heroTexts.length)}
-                                className="flex-shrink-0 text-white hover:text-primary-300 transition-colors duration-300"
+                                className="flex-shrink-0 text-white hover:text-[#10b981] transition-colors duration-300"
                                 aria-label="Previous text"
                             >
                                 <ChevronLeft className="h-10 w-10" />
@@ -187,7 +185,7 @@ export default function HomePage() {
                                 </h1>
                                 <p
                                     key={`subtitle-${currentHeroText}`}
-                                    className="flip-text text-xl md:text-2xl lg:text-3xl mb-8 text-primary-100 leading-relaxed"
+                                    className="flip-text text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 leading-relaxed"
                                 >
                                     {heroTexts[currentHeroText].subtitle}
                                 </p>
@@ -196,7 +194,7 @@ export default function HomePage() {
                             {/* Right Arrow */}
                             <button
                                 onClick={() => setCurrentHeroText((prev) => (prev + 1) % heroTexts.length)}
-                                className="flex-shrink-0 text-white hover:text-primary-300 transition-colors duration-300"
+                                className="flex-shrink-0 text-white hover:text-[#10b981] transition-colors duration-300"
                                 aria-label="Next text"
                             >
                                 <ChevronRight className="h-10 w-10" />
@@ -204,7 +202,7 @@ export default function HomePage() {
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/contact">
-                                <Button size="lg" className="w-full sm:w-auto bg-cta hover:bg-cta-600 text-white transition-all duration-300 transform hover:scale-105">
+                                <Button size="lg" className="w-full sm:w-auto bg-[#10b981] hover:bg-[#059669] text-white transition-all duration-300 transform hover:scale-105">
                                     Get a Free Consultation
                                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                                 </Button>
@@ -213,7 +211,7 @@ export default function HomePage() {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="w-full sm:w-auto bg-transparent text-white border-white hover:bg-white hover:text-primary-900 transition-all duration-300 transform hover:scale-105"
+                                    className="w-full sm:w-auto bg-transparent text-white border-white hover:bg-[#10b981] hover:text-white hover:border-[#10b981] transition-all duration-300 transform hover:scale-105"
                                 >
                                     Request a Project Quote
                                 </Button>
@@ -227,8 +225,8 @@ export default function HomePage() {
             <section className="py-16 bg-white">
                 <div className="container-custom">
                     <div className="text-center mb-12">
-                        <p className="text-sm font-semibold text-primary-500 mb-2">KEY SERVICES OVERVIEW</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                        <p className="text-sm font-semibold text-[#10b981] mb-2">KEY SERVICES OVERVIEW</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#1a1f3a] mb-6">
                             We Build Future-Ready Digital Solutions
                         </h2>
                     </div>
@@ -239,12 +237,33 @@ export default function HomePage() {
                             <div className="col-span-4 text-center py-8">Loading services...</div>
                         ) : services.length > 0 ? (
                             services.map((service) => (
-                                <div key={service.id} className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all">
-                                    <div className="text-4xl mb-4">{service.icon}</div>
-                                    <h3 className="text-xl font-bold text-primary-900 mb-3">{service.title}</h3>
-                                    <p className="text-gray-700 text-sm leading-relaxed">
-                                        {service.description}
-                                    </p>
+                                <div 
+                                    key={service.id} 
+                                    className="group relative bg-white rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-[#10b981]/30 h-full flex flex-col"
+                                >
+                                    <div className="relative z-10 p-8 h-full flex flex-col">
+                                        <div className="text-4xl mb-4 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300">
+                                            {service.icon}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-[#1a1f3a] mb-3 group-hover:text-[#10b981] transition-colors duration-300">
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-gray-700 text-sm leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+                                            {service.description}
+                                        </p>
+                                        <div className="mt-4 pt-4 border-t border-gray-200 group-hover:border-[#10b981]/30 transition-colors duration-300">
+                                            <span className="inline-flex items-center text-[#10b981] group-hover:text-[#059669] text-sm font-medium transition-colors duration-300">
+                                                Learn more
+                                                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Hover effect elements */}
+                                    <div className="absolute inset-0 overflow-hidden rounded-xl pointer-events-none">
+                                        <div className="absolute -inset-1 bg-gradient-to-r from-[#10b981]/10 via-[#10b981]/5 to-[#10b981]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-[#10b981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    </div>
                                 </div>
                             ))
                         ) : (
@@ -255,14 +274,14 @@ export default function HomePage() {
             </section>
 
             {/* Solutions Overview Section - Advisory / Build / Operate */}
-            <section className="py-16 bg-primary-900">
+            <section className="py-16 bg-[#1a1f3a]">
                 <div className="container-custom">
                     <div className="text-center mb-12">
-                        <p className="text-sm font-semibold text-primary-300 mb-2">OUR APPROACH</p>
+                        <p className="text-sm font-semibold text-[#10b981] mb-2">OUR APPROACH</p>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                             Advisory • Build • Operate
                         </h2>
-                        <p className="text-lg text-primary-100 max-w-3xl mx-auto">
+                        <p className="text-lg text-white/90 max-w-3xl mx-auto">
                             A complete end-to-end partnership from strategy to deployment to ongoing optimization.
                         </p>
                     </div>
@@ -271,10 +290,10 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Advisory */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                            <div className="w-14 h-14 bg-[#10b981] rounded-full flex items-center justify-center mb-6 hover:bg-[#059669] transition-colors duration-300 cursor-pointer">
                                 <BarChart2 className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
-                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Advisory</h3>
+                            <h3 className="text-2xl font-bold text-[#1a1f3a] mb-4">Advisory</h3>
                             <p className="text-gray-700 leading-relaxed">
                                 We analyze your business needs, assess opportunities, and design the right technical strategy to match your goals.
                             </p>
@@ -282,10 +301,10 @@ export default function HomePage() {
 
                         {/* Build */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                            <div className="w-14 h-14 bg-[#10b981] rounded-full flex items-center justify-center mb-6 hover:bg-[#059669] transition-colors duration-300 cursor-pointer">
                                 <Cog className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
-                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Build</h3>
+                            <h3 className="text-2xl font-bold text-[#1a1f3a] mb-4">Build</h3>
                             <p className="text-gray-700 leading-relaxed">
                                 From concept to deployment—our team develops world-class applications, APIs, platforms, and integrated systems using cutting-edge technologies.
                             </p>
@@ -293,10 +312,10 @@ export default function HomePage() {
 
                         {/* Operate */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                            <div className="w-14 h-14 bg-[#10b981] rounded-full flex items-center justify-center mb-6 hover:bg-[#059669] transition-colors duration-300 cursor-pointer">
                                 <Rocket className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
-                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Operate</h3>
+                            <h3 className="text-2xl font-bold text-[#1a1f3a] mb-4">Operate</h3>
                             <p className="text-gray-700 leading-relaxed">
                                 We ensure your product stays fast, secure, monitored, and continuously optimized with long-term support and proactive improvements.
                             </p>
@@ -309,8 +328,8 @@ export default function HomePage() {
             <section className="py-16 bg-white">
                 <div className="container-custom">
                     <div className="text-center mb-12">
-                        <p className="text-sm font-semibold text-primary-500 mb-2">SPECIALIZED SOLUTIONS</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                        <p className="text-sm font-semibold text-[#10b981] mb-2">SPECIALIZED SOLUTIONS</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#1a1f3a] mb-6">
                             Real Estate IT Solutions – Streamline Your Property Business
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -320,35 +339,35 @@ export default function HomePage() {
 
                     {/* Features Cards Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-primary-200">
-                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                        <div className="bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-[#10b981]/20">
+                            <div className="w-12 h-12 bg-[#10b981] rounded-full flex items-center justify-center mb-4 group-hover:bg-[#059669] transition-colors duration-300">
                                 <Users className="h-6 w-6 text-white" />
                             </div>
-                            <h3 className="text-lg font-bold text-primary-900 mb-3">Centralized CRM</h3>
+                            <h3 className="text-lg font-bold text-[#1a1f3a] mb-3">Centralized CRM</h3>
                             <p className="text-gray-700 text-sm">Manage clients, leads, and follow-ups in one unified platform</p>
                         </div>
 
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-primary-200">
-                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                        <div className="bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-[#10b981]/20">
+                            <div className="w-12 h-12 bg-[#10b981] rounded-full flex items-center justify-center mb-4 group-hover:bg-[#059669] transition-colors duration-300">
                                 <Home className="h-6 w-6 text-white" />
                             </div>
-                            <h3 className="text-lg font-bold text-primary-900 mb-3">Property Management</h3>
+                            <h3 className="text-lg font-bold text-[#1a1f3a] mb-3">Property Management</h3>
                             <p className="text-gray-700 text-sm">Automated tools for listings, marketing, and tenant communication</p>
                         </div>
 
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-primary-200">
-                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                        <div className="bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-[#10b981]/20">
+                            <div className="w-12 h-12 bg-[#10b981] rounded-full flex items-center justify-center mb-4 group-hover:bg-[#059669] transition-colors duration-300">
                                 <BarChart3 className="h-6 w-6 text-white" />
                             </div>
-                            <h3 className="text-lg font-bold text-primary-900 mb-3">Analytics & Insights</h3>
+                            <h3 className="text-lg font-bold text-[#1a1f3a] mb-3">Analytics & Insights</h3>
                             <p className="text-gray-700 text-sm">Real-time dashboards and performance metrics for data-driven decisions</p>
                         </div>
 
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-primary-200">
-                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                        <div className="bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-[#10b981]/20">
+                            <div className="w-12 h-12 bg-[#10b981] rounded-full flex items-center justify-center mb-4 group-hover:bg-[#059669] transition-colors duration-300">
                                 <Globe className="h-6 w-6 text-white" />
                             </div>
-                            <h3 className="text-lg font-bold text-primary-900 mb-3">MLS Integration</h3>
+                            <h3 className="text-lg font-bold text-[#1a1f3a] mb-3">MLS Integration</h3>
                             <p className="text-gray-700 text-sm">Seamless integration with MLS and property portals</p>
                         </div>
                     </div>
@@ -356,7 +375,7 @@ export default function HomePage() {
                     {/* CTA Button */}
                     <div className="text-center">
                         <Link href="/services/real-estate">
-                            <Button size="lg" className="bg-cta hover:bg-cta-600 text-white transition-all duration-300 transform hover:scale-105">
+                            <Button size="lg" className="bg-[#10b981] hover:bg-[#059669] text-white transition-all duration-300 transform hover:scale-105">
                                 Learn More About Real Estate Solutions
                                 <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>
@@ -369,8 +388,8 @@ export default function HomePage() {
             <section className="py-16 bg-gray-50">
                 <div className="container-custom">
                     <div className="text-center mb-12">
-                        <p className="text-sm font-semibold text-primary-500 mb-2">TECHNOLOGIES & TOOLS</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                        <p className="text-sm font-semibold text-[#10b981] mb-2">TECHNOLOGIES & TOOLS</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#1a1f3a] mb-6">
                             Modern, Reliable Technology Stacks
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -383,16 +402,16 @@ export default function HomePage() {
                         {['React.js / Next.js', 'Node.js / Express', 'Python / Django / FastAPI', 'Flutter / React Native', 'AWS / Google Cloud / Azure', 'Docker / Kubernetes', 'CI/CD & DevOps Automation', 'PostgreSQL / MongoDB / Redis'].map((tech, index) => (
                             <div key={index} className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-all border border-gray-200 group">
                                 <div className="flex justify-center mb-4">
-                                    {index === 0 && <Code className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
-                                    {index === 1 && <Server className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
-                                    {index === 2 && <Terminal className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
-                                    {index === 3 && <Smartphone className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
-                                    {index === 4 && <Cloud className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
-                                    {index === 5 && <Package className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
-                                    {index === 6 && <Settings className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
-                                    {index === 7 && <Database className="h-8 w-8 text-primary-600 group-hover:text-primary-500 transition-colors duration-300" />}
+                                    {index === 0 && <Code className="h-8 w-8 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300" />}
+                                    {index === 1 && <Server className="h-8 w-8 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300" />}
+                                    {index === 2 && <Terminal className="h-8 w-8 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300" />}
+                                    {index === 3 && <Smartphone className="h-8 w-8 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300" />}
+                                    {index === 4 && <Cloud className="h-8 w-8 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300" />}
+                                    {index === 5 && <Package className="h-8 w-8 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300" />}
+                                    {index === 6 && <Settings className="h-8 w-8 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300" />}
+                                    {index === 7 && <Database className="h-8 w-8 text-[#10b981] group-hover:text-[#059669] transition-colors duration-300" />}
                                 </div>
-                                <p className="font-semibold text-primary-900">{tech}</p>
+                                <p className="font-semibold text-[#1a1f3a]">{tech}</p>
                             </div>
                         ))}
                     </div>
@@ -400,14 +419,14 @@ export default function HomePage() {
                     {/* Service Links CTA */}
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link href="/services/mobile-app-development">
-                            <Button size="lg" className="bg-cta hover:bg-cta-600 text-white transition-all duration-300 transform hover:scale-105">
+                            <Button size="lg" className="bg-[#10b981] hover:bg-[#059669] text-white transition-all duration-300 transform hover:scale-105">
                                 Learn More About Mobile App Development
                                 <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>
                         </Link>
 
                         <Link href="/services/software-solutions">
-                            <Button size="lg" className="bg-cta hover:bg-cta-600 text-white transition-all duration-300 transform hover:scale-105">
+                            <Button size="lg" className="bg-[#10b981] hover:bg-[#059669] text-white transition-all duration-300 transform hover:scale-105">
                                 Learn More About Software Solutions
                                 <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>
@@ -417,14 +436,14 @@ export default function HomePage() {
             </section>
 
             {/* Portfolio Highlights Section */}
-            <section className="py-16 bg-white">
+            <section className="py-16 bg-[#1a1f3a]">
                 <div className="container-custom">
                     <div className="text-center mb-12">
-                        <p className="text-sm font-semibold text-primary-500 mb-2">PORTFOLIO HIGHLIGHTS</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                        <p className="text-sm font-semibold text-[#10b981] mb-2">PORTFOLIO HIGHLIGHTS</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                             Digital Solutions We've Built
                         </h2>
-                        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                        <p className="text-lg text-white/90 max-w-3xl mx-auto">
                             A look at some of the digital solutions we've built for clients across different industries.
                         </p>
                     </div>
@@ -432,11 +451,11 @@ export default function HomePage() {
                     {/* Portfolio Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Smart Booking Platform */}
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all group">
-                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                        <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all group">
+                            <div className="w-12 h-12 bg-[#10b981] rounded-full flex items-center justify-center mb-4 group-hover:bg-[#059669] transition-colors duration-300">
                                 <Calendar className="h-6 w-6 text-white" />
                             </div>
-                            <h3 className="text-xl font-bold text-primary-900 mb-2">Smart Booking Platform</h3>
+                            <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Smart Booking Platform</h3>
                             <p className="text-sm text-gray-600 mb-2 font-semibold">SaaS</p>
                             <p className="text-gray-700 leading-relaxed">
                                 Modern booking engine with real-time availability, secure payments, and an optimized dashboard.
@@ -444,11 +463,11 @@ export default function HomePage() {
                         </div>
 
                         {/* AI Workflow Automation */}
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all group">
-                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                        <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all group">
+                            <div className="w-12 h-12 bg-[#10b981] rounded-full flex items-center justify-center mb-4 group-hover:bg-[#059669] transition-colors duration-300">
                                 <Zap className="h-6 w-6 text-white" />
                             </div>
-                            <h3 className="text-xl font-bold text-primary-900 mb-2">AI Workflow Automation</h3>
+                            <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">AI Workflow Automation</h3>
                             <p className="text-sm text-gray-600 mb-2 font-semibold">Enterprise</p>
                             <p className="text-gray-700 leading-relaxed">
                                 Automated data processing system powered by machine learning, reducing manual tasks by 60%.
@@ -456,11 +475,11 @@ export default function HomePage() {
                         </div>
 
                         {/* E-Commerce PWA */}
-                        <div className="bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all group">
-                            <div className="w-12 h-12 bg-primary-300 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors duration-300">
+                        <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all group">
+                            <div className="w-12 h-12 bg-[#10b981] rounded-full flex items-center justify-center mb-4 group-hover:bg-[#059669] transition-colors duration-300">
                                 <ShoppingCart className="h-6 w-6 text-white" />
                             </div>
-                            <h3 className="text-xl font-bold text-primary-900 mb-2">E-Commerce PWA</h3>
+                            <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">E-Commerce PWA</h3>
                             <p className="text-sm text-gray-600 mb-2 font-semibold">Retail</p>
                             <p className="text-gray-700 leading-relaxed">
                                 Lightning-fast shopping experience with a modern UI and high conversion performance.
@@ -474,7 +493,7 @@ export default function HomePage() {
             <section className="py-16 bg-gray-50">
                 <div className="container-custom">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#1a1f3a] mb-6">
                             End-to-End Digital Solutions
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -486,29 +505,29 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Advisory & Strategy */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                            <div className="w-14 h-14 bg-[#10b981] rounded-full flex items-center justify-center mb-6 hover:bg-[#059669] transition-colors duration-300 cursor-pointer">
                                 <Lightbulb className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
-                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Advisory & Strategy</h3>
+                            <h3 className="text-2xl font-bold text-[#1a1f3a] mb-4">Advisory & Strategy</h3>
                             <ul className="space-y-3 text-gray-700">
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Requirement Analysis & Technology Consultation</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Solution Architecture & Scalability Planning</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>UI/UX Consulting for Web & Mobile Apps</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Security, Compliance & Performance Reviews</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Digital Transformation & Automation Roadmaps</span>
                                 </li>
                             </ul>
@@ -516,29 +535,29 @@ export default function HomePage() {
 
                         {/* Build & Deploy */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                            <div className="w-14 h-14 bg-[#10b981] rounded-full flex items-center justify-center mb-6 hover:bg-[#059669] transition-colors duration-300 cursor-pointer">
                                 <Rocket className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
-                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Build & Deploy</h3>
+                            <h3 className="text-2xl font-bold text-[#1a1f3a] mb-4">Build & Deploy</h3>
                             <ul className="space-y-3 text-gray-700">
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Custom Web & Enterprise Application Development</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Mobile App Development (iOS, Android, React Native, Flutter)</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>API Development & Third-Party Integrations</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Cloud-Native Applications (AWS, Azure, GCP)</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Email & Communication Solutions (Google Workspace, Microsoft 365, WhatsApp API)</span>
                                 </li>
                             </ul>
@@ -546,29 +565,29 @@ export default function HomePage() {
 
                         {/* Operate & Enhance */}
                         <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-all">
-                            <div className="w-14 h-14 bg-primary-300 rounded-full flex items-center justify-center mb-6 hover:bg-primary-500 transition-colors duration-300 cursor-pointer">
+                            <div className="w-14 h-14 bg-[#10b981] rounded-full flex items-center justify-center mb-6 hover:bg-[#059669] transition-colors duration-300 cursor-pointer">
                                 <Cog className="h-7 w-7 text-white transition-colors duration-300" />
                             </div>
-                            <h3 className="text-2xl font-bold text-primary-900 mb-4">Operate & Enhance</h3>
+                            <h3 className="text-2xl font-bold text-[#1a1f3a] mb-4">Operate & Enhance</h3>
                             <ul className="space-y-3 text-gray-700">
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Future Readdy, Managed Services & Maintenance</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Application Optimization & Version Upgrades</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Continuous Monitoring, Backup & Disaster Recovery</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>DevOps & CI/CD Automation</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-primary-500 font-bold mt-1">●</span>
+                                    <span className="text-[#10b981] font-bold mt-1">●</span>
                                     <span>Cost Optimization</span>
                                 </li>
                             </ul>
@@ -581,8 +600,8 @@ export default function HomePage() {
             <section className="py-16 bg-white">
                 <div className="container-custom">
                     <div className="text-center mb-12">
-                        <p className="text-sm font-semibold text-primary-500 mb-2">END-TO-END MANAGED SOLUTIONS</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                        <p className="text-sm font-semibold text-[#10b981] mb-2">END-TO-END MANAGED SOLUTIONS</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#1a1f3a] mb-6">
                             Cloud Solutions That Scale With Your Business
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -595,23 +614,23 @@ export default function HomePage() {
                     {/* Stats Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         <div className="flex flex-col items-center">
-                            <Briefcase className="h-12 w-12 text-primary-500 mb-4" />
-                            <div className="text-4xl md:text-5xl font-bold text-primary-500 mb-2">4000+</div>
+                            <Briefcase className="h-12 w-12 text-[#10b981] mb-4" />
+                            <div className="text-4xl md:text-5xl font-bold text-[#10b981] mb-2">4000+</div>
                             <div className="text-gray-600 text-sm">Successful Projects</div>
                         </div>
                         <div className="flex flex-col items-center">
-                            <Clock className="h-12 w-12 text-primary-500 mb-4" />
-                            <div className="text-4xl md:text-5xl font-bold text-primary-500 mb-2">11+ Year</div>
+                            <Clock className="h-12 w-12 text-[#10b981] mb-4" />
+                            <div className="text-4xl md:text-5xl font-bold text-[#10b981] mb-2">11+ Year</div>
                             <div className="text-gray-600 text-sm">Experience</div>
                         </div>
                         <div className="flex flex-col items-center">
-                            <Users className="h-12 w-12 text-primary-500 mb-4" />
-                            <div className="text-4xl md:text-5xl font-bold text-primary-500 mb-2">500+</div>
+                            <Users className="h-12 w-12 text-[#10b981] mb-4" />
+                            <div className="text-4xl md:text-5xl font-bold text-[#10b981] mb-2">500+</div>
                             <div className="text-gray-600 text-sm">Clients</div>
                         </div>
                         <div className="flex flex-col items-center">
-                            <Award className="h-12 w-12 text-primary-500 mb-4" />
-                            <div className="text-4xl md:text-5xl font-bold text-primary-500 mb-2">80+</div>
+                            <Award className="h-12 w-12 text-[#10b981] mb-4" />
+                            <div className="text-4xl md:text-5xl font-bold text-[#10b981] mb-2">80+</div>
                             <div className="text-gray-600 text-sm">From Reference</div>
                         </div>
                     </div>
@@ -619,20 +638,20 @@ export default function HomePage() {
             </section>
 
             {/* Testimonials Section */}
-            <section className="py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700">
+            <section className="py-16 bg-[#1a1f3a]">
                 <div className="container-custom">
                     {/* Header */}
-                    <div className="text-center mb-16">
-                        <p className="text-sm font-semibold text-primary-300 mb-3 tracking-widest uppercase">CLIENT TESTIMONIALS</p>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">What Our Clients Say</h2>
-                        <p className="text-lg text-primary-100 max-w-3xl mx-auto leading-relaxed">
+                    <div className="text-center mb-12">
+                        <p className="text-sm font-semibold text-[#10b981] mb-2">CLIENT TESTIMONIALS</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">What Our Clients Say</h2>
+                        <p className="text-lg text-white/90 max-w-3xl mx-auto">
                             Trusted by leading companies worldwide for delivering exceptional digital solutions
                         </p>
                     </div>
 
                     {/* Testimonial Card */}
                     <div className="max-w-4xl mx-auto">
-                        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-12 md:p-16 border border-white/20 shadow-2xl">
+                        <div className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all">
                             <div className="text-center">
                                 {/* Quote Icon */}
                                 {/* Stars */}
@@ -643,28 +662,28 @@ export default function HomePage() {
                                 </div>
 
                                 {/* Testimonial Text */}
-                                <p className="text-xl md:text-2xl italic text-white mb-10 leading-relaxed font-light">
+                                <p className="text-xl md:text-2xl italic text-gray-700 mb-10 leading-relaxed font-light">
                                     {testimonials[currentTestimonial].text}
                                 </p>
 
                                 {/* Author Info */}
                                 <div className="mb-10">
-                                    <h3 className="text-2xl font-bold text-white">{testimonials[currentTestimonial].name}</h3>
-                                    <div className="h-1 w-16 bg-gradient-to-r from-primary-300 to-primary-400 mx-auto mt-3 rounded-full"></div>
+                                    <h3 className="text-2xl font-bold text-[#1a1f3a]">{testimonials[currentTestimonial].name}</h3>
+                                    <div className="h-1 w-16 bg-gradient-to-r from-[#10b981] to-[#059669] mx-auto mt-3 rounded-full"></div>
                                 </div>
 
                                 {/* Navigation Buttons */}
                                 <div className="flex gap-6 justify-center">
                                     <button
                                         onClick={prevTestimonial}
-                                        className="bg-white text-primary-900 rounded-full p-4 hover:bg-primary-300 transition-all duration-300 transform hover:scale-110 shadow-lg font-semibold"
+                                        className="bg-white text-[#1a1f3a] rounded-full p-4 hover:bg-[#10b981] hover:text-white transition-all duration-300 transform hover:scale-110 shadow-lg font-semibold"
                                         aria-label="Previous testimonial"
                                     >
                                         <ChevronLeft className="h-6 w-6" />
                                     </button>
                                     <button
                                         onClick={nextTestimonial}
-                                        className="bg-white text-primary-900 rounded-full p-4 hover:bg-primary-300 transition-all duration-300 transform hover:scale-110 shadow-lg font-semibold"
+                                        className="bg-white text-[#1a1f3a] rounded-full p-4 hover:bg-[#10b981] hover:text-white transition-all duration-300 transform hover:scale-110 shadow-lg font-semibold"
                                         aria-label="Next testimonial"
                                     >
                                         <ChevronRight className="h-6 w-6" />
@@ -679,7 +698,7 @@ export default function HomePage() {
             {/* Final CTA Section */}
             <section className="py-16 bg-white">
                 <div className="container-custom text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#1a1f3a] mb-6">
                         Ready to Build Something Powerful?
                     </h2>
                     <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
@@ -687,7 +706,7 @@ export default function HomePage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link href="/contact">
-                            <Button size="lg" className="bg-cta hover:bg-cta-600 text-white font-semibold transition-all duration-300 transform hover:scale-105 px-8">
+                            <Button size="lg" className="bg-[#10b981] hover:bg-[#059669] text-white font-semibold transition-all duration-300 transform hover:scale-105 px-8">
                                 Get a Free Consultation
                                 <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>
@@ -695,7 +714,7 @@ export default function HomePage() {
                         <Link href="/contact">
                             <Button
                                 size="lg"
-                                className="bg-primary-900 hover:bg-primary-700 text-white font-semibold border-2 border-primary-900 transition-all duration-300 transform hover:scale-105 px-8"
+                                className="bg-[#1a1f3a] hover:bg-[#2f3ba3] text-white font-semibold border-2 border-[#1a1f3a] transition-all duration-300 transform hover:scale-105 px-8"
                             >
                                 Request a Project Quote
                             </Button>

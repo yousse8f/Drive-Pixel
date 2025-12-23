@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Request, Response, NextFunction } from "express";
+import { randomBytes, randomUUID } from "crypto";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 const SALT_ROUNDS = 10;
@@ -50,4 +51,12 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
 
   (req as any).userId = decoded.userId;
   next();
+};
+
+export const generateRandomPassword = (length = 32): string => {
+  return randomBytes(Math.ceil(length / 2)).toString("hex").slice(0, length);
+};
+
+export const generateUuidToken = (): string => {
+  return randomUUID();
 };

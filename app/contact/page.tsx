@@ -1,19 +1,63 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
-import TopBar from '@/components/TopBar';
 import Footer from '@/components/Footer';
 import { useState, useEffect, useRef } from 'react';
 import Modal from '@/components/ui/modal'; // corrected import path
 
-// Assuming services data is fetched from an API or a database
+// List of all available services
 const services = [
-  { id: '1', title: 'Service 1', email: 'service1@example.com', phone: '123-456-7890', address: '123 Main St', description: 'This is a description for Service 1' },
-  { id: '2', title: 'Service 2', email: 'service2@example.com', phone: '987-654-3210', address: '456 Elm St', description: 'This is a description for Service 2' },
-  { id: '3', title: 'Service 3', email: 'service3@example.com', phone: '555-123-4567', address: '789 Oak St', description: 'This is a description for Service 3' },
+  { 
+    id: 'web-development', 
+    title: 'Web Development', 
+    email: 'web@drivepixel.com', 
+    description: 'We develop responsive and integrated websites using the latest technologies' 
+  },
+  { 
+    id: 'mobile-apps', 
+    title: 'Mobile Applications', 
+    email: 'mobile@drivepixel.com', 
+    description: 'Design and development of mobile applications for iOS and Android' 
+  },
+  { 
+    id: 'ecommerce', 
+    title: 'E-commerce Solutions', 
+    email: 'ecommerce@drivepixel.com', 
+    description: 'Complete e-commerce solutions with secure payment systems' 
+  },
+  { 
+    id: 'ui-ux', 
+    title: 'UI/UX Design', 
+    email: 'design@drivepixel.com', 
+    description: 'Attractive and user-friendly interface designs' 
+  },
+  { 
+    id: 'seo', 
+    title: 'Search Engine Optimization', 
+    email: 'seo@drivepixel.com', 
+    description: 'Improve your website visibility in search engine results' 
+  },
+  { 
+    id: 'marketing', 
+    title: 'Digital Marketing', 
+    email: 'marketing@drivepixel.com', 
+    description: 'Custom marketing campaigns to increase your reach and sales' 
+  },
+  { 
+    id: 'branding', 
+    title: 'Brand Identity', 
+    email: 'branding@drivepixel.com', 
+    description: 'Comprehensive visual identity design for your brand' 
+  },
+  { 
+    id: 'hosting', 
+    title: 'Web Hosting', 
+    email: 'hosting@drivepixel.com', 
+    description: 'Secure and fast web hosting solutions' 
+  },
 ];
 
 export default function ContactPage() {
@@ -25,7 +69,6 @@ export default function ContactPage() {
   const [formState, setFormState] = useState({
     fullName: '',
     email: '',
-    phone: '',
     service: '',
     message: '',
   });
@@ -115,7 +158,7 @@ export default function ContactPage() {
     if (selectedService) {
       setFormState({
         ...formState,
-        service: selectedService.title,
+        service: selectedService.id,
         message: selectedService.description
       });
     }
@@ -130,14 +173,24 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <TopBar />
       <Navbar />
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-900 to-primary-700 text-white">
-        <div className="container-custom text-center">
+      <section className="relative py-20 text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{
+            backgroundImage: 'url(/images/contact.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
+        </div>
+        <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
-          <p className="text-xl text-primary-100 max-w-3xl mx-auto">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto">
             Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </p>
         </div>
@@ -148,14 +201,14 @@ export default function ContactPage() {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             {/* Contact Info Cards */}
-            <div className="flex flex-col items-center bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-              <Mail className="h-12 w-12 text-primary-500 mb-4" />
-              <h3 className="text-xl font-bold text-primary-900 mb-2">Email</h3>
-              <p className="text-gray-700 hover:text-cta transition-colors">Contact@drivepixel.com</p>
+            <div className="flex flex-col items-center bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <Mail className="h-12 w-12 text-[#10b981] mb-4" />
+              <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Email</h3>
+              <p className="text-gray-700 hover:text-[#10b981] transition-colors">Contact@drivepixel.com</p>
             </div>
-            <div className="flex flex-col items-center bg-gradient-to-br from-primary-100 to-gray-50 rounded-xl p-8">
-              <MapPin className="h-12 w-12 text-primary-500 mb-4" />
-              <h3 className="text-xl font-bold text-primary-900 mb-2">Address</h3>
+            <div className="flex flex-col items-center bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8">
+              <MapPin className="h-12 w-12 text-[#10b981] mb-4" />
+              <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Address</h3>
               <p className="text-gray-700">WA</p>
             </div>
           </div>
@@ -164,36 +217,42 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="bg-gray-50 p-8 rounded-lg shadow-lg">
-              <h2 className="text-3xl font-bold text-primary-900 mb-8 text-center">Send us a Message</h2>
+              <h2 className="text-3xl font-bold text-[#1a1f3a] mb-8 text-center">Send us a Message</h2>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-primary-900 mb-2">Full Name *</label>
-                    <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500" />
+                    <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Full Name *</label>
+                    <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-primary-900 mb-2">Email *</label>
-                    <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500" />
+                    <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Email *</label>
+                    <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-primary-900 mb-2">Phone</label>
-                  <input type="tel" name="phone" value={formState.phone} onChange={handleInputChange} placeholder="Your Phone" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-primary-900 mb-2">Service *</label>
-                  <select name="service" value={formState.service} onChange={(e) => { handleInputChange(e); handleServiceChange(e.target.value); }} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500">
+                  <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Service *</label>
+                  <select 
+                    name="service" 
+                    value={formState.service} 
+                    onChange={(e) => { 
+                      handleInputChange(e); 
+                      handleServiceChange(e.target.value); 
+                    }} 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]"
+                  >
                     <option value="">Select a service</option>
                     {services.map(service => (
-                      <option key={service.id} value={service.id}>{service.title}</option>
+                      <option key={service.id} value={service.id}>
+                        {service.title}
+                      </option>
                     ))}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-primary-900 mb-2">Message *</label>
-                  <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500"></textarea>
+                  <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Message *</label>
+                  <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]"></textarea>
                 </div>
-                <Button size="lg" className="w-full bg-cta hover:bg-cta-600 text-white">
+                <Button size="lg" className="w-full bg-[#10b981] hover:bg-[#059669] text-white">
                   Send Message
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -202,7 +261,7 @@ export default function ContactPage() {
 
             {/* Map Section */}
             <div className="flex flex-col">
-              <h2 className="text-3xl font-bold text-primary-900 mb-8 text-center">Find Us on the Map</h2>
+              <h2 className="text-3xl font-bold text-[#1a1f3a] mb-8 text-center">Find Us on the Map</h2>
               <div 
                 ref={mapContainer} 
                 className="w-full flex-1 rounded-xl shadow-lg border border-gray-200 overflow-hidden"
@@ -217,21 +276,17 @@ export default function ContactPage() {
         <form className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-semibold text-primary-900 mb-2">Full Name *</label>
-              <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500" />
+              <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Full Name *</label>
+              <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]" />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-primary-900 mb-2">Email *</label>
-              <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500" />
+              <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Email *</label>
+              <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]" />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-primary-900 mb-2">Phone</label>
-            <input type="tel" name="phone" value={formState.phone} onChange={handleInputChange} placeholder="Your Phone" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500" />
-          </div>
-          <div>
-            <label className="block text-sm font-semibold text-primary-900 mb-2">Service *</label>
-            <select name="service" value={formState.service} onChange={(e) => { handleInputChange(e); handleServiceChange(e.target.value); }} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500">
+            <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Service *</label>
+            <select name="service" value={formState.service} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]">
               <option value="">Select a service</option>
               {services.map(service => (
                 <option key={service.id} value={service.id}>{service.title}</option>
@@ -239,10 +294,10 @@ export default function ContactPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-primary-900 mb-2">Message *</label>
-            <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500"></textarea>
+            <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Message *</label>
+            <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]"></textarea>
           </div>
-          <Button size="lg" className="w-full bg-cta hover:bg-cta-600 text-white">
+          <Button size="lg" className="w-full bg-[#10b981] hover:bg-[#059669] text-white">
             Send Message
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

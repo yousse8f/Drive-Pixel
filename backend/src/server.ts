@@ -15,6 +15,9 @@ import cartRoutes from "./routes/cartRoutes";
 import orderRoutes from "./routes/orderRoutes";
 import chatRoutes from "./routes/chatRoutes";
 import chatAdminRoutes from "./routes/chatAdminRoutes";
+import paymentRoutes from "./routes/paymentRoutes";
+import paypalRoutes from "./routes/paypalRoutes";
+import clientRoutes from "./routes/clientRoutes";
 import { authMiddleware } from "./utils/authUtils";
 import { adminMiddleware } from "./utils/adminMiddleware";
 import { initializeDatabase } from "./config/database";
@@ -58,6 +61,10 @@ app.use("/api/public", publicRoutes);
 
 // Auth routes
 app.use("/api/auth", authRoutes);
+// Payment webhook (public, provider should verify signatures)
+app.use("/api/payments", paymentRoutes);
+// PayPal routes (public for checkout)
+app.use("/api/paypal", paypalRoutes);
 
 // Protected routes (authentication required)
 app.use("/api/users", authMiddleware, usersRoutes);
@@ -65,6 +72,7 @@ app.use("/api/leads", authMiddleware, leadsRoutes);
 app.use("/api/properties", authMiddleware, propertiesRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api", clientRoutes);
 
 // Admin routes (admin authentication required)
 app.use("/api/admin/content", adminMiddleware, contentRoutes);
