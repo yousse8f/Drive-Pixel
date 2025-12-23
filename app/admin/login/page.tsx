@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -101,20 +103,42 @@ export default function AdminAuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-900 to-primary-700 p-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-2xl p-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a1f3a] via-[#2d3561] to-[#1a1f3a] p-4 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      </div>
+
+      {/* Logo in Top Left */}
+      <Link href="/" className="absolute top-6 left-6 flex items-center gap-3 group z-10">
+        <div className="bg-white p-2 rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+          <Image 
+            src="/images/logo-eecf49f1.png" 
+            alt="Drive Pixel Logo" 
+            width={40} 
+            height={40}
+            className="object-contain"
+          />
+        </div>
+        <div className="text-white">
+          <div className="text-xl font-bold tracking-tight">Drive Pixel</div>
+          <div className="text-xs text-gray-300 font-medium">Admin Portal</div>
+        </div>
+      </Link>
+
+      <div className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 relative z-10">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-full mb-4 shadow-lg">
             {mode === 'login' ? (
-              <LogIn className="h-8 w-8 text-primary-900" />
+              <LogIn className="h-8 w-8 text-white" />
             ) : (
-              <UserPlus className="h-8 w-8 text-primary-900" />
+              <UserPlus className="h-8 w-8 text-white" />
             )}
           </div>
-          <h1 className="text-3xl font-bold text-primary-900 mb-2">
+          <h1 className="text-3xl font-bold text-[#1a1f3a] mb-2">
             {mode === 'login' ? 'Admin Login' : 'Create Account'}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 font-medium">
             {mode === 'login'
               ? 'Enter your credentials to access the dashboard'
               : 'Sign up to get started'}
@@ -122,17 +146,17 @@ export default function AdminAuthPage() {
         </div>
 
         <div className="flex items-center justify-center mb-8">
-          <div className="inline-flex w-full rounded-full bg-gray-100 p-1">
+          <div className="inline-flex w-full rounded-full bg-gray-100 p-1.5">
             <button
               type="button"
               onClick={() => {
                 setMode('login');
                 resetMessages();
               }}
-              className={`w-1/2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+              className={`w-1/2 px-4 py-2.5 rounded-full text-sm font-bold transition-all ${
                 mode === 'login'
-                  ? 'bg-primary-900 text-white shadow'
-                  : 'text-primary-900 hover:bg-white'
+                  ? 'bg-[#10b981] text-white shadow-md'
+                  : 'text-gray-700 hover:bg-white'
               }`}
             >
               Login
@@ -143,10 +167,10 @@ export default function AdminAuthPage() {
                 setMode('signup');
                 resetMessages();
               }}
-              className={`w-1/2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+              className={`w-1/2 px-4 py-2.5 rounded-full text-sm font-bold transition-all ${
                 mode === 'signup'
-                  ? 'bg-primary-900 text-white shadow'
-                  : 'text-primary-900 hover:bg-white'
+                  ? 'bg-[#10b981] text-white shadow-md'
+                  : 'text-gray-700 hover:bg-white'
               }`}
             >
               Signup
@@ -169,20 +193,24 @@ export default function AdminAuthPage() {
           {mode === 'signup' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">First Name</Label>
+                <Label htmlFor="firstName" className="text-gray-900 font-semibold">First Name</Label>
                 <Input
                   id="firstName"
                   value={form.firstName}
                   onChange={(e) => handleFieldChange('firstName', e.target.value)}
+                  className="bg-white border-gray-300 text-gray-900 focus:border-[#10b981] focus:ring-[#10b981] placeholder:text-gray-400"
+                  placeholder="John"
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">Last Name</Label>
+                <Label htmlFor="lastName" className="text-gray-900 font-semibold">Last Name</Label>
                 <Input
                   id="lastName"
                   value={form.lastName}
                   onChange={(e) => handleFieldChange('lastName', e.target.value)}
+                  className="bg-white border-gray-300 text-gray-900 focus:border-[#10b981] focus:ring-[#10b981] placeholder:text-gray-400"
+                  placeholder="Doe"
                   required
                 />
               </div>
@@ -190,30 +218,34 @@ export default function AdminAuthPage() {
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="text-gray-900 font-semibold">Email Address</Label>
             <Input
               id="email"
               type="email"
               value={form.email}
               onChange={(e) => handleFieldChange('email', e.target.value)}
+              className="bg-white border-gray-300 text-gray-900 focus:border-[#10b981] focus:ring-[#10b981] placeholder:text-gray-400"
+              placeholder="admin@drivepixel.com"
               required
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="text-gray-900 font-semibold">Password</Label>
             <Input
               id="password"
               type="password"
               value={form.password}
               onChange={(e) => handleFieldChange('password', e.target.value)}
+              className="bg-white border-gray-300 text-gray-900 focus:border-[#10b981] focus:ring-[#10b981] placeholder:text-gray-400"
+              placeholder="••••••••"
               required
             />
           </div>
 
           <Button
             type="submit"
-            className="w-full bg-primary-900 hover:bg-primary-800 text-white"
+            className="w-full bg-[#10b981] hover:bg-[#059669] text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             disabled={loading}
           >
             {loading

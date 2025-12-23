@@ -11,52 +11,88 @@ import Modal from '@/components/ui/modal'; // corrected import path
 // List of all available services
 const services = [
   { 
+    id: 'real-estate', 
+    title: 'Real Estate', 
+    email: 'realestate@drivepixel.com', 
+    description: 'Complete real estate IT solutions and property management systems' 
+  },
+  { 
+    id: 'freight-logistics', 
+    title: 'Freight-Logistics', 
+    email: 'logistics@drivepixel.com', 
+    description: 'Advanced freight and logistics management solutions' 
+  },
+  { 
+    id: 'property-operations', 
+    title: 'Property Operations', 
+    email: 'operations@drivepixel.com', 
+    description: 'Streamline property operations and management' 
+  },
+  { 
+    id: 'investor-portals', 
+    title: 'Investor Portals', 
+    email: 'investors@drivepixel.com', 
+    description: 'Custom investor portals and reporting systems' 
+  },
+  { 
+    id: 'growth-leads', 
+    title: 'Growth & Leads', 
+    email: 'growth@drivepixel.com', 
+    description: 'Lead generation and business growth strategies' 
+  },
+  { 
+    id: 'crm-lead-systems', 
+    title: 'CRM & Lead Systems', 
+    email: 'crm@drivepixel.com', 
+    description: 'Customer relationship management and lead tracking systems' 
+  },
+  { 
+    id: 'marketing-automation', 
+    title: 'Marketing Automation', 
+    email: 'automation@drivepixel.com', 
+    description: 'Automated marketing campaigns and workflows' 
+  },
+  { 
+    id: 'market-analytics', 
+    title: 'Market Analytics', 
+    email: 'analytics@drivepixel.com', 
+    description: 'Data-driven market analysis and insights' 
+  },
+  { 
+    id: 'market-snapshot', 
+    title: 'Monthly Market Snapshot', 
+    email: 'snapshot@drivepixel.com', 
+    description: 'Regular market reports and trend analysis' 
+  },
+  { 
     id: 'web-development', 
     title: 'Web Development', 
     email: 'web@drivepixel.com', 
-    description: 'We develop responsive and integrated websites using the latest technologies' 
+    description: 'Responsive and integrated websites using the latest technologies' 
   },
   { 
     id: 'mobile-apps', 
-    title: 'Mobile Applications', 
+    title: 'Mobile App Development', 
     email: 'mobile@drivepixel.com', 
-    description: 'Design and development of mobile applications for iOS and Android' 
+    description: 'Mobile applications for iOS and Android platforms' 
   },
   { 
-    id: 'ecommerce', 
-    title: 'E-commerce Solutions', 
-    email: 'ecommerce@drivepixel.com', 
-    description: 'Complete e-commerce solutions with secure payment systems' 
+    id: 'custom-software', 
+    title: 'Custom Software Solutions', 
+    email: 'software@drivepixel.com', 
+    description: 'Tailored software solutions for your business needs' 
   },
   { 
-    id: 'ui-ux', 
-    title: 'UI/UX Design', 
-    email: 'design@drivepixel.com', 
-    description: 'Attractive and user-friendly interface designs' 
+    id: 'it-consulting', 
+    title: 'IT Consulting', 
+    email: 'consulting@drivepixel.com', 
+    description: 'Expert IT consulting and technology advisory services' 
   },
   { 
-    id: 'seo', 
-    title: 'Search Engine Optimization', 
-    email: 'seo@drivepixel.com', 
-    description: 'Improve your website visibility in search engine results' 
-  },
-  { 
-    id: 'marketing', 
-    title: 'Digital Marketing', 
-    email: 'marketing@drivepixel.com', 
-    description: 'Custom marketing campaigns to increase your reach and sales' 
-  },
-  { 
-    id: 'branding', 
-    title: 'Brand Identity', 
-    email: 'branding@drivepixel.com', 
-    description: 'Comprehensive visual identity design for your brand' 
-  },
-  { 
-    id: 'hosting', 
-    title: 'Web Hosting', 
-    email: 'hosting@drivepixel.com', 
-    description: 'Secure and fast web hosting solutions' 
+    id: 'cybersecurity', 
+    title: 'Cybersecurity', 
+    email: 'security@drivepixel.com', 
+    description: 'Comprehensive cybersecurity solutions and protection' 
   },
 ];
 
@@ -222,11 +258,11 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Full Name *</label>
-                    <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]" />
+                    <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Email *</label>
-                    <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]" />
+                    <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20" />
                   </div>
                 </div>
                 <div>
@@ -238,7 +274,7 @@ export default function ContactPage() {
                       handleInputChange(e); 
                       handleServiceChange(e.target.value); 
                     }} 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]"
+                    className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20"
                   >
                     <option value="">Select a service</option>
                     {services.map(service => (
@@ -250,7 +286,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Message *</label>
-                  <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]"></textarea>
+                  <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20"></textarea>
                 </div>
                 <Button size="lg" className="w-full bg-[#10b981] hover:bg-[#059669] text-white">
                   Send Message
@@ -277,16 +313,16 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Full Name *</label>
-              <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]" />
+              <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Email *</label>
-              <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]" />
+              <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20" />
             </div>
           </div>
           <div>
             <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Service *</label>
-            <select name="service" value={formState.service} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]">
+            <select name="service" value={formState.service} onChange={handleInputChange} className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20">
               <option value="">Select a service</option>
               {services.map(service => (
                 <option key={service.id} value={service.id}>{service.title}</option>
@@ -295,7 +331,7 @@ export default function ContactPage() {
           </div>
           <div>
             <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Message *</label>
-            <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981]"></textarea>
+            <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20"></textarea>
           </div>
           <Button size="lg" className="w-full bg-[#10b981] hover:bg-[#059669] text-white">
             Send Message

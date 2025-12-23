@@ -603,7 +603,7 @@ export default function RealEstateITSolutionsPage() {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
+                  className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
                 />
               </div>
               <div>
@@ -614,7 +614,7 @@ export default function RealEstateITSolutionsPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your@email.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
+                  className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
                 />
               </div>
             </div>
@@ -627,7 +627,7 @@ export default function RealEstateITSolutionsPage() {
                 value={formData.company}
                 onChange={handleInputChange}
                 placeholder="Your Company Name"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
+                className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
               />
             </div>
 
@@ -639,7 +639,7 @@ export default function RealEstateITSolutionsPage() {
                 onChange={handleInputChange}
                 rows={6}
                 placeholder="Tell us about your real estate business and what solutions you're interested in..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all resize-none"
+                className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all resize-none"
               />
             </div>
 
@@ -656,15 +656,19 @@ export default function RealEstateITSolutionsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl font-bold mb-6 text-[#1a1f3a]">Ready to Transform Your Real Estate Business?</h2>
-          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+      <section className="py-16 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#1d3b66] to-[#0f172a]" />
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, #ffffff33, transparent 45%)' }} />
+        </div>
+        <div className="container-custom text-center relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Transform Your Real Estate Business?</h2>
+          <p className="text-lg text-gray-100 mb-8 max-w-2xl mx-auto">
             Join hundreds of real estate professionals who are already using our solutions to streamline operations and increase productivity.
           </p>
           <div className="flex justify-center">
             <Link href="/contact">
-              <Button size="lg" className="bg-primary-500 text-white hover:bg-primary-600 font-semibold flex items-center gap-2 px-8 py-3">
+              <Button size="lg" className="bg-[#10b981] hover:bg-[#059669] text-white font-semibold flex items-center gap-2 px-10 py-4 shadow-xl shadow-[#10b981]/30">
                 Schedule a Demo
                 <ArrowRight className="h-5 w-5" />
               </Button>

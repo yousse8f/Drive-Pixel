@@ -67,11 +67,11 @@ export default function AdminLayout({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Mobile sidebar toggle */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 p-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-primary-900">Admin Dashboard</h1>
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#1a1f3a] to-[#2d3561] border-b border-gray-700 p-4 flex items-center justify-between shadow-lg">
+        <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-md hover:bg-gray-100"
+          className="p-2 rounded-md hover:bg-white/10 text-white"
         >
           {sidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -82,13 +82,14 @@ export default function AdminLayout({
         <aside
           className={`${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 transition-transform duration-300 ease-in-out lg:transition-none`}
+          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 transition-transform duration-300 ease-in-out lg:transition-none shadow-xl`}
         >
           <div className="h-full flex flex-col">
-            <div className="p-6 border-b border-gray-200 hidden lg:block">
-              <h1 className="text-2xl font-bold text-primary-900">Admin Dashboard</h1>
+            <div className="p-6 border-b border-gray-200 hidden lg:block bg-gradient-to-r from-[#1a1f3a] to-[#2d3561]">
+              <h1 className="text-2xl font-bold text-white">Admin</h1>
+              <p className="text-xs text-gray-300 mt-1">Dashboard</p>
             </div>
-            <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+            <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
               {menuItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
@@ -97,10 +98,10 @@ export default function AdminLayout({
                     key={item.href}
                     href={item.href}
                     onClick={() => setSidebarOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                       isActive
-                        ? 'bg-primary-100 text-primary-900 font-semibold'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-[#10b981] text-white font-bold shadow-md'
+                        : 'text-gray-700 hover:bg-gray-100 font-medium'
                     }`}
                   >
                     <Icon className="h-5 w-5" />
@@ -113,7 +114,7 @@ export default function AdminLayout({
               <Button
                 onClick={handleLogout}
                 variant="outline"
-                className="w-full justify-start"
+                className="w-full justify-start hover:bg-red-50 hover:text-red-600 hover:border-red-300 font-semibold"
               >
                 <LogOut className="h-5 w-5 mr-3" />
                 Logout
