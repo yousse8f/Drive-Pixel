@@ -255,59 +255,61 @@ export default function ShopPageClient() {
                 <p className="text-slate-500">Try adjusting your search or filters</p>
               </div>
             ) : (
-              <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredProducts.map((product) => (
                   <div
                     key={product.id}
-                    className="group relative bg-white border border-slate-200 rounded-none overflow-hidden hover:border-[#10b981]-300 transition-all duration-500 hover:shadow-xl hover:shadow-cta/10 hover:-translate-y-2 flex flex-col h-full aspect-square"
+                    className="group relative bg-white rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full shadow-[0_8px_30px_-12px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] hover:-translate-y-1"
                   >
-                    <div className="relative w-full h-2/3 overflow-hidden bg-slate-100">
+                    <div className="relative w-full h-56 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-50">
                       {product.imageUrl ? (
                         <Image
                           src={product.imageUrl}
                           alt={product.name}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100">
-                          <span className="text-sm font-medium">No Preview</span>
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-gradient-to-br from-gray-100 to-gray-50">
+                          <span className="text-sm font-semibold">No Preview</span>
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-70" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 rounded-none text-xs font-bold bg-white/90 backdrop-blur-md border border-slate-200 text-slate-800 uppercase tracking-wider">
+                      <div className="absolute top-3 left-3">
+                        <span className="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/95 backdrop-blur-sm text-gray-800 uppercase tracking-wider shadow-sm">
                           {product.category || 'Product'}
                         </span>
                       </div>
                     </div>
 
-                    <div className="p-4 md:p-5 flex flex-col flex-1 relative">
-                      <div className="mb-4">
-                        <div className="flex justify-between items-start gap-4 mb-2">
-                          <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#10b981]-500 transition-colors line-clamp-1">{product.name}</h3>
-                          <span className="font-bold text-lg text-emerald-600 whitespace-nowrap bg-emerald-50 px-2.5 py-0.5 border border-emerald-100">
+                    <div className="p-5 flex flex-col flex-1">
+                      <div className="mb-4 flex-1">
+                        <h3 className="text-lg font-bold text-[#1a1f3a] mb-2 line-clamp-2 leading-tight group-hover:text-primary-600 transition-colors">
+                          {product.name}
+                        </h3>
+                        <p className="text-gray-600 text-sm line-clamp-2 leading-relaxed mb-3">
+                          {product.description}
+                        </p>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-3xl font-extrabold text-[#10b981]">
                             ${product.price.toFixed(2)}
                           </span>
                         </div>
-                        <p className="text-slate-600 text-sm line-clamp-2 leading-relaxed">
-                          {product.description}
-                        </p>
                       </div>
 
-                      <div className="mt-auto pt-3 border-t border-slate-100 space-y-3">
-                        <div className="flex items-center justify-between text-[11px] font-semibold text-slate-500">
-                          <span className="flex items-center gap-1.5">
-                            <div className={`h-1.5 w-1.5 ${product.availability && product.availability > 0 ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between text-xs font-medium">
+                          <span className="flex items-center gap-1.5 text-gray-600">
+                            <div className={`h-2 w-2 rounded-full ${product.availability && product.availability > 0 ? 'bg-[#10b981]' : 'bg-amber-500'}`} />
                             {product.availability && product.availability > 0 ? 'In stock' : 'Made to order'}
                           </span>
-                          <span className="text-[#10b981]-600 font-semibold">Instant delivery</span>
+                          <span className="text-[#10b981] font-semibold">Instant delivery</span>
                         </div>
 
                         <AddToCartButton
                           productId={product.id}
-                          className="w-full bg-cta text-white hover:bg-cta-600 border-0 py-2.5 text-sm font-bold transition-all duration-300 rounded-none shadow-lg shadow-cta/20"
+                          className="w-full bg-[#10b981] text-white hover:bg-[#059669] border-0 py-3 text-sm font-bold transition-all duration-300 rounded-lg shadow-md hover:shadow-lg"
                         />
                       </div>
                     </div>
