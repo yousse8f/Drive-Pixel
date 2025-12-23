@@ -235,15 +235,21 @@ export default function RealEstateITSolutionsPage() {
     setPurchaseMessage(null);
     if (price === 'Custom') {
       setPurchaseMessage({ type: 'error', text: 'Custom plans are handled via Contact. Redirecting you now.' });
-      window.location.href = '/contact';
+      setTimeout(() => {
+        window.location.href = '/contact';
+      }, 2000);
       return;
     }
 
     const productId = findProductIdForService(service, period);
+    console.log('Looking for product:', service, period);
+    console.log('Found product ID:', productId);
+    console.log('Available products:', products);
+    
     if (!productId) {
       setPurchaseMessage({
         type: 'error',
-        text: 'We could not find a matching product for this plan. Please reach out via the contact form.',
+        text: `Service "${service}" is not available as a product yet. Please contact us to set up this service.`,
       });
       return;
     }
@@ -253,8 +259,13 @@ export default function RealEstateITSolutionsPage() {
       await addItem(productId, 1);
       setPurchaseMessage({
         type: 'success',
-        text: `${service} (${getPeriodLabel(period as any)}) added to cart.`,
+        text: `${service} (${getPeriodLabel(period as any)}) added to cart successfully!`,
       });
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setPurchaseMessage(null);
+      }, 3000);
     } catch (error) {
       console.error('Failed to add plan to cart', error);
       setPurchaseMessage({
