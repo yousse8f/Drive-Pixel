@@ -102,12 +102,14 @@ export default function ContactPage() {
   const map = useRef<any>(null);
   const [address, setAddress] = useState('WA');
   const [mapCoordinates, setMapCoordinates] = useState<[number, number]>([-120.2437, 47.7511]);
+  const [mapError, setMapError] = useState<string>('');
   const [formState, setFormState] = useState({
     fullName: '',
     email: '',
     service: '',
     message: '',
   });
+  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
   const addressLocations: { [key: string]: { coords: [number, number]; name: string } } = {
     'WA': { coords: [-120.2437, 47.7511], name: 'Washington' },
@@ -117,6 +119,13 @@ export default function ContactPage() {
   };
 
   useEffect(() => {
+    if (!mapContainer.current) return;
+
+    if (!mapboxToken) {
+      setMapError('Live interactive map is temporarily unavailable. Showing fallback location instead.');
+      return;
+    }
+
     if (!mapContainer.current) return;
 
     // Load Mapbox GL JS
@@ -131,7 +140,7 @@ export default function ContactPage() {
 
       // Initialize map after Mapbox GL is loaded
       const mapboxgl = (window as any).mapboxgl;
-      mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
+      mapboxgl.accessToken = mapboxToken || '';
 
       if (mapContainer.current && !map.current) {
         map.current = new mapboxgl.Map({
@@ -147,6 +156,9 @@ export default function ContactPage() {
           .addTo(map.current);
       }
     };
+    script.onerror = () => {
+      setMapError('Unable to load the live map right now.');
+    };
     document.head.appendChild(script);
 
     return () => {
@@ -154,8 +166,9 @@ export default function ContactPage() {
         map.current.remove();
         map.current = null;
       }
+      document.head.removeChild(script);
     };
-  }, []);
+  }, [mapboxToken]);
 
   useEffect(() => {
     if (map.current) {
@@ -216,7 +229,7 @@ export default function ContactPage() {
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{
-            backgroundImage: 'url(/images/contact.png)',
+            backgroundImage: 'url(/images/Services.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -235,24 +248,23 @@ export default function ContactPage() {
       {/* Contact Section */}
       <section className="py-16 bg-white">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            {/* Contact Info Cards */}
-            <div className="flex flex-col items-center bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-              <Mail className="h-12 w-12 text-[#10b981] mb-4" />
-              <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Email</h3>
-              <p className="text-gray-700 hover:text-[#10b981] transition-colors">Contact@drivepixel.com</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            {/* Contact Info Stack */}
+            <div className="space-y-6">
+              <div className="flex flex-col items-center bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
+                <MapPin className="h-12 w-12 text-[#10b981] mb-4" />
+                <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Address</h3>
+                <p className="text-gray-700">WA</p>
+              </div>
+              <div className="flex flex-col items-center bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
+                <Mail className="h-12 w-12 text-[#10b981] mb-4" />
+                <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Email</h3>
+                <p className="text-gray-700 hover:text-[#10b981] transition-colors">Contact@drivepixel.com</p>
+              </div>
             </div>
-            <div className="flex flex-col items-center bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8">
-              <MapPin className="h-12 w-12 text-[#10b981] mb-4" />
-              <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Address</h3>
-              <p className="text-gray-700">WA</p>
-            </div>
-          </div>
 
-          {/* Contact Form & Map Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div className="bg-gray-50 p-8 rounded-lg shadow-lg">
+            {/* Contact Form Section */}
+            <div className="lg:col-span-2 bg-gray-50 p-8 rounded-lg shadow-lg">
               <h2 className="text-3xl font-bold text-[#1a1f3a] mb-8 text-center">Send us a Message</h2>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -294,16 +306,34 @@ export default function ContactPage() {
                 </Button>
               </form>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Map Section */}
-            <div className="flex flex-col">
-              <h2 className="text-3xl font-bold text-[#1a1f3a] mb-8 text-center">Find Us on the Map</h2>
-              <div 
-                ref={mapContainer} 
-                className="w-full flex-1 rounded-xl shadow-lg border border-gray-200 overflow-hidden"
-                style={{ minHeight: '400px' }}
-              />
-            </div>
+      {/* Map Embed Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container-custom">
+          <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
+            {mapError ? (
+              <div className="p-8 text-center text-gray-600">
+                <p className="text-xl font-semibold mb-2">Map temporarily unavailable</p>
+                <p className="text-sm mb-4">{mapError}</p>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-gray-700">
+                  <MapPin className="h-4 w-4 text-[#10b981]" />
+                  Washington, United States
+                </div>
+              </div>
+            ) : (
+              <div className="relative w-full h-[480px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.422373166962!2d-122.3351670235129!3d47.608013971189996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54901545e1c7f461%3A0x77f8f7b9d7761d30!2sSeattle%20Downtown!5e0!3m2!1sen!2sus!4v1703012345678!5m2!1sen!2sus"
+                  allowFullScreen
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full border-none"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            )}
           </div>
         </div>
       </section>

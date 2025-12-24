@@ -16,7 +16,7 @@ export default function AboutPage() {
                 <div 
                     className="absolute inset-0 bg-cover bg-center z-0"
                     style={{
-                        backgroundImage: 'url(/images/contact.png)',
+                        backgroundImage: 'url(/images/customapp_bg.png)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
@@ -24,9 +24,9 @@ export default function AboutPage() {
                 >
                     <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
                 </div>
-                <div className="container-custom relative z-10">
+                <div className="container-custom relative z-10 flex flex-col items-center text-center">
                     <h1 className="text-5xl md:text-6xl font-bold mb-6">About DrivePixel</h1>
-                    <p className="text-xl text-white/90 max-w-3xl">
+                    <p className="text-xl text-white/90 max-w-3xl mx-auto">
                         We're a team of innovators, developers, and strategists dedicated to transforming businesses through intelligent digital solutions.
                     </p>
                 </div>

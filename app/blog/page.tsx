@@ -40,17 +40,18 @@ export default function BlogPage() {
                 <div 
                     className="absolute inset-0 bg-cover bg-center z-0"
                     style={{
-                        backgroundImage: 'url(/images/contact.png)',
+                        backgroundImage: 'url(/images/our-blog.jpg)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                     }}
                 >
-                    <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
+                    <div className="absolute inset-0 bg-[#1a1f3a]/80"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0f172a]/40 to-[#0f172a]/80"></div>
                 </div>
-                <div className="container-custom relative z-10">
+                <div className="container-custom relative z-10 flex flex-col items-center text-center">
                     <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Blog</h1>
-                    <p className="text-xl text-white/90 max-w-3xl">
+                    <p className="text-xl text-white/90 max-w-3xl mx-auto">
                         Insights, tutorials, and case studies from our team of experts.
                     </p>
                 </div>
@@ -59,20 +60,23 @@ export default function BlogPage() {
             {/* Filter Section */}
             <section className="py-12 bg-gray-50">
                 <div className="container-custom">
-                    <div className="flex flex-wrap gap-4 justify-center">
-                        {categories.map((category) => (
-                            <Button
-                                key={category}
-                                variant={category === 'All' ? 'default' : 'outline'}
-                                className={
-                                    category === 'All'
-                                        ? 'bg-[#10b981] hover:bg-[#059669] text-[#041028] font-semibold'
-                                        : 'border-[#10b981] text-[#10b981] hover:bg-[#10b981]/10'
-                                }
-                            >
-                                {category}
-                            </Button>
-                        ))}
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        {categories.map((category) => {
+                            const isActive = category === 'All';
+                            return (
+                                <button
+                                    key={category}
+                                    className={[
+                                        'px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 border',
+                                        isActive
+                                            ? 'bg-[#10b981] text-[#041028] border-[#10b981] shadow-lg'
+                                            : 'bg-[#050b1d] text-[#10b981] border-[#10b981]/40 hover:border-[#10b981] hover:text-white hover:shadow-md'
+                                    ].join(' ')}
+                                >
+                                    {category}
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
             </section>

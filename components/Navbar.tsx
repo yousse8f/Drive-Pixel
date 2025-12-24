@@ -70,24 +70,24 @@ export default function Navbar() {
                 {
                     title: 'Operations',
                     links: [
-                        { href: '#', label: 'Freight Logistics' },
-                        { href: '#', label: 'Supply Chain' },
-                        { href: '#', label: 'Warehouse Systems' },
+                        { href: '/logistics', label: 'Freight Logistics' },
+                        { href: '/logistics#supply-chain', label: 'Supply Chain' },
+                        { href: '/logistics#warehouse', label: 'Warehouse Systems' },
                     ],
                 },
                 {
                     title: 'Fleet & Routing',
                     links: [
-                        { href: '#', label: 'Transportation' },
-                        { href: '#', label: 'Fleet Telematics' },
-                        { href: '#', label: 'Route Optimization' },
+                        { href: '/logistics#transportation', label: 'Transportation' },
+                        { href: '/logistics#fleet', label: 'Fleet Telematics' },
+                        { href: '/logistics#route', label: 'Route Optimization' },
                     ],
                 },
                 {
                     title: 'Insights',
                     links: [
-                        { href: '#', label: 'Market Trends' },
-                        { href: '#', label: 'Performance Dashboards' },
+                        { href: '/logistics#analytics', label: 'Market Trends' },
+                        { href: '/logistics#dashboards', label: 'Performance Dashboards' },
                     ],
                 },
             ],
@@ -115,9 +115,9 @@ export default function Navbar() {
                 {
                     title: 'Logistics & Ops',
                     links: [
-                        { href: '#', label: 'Freight Logistics' },
-                        { href: '#', label: 'Supply Chain' },
-                        { href: '#', label: 'Transportation' },
+                        { href: '/logistics', label: 'Freight Logistics' },
+                        { href: '/logistics#supply-chain', label: 'Supply Chain' },
+                        { href: '/logistics#transportation', label: 'Transportation' },
                     ],
                 },
             ],
