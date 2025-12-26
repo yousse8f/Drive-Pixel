@@ -1,0 +1,170 @@
+=== Home Page ===
+Titles and Text:
+- Hero Title: Build Future-Ready Platforms
+- Hero Subtitle: We create smart applications, AI-powered tools, and seamless cloud infrastructure that help brands grow faster.
+- Buttons: Get a Free Consultation, Request a Project Quote
+- Section Title: KEY SERVICES OVERVIEW
+- Main Title: We Build Future-Ready Digital Solutions
+- Services: Dynamic from API
+- Approach Section: OUR APPROACH
+- Main Title: Advisory • Build • Operate
+- Subtitle: A complete end-to-end partnership from strategy to deployment to ongoing optimization.
+- Advisory Description: We analyze your business needs, assess opportunities, and design the right technical strategy to match your goals.
+- Build Description: From concept to deployment—our team develops world-class applications, APIs, platforms, and integrated systems using cutting-edge technologies.
+- Operate Description: We ensure your product stays fast, secure, monitored, and continuously optimized with long-term support and proactive improvements.
+- Specialized Solutions Title: SPECIALIZED SOLUTIONS
+- Main Title: Real Estate IT Solutions – Streamline Your Property Business
+- Subtitle: Specialized IT services designed for real estate agencies and property managers to manage listings, track leads, and grow their business efficiently.
+- Features: Centralized CRM: Manage clients, leads, and follow-ups in one unified platform. Property Management: Automated tools for listings, marketing, and tenant communication. Analytics & Insights: Real-time dashboards and performance metrics for data-driven decisions. MLS Integration: Seamless integration with MLS and property portals.
+- Button: Learn More About Real Estate Solutions
+- Technologies Title: TECHNOLOGIES & TOOLS
+- Main Title: Modern, Reliable Technology Stacks
+- Subtitle: We work with modern, reliable technology stacks to deliver solutions that are stable, scalable, and future-proof.
+- Technologies: React.js / Next.js, Node.js / Express, Python / Django / FastAPI, Flutter / React Native, AWS / Google Cloud / Azure, Docker / Kubernetes, CI/CD & DevOps Automation, PostgreSQL / MongoDB / Redis
+- Buttons: Learn More About Mobile App Development, Learn More About Software Solutions
+- Portfolio Title: PORTFOLIO HIGHLIGHTS
+- Main Title: Digital Solutions We've Built
+- Subtitle: A look at some of the digital solutions we've built for clients across different industries.
+- Portfolio Items: Smart Booking Platform: Modern booking engine with real-time availability, secure payments, and an optimized dashboard. AI Workflow Automation: Automated data processing system powered by machine learning, reducing manual tasks by 60%. E-Commerce PWA: Lightning-fast shopping experience with a modern UI and high conversion performance.
+- End-to-End Solutions Title: End-to-End Digital Solutions
+- Subtitle: From custom applications and mobile development to cloud and email solutions, we provide scalable, secure, and future-ready services.
+- Advisory & Strategy List: Requirement Analysis & Technology Consultation, Solution Architecture & Scalability Planning, UI/UX Consulting for Web & Mobile Apps, Security, Compliance & Performance Reviews, Digital Transformation & Automation Roadmaps
+- Build & Deploy List: Custom Web & Enterprise Application Development, Mobile App Development (iOS, Android, React Native, Flutter), API Development & Third-Party Integrations, Cloud-Native Applications (AWS, Azure, GCP), Email & Communication Solutions (Google Workspace, Microsoft 365, WhatsApp API)
+- Operate & Enhance List: Future Readdy, Managed Services & Maintenance, Application Optimization & Version Upgrades, Continuous Monitoring, Backup & Disaster Recovery, DevOps & CI/CD Automation, Cost Optimization
+- Cloud Solutions Title: END-TO-END MANAGED SOLUTIONS
+- Main Title: Cloud Solutions That Scale With Your Business
+- Subtitle: From planning to continuous optimization, we handle everything — architecture design, seamless migration, proactive monitoring, and managed services across AWS, Azure, GCP, and hybrid infrastructures — helping you innovate faster while reducing operational complexity.
+- Stats: 4000+ Successful Projects, 11+ Year Experience, 500+ Clients, 80+ From Reference
+- Testimonials Title: CLIENT TESTIMONIALS
+- Main Title: What Our Clients Say
+- Subtitle: Trusted by leading companies worldwide for delivering exceptional digital solutions
+- Dynamic testimonials
+- CTA Title: Ready to Build Something Powerful?
+- Subtitle: Let's discuss your goals and create a technology strategy that drives real results.
+- Buttons: Get a Free Consultation, Request a Project Quote
+- Additional Text: Or speak directly with one of our specialists to discuss your goals.
+
+=== About Page ===
+Titles and Text:
+- Page Title: About DrivePixel
+- Hero Subtitle: We're a team of innovators, developers, and strategists dedicated to transforming businesses through intelligent digital solutions.
+- Who We Are Title: Who We Are
+- Description: DrivePixel is a forward-thinking technology company specializing in custom software development, cloud solutions, and digital transformation. With over 11 years of experience, we've helped hundreds of businesses achieve their digital goals. Our team combines technical expertise with strategic thinking to deliver solutions that not only meet today's needs but anticipate tomorrow's challenges.
+- Stats: 4000+ Projects Successfully delivered across industries, 23 Countries Global presence with local expertise, 500+ Clients From startups to enterprises
+- Mission Title: Our Mission
+- Description: To empower businesses with innovative, scalable, and intelligent digital solutions that drive growth, efficiency, and competitive advantage in an ever-evolving technological landscape.
+- Vision Title: Our Vision
+- Description: To be the trusted partner of choice for digital transformation, known for delivering exceptional solutions that combine cutting-edge technology with strategic business insight.
+- Core Values Title: Our Core Values
+- Values: Excellence We pursue excellence in everything we do, Integrity We build trust through transparency and honesty, Innovation We embrace new ideas and technologies, Impact We create solutions that drive real business value
+- CTA Title: Ready to Work With Us?
+- Subtitle: Let's discuss how we can help transform your business with innovative digital solutions.
+- Button: Get a Free Consultation
+
+=== About - Clients Page ===
+Titles and Text:
+- Page Title: Our Valued Clients
+- Hero Subtitle: Drive Pixel has worked with a diverse range of clients across industries, delivering tailored IT solutions that enhance operations and boost business growth. Our clients include real estate firms, small and medium businesses, and creative enterprises seeking a one-stop IT partner.
+- Section Title: Client Highlights
+- Clients: Real Estate Firms CRM, listings management, and marketing automation. Small & Medium Businesses Web, mobile, and software solutions that scale with growth. Creative Enterprises Branding, graphics, and production-ready design solutions.
+- Testimonials: "Drive Pixel helped us streamline operations and launch faster than expected." Operations Manager, SMB. "A reliable team with strong delivery and clear communication." Founder, Real Estate.
+- CTA Title: Want results like our clients?
+- Button: Contact Us
+
+=== About - Company Overview Page ===
+Titles and Text:
+- Page Title: Company Overview
+- Hero Subtitle: Drive Pixel is designed to serve businesses of all sizes, delivering IT services, software solutions, and creative projects from a single platform. Hosted securely on Bluehost VPS, our platform ensures scalability, performance, and compliance for our clients.
+- Section Title: Key Capabilities
+- Capabilities: End-to-end IT services Web, Mobile, Software, and Cybersecurity delivered from one trusted team. Marketing automation & CRM integration Connect leads, pipelines, and campaigns to streamline growth and customer engagement. E-commerce stores Complete product/service management, payments, inventory, and scalable storefront experiences. Creative solutions Branding, graphics, and screen-print design crafted with pixel-perfect attention to detail.
+- CTA Title: Let's build something reliable and scalable.
+- Button: Contact Us
+
+=== About - History Page ===
+Titles and Text:
+- Page Title: Our Journey
+- Hero Subtitle: A timeline of the key milestones that shaped Drive Pixel into a one-stop platform for IT, software, and creative services.
+- Section Title: Timeline / Key Milestones
+- Milestones: Founded Drive Pixel launched as a comprehensive IT services platform. Expansion Added specialized real estate services and marketing automation. Innovation Integrated e-commerce solutions with 75+ products/services. Creative Services Introduced pixel-perfect branding, embroidery, and screen print designs. Current Fully operational platform hosting clients’ IT services on secure VPS with modern web and mobile solutions.
+- CTA Title: Want to be part of our next milestone?
+- Button: Contact Us
+
+=== About - We Work In Page ===
+Titles and Text:
+- Page Title: Industries We Serve
+- Hero Subtitle: Drive Pixel provides services to a wide array of industries, adapting our solutions to each sector's unique needs.
+- Section Title: Examples
+- Industries: Real Estate CRM, listings management, marketing automation. Retail & E-commerce Online stores, payment gateways, inventory systems. Education LMS integration, app development, IT support. Healthcare Secure portals, data compliance, workflow automation. Creative & Design Branding, graphics, embroidery, screen-print solutions. Transportation Fleet management, route optimization, and telematics. Supply Chain Warehouse management, inventory tracking, and logistics. Freight Logistics Freight management, shipping, and tracking solutions.
+- CTA Title: Need a solution for your industry?
+- Button: Contact Us
+
+=== Blog Page ===
+Titles and Text:
+- Page Title: Our Blog
+- Hero Subtitle: Insights, tutorials, and case studies from our team of experts.
+- Categories: All, Featured Posts, Tutorials, Case Studies, Industry Insights
+- Dynamic blog posts
+- CTA Title: Subscribe to Our Newsletter
+- Subtitle: Get the latest insights, tutorials, and case studies delivered to your inbox every week.
+- Button: Subscribe
+
+=== Careers Page ===
+Titles and Text:
+- Page Title: Join Our Team
+- Hero Subtitle: We're hiring talented individuals who are passionate about technology and innovation.
+- Section Title: Why Join DrivePixel?
+- Benefits: Competitive Salary Industry-leading compensation packages, Health Insurance Comprehensive health coverage for you and your family, Learning & Development Continuous training and skill development, Flexible Work Remote and flexible working arrangements, Team Culture Collaborative and inclusive work environment, Growth Opportunities Clear career progression paths
+- Section Title: Open Positions
+- Positions: Senior Full Stack Developer Full-time, Remote, We're looking for an experienced Full Stack Developer to join our growing team. Cloud Architect Full-time, Remote, Design and implement scalable cloud solutions for our enterprise clients. AI/ML Engineer Full-time, Remote, Build intelligent systems and machine learning models that drive business value. UI/UX Designer Full-time, Remote, Create beautiful and intuitive user experiences for our digital products. DevOps Engineer Full-time, Remote, Manage and optimize our infrastructure and deployment pipelines. Internship - Web Development Internship, Remote, Join our team as an intern and learn from experienced developers.
+- CTA Title: Don't See Your Role?
+- Subtitle: We're always looking for talented individuals. Send us your resume and let's explore opportunities together!
+- Button: Send Your Resume
+
+=== Services Page ===
+Titles and Text:
+- Page Title: All IT Services – Explore Our Expertise
+- Subtitle: At Drive Pixel, we provide a wide range of IT services to meet the needs of businesses across different industries. Browse through our services and click on any to learn more.
+- Services: Web Development Custom websites, responsive layouts, and e-commerce solutions. Mobile App Development iOS & Android apps with seamless UX. Software Solutions Business management and automation applications. IT Consulting & Support Strategy, implementation, and ongoing support. Cybersecurity Services Protect your network and sensitive data. Real Estate IT Solutions Specialized solutions for real estate businesses.
+
+=== Services - Cybersecurity Page ===
+Titles and Text:
+- Title: Cybersecurity Services – Protect Your Business
+- Description: Ensure the safety and integrity of your network, data, and digital assets.
+- Services: Network monitoring & threat detection Continuous monitoring to detect threats early and protect your infrastructure. Data encryption & protection Secure your data with advanced encryption standards and protection protocols. Compliance & audits Ensure compliance with industry standards and regulatory requirements. Backup & disaster recovery Prepare for the unexpected with robust recovery plans and backup solutions. Security training for staff Empower your team with cybersecurity knowledge and best practices.
+- CTA: Secure your business today! Contact Us
+
+=== Services - IT Consulting Page ===
+Titles and Text:
+- Title: IT Consulting & Support Services
+- Description: Expert guidance to improve your IT infrastructure, strategy, and ongoing operations.
+- Services: System analysis & planning Comprehensive analysis and strategic planning. IT strategy & implementation IT strategy and implementation tailored to your goals. Performance optimization Enhance the performance of your IT systems. 24/7 support Round-the-clock support for your IT needs. Risk assessment & audits Identify, assess, and mitigate potential risks.
+- CTA: Contact us for expert IT consulting! Contact Us
+
+=== Services - Mobile App Development Page ===
+Titles and Text:
+- Title: Mobile App Development for iOS & Android
+- Description: Developing intuitive and efficient mobile applications to enhance user engagement.
+- Services: Cross-platform development Build apps that work seamlessly across iOS and Android. Smooth UI/UX design Intuitive interfaces designed for great user experiences. Push notifications & updates Keep users engaged with timely notifications and updates. Integration with backend services Connect your app with APIs and backend systems reliably. App store deployment Publish your app on the App Store and Google Play.
+- CTA: Get in touch to develop your mobile app! Contact Us
+
+=== Services - Real Estate Page ===
+Titles and Text:
+- Page Title: Real Estate IT Solutions – Smart Tools for Property Professionals
+- Subtitle: Our specialized IT solutions help real estate agencies and property managers streamline operations, improve client communication, and grow their business efficiently.
+- Services: CRM Systems for Real Estate Centralized client and lead management, Automated follow-up reminders and workflows, Integration with email and communication tools. Property Management Automation Track listings, rentals, and maintenance schedules, Automated tenant communication and notifications, Financial reporting and expense tracking. Marketing & Lead Generation Tools Email campaign management and automation, Social media integration and scheduling, Lead capture forms and analytics dashboards. Custom Real Estate Software MLS integration and property database management, E-signature and document management solutions, Custom dashboards and reporting tools. Data Analysis & Insights Market trend analysis and forecasting, Investment opportunity identification, Performance metrics and KPI tracking.
+- Pricing Plans: 100% Sponsorship, IDX-DLFX, Website + E-Mail, 1 Creative Yard Post Sign Unit, 5 Creative Yard Post Sign Units (with features and prices)
+- CTA: Ready to Transform Your Real Estate Business? Join hundreds of real estate professionals who are already using our solutions to streamline operations and increase productivity. Schedule a Demo
+
+=== Services - Software Solutions Page ===
+Titles and Text:
+- Title: Custom Software Solutions for Your Business
+- Description: Tailored software solutions to optimize your business operations and workflows.
+- Services: Inventory & workflow automation Automate and optimize your business processes. Cloud-based solutions Scalable solutions hosted on the cloud. API integrations Seamlessly integrate with existing systems. Scalable & secure architecture Built to grow with your business. Regular updates & support Continuous support and updates.
+- CTA: Request a consultation for your software needs! Contact Us
+
+=== Services - Web Development Page ===
+Titles and Text:
+- Title: Professional Web Development Services
+- Description: We build websites that are responsive, fast, and tailored to your business needs.
+- Services: Custom design & UI/UX Tailored designs that reflect your brand. CMS integration (WordPress, Joomla…) Seamless integration with popular CMS platforms. SEO-friendly architecture Optimized for search engines to improve visibility. E-commerce functionality Robust e-commerce solutions for your online store. Maintenance & support Ongoing support to keep your website running smoothly.
+- CTA: Contact us today to start building your website! Contact Us

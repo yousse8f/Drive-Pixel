@@ -94,25 +94,25 @@ export default function SubscriptionsPage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-gray-900">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-primary-900">Subscriptions</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Subscriptions</h1>
           <p className="text-gray-600">Track plans, renewals, and manage upgrades/downgrades.</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <BadgeCheck className="h-4 w-4 text-primary-600" />
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <BadgeCheck className="h-4 w-4 text-emerald-500" />
             Connected to cart checkout
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <Users className="h-4 w-4 text-primary-600" />
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <Users className="h-4 w-4 text-emerald-500" />
             {subscriptions.length} records
           </div>
         </div>
       </div>
 
-      <Card>
+      <Card className="bg-white text-gray-900 border border-gray-200 shadow-sm">
         <CardHeader className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <CardTitle>Filters</CardTitle>
@@ -123,10 +123,10 @@ export default function SubscriptionsPage() {
               placeholder="Search by user, email, or plan"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-64"
+              className="w-64 bg-white text-gray-900 placeholder:text-gray-400 border border-gray-300 focus-visible:ring-emerald-500"
             />
             <select
-              className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+              className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as any)}
             >
@@ -136,7 +136,7 @@ export default function SubscriptionsPage() {
               <option value="canceled">Canceled</option>
             </select>
             <select
-              className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+              className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900"
               value={billingFilter}
               onChange={(e) => setBillingFilter(e.target.value as any)}
             >
@@ -152,7 +152,7 @@ export default function SubscriptionsPage() {
         </CardHeader>
       </Card>
 
-      <Card>
+      <Card className="bg-white text-gray-900 border border-gray-200 shadow-sm">
         <CardHeader>
           <CardTitle>Subscriptions</CardTitle>
           <CardDescription>Upgrade, downgrade, or pause plans. Data is synced from products added to cart.</CardDescription>
@@ -170,11 +170,11 @@ export default function SubscriptionsPage() {
               {filtered.map((sub) => (
                 <div key={sub.id} className="p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                   <div>
-                    <div className="font-semibold text-primary-900">{sub.userName}</div>
-                    <div className="text-sm text-gray-500">{sub.userEmail}</div>
-                    <div className="mt-2 text-sm text-gray-600">
-                      Plan: <span className="font-semibold text-primary-800">{sub.plan}</span> · Billing:{' '}
-                      <span className="font-semibold capitalize">{sub.billing}</span> · Next renewal {sub.nextRenewal}
+                    <div className="font-semibold text-gray-900">{sub.userName}</div>
+                    <div className="text-sm text-gray-600">{sub.userEmail}</div>
+                    <div className="mt-2 text-sm text-gray-700">
+                      Plan: <span className="font-semibold text-emerald-600">{sub.plan}</span> · Billing{' '}
+                      <span className="font-semibold capitalize text-gray-900">{sub.billing}</span> · Next renewal {sub.nextRenewal}
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2">

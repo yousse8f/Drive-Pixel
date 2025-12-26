@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { format } from 'date-fns';
+import { Loader2 } from 'lucide-react';
 
 type Session = {
   id: string;
@@ -103,43 +104,46 @@ export default function ChatbotAdminPage() {
   const totalPages = Math.max(1, Math.ceil(total / limit));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 text-gray-900">
       <div>
-        <h1 className="text-3xl font-bold text-slate-900">Chatbot</h1>
-        <p className="text-slate-600">View sessions and messages (read-only)</p>
+        <h1 className="text-3xl font-bold text-gray-900">Chatbot</h1>
+        <p className="text-gray-600">View sessions and messages (read-only)</p>
       </div>
 
-      <Card>
+      <Card className="border border-gray-200 bg-white shadow-sm">
         <CardHeader>
-          <CardTitle>Filters</CardTitle>
+          <CardTitle className="text-xl font-semibold text-gray-900">Filters</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Input
             placeholder="Search by email"
             value={emailFilter}
             onChange={(e) => setEmailFilter(e.target.value)}
+            className="bg-white text-gray-900 placeholder:text-gray-400"
           />
           <Input
             type="date"
             value={dateFrom}
             onChange={(e) => setDateFrom(e.target.value)}
+            className="bg-white text-gray-900"
           />
           <Input
             type="date"
             value={dateTo}
             onChange={(e) => setDateTo(e.target.value)}
+            className="bg-white text-gray-900"
           />
-          <Button onClick={applyFilters} className="w-full md:w-auto">
+          <Button onClick={applyFilters} className="w-full md:w-auto bg-emerald-500 text-white hover:bg-emerald-600">
             Apply Filters
           </Button>
         </CardContent>
       </Card>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden border border-gray-200 bg-white shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>Sessions</CardTitle>
-            <div className="text-sm text-slate-500">
+            <CardTitle className="text-xl font-semibold text-gray-900">Sessions</CardTitle>
+            <div className="text-sm text-gray-600">
               Page {page} of {totalPages} ({total} sessions)
             </div>
           </CardHeader>
@@ -147,26 +151,29 @@ export default function ChatbotAdminPage() {
             <div className="overflow-auto">
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableHead>Client</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Initial Email</TableHead>
-                    <TableHead>Email Status</TableHead>
-                    <TableHead>IP</TableHead>
-                    <TableHead>Last Message</TableHead>
-                    <TableHead>Date</TableHead>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="text-gray-600 font-semibold">Client</TableHead>
+                    <TableHead className="text-gray-600 font-semibold">Email</TableHead>
+                    <TableHead className="text-gray-600 font-semibold">Initial Email</TableHead>
+                    <TableHead className="text-gray-600 font-semibold">Email Status</TableHead>
+                    <TableHead className="text-gray-600 font-semibold">IP</TableHead>
+                    <TableHead className="text-gray-600 font-semibold">Last Message</TableHead>
+                    <TableHead className="text-gray-600 font-semibold">Date</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {loadingSessions ? (
                     <TableRow>
-                      <TableCell colSpan={7} className="text-center text-slate-500">
-                        Loading...
+                      <TableCell colSpan={7} className="h-32 text-center text-gray-600">
+                        <div className="flex items-center justify-center gap-2">
+                          <Loader2 className="h-5 w-5 animate-spin text-emerald-500" />
+                          Loading sessions...
+                        </div>
                       </TableCell>
                     </TableRow>
                   ) : sessions.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={7} className="text-center text-slate-500">
+                      <TableCell colSpan={7} className="h-32 text-center text-gray-500">
                         No results
                       </TableCell>
                     </TableRow>
@@ -174,31 +181,31 @@ export default function ChatbotAdminPage() {
                     sessions.map((s) => (
                       <TableRow
                         key={s.id}
-                        className={`cursor-pointer ${selectedSessionId === s.id ? 'bg-slate-100' : ''}`}
+                        className={`cursor-pointer border-b border-gray-100 hover:bg-gray-50/70 ${selectedSessionId === s.id ? 'bg-emerald-50' : ''}`}
                         onClick={() => selectSession(s.id)}
                       >
-                        <TableCell className="font-semibold">
+                        <TableCell className="font-semibold text-gray-900">
                           {s.name || '—'}
                         </TableCell>
-                        <TableCell>{s.email || '—'}</TableCell>
-                        <TableCell className="text-sm">
+                        <TableCell className="text-sm text-gray-700">{s.email || '—'}</TableCell>
+                        <TableCell className="text-sm text-gray-700">
                           {s.initial_email_sent ? 'Yes' : 'No'}
                         </TableCell>
-                        <TableCell className="text-xs text-slate-600">
+                        <TableCell className="text-xs text-gray-600">
                           <div className="font-semibold">{s.last_email_status || s.email_sent_status || '—'}</div>
-                          <div className="text-[11px] text-slate-500">
+                          <div className="text-[11px] text-gray-500">
                             {s.last_email_at || s.email_sent_at
                               ? format(new Date(s.last_email_at || s.email_sent_at as string), 'yyyy-MM-dd HH:mm')
                               : '—'}
                           </div>
                         </TableCell>
-                        <TableCell className="text-xs text-slate-500">
+                        <TableCell className="text-xs text-gray-500">
                           {s.ip_address || '—'}
                         </TableCell>
-                        <TableCell className="text-sm text-slate-700 line-clamp-2 max-w-[220px]">
+                        <TableCell className="text-sm text-gray-700 line-clamp-2 max-w-[220px]">
                           {s.last_message || '—'}
                         </TableCell>
-                        <TableCell className="text-xs text-slate-500">
+                        <TableCell className="text-xs text-gray-500">
                           {format(new Date(s.created_at), 'yyyy-MM-dd HH:mm')}
                         </TableCell>
                       </TableRow>
@@ -208,8 +215,8 @@ export default function ChatbotAdminPage() {
               </Table>
             </div>
           </CardContent>
-          <div className="flex items-center justify-between px-4 py-3 border-t bg-slate-50">
-            <div className="text-sm text-slate-600">
+          <div className="flex items-center justify-between px-4 py-3 border-t bg-gray-50">
+            <div className="text-sm text-gray-600">
               Showing {sessions.length} of {total}
             </div>
             <div className="flex gap-2">
@@ -233,17 +240,20 @@ export default function ChatbotAdminPage() {
           </div>
         </Card>
 
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden border border-gray-200 bg-white shadow-sm">
           <CardHeader>
-            <CardTitle>Conversation</CardTitle>
+            <CardTitle className="text-xl font-semibold text-gray-900">Conversation</CardTitle>
           </CardHeader>
-          <CardContent className="h-[480px] overflow-auto space-y-3">
+          <CardContent className="h-[480px] overflow-auto space-y-3 bg-gray-50">
             {loadingMessages ? (
-              <div className="text-center text-slate-500">Loading...</div>
+              <div className="flex items-center justify-center h-full text-gray-600">
+                <Loader2 className="mr-2 h-5 w-5 animate-spin text-emerald-500" />
+                Loading messages...
+              </div>
             ) : !selectedSessionId ? (
-              <div className="text-center text-slate-500">Select a session to view details</div>
+              <div className="flex items-center justify-center h-full text-gray-500">Select a session to view details</div>
             ) : messages.length === 0 ? (
-              <div className="text-center text-slate-500">No messages</div>
+              <div className="flex items-center justify-center h-full text-gray-500">No messages</div>
             ) : (
               messages.map((m) => (
                 <div
@@ -251,18 +261,22 @@ export default function ChatbotAdminPage() {
                   className={`flex ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`px-3 py-2 rounded-xl text-sm max-w-[80%] shadow-sm ${
+                    className={`px-4 py-3 rounded-xl text-sm max-w-[80%] shadow-sm ${
                       m.sender === 'user'
-                        ? 'bg-slate-800 text-white'
-                        : 'bg-white border border-slate-200 text-slate-900'
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
                     }`}
                   >
-                    <div className="text-[11px] text-slate-400 mb-1">
+                    <div className={`text-[11px] mb-1 ${
+                      m.sender === 'user' ? 'text-emerald-100' : 'text-gray-500'
+                    }`}>
                       {format(new Date(m.created_at), 'yyyy-MM-dd HH:mm')}
                     </div>
                     <div className="whitespace-pre-wrap">{m.message}</div>
                     {m.page_url && (
-                      <div className="mt-1 text-[11px] text-slate-400 truncate">{m.page_url}</div>
+                      <div className={`mt-1 text-[11px] truncate ${
+                        m.sender === 'user' ? 'text-emerald-100' : 'text-gray-500'
+                      }`}>{m.page_url}</div>
                     )}
                   </div>
                 </div>

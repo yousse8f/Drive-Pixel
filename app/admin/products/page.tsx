@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Plus, Pencil, Trash2, Search, Package } from 'lucide-react';
+import { Plus, Pencil, Trash2, Search, Package, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -21,6 +21,7 @@ export default function AdminProductsPage() {
     const [products, setProducts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
     useEffect(() => {
         loadProducts();
@@ -42,14 +43,19 @@ export default function AdminProductsPage() {
 
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this product?')) return;
+        setDeletingId(id);
         try {
             const response = await apiClient.deleteProduct(id);
             if (response.success) {
                 setProducts(products.filter((p) => p.id !== id));
+            } else {
+                alert('Failed to delete product');
             }
         } catch (error) {
             console.error('Failed to delete product', error);
-            alert('Failed to delete product');
+            alert('Failed to delete product. Please try again.');
+        } finally {
+            setDeletingId(null);
         }
     };
 
@@ -58,15 +64,24 @@ export default function AdminProductsPage() {
         (p.category || '').toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center py-16 text-gray-600">
+                <Loader2 className="mr-2 h-5 w-5 animate-spin text-emerald-500" />
+                Loading products...
+            </div>
+        );
+    }
+
     return (
-        <div className="space-y-6">
+        <div className="space-y-8 text-gray-900">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900">Products</h1>
                     <p className="text-gray-600">Manage your product inventory</p>
                 </div>
                 <Link href="/admin/products/new">
-                    <Button className="bg-cta hover:bg-cta-600">
+                    <Button className="bg-emerald-500 text-white hover:bg-emerald-600">
                         <Plus className="mr-2 h-4 w-4" /> Add Product
                     </Button>
                 </Link>
@@ -82,25 +97,19 @@ export default function AdminProductsPage() {
                 />
             </div>
 
-            <div className="border border-gray-200 rounded-xl overflow-hidden bg-white">
+            <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
                 <Table>
                     <TableHeader className="bg-gray-50">
                         <TableRow className="border-gray-200 hover:bg-gray-50">
-                            <TableHead className="text-gray-500">Name</TableHead>
-                            <TableHead className="text-gray-500">Category</TableHead>
-                            <TableHead className="text-gray-500">Price</TableHead>
-                            <TableHead className="text-gray-500">Status</TableHead>
-                            <TableHead className="text-right text-gray-500">Actions</TableHead>
+                            <TableHead className="text-gray-600 font-semibold">Name</TableHead>
+                            <TableHead className="text-gray-600 font-semibold">Category</TableHead>
+                            <TableHead className="text-gray-600 font-semibold">Price</TableHead>
+                            <TableHead className="text-gray-600 font-semibold">Status</TableHead>
+                            <TableHead className="text-right text-gray-600 font-semibold">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {loading ? (
-                            <TableRow>
-                                <TableCell colSpan={5} className="h-24 text-center text-gray-500">
-                                    Loading products...
-                                </TableCell>
-                            </TableRow>
-                        ) : filteredProducts.length === 0 ? (
+                        {filteredProducts.length === 0 ? (
                             <TableRow>
                                 <TableCell colSpan={5} className="h-32 text-center text-gray-500">
                                     <div className="flex flex-col items-center justify-center gap-2">
@@ -112,7 +121,7 @@ export default function AdminProductsPage() {
                         ) : (
                             filteredProducts.map((product) => (
                                 <TableRow key={product.id} className="border-gray-200 hover:bg-gray-50">
-                                    <TableCell className="font-medium text-gray-900">
+                                    <TableCell className="font-semibold text-gray-900">
                                         <div className="flex items-center gap-3">
                                             {product.imageUrl ? (
                                                 <div className="h-10 w-10 rounded-lg bg-gray-100 overflow-hidden relative">
@@ -126,13 +135,13 @@ export default function AdminProductsPage() {
                                             <span>{product.name}</span>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="text-gray-600">{product.category || '-'}</TableCell>
-                                    <TableCell className="text-emerald-400 font-mono">${product.price.toFixed(2)}</TableCell>
+                                    <TableCell className="text-sm text-gray-700">{product.category || '-'}</TableCell>
+                                    <TableCell className="text-sm font-semibold text-emerald-600">${product.price.toFixed(2)}</TableCell>
                                     <TableCell>
                                         <span
-                                            className={`px-2 py-1 rounded-full text-xs font-medium border ${product.isActive
-                                                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                                                    : 'bg-gray-100 text-gray-600 border-gray-200'
+                                            className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${product.isActive
+                                                    ? 'bg-emerald-50 text-emerald-700'
+                                                    : 'bg-gray-100 text-gray-600'
                                                 }`}
                                         >
                                             {product.isActive ? 'Active' : 'Draft'}
@@ -141,17 +150,26 @@ export default function AdminProductsPage() {
                                     <TableCell className="text-right">
                                         <div className="flex items-center justify-end gap-2">
                                             <Link href={`/admin/products/${product.id}`}>
-                                                <Button variant="ghost" size="icon" className="hover:bg-gray-100 hover:text-blue-500">
+                                                <Button
+                                                    variant="outline"
+                                                    size="sm"
+                                                    className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                                                >
                                                     <Pencil className="h-4 w-4" />
                                                 </Button>
                                             </Link>
                                             <Button
-                                                variant="ghost"
-                                                size="icon"
+                                                variant="outline"
+                                                size="sm"
                                                 onClick={() => handleDelete(product.id)}
-                                                className="hover:bg-gray-100 hover:text-red-500"
+                                                disabled={deletingId === product.id}
+                                                className="border-red-200 text-red-600 hover:bg-red-50"
                                             >
-                                                <Trash2 className="h-4 w-4" />
+                                                {deletingId === product.id ? (
+                                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                                ) : (
+                                                    <Trash2 className="h-4 w-4" />
+                                                )}
                                             </Button>
                                         </div>
                                     </TableCell>
