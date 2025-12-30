@@ -7,7 +7,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Building2, Truck, Package, ChevronLeft, ChevronRight, Star, MessageCircle, Briefcase, Clock, Users, Award, Globe, Code, Megaphone, Cloud, Smartphone, Settings, Database, Server, Terminal, Lightbulb, Rocket, Cog, BarChart3, Calendar, Zap, ShoppingCart, BarChart2, Home, Compass, Layers, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Building2, Truck, Package, ChevronLeft, ChevronRight, Star, MessageCircle, Briefcase, Clock, Users, Award, Globe, Code, Megaphone, Cloud, Smartphone, Settings, Database, Server, Terminal, Lightbulb, Rocket, Cog, BarChart3, Calendar, Zap, ShoppingCart, BarChart2, Home, Compass, Layers, ShieldCheck, DollarSign, Landmark, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Navbar from '@/components/Navbar';
@@ -212,7 +212,7 @@ export default function HomePage() {
                         <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
                             KEY SERVICES OVERVIEW
                         </div>
-                        <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_6px_0_rgba(88,70,150,0.35)] py-5 text-center">
+                        <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_6px_0_rgba(88,70,150,0.35)] py-1 text-center">
                             <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
                                 We Build Future-Ready Digital Solutions
                             </h2>
@@ -329,7 +329,7 @@ export default function HomePage() {
                                 Real Estate IT Solutions – Streamline Your Property Business
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-3 text-center px-4">
+                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                             <p className="text-sm text-white font-medium">
                                 Specialized IT services designed for real estate agencies and property managers to manage listings, track leads, and grow their business efficiently.
                             </p>
@@ -340,41 +340,41 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                         <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
                             <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
-                                <Users className="h-10 w-10" />
+                                <DollarSign className="h-10 w-10" />
                             </div>
-                            <h3 className="text-xl font-bold text-[#33202b]">Centralized CRM</h3>
-                            <p className="text-sm text-[#4f2c33] leading-relaxed">Manage clients, leads, and follow-ups in one unified platform</p>
+                            <h3 className="text-xl font-bold text-[#33202b]">Agent Commission 100%</h3>
+                            <p className="text-sm text-[#4f2c33] leading-relaxed">Maximize your earnings with our 100% commission brokerage model.</p>
                         </div>
 
                         <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
                             <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
-                                <Home className="h-10 w-10" />
+                                <HelpCircle className="h-10 w-10" />
                             </div>
-                            <h3 className="text-xl font-bold text-[#33202b]">Property Management</h3>
-                            <p className="text-sm text-[#4f2c33] leading-relaxed">Automated tools for listings, marketing, and tenant communication</p>
+                            <h3 className="text-xl font-bold text-[#33202b]">Why OneDrive Realty?</h3>
+                            <p className="text-sm text-[#4f2c33] leading-relaxed">Discover our tech-enabled support system built to empower every agent.</p>
+                        </div>
+
+                        <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
+                            <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
+                                <Landmark className="h-10 w-10" />
+                            </div>
+                            <h3 className="text-xl font-bold text-[#33202b]">Halal Financing</h3>
+                            <p className="text-sm text-[#4f2c33] leading-relaxed">Connect with Sharia-compliant financing partners for ethical investments.</p>
                         </div>
 
                         <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
                             <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
                                 <BarChart3 className="h-10 w-10" />
                             </div>
-                            <h3 className="text-xl font-bold text-[#33202b]">Analytics & Insights</h3>
-                            <p className="text-sm text-[#4f2c33] leading-relaxed">Real-time dashboards and performance metrics for data-driven decisions</p>
-                        </div>
-
-                        <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
-                                <Globe className="h-10 w-10" />
-                            </div>
-                            <h3 className="text-xl font-bold text-[#33202b]">MLS Integration</h3>
-                            <p className="text-sm text-[#4f2c33] leading-relaxed">Seamless integration with MLS and property portals</p>
+                            <h3 className="text-xl font-bold text-[#33202b]">CAP-ROR-REO</h3>
+                            <p className="text-sm text-[#4f2c33] leading-relaxed">Analyze cap rates, returns, and REO deals with real-time investment data.</p>
                         </div>
                     </div>
 
                     {/* CTA Button */}
                     <div className="text-center">
-                        <Link href="/services/real-estate">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-10 py-3.5 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                        <Link href="/real-estate">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[2px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
                                 Learn More About Real Estate Solutions
                             </button>
                         </Link>
@@ -394,7 +394,7 @@ export default function HomePage() {
                                 Modern, Reliable Technology Stacks
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-3 text-center px-4">
+                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-2">
                             <p className="text-sm text-white font-medium">
                                 We work with modern, reliable technology stacks to deliver solutions that are stable, scalable, and future-proof.
                             </p>
@@ -423,13 +423,13 @@ export default function HomePage() {
                     {/* Service Links CTA */}
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link href="/services/mobile-app-development">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-10 py-3.5 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
                                 Learn More About Mobile App Development
                             </button>
                         </Link>
 
                         <Link href="/services/software-solutions">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-10 py-3.5 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
                                 Learn More About Software Solutions
                             </button>
                         </Link>
@@ -498,7 +498,7 @@ export default function HomePage() {
                                 End-to-End Digital Solutions
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-3 text-center px-4">
+                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                             <p className="text-sm text-white font-medium">
                                 From custom applications and mobile development to cloud and email solutions, we provide scalable, secure, and future-ready services.
                             </p>
@@ -618,7 +618,7 @@ export default function HomePage() {
                                 Cloud Solutions That Scale With Your Business
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-3 text-center px-4">
+                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                             <p className="text-sm text-white font-medium">
                                 From planning to continuous optimization, we architect, migrate, monitor, and operate multi-cloud environments so your teams can innovate faster with less risk.
                             </p>
@@ -679,7 +679,7 @@ export default function HomePage() {
                     {/* Testimonial Card */}
                     <div className="max-w-4xl mx-auto">
                         <div className="rounded-none border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-8 py-10 shadow-[0_12px_0_0_#d37377]">
-                            <div className="text-center space-y-8">
+                            <div className="text-center space-y-3">
                                 {/* Stars */}
                                 <div className="flex gap-2 justify-center">
                                     {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
@@ -695,7 +695,6 @@ export default function HomePage() {
                                 {/* Author Info */}
                                 <div>
                                     <h3 className="text-2xl font-bold text-[#1f1830]">{testimonials[currentTestimonial].name}</h3>
-                                    <p className="text-sm text-[#4f2c33]">{testimonials[currentTestimonial].email}</p>
                                 </div>
 
                                 {/* Navigation Buttons */}
@@ -733,7 +732,7 @@ export default function HomePage() {
                                 Ready to Build Something Powerful?
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-3 text-center px-4">
+                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                             <p className="text-sm text-white font-medium">
                                 Let’s discuss your goals and create a technology roadmap that turns bold ideas into measurable outcomes.
                             </p>
@@ -741,12 +740,12 @@ export default function HomePage() {
                     </div>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link href="/contact">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-10 py-3.5 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
                                 Get a Free Consultation
                             </button>
                         </Link>
                         <Link href="/contact">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-10 py-3.5 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
                                 Request a Project Quote
                             </button>
                         </Link>

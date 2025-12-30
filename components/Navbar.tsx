@@ -42,24 +42,25 @@ export default function Navbar() {
                 {
                     title: 'Residential Properties',
                     links: [
-                        { href: '/real-estate/residential', label: 'Residential' },
-                        { href: '/real-estate/multifamily', label: 'Multifamily' },
-                        { href: '/real-estate/commercial', label: 'Commercial' },
+                        { href: '/real-estate/agent-commission', label: 'Agent Commission 100%' },
+                        { href: '/real-estate/why-onedrive', label: 'Why OneDrive Realty?' },
+                        { href: '/real-estate/halal-financing', label: 'Halal Financing' },
                     ],
                 },
                 {
                     title: 'Land & Agriculture',
                     links: [
-                        { href: '/real-estate/vacant-land', label: 'Vacant Land' },
-                        { href: '/real-estate/agricultural-land', label: 'Agricultural Land' },
-                        { href: '/real-estate/dairy-farming', label: 'Dairy Farming' },
+                        { href: '/real-estate/build-dream-home', label: 'Build Your Dream Home' },
+                        { href: '/real-estate/list-property', label: 'List Your Property for Sale' },
+                        { href: '/real-estate/api-leads', label: 'API-LEADS-DFLX' },
                     ],
                 },
                 {
                     title: 'Investment',
                     links: [
-                        { href: '/real-estate/development', label: 'Development' },
-                        { href: '/real-estate/business', label: 'Business' },
+                        { href: '/real-estate/exchange-1031', label: 'Exchange 1031' },
+                        { href: '/real-estate/cap-ror-reo', label: 'CAP-ROR-REO' },
+                        { href: '/real-estate/blogs', label: 'R/E BLOGS' },
                     ],
                 },
             ],
