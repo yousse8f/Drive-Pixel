@@ -85,40 +85,38 @@ export default function ShopPageClient() {
   }, [products]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 via-white to-slate-50 text-slate-900">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#faeef2] via-white to-[#faeef2] text-slate-900">
       <Navbar />
 
       <main className="flex-1 relative overflow-hidden">
         {/* Decorative background elements */}
-        <div className="absolute top-0 left-0 w-full h-[420px] bg-gradient-to-b from-gray-50 via-white to-transparent pointer-events-none" />
-        <div className="absolute -top-10 right-0 w-[480px] h-[480px] bg-[#10b981]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-[420px] bg-gradient-to-b from-[#faeef2] via-white to-transparent pointer-events-none" />
+        <div className="absolute -top-10 right-0 w-[480px] h-[480px] bg-[#f3b0b0]/10 rounded-full blur-3xl pointer-events-none" />
 
         <section className="relative py-16 lg:py-24">
           <div className="container-custom relative z-10">
-            <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-10 items-center">
+            <div className="max-w-4xl mx-auto text-center">
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-white shadow-sm border border-[#10b981]/20 text-sm text-[#1a1f3a]">
-                  <ShoppingCart className="h-4 w-4 text-[#10b981]-500" />
-                  <span className="font-medium tracking-wide">Premium Digital Assets</span>
-                </div>
-
+                
                 <div className="space-y-4">
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-slate-900">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-[#1d1a3a]">
                     Shop the tools that power modern brands
                   </h1>
-                  <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
-                    Curated templates, services, and integrations built to launch faster. Seamless checkout and instant delivery backed by our team.
-                  </p>
+                  <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
+                    <p className="text-sm text-white font-medium">
+                      Curated templates, services, and integrations built to launch faster. Seamless checkout and instant delivery backed by our team.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex flex-wrap gap-4 pt-2">
+                <div className="flex flex-wrap gap-4 pt-2 justify-center">
                   <a href="#catalogue">
-                    <Button className="bg-[#10b981] hover:bg-[#059669] text-white px-7 py-5 rounded-none text-base font-semibold shadow-lg shadow-cta/20 transition-all hover:translate-y-[-2px] active:translate-y-0">
+                    <Button className="bg-[#c45c4b] hover:bg-[#b04a3a] text-white px-7 py-5 rounded-none text-base font-semibold shadow-lg shadow-[#c45c4b]/20 transition-all hover:translate-y-[-2px] active:translate-y-0">
                       Browse collection
                     </Button>
                   </a>
                   <Link href="/cart">
-                    <Button variant="outline" className="border-primary-200 bg-white text-slate-900 hover:bg-primary-50 px-7 py-5 rounded-none text-base font-semibold transition-all">
+                    <Button variant="outline" className="border-[#c3868b] bg-white text-[#1d1a3a] hover:bg-[#faeef2] hover:text-[#c45c4b] px-7 py-5 rounded-none text-base font-semibold transition-all">
                       View cart ({count})
                     </Button>
                   </Link>
@@ -131,45 +129,15 @@ export default function ShopPageClient() {
                     { label: 'Cart ready', value: 'Add in one click' },
                     { label: 'Responsive', value: 'Mobile-first' },
                   ].map((stat) => (
-                    <div key={stat.label} className="rounded-none bg-white border border-primary-100 px-4 py-3 shadow-sm">
-                      <div className="text-xs uppercase tracking-wide text-[#10b981] font-semibold">{stat.label}</div>
-                      <div className="text-sm font-semibold text-slate-900">{stat.value}</div>
+                    <div key={stat.label} className="rounded-none bg-white border border-[#c3868b] px-4 py-3 shadow-sm">
+                      <div className="text-xs uppercase tracking-wide text-[#c45c4b] font-semibold">{stat.label}</div>
+                      <div className="text-sm font-semibold text-[#1d1a3a]">{stat.value}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-100/60 via-cta-50/60 to-white rounded-none blur-2xl" />
-                <div className="relative p-6 rounded-none bg-white shadow-xl border border-primary-100 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-none bg-primary-100 flex items-center justify-center">
-                      <Filter className="h-6 w-6 text-[#10b981]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-slate-500">Effortless discovery</p>
-                      <h3 className="text-lg font-semibold text-slate-900">Filters, search, and categories</h3>
-                    </div>
-                  </div>
-                  <p className="text-sm text-slate-600">
-                    Refine by category, search by keywords, and sort by price or availability. The catalogue is built to feel like the rest of the site—clean, bright, and responsive.
-                  </p>
-                  <div className="flex gap-2 flex-wrap">
-                    <span className="px-3 py-1 rounded-none bg-primary-50 text-[#1a1f3a] text-xs font-semibold border border-primary-100">Services</span>
-                    <span className="px-3 py-1 rounded-none bg-primary-50 text-[#1a1f3a] text-xs font-semibold border border-primary-100">Design</span>
-                    <span className="px-3 py-1 rounded-none bg-primary-50 text-[#1a1f3a] text-xs font-semibold border border-primary-100">Software</span>
-                    <span className="px-3 py-1 rounded-none bg-primary-50 text-[#1a1f3a] text-xs font-semibold border border-primary-100">Marketing</span>
-                  </div>
-                  <div className="flex items-center justify-between border border-slate-100 bg-slate-50 px-4 py-3">
-                    <div>
-                      <p className="text-xs uppercase tracking-wide text-slate-500 font-semibold">Cart overview</p>
-                      <p className="text-sm font-semibold text-slate-900">Items in cart: {count}</p>
-                    </div>
-                    <ShoppingCart className="h-6 w-6 text-[#10b981]-500" />
-                  </div>
-                </div>
-              </div>
-            </div>
+                          </div>
           </div>
         </section>
 
@@ -177,13 +145,13 @@ export default function ShopPageClient() {
           <div className="container-custom">
 
             {/* Filters Bar */}
-            <div className="sticky top-4 z-40 bg-white/95 backdrop-blur-xl border border-slate-200 p-4 mb-10 shadow-lg shadow-slate-200/50 flex flex-col lg:flex-row gap-4 justify-between items-center transition-all rounded-none">
+            <div className="sticky top-4 z-40 bg-white/95 backdrop-blur-xl border border-[#c3868b] p-4 mb-10 shadow-lg shadow-[#c3868b]/50 flex flex-col lg:flex-row gap-4 justify-between items-center transition-all rounded-none">
               <div className="flex items-center gap-2 w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 no-scrollbar">
                 <button
                   onClick={() => setCategoryFilter('all')}
                   className={`px-4 py-2 rounded-none text-sm font-semibold transition-all whitespace-nowrap ${categoryFilter === 'all'
-                    ? 'bg-cta text-white shadow-lg shadow-cta/20'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    ? 'bg-[#c45c4b] text-white shadow-lg shadow-[#c45c4b]/20'
+                    : 'bg-[#faeef2] text-[#1d1a3a] hover:bg-[#ffe1e1]'
                     }`}
                 >
                   All products
@@ -193,8 +161,8 @@ export default function ShopPageClient() {
                     key={c}
                     onClick={() => setCategoryFilter(c)}
                     className={`px-4 py-2 rounded-none text-sm font-semibold transition-all whitespace-nowrap capitalize ${categoryFilter === c
-                      ? 'bg-cta text-white shadow-lg shadow-cta/20'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      ? 'bg-[#c45c4b] text-white shadow-lg shadow-[#c45c4b]/20'
+                      : 'bg-[#faeef2] text-[#1d1a3a] hover:bg-[#ffe1e1]'
                       }`}
                   >
                     {c}
@@ -204,20 +172,20 @@ export default function ShopPageClient() {
 
               <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
                 <div className="w-full sm:w-72 relative group">
-                  <Search className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-[#10b981]-500 transition-colors" />
+                  <Search className="h-4 w-4 text-[#4f2c33] absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-[#c45c4b] transition-colors" />
                   <input
                     type="text"
                     placeholder="Search products..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full bg-white border border-slate-200 py-2.5 pl-10 pr-4 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#10b981]-500 focus:ring-2 focus:ring-cta-100 transition-all rounded-none"
+                    className="w-full bg-white border border-[#c3868b] py-2.5 pl-10 pr-4 text-sm text-[#1d1a3a] placeholder:text-[#4f2c33] focus:outline-none focus:border-[#c45c4b] focus:ring-2 focus:ring-[#c45c4b]/10 transition-all rounded-none"
                   />
                 </div>
                 <div className="w-full sm:w-52">
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as any)}
-                    className="w-full bg-white border border-slate-200 py-2.5 px-4 text-sm text-slate-900 focus:outline-none focus:border-[#10b981]-500 focus:ring-2 focus:ring-cta-100 transition-all rounded-none"
+                    className="w-full bg-white border border-[#c3868b] py-2.5 px-4 text-sm text-[#1d1a3a] focus:outline-none focus:border-[#c45c4b] focus:ring-2 focus:ring-[#c45c4b]/10 transition-all rounded-none"
                   >
                     <option value="featured">Sort: Featured</option>
                     <option value="price-asc">Price: Low to High</option>
@@ -231,11 +199,11 @@ export default function ShopPageClient() {
             {statusMessage && (
               <div
                 className={`mb-8 rounded-xl px-4 py-3 border flex items-center gap-3 ${statusMessage.type === 'success'
-                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                  : 'bg-red-50 text-red-700 border-red-200'
+                  ? 'bg-[#faeef2] text-[#1d1a3a] border-[#c3868b]'
+                  : 'bg-[#ffe1e1] text-[#4f2c33] border-[#d37377]'
                   }`}
               >
-                <div className={`h-2 w-2 rounded-full ${statusMessage.type === 'success' ? 'bg-emerald-500' : 'bg-red-500'}`} />
+                <div className={`h-2 w-2 rounded-full ${statusMessage.type === 'success' ? 'bg-[#c45c4b]' : 'bg-[#d37377]'}`} />
                 {statusMessage.text}
               </div>
             )}
@@ -243,25 +211,25 @@ export default function ShopPageClient() {
             {productsLoading ? (
               <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {[1, 2, 3, 4, 5, 6].map(i => (
-                  <div key={i} className="h-96 rounded-none bg-slate-100 animate-pulse border border-slate-200" />
+                  <div key={i} className="h-96 rounded-none bg-[#faeef2] animate-pulse border border-[#c3868b]" />
                 ))}
               </div>
             ) : filteredProducts.length === 0 ? (
               <div className="text-center py-20">
-                <div className="bg-slate-100 h-20 w-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Search className="h-8 w-8 text-[#10b981]" />
+                <div className="bg-[#faeef2] h-20 w-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Search className="h-8 w-8 text-[#c45c4b]" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">No products found</h3>
-                <p className="text-slate-500">Try adjusting your search or filters</p>
+                <h3 className="text-xl font-semibold text-[#1d1a3a] mb-2">No products found</h3>
+                <p className="text-[#4f2c33]">Try adjusting your search or filters</p>
               </div>
             ) : (
               <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredProducts.map((product) => (
                   <div
                     key={product.id}
-                    className="group relative bg-white rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full shadow-[0_8px_30px_-12px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.4)] hover:-translate-y-1"
+                    className="group relative bg-white rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full shadow-[0_8px_30px_-12px_rgba(195,134,139,0.3)] hover:shadow-[0_20px_50px_-20px_rgba(195,134,139,0.4)] hover:-translate-y-1"
                   >
-                    <div className="relative w-full h-56 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-50">
+                    <div className="relative w-full h-56 overflow-hidden bg-gradient-to-br from-[#faeef2] to-[#ffe1e1]">
                       {product.imageUrl ? (
                         <Image
                           src={product.imageUrl}
@@ -270,7 +238,7 @@ export default function ShopPageClient() {
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-gradient-to-br from-gray-100 to-gray-50">
+                        <div className="absolute inset-0 flex items-center justify-center text-[#4f2c33] bg-gradient-to-br from-[#faeef2] to-[#ffe1e1]">
                           <span className="text-sm font-semibold">No Preview</span>
                         </div>
                       )}
@@ -285,14 +253,14 @@ export default function ShopPageClient() {
 
                     <div className="p-5 flex flex-col flex-1">
                       <div className="mb-4 flex-1">
-                        <h3 className="text-lg font-bold text-[#1a1f3a] mb-2 line-clamp-2 leading-tight group-hover:text-primary-600 transition-colors">
+                        <h3 className="text-lg font-bold text-[#1d1a3a] mb-2 line-clamp-2 leading-tight group-hover:text-[#c45c4b] transition-colors">
                           {product.name}
                         </h3>
-                        <p className="text-gray-600 text-sm line-clamp-2 leading-relaxed mb-3">
+                        <p className="text-[#4f2c33] text-sm line-clamp-2 leading-relaxed mb-3">
                           {product.description}
                         </p>
                         <div className="flex items-baseline gap-1">
-                          <span className="text-3xl font-extrabold text-[#10b981]">
+                          <span className="text-3xl font-extrabold text-[#c45c4b]">
                             ${product.price.toFixed(2)}
                           </span>
                         </div>
@@ -300,16 +268,16 @@ export default function ShopPageClient() {
 
                       <div className="space-y-3">
                         <div className="flex items-center justify-between text-xs font-medium">
-                          <span className="flex items-center gap-1.5 text-gray-600">
-                            <div className={`h-2 w-2 rounded-full ${product.availability && product.availability > 0 ? 'bg-[#10b981]' : 'bg-amber-500'}`} />
+                          <span className="flex items-center gap-1.5 text-[#4f2c33]">
+                            <div className={`h-2 w-2 rounded-full ${product.availability && product.availability > 0 ? 'bg-[#c45c4b]' : 'bg-[#d37377]'}`} />
                             {product.availability && product.availability > 0 ? 'In stock' : 'Made to order'}
                           </span>
-                          <span className="text-[#10b981] font-semibold">Instant delivery</span>
+                          <span className="text-[#c45c4b] font-semibold">Instant delivery</span>
                         </div>
 
                         <AddToCartButton
                           productId={product.id}
-                          className="w-full bg-[#10b981] text-white hover:bg-[#059669] border-0 py-3 text-sm font-bold transition-all duration-300 rounded-lg shadow-md hover:shadow-lg"
+                          className="w-full bg-[#c45c4b] text-white hover:bg-[#b04a3a] border-0 py-3 text-sm font-bold transition-all duration-300 rounded-lg shadow-md hover:shadow-lg"
                         />
                       </div>
                     </div>

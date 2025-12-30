@@ -228,15 +228,15 @@ export default function ContactPage() {
       <section className="relative py-20 text-white">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
-          style={{
-            backgroundImage: 'url(/images/Services.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+        style={{
+          backgroundImage: 'url(/images/Services.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}
         >
           <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
-        </div>
+            </div>
         <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
@@ -246,74 +246,106 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-white">
-        <div className="container-custom">
+      <section id="contact-form" className="py-10 bg-[#faeef2]">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="space-y-4 mb-6">
+            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+              GET IN TOUCH
+            </div>
+            <h2 className="text-center text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+                Send us a Message
+              </h2>
+            <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-1 text-center px-2">
+              <p className="text-sm text-white font-medium">
+                Fill out the form below and we'll get back to you as soon as possible.
+              </p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             {/* Contact Info Stack */}
             <div className="space-y-6">
-              <div className="flex flex-col items-center bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
-                <MapPin className="h-12 w-12 text-[#10b981] mb-4" />
-                <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Address</h3>
-                <p className="text-gray-700">WA</p>
+              <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
+                <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                  <MapPin className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-[#33202b]">Address</h3>
+                <p className="text-sm text-[#4f2c33] leading-relaxed">WA</p>
               </div>
-              <div className="flex flex-col items-center bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
-                <Mail className="h-12 w-12 text-[#10b981] mb-4" />
-                <h3 className="text-xl font-bold text-[#1a1f3a] mb-2">Email</h3>
-                <p className="text-gray-700 hover:text-[#10b981] transition-colors">Contact@drivepixel.com</p>
+              <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
+                <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                  <Mail className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-[#33202b]">Email</h3>
+                <p className="text-sm text-[#4f2c33] leading-relaxed hover:text-[#1f4f78] transition-colors cursor-pointer">Contact@drivepixel.com</p>
               </div>
             </div>
 
             {/* Contact Form Section */}
-            <div className="lg:col-span-2 bg-gray-50 p-8 rounded-lg shadow-lg">
-              <h2 className="text-3xl font-bold text-[#1a1f3a] mb-8 text-center">Send us a Message</h2>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Full Name *</label>
-                    <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20" />
+            <div className="lg:col-span-2">
+              <div className="rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-8 py-10 shadow-[0_12px_0_0_#d37377]">
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-[#33202b] mb-2">Full Name *</label>
+                      <input type="text" name="fullName" value={formState.fullName} onChange={handleInputChange} placeholder="Your Name" className="w-full px-4 py-2 bg-white border border-[#c3868b] text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#1f4f78] focus:ring-2 focus:ring-[#1f4f78]/20" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-[#33202b] mb-2">Email *</label>
+                      <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 bg-white border border-[#c3868b] text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#1f4f78] focus:ring-2 focus:ring-[#1f4f78]/20" />
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Email *</label>
-                    <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="your@email.com" className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20" />
+                    <label className="block text-sm font-semibold text-[#33202b] mb-2">Service *</label>
+                    <select 
+                      name="service" 
+                      value={formState.service} 
+                      onChange={(e) => { 
+                        handleInputChange(e); 
+                        handleServiceChange(e.target.value); 
+                      }} 
+                      className="w-full px-4 py-3 bg-white border border-[#c3868b] text-gray-900 rounded-lg focus:outline-none focus:border-[#1f4f78] focus:ring-2 focus:ring-[#1f4f78]/20"
+                    >
+                      <option value="">Select a service</option>
+                      {services.map(service => (
+                        <option key={service.id} value={service.id}>
+                          {service.title}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Service *</label>
-                  <select 
-                    name="service" 
-                    value={formState.service} 
-                    onChange={(e) => { 
-                      handleInputChange(e); 
-                      handleServiceChange(e.target.value); 
-                    }} 
-                    className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20"
-                  >
-                    <option value="">Select a service</option>
-                    {services.map(service => (
-                      <option key={service.id} value={service.id}>
-                        {service.title}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Message *</label>
-                  <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20"></textarea>
-                </div>
-                <Button size="lg" className="w-full bg-[#10b981] hover:bg-[#059669] text-white">
-                  Send Message
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </form>
+                  <div>
+                    <label className="block text-sm font-semibold text-[#33202b] mb-2">Message *</label>
+                    <textarea name="message" value={formState.message} onChange={handleInputChange} rows={6} placeholder="Tell us about your project..." className="w-full px-4 py-2 bg-white border border-[#c3868b] text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#1f4f78] focus:ring-2 focus:ring-[#1f4f78]/20"></textarea>
+                  </div>
+                  <Button size="lg" className="w-full bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Send Message
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Map Embed Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container-custom">
-          <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
+      <section className="py-10 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="space-y-4 mb-6 text-center">
+            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16]">
+              FIND US
+            </div>
+            <h2 className="text-[clamp(1.9rem,4vw,2.9rem)] font-black text-[#1d1a3a]">
+              Visit Our Office
+            </h2>
+            <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-1 text-center px-4">
+              <p className="text-sm text-white font-medium">
+                Located in Washington, we're ready to help you transform your ideas into reality.
+              </p>
+            </div>
+          </div>
+          <div className="bg-white rounded-3xl shadow-2xl border border-white/10 overflow-hidden">
             {mapError ? (
               <div className="p-8 text-center text-gray-600">
                 <p className="text-xl font-semibold mb-2">Map temporarily unavailable</p>

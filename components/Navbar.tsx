@@ -111,15 +111,6 @@ export default function Navbar() {
                     links: [
                         { href: '/services/it-consulting', label: 'IT Consulting' },
                         { href: '/services/cybersecurity', label: 'Cybersecurity' },
-                        { href: '/services/real-estate', label: 'Real Estate Tech' },
-                    ],
-                },
-                {
-                    title: 'Logistics & Ops',
-                    links: [
-                        { href: '/logistics', label: 'Freight Logistics' },
-                        { href: '/logistics#supply-chain', label: 'Supply Chain' },
-                        { href: '/logistics#transportation', label: 'Transportation' },
                     ],
                 },
             ],

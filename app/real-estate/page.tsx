@@ -82,11 +82,9 @@ export default function RealEstatePage() {
         </div>
         <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Real Estate Services</h1>
-          <div className="inline-block mx-auto rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_4px_0_rgba(255,255,255,0.35)] py-1 px-1">
-            <p className="text-sm md:text-base text-white font-medium whitespace-nowrap">
-              Comprehensive real estate solutions across all property types
-            </p>
-          </div>
+          <p className="text-sm md:text-base text-white font-medium whitespace-nowrap">
+                Comprehensive real estate solutions across all property types
+              </p>
         </div>
       </section>
 
