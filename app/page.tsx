@@ -212,7 +212,7 @@ export default function HomePage() {
                         <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
                             KEY SERVICES OVERVIEW
                         </div>
-                        <div className="w-full rounded-none bg-[#c8c1f3] border border-[#8a79c7] shadow-[0_6px_0_rgba(122,105,199,0.28)] py-5 text-center">
+                        <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_6px_0_rgba(88,70,150,0.35)] py-5 text-center">
                             <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
                                 We Build Future-Ready Digital Solutions
                             </h2>
@@ -224,21 +224,43 @@ export default function HomePage() {
                         {loading ? (
                             <div className="col-span-4 text-center py-8 text-[#53223c] font-semibold">Loading services...</div>
                         ) : services.length > 0 ? (
-                            services.map((service) => (
-                                <div
-                                    key={service.id}
-                                    className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform"
-                                >
-                                    <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
-                                        {service.icon}
+                            services.map((service) => {
+                                const iconUrl =
+                                    service.iconUrl ||
+                                    service.icon_url ||
+                                    (typeof service.icon === 'string' && service.icon.startsWith('http') ? service.icon : null);
+                                const iconLabel = !iconUrl && typeof service.icon === 'string' ? service.icon : null;
+                                return (
+                                    <div
+                                        key={service.id}
+                                        className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform"
+                                    >
+                                        <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                                            {iconUrl ? (
+                                                <Image
+                                                    src={iconUrl}
+                                                    alt={`${service.title} icon`}
+                                                    width={48}
+                                                    height={48}
+                                                    unoptimized
+                                                    className="h-12 w-12 object-contain"
+                                                />
+                                            ) : iconLabel ? (
+                                                <span className="text-3xl leading-none">{iconLabel}</span>
+                                            ) : (
+                                                <span className="text-xl font-semibold tracking-wider">DP</span>
+                                            )}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-[#33202b]">{service.title}</h3>
+                                        <p className="text-sm text-[#4f2c33] leading-relaxed">{service.description}</p>
+                                        
+                                        <button className="mt-4 w-full rounded-none bg-[#2c6ea3] text-white font-semibold py-2.5 border border-white/40 shadow-[0_6px_0_#1a3e60] flex items-center justify-center gap-2 text-sm tracking-wide uppercase">
+                                            <span>Learn more</span>
+                                            <span aria-hidden>→</span>
+                                        </button>
                                     </div>
-                                    <h3 className="text-xl font-bold text-[#33202b]">{service.title}</h3>
-                                    <p className="text-sm text-[#4f2c33] leading-relaxed">{service.description}</p>
-                                    <button className="mt-2 w-full rounded-sm bg-[#3ab0d8] text-white font-semibold py-2 border border-[#1f6c8a] shadow-[0_6px_0_#1a5870]">
-                                        Learn more →
-                                    </button>
-                                </div>
-                            ))
+                                );
+                            })
                         ) : (
                             <div className="col-span-4 text-center py-8 text-[#53223c] font-semibold">No services available</div>
                         )}
