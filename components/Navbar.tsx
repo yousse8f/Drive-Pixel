@@ -36,29 +36,30 @@ export default function Navbar() {
 
     const navLinks: NavLink[] = [
         {
-            href: '/services/real-estate',
+            href: '/real-estate',
             label: 'Real Estate',
             megaSections: [
                 {
-                    title: 'Operations',
+                    title: 'Residential Properties',
                     links: [
-                        { href: '/services/real-estate', label: 'Real Estate IT Solutions' },
-                        { href: '#', label: 'Property Operations' },
-                        { href: '#', label: 'Investor Portals' },
+                        { href: '/real-estate/residential', label: 'Residential' },
+                        { href: '/real-estate/multifamily', label: 'Multifamily' },
+                        { href: '/real-estate/commercial', label: 'Commercial' },
                     ],
                 },
                 {
-                    title: 'Growth & Leads',
+                    title: 'Land & Agriculture',
                     links: [
-                        { href: '#', label: 'CRM & Lead Systems' },
-                        { href: '#', label: 'Marketing Automation' },
+                        { href: '/real-estate/vacant-land', label: 'Vacant Land' },
+                        { href: '/real-estate/agricultural-land', label: 'Agricultural Land' },
+                        { href: '/real-estate/dairy-farming', label: 'Dairy Farming' },
                     ],
                 },
                 {
-                    title: 'Intelligence',
+                    title: 'Investment',
                     links: [
-                        { href: '#', label: 'Market Analytics' },
-                        { href: '#', label: 'Monthly Market Snapshot' },
+                        { href: '/real-estate/development', label: 'Development' },
+                        { href: '/real-estate/business', label: 'Business' },
                     ],
                 },
             ],
@@ -154,17 +155,16 @@ export default function Navbar() {
         },
         { href: '/blog', label: 'Blog' },
         { href: '/shop', label: 'Shop' },
-        { href: '/contact', label: 'Contact' },
     ];
 
     const navBgClass = 'bg-[#050b1d]/95 backdrop-blur-xl';
     const navBorderClass = 'border-white/5';
     const linkBaseClass =
-        'px-3 py-2 rounded-lg text-base font-medium text-white hover:bg-white/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400';
+        'text-sm font-medium text-white/90 hover:text-white transition-colors';
     const dropdownItemClass =
-        'block px-4 py-2.5 rounded-md text-base text-white hover:bg-white/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400';
+        'block px-4 py-2.5 rounded-md text-sm text-white hover:bg-white/5 transition-colors';
     const megaCardClass =
-        'group block rounded-xl border border-white/5 bg-white/[0.02] px-5 py-3.5 text-base text-white shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)] hover:bg-white/[0.06] hover:border-emerald-400/60 hover:shadow-[0_20px_45px_-22px_rgba(16,185,129,0.45)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400';
+        'group block rounded-lg border border-white/5 bg-white/[0.02] px-4 py-3 text-sm text-white hover:bg-white/[0.06] hover:border-white/20 transition-all duration-200';
 
     const handleMouseEnter = (label: string) => {
         if (closeTimeoutRef.current) {
@@ -192,47 +192,27 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className={`${navBgClass} border-b ${navBorderClass} sticky top-0 z-50 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.6)] px-4 sm:px-6 lg:px-8`}>
-            <div className="hidden md:flex items-center justify-between py-2 text-xs text-white border-b border-white/5">
-                <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-emerald-400" />
-                    <Link
-                        href="mailto:Contact@drivepixel.com"
-                        className="hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
-                    >
-                        Contact@drivepixel.com
-                    </Link>
-                </div>
-                <div className="flex items-center gap-3 text-white">
-                    <span className="hidden lg:inline">Enterprise technology for operations & growth</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80 shadow-[0_0_0_4px_rgba(16,185,129,0.12)]" />
-                    <Link
-                        href="/contact"
-                        className="hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
-                    >
-                        Support
-                    </Link>
-                </div>
+        <nav className="bg-[#08122b] sticky top-0 z-50">
+            {/* Top Bar */}
+            <div className="hidden md:flex items-center justify-between py-1.5 px-6 lg:px-12 text-xs text-white/80">
+                <Link
+                    href="mailto:Contact@drivepixel.com"
+                    className="hover:text-white transition-colors"
+                >
+                    Contact@drivepixel.com
+                </Link>
+                <span className="text-white/70">Enterprise technology for operations & growth</span>
             </div>
 
-            <div className="w-full">
-                <div className="flex items-center h-20">
-                    {/* Logo */}
-                    <div className="flex-shrink-0">
-                        <Link href="/" className="flex items-center gap-3">
-                            <Image
-                                src="/images/logo-eecf49f1.png"
-                                alt="DrivePixel Logo"
-                                width={140}
-                                height={50}
-                                className="h-10 w-auto"
-                            />
-                            <span className="text-white text-xl font-bold">DrivePixel</span>
-                        </Link>
-                    </div>
+            {/* Main Navigation */}
+            <div className="flex items-center justify-between h-14 px-6 lg:px-12">
+                {/* Logo - Text Only */}
+                <Link href="/" className="flex-shrink-0">
+                    <span className="text-white text-xl font-bold">DrivePixel</span>
+                </Link>
 
-                    {/* Desktop Navigation - Right Aligned */}
-                    <div className="hidden md:flex items-center justify-end flex-1 gap-1 pr-2">
+                {/* Desktop Navigation - Center */}
+                <div className="hidden md:flex items-center gap-6">
                         {navLinks.map((link) => {
                             const hasMega = link.megaSections && link.megaSections.length > 0;
                             const hasDropdown = link.dropdown && link.dropdown.length > 0;
@@ -253,7 +233,6 @@ export default function Navbar() {
                                             <ChevronDown className="h-4 w-4 text-white/60 transition-transform duration-150 group-hover:-translate-y-[1px]" />
                                         )}
                                     </Link>
-                                    <span className="pointer-events-none absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-emerald-400/0 group-hover:bg-emerald-400/70 transition-colors duration-200" />
 
                                     {hasMega && openDropdown === link.label && (
                                         <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-screen max-w-4xl bg-[#070f25]/95 border border-white/8 rounded-xl shadow-[0_18px_40px_-18px_rgba(0,0,0,0.65)] z-50 opacity-100 translate-y-0 transition duration-200 ease-out backdrop-blur">
@@ -299,39 +278,38 @@ export default function Navbar() {
                                 </div>
                             );
                         })}
-                    </div>
+                </div>
 
-                    {/* Right-Side Actions */}
-                    <div className="flex items-center gap-4 pl-4">
-                        {/* Cart and Contact Us - Desktop */}
-                        <div className="hidden md:flex items-center gap-4">
-                            <CartIcon />
-                            <Link href="mailto:Contact@drivepixel.com" className="whitespace-nowrap">
-                                <Button className="bg-emerald-500/90 hover:bg-emerald-400 text-[#041028] font-semibold px-4 py-2 rounded-full shadow-sm transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300">
-                                    <Mail className="h-4 w-4 mr-2" />
-                                    <span>Contact Us</span>
-                                </Button>
-                            </Link>
-                        </div>
-                        
-                        {/* Mobile Menu Toggle */}
-                        <div className="md:hidden flex items-center gap-3">
-                            <CartIcon />
-                            <button
-                                className="text-white p-2 rounded-md hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
-                                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                aria-label="Toggle menu"
-                            >
-                                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                            </button>
-                        </div>
+                {/* Right-Side Actions */}
+                <div className="flex items-center gap-4">
+                    {/* Contact Us Button - Desktop */}
+                    <div className="hidden md:block">
+                        <Link href="/contact">
+                            <Button className="bg-[#07090d] hover:bg-[#0f1218] text-white font-medium px-6 py-2 rounded-md transition-all duration-200">
+                                Contact Us
+                            </Button>
+                        </Link>
+                    </div>
+                    
+                    {/* Mobile Menu Toggle */}
+                    <div className="md:hidden flex items-center gap-3">
+                        <CartIcon />
+                        <button
+                            className="text-white p-2 rounded-md hover:bg-white/5"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                        </button>
                     </div>
                 </div>
             </div>
 
+            <div className="h-0.5 w-full bg-white" />
+
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <div className="md:hidden bg-[#060f23]/95 border-t border-white/10 shadow-lg backdrop-blur">
+                <div className="md:hidden bg-[#08122b] border-t border-white/10">
                     <div className="px-6 py-4 space-y-2">
                         {navLinks.map((link) => {
                             const hasMega = link.megaSections && link.megaSections.length > 0;
@@ -363,7 +341,7 @@ export default function Navbar() {
                                         <div className="pl-2 pb-3 space-y-3">
                                             {link.megaSections?.map((section) => (
                                                 <div key={section.title} className="space-y-1">
-                                                    <p className="text-[11px] font-semibold uppercase text-emerald-300">
+                                                    <p className="text-[11px] font-semibold uppercase text-white/60">
                                                         {section.title}
                                                     </p>
                                                     <div className="space-y-1">
@@ -401,10 +379,9 @@ export default function Navbar() {
                             );
                         })}
                         <div className="pt-3">
-                            <Link href="mailto:Contact@drivepixel.com">
-                                <Button className="w-full bg-emerald-500/90 hover:bg-emerald-400 text-[#041028] font-semibold flex items-center justify-center gap-2 px-4 py-2 rounded-full shadow-sm transition-all duration-200">
-                                    <Mail className="h-4 w-4" />
-                                    <span>Contact Us</span>
+                            <Link href="/contact">
+                                <Button className="w-full bg-[#07090d] hover:bg-[#0f1218] text-white font-medium px-4 py-2 rounded-md transition-all duration-200">
+                                    Contact Us
                                 </Button>
                             </Link>
                         </div>

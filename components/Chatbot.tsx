@@ -76,7 +76,7 @@ const initialBotMessages: ChatMessage[] = [
 ];
 
 const bubbleClasses =
-  'fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full bg-[#10b981] text-white shadow-lg hover:shadow-xl transition hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#10b981]/30 animate-bounce';
+  'fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full bg-[#c45c4b] text-white shadow-lg hover:shadow-xl transition hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#c45c4b]/30 animate-bounce';
 
 const containerClasses =
   'fixed bottom-20 right-4 sm:right-6 z-50 w-[360px] max-w-[95vw] max-h-[70vh] bg-white shadow-2xl rounded-2xl border border-gray-200 flex flex-col overflow-hidden';
