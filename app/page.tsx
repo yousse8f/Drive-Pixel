@@ -235,7 +235,7 @@ export default function HomePage() {
                                         key={service.id}
                                         className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform"
                                     >
-                                        <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                                        <div className="h-24 w-24 rounded-lg border border-white/60 bg-white/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] flex items-center justify-center p-4">
                                             {iconUrl ? (
                                                 <Image
                                                     src={iconUrl}
@@ -243,7 +243,7 @@ export default function HomePage() {
                                                     width={48}
                                                     height={48}
                                                     unoptimized
-                                                    className="h-12 w-12 object-contain"
+                                                    className="h-full w-full object-contain"
                                                 />
                                             ) : iconLabel ? (
                                                 <span className="text-3xl leading-none">{iconLabel}</span>
@@ -254,8 +254,8 @@ export default function HomePage() {
                                         <h3 className="text-xl font-bold text-[#33202b]">{service.title}</h3>
                                         <p className="text-sm text-[#4f2c33] leading-relaxed">{service.description}</p>
                                         
-                                        <button className="mt-4 w-full rounded-none bg-[#2c6ea3] text-white font-semibold py-2.5 border border-white/40 shadow-[0_6px_0_#1a3e60] flex items-center justify-center gap-2 text-sm tracking-wide uppercase">
-                                            <span>Learn more</span>
+                                        <button className="mt-6 self-stretch rounded-none bg-[#1f4f78] text-white font-semibold py-3 border border-[#112a45] shadow-[0_6px_0_#0e2e46] flex items-center justify-center gap-2 text-sm tracking-wide uppercase">
+                                            <span>Learn More</span>
                                             <span aria-hidden>→</span>
                                         </button>
                                     </div>

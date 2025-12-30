@@ -19,23 +19,7 @@ export default function EditProductPage() {
 
     const loadProduct = async (id: string) => {
         try {
-            // We use getPublicProduct because getProducts returns a list and we want single item
-            // But verify if admin endpoint exists or if we rely on public list for now
-            // Actually we just added getProduct (admin route) to backend, but apiClient might not have it exposed specifically
-            // Let's check apiClient again. It has getProducts (list). It does not have getProduct(id) for admin.
-            // But we can use public endpoint for retrieving data initially if it's active.
-            // Or better: update apiClient to include getProduct for admin or use generic request.
-
-            // Attempt to find from list first or fetch specific?
-            // Best practice: Fetch specific. I'll add getProduct to apiClient or use request directly.
-            // Since I can't edit apiClient easily without context (it's large), I'll try to fetch via generic request if possible, 
-            // or just assume public endpoint works if I didn't add auth to it? 
-            // Wait, public endpoint checks is_active=true. 
-            // But I added getProduct route to admin!
-            // So I should call client.request(`/admin/products/${id}`)
-
-            // @ts-ignore - Accessing private method or extending logic dynamically
-            const response = await apiClient.request(`/admin/products/${id}`);
+            const response = await apiClient.getProduct(id);
 
             if (response.success && response.data) {
                 setProduct(response.data);

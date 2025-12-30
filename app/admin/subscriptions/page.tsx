@@ -24,42 +24,9 @@ export default function SubscriptionsPage() {
   const [billingFilter, setBillingFilter] = useState<'all' | Subscription['billing']>('all');
 
   useEffect(() => {
-    // Placeholder load – swap with real admin subscription endpoint when available
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setSubscriptions([
-        {
-          id: 'sub_101',
-          userEmail: 'sarah@propertypros.com',
-          userName: 'Sarah Connor',
-          plan: 'IDX-DLFX',
-          status: 'active',
-          billing: 'monthly',
-          nextRenewal: '2026-02-01',
-        },
-        {
-          id: 'sub_102',
-          userEmail: 'lee@estateco.com',
-          userName: 'Lee Chen',
-          plan: 'Website + E-Mail',
-          status: 'active',
-          billing: 'annual',
-          nextRenewal: '2026-11-12',
-        },
-        {
-          id: 'sub_103',
-          userEmail: 'maria@urbanrealty.com',
-          userName: 'Maria Alvarez',
-          plan: '100% Sponsorship',
-          status: 'paused',
-          billing: 'monthly',
-          nextRenewal: '2026-01-05',
-        },
-      ]);
-      setLoading(false);
-    }, 350);
-
-    return () => clearTimeout(timer);
+    // No live subscription endpoint yet—show empty state instead of fake data
+    setSubscriptions([]);
+    setLoading(false);
   }, []);
 
   const filtered = useMemo(() => {
@@ -164,7 +131,24 @@ export default function SubscriptionsPage() {
               Loading subscriptions...
             </div>
           ) : filtered.length === 0 ? (
-            <div className="p-6 text-gray-600">No subscriptions match your filters.</div>
+            <div className="p-6 space-y-3 text-gray-700">
+              <p className="font-semibold text-lg text-gray-900">No subscriptions to display yet</p>
+              <p>
+                Subscription data is synced automatically once billing plans are connected to checkout. Configure your payment provider
+                or connect a CRM integration to start showing real subscriptions here.
+              </p>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Button asChild className="bg-emerald-500 text-white hover:bg-emerald-600">
+                  <a href="https://www.drivepixel.com/docs/billing" target="_blank" rel="noreferrer">
+                    View integration guide
+                  </a>
+                </Button>
+                <Button variant="outline" onClick={() => setLoading(true)} className="border-gray-300">
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Refresh
+                </Button>
+              </div>
+            </div>
           ) : (
             <div className="divide-y divide-gray-100">
               {filtered.map((sub) => (
