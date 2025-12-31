@@ -225,21 +225,23 @@ export default function Navbar() {
     return (
         <nav className="bg-[#08122b] sticky top-0 z-50">
             {/* Top Bar */}
-            <div className="hidden md:flex items-center justify-between py-1.5 px-6 lg:px-12 text-xs text-white/80">
-                <Link
-                    href="mailto:Contact@drivepixel.com"
-                    className="hover:text-white transition-colors"
-                >
-                    Contact@drivepixel.com
-                </Link>
-                <span className="text-white/70">Enterprise technology for operations & growth</span>
+            <div className="hidden md:flex items-center justify-center py-1.5 px-6 lg:px-12 text-xs text-white/80">
+                <span className="text-white/70">Global Technology for Operations & Growth</span>
             </div>
 
             {/* Main Navigation */}
             <div className="flex items-center justify-between h-14 px-6 lg:px-12">
-                {/* Logo - Text Only */}
-                <Link href="/" className="flex-shrink-0">
-                    <span className="text-white text-xl font-bold">DrivePixel</span>
+                {/* Logo */}
+                <Link href="/" className="flex-shrink-0 flex items-center gap-3">
+                    <Image 
+                        src="/images/logo-eecf49f1.png" 
+                        alt="DrivePixel Logo" 
+                        width={150} 
+                        height={40}
+                        className="h-10 w-auto"
+                        priority
+                    />
+                    <span className="text-white text-xl font-bold hidden sm:block">DrivePixel</span>
                 </Link>
 
                 {/* Desktop Navigation - Center */}
@@ -339,6 +341,11 @@ export default function Navbar() {
 
                 {/* Right-Side Actions */}
                 <div className="flex items-center gap-4">
+                    {/* Cart Icon - Desktop */}
+                    <div className="hidden md:block">
+                        <CartIcon />
+                    </div>
+                    
                     {/* Contact Us Button - Desktop */}
                     <div className="hidden md:block">
                         <Link href="/contact">
