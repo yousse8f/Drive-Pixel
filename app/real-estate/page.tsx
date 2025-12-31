@@ -10,31 +10,31 @@ export default function RealEstatePage() {
   const propertyTypes = [
     {
       icon: DollarSign,
-      title: 'Agent Commission 100%',
+      title: 'Agent 100% Commission',
       description: 'Keep 100% of your commission',
       href: '/real-estate/agent-commission'
     },
     {
       icon: HelpCircle,
-      title: 'Why OneDrive Realty?',
+      title: 'Why OneDrive Realty',
       description: 'Discover what makes us different',
       href: '/real-estate/why-onedrive'
     },
     {
       icon: Landmark,
-      title: 'Halal Financing',
+      title: 'Halal Funding',
       description: 'Sharia-compliant financing solutions',
       href: '/real-estate/halal-financing'
     },
     {
       icon: Hammer,
-      title: 'Build Your Dream Home',
+      title: 'BUILT 2 SUIT',
       description: 'Custom home building services',
       href: '/real-estate/build-dream-home'
     },
     {
       icon: FileText,
-      title: 'List Your Property for Sale',
+      title: 'List Your Property',
       description: 'Professional property listing services',
       href: '/real-estate/list-property'
     },
@@ -46,7 +46,7 @@ export default function RealEstatePage() {
     },
     {
       icon: BarChart3,
-      title: 'Exchange 1031',
+      title: '1031 Exchange',
       description: 'Tax-deferred property exchanges',
       href: '/real-estate/exchange-1031'
     },

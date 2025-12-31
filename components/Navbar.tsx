@@ -15,6 +15,7 @@ import CartIcon from './ui/CartIcon';
 interface DropdownItem {
     href: string;
     label: string;
+    dropdown?: DropdownItem[];
 }
 
 interface MegaSection {
@@ -32,7 +33,9 @@ interface NavLink {
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+    const [openNestedDropdown, setOpenNestedDropdown] = useState<string | null>(null);
     const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const nestedTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const navLinks: NavLink[] = [
         {
@@ -40,25 +43,40 @@ export default function Navbar() {
             label: 'Real Estate',
             megaSections: [
                 {
-                    title: 'Residential Properties',
+                    title: '',
                     links: [
-                        { href: '/real-estate/agent-commission', label: 'Agent Commission 100%' },
-                        { href: '/real-estate/why-onedrive', label: 'Why OneDrive Realty?' },
-                        { href: '/real-estate/halal-financing', label: 'Halal Financing' },
+                        { 
+                            href: '/real-estate/agent-commission', 
+                            label: 'Agent 100% Commission',
+                            dropdown: [
+                                { href: '/real-estate/full-sponsorship', label: 'FULL SPONSORSHIP' },
+                                { href: '/real-estate/referral-fees', label: 'REFERRALS FEES' },
+                                { href: '/real-estate/park-license', label: 'PARK YOUR LICENSE' },
+                                { href: '/real-estate/marketing-fees', label: 'MARKETING FEES' },
+                                { href: '/real-estate/ce-training', label: 'C/E TRAINING' },
+                                { href: '/real-estate/broker-mentors', label: 'BROKER MENTORS' },
+                                { href: '/real-estate/build-2-suit', label: 'BUILD 2 SUIT' },
+                                { href: '/real-estate/list-2-last-agents', label: 'LIST 2 LAST AGENTS' },
+                                { href: '/real-estate/branch-offices', label: 'BRANCH OFFICES' },
+                                { href: '/real-estate/own-website', label: 'OWN R/E WEBSITE' }
+                            ]
+                        },
+                        { href: '/real-estate/why-onedrive', label: 'Why OneDrive Realty' },
+                        { href: '/real-estate/halal-financing', label: 'Halal Funding' },
                     ],
                 },
                 {
-                    title: 'Land & Agriculture',
+                    title: '',
                     links: [
-                        { href: '/real-estate/build-dream-home', label: 'Build Your Dream Home' },
-                        { href: '/real-estate/list-property', label: 'List Your Property for Sale' },
+                        { href: '/real-estate/build-dream-home', label: 'BUILT 2 SUIT' },
+                        { href: '/real-estate/list-property', label: 'List Your Property' },
                         { href: '/real-estate/api-leads', label: 'API-LEADS-DFLX' },
                     ],
                 },
                 {
-                    title: 'Investment',
+                    title: '',
                     links: [
-                        { href: '/real-estate/exchange-1031', label: 'Exchange 1031' },
+                        { href: '/real-estate/exchange-1031', label: '1031 Exchange' },
                         { href: '/real-estate/cap-ror-reo', label: 'CAP-ROR-REO' },
                         { href: '/real-estate/blogs', label: 'R/E BLOGS' },
                     ],
@@ -166,19 +184,40 @@ export default function Navbar() {
         setOpenDropdown(label);
     };
 
+    const handleNestedMouseEnter = (label: string) => {
+        if (nestedTimeoutRef.current) {
+            clearTimeout(nestedTimeoutRef.current);
+            nestedTimeoutRef.current = null;
+        }
+        setOpenNestedDropdown(label);
+    };
+
     const handleMouseLeave = () => {
         if (closeTimeoutRef.current) {
             clearTimeout(closeTimeoutRef.current);
         }
         closeTimeoutRef.current = setTimeout(() => {
             setOpenDropdown(null);
-        }, 160);
+            setOpenNestedDropdown(null);
+        }, 500);
+    };
+
+    const handleNestedMouseLeave = () => {
+        if (nestedTimeoutRef.current) {
+            clearTimeout(nestedTimeoutRef.current);
+        }
+        nestedTimeoutRef.current = setTimeout(() => {
+            setOpenNestedDropdown(null);
+        }, 300);
     };
 
     useEffect(() => {
         return () => {
             if (closeTimeoutRef.current) {
                 clearTimeout(closeTimeoutRef.current);
+            }
+            if (nestedTimeoutRef.current) {
+                clearTimeout(nestedTimeoutRef.current);
             }
         };
     }, []);
@@ -231,20 +270,46 @@ export default function Navbar() {
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
                                                 {link.megaSections?.map((section) => (
                                                     <div key={section.title} className="space-y-3">
-                                                        <h3 className="text-xs font-semibold uppercase tracking-wide text-white">
-                                                            {section.title}
-                                                        </h3>
                                                         <div className="grid gap-2.5">
-                                                            {section.links.map((item) => (
-                                                                <Link key={item.label} href={item.href} className={megaCardClass}>
-                                                                    <span className="block font-medium text-white/90 group-hover:text-white">
-                                                                        {item.label}
-                                                                    </span>
-                                                                    <span className="block text-[12px] text-white/90 group-hover:text-white transition-colors">
-                                                                        Explore {item.label}
-                                                                    </span>
-                                                                </Link>
-                                                            ))}
+                                                            {section.links.map((item) => {
+                                                                    const hasNestedDropdown = item.dropdown && item.dropdown.length > 0;
+                                                                    return (
+                                                                        <div key={item.label} className="relative group">
+                                                                            <Link 
+                                                                                href={item.href} 
+                                                                                className={megaCardClass}
+                                                                                onMouseEnter={() => hasNestedDropdown && handleNestedMouseEnter(item.label)}
+                                                                            >
+                                                                                <span className="block font-medium text-white/90 group-hover:text-white">
+                                                                                    {item.label}
+                                                                                </span>
+                                                                                {hasNestedDropdown && (
+                                                                                    <ChevronDown className="h-3 w-3 text-white/60 inline-block ml-1" />
+                                                                                )}
+                                                                            </Link>
+                                                                            
+                                                                            {hasNestedDropdown && openNestedDropdown === item.label && (
+                                                                                <div 
+                                                                                    className="absolute left-full top-0 ml-2 w-64 bg-[#070f25]/95 border border-white/8 rounded-lg shadow-[0_18px_40px_-18px_rgba(0,0,0,0.65)] z-50 opacity-100 translate-y-0 transition duration-200 ease-out backdrop-blur"
+                                                                                    onMouseEnter={() => handleNestedMouseEnter(item.label)}
+                                                                                    onMouseLeave={handleNestedMouseLeave}
+                                                                                >
+                                                                                    <div className="p-4 space-y-1">
+                                                                                        {item.dropdown?.map((nestedItem) => (
+                                                                                            <Link
+                                                                                                key={nestedItem.label}
+                                                                                                href={nestedItem.href}
+                                                                                                className="block px-3 py-2 rounded-md text-sm text-white hover:bg-white/5 transition-colors"
+                                                                                            >
+                                                                                                {nestedItem.label}
+                                                                                            </Link>
+                                                                                        ))}
+                                                                                    </div>
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
+                                                                    );
+                                                                })}
                                                         </div>
                                                     </div>
                                                 ))}
@@ -333,20 +398,49 @@ export default function Navbar() {
                                         <div className="pl-2 pb-3 space-y-3">
                                             {link.megaSections?.map((section) => (
                                                 <div key={section.title} className="space-y-1">
-                                                    <p className="text-[11px] font-semibold uppercase text-white/60">
-                                                        {section.title}
-                                                    </p>
                                                     <div className="space-y-1">
-                                                        {section.links.map((item) => (
-                                                            <Link
-                                                                key={item.label}
-                                                                href={item.href}
-                                                                className="block py-1.5 text-white/80 hover:text-white text-sm"
-                                                                onClick={() => setMobileMenuOpen(false)}
-                                                            >
-                                                                {item.label}
-                                                            </Link>
-                                                        ))}
+                                                        {section.links.map((item) => {
+                                                                    const hasNestedDropdown = item.dropdown && item.dropdown.length > 0;
+                                                                    const isNestedOpen = openDropdown === item.label;
+                                                                    return (
+                                                                        <div key={item.label} className="space-y-1">
+                                                                            <Link
+                                                                                href={item.href}
+                                                                                className="block py-1.5 text-white/80 hover:text-white text-sm flex items-center justify-between"
+                                                                                onClick={(e) => {
+                                                                                    if (hasNestedDropdown) {
+                                                                                        e.preventDefault();
+                                                                                        setOpenDropdown(isNestedOpen ? null : item.label);
+                                                                                    } else {
+                                                                                        setMobileMenuOpen(false);
+                                                                                    }
+                                                                                }}
+                                                                            >
+                                                                                {item.label}
+                                                                                {hasNestedDropdown && (
+                                                                                    <ChevronDown
+                                                                                        className={`h-3 w-3 transition-transform ${isNestedOpen ? 'rotate-180' : ''}`}
+                                                                                    />
+                                                                                )}
+                                                                            </Link>
+                                                                            
+                                                                            {hasNestedDropdown && isNestedOpen && (
+                                                                                <div className="pl-4 space-y-1">
+                                                                                    {item.dropdown?.map((nestedItem) => (
+                                                                                        <Link
+                                                                                            key={nestedItem.label}
+                                                                                            href={nestedItem.href}
+                                                                                            className="block py-1 text-white/70 hover:text-white text-sm"
+                                                                                            onClick={() => setMobileMenuOpen(false)}
+                                                                                        >
+                                                                                            {nestedItem.label}
+                                                                                        </Link>
+                                                                                    ))}
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
+                                                                    );
+                                                                })}
                                                     </div>
                                                 </div>
                                             ))}
