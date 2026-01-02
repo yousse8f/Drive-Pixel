@@ -336,14 +336,6 @@ export default function ContactPage() {
             <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16]">
               FIND US
             </div>
-            <h2 className="text-[clamp(1.9rem,4vw,2.9rem)] font-black text-[#1d1a3a]">
-              Visit Our Office
-            </h2>
-            <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-1 text-center px-4">
-              <p className="text-sm text-white font-medium">
-                Located in Washington, we're ready to help you transform your ideas into reality.
-              </p>
-            </div>
           </div>
           <div className="bg-white rounded-3xl shadow-2xl border border-white/10 overflow-hidden">
             {mapError ? (

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Truck, Package, BarChart3, MapPin, Clock, Shield, Check } from 'lucide-react';
+import { ArrowRight, Truck, Package, BarChart3, MapPin, Clock, Shield, Check, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -21,7 +21,7 @@ export default function FreightLogisticsPage() {
 
   const services = [
     {
-      icon: <Truck className="h-12 w-12 text-[#10b981] mb-4" />,
+      icon: <Truck className="h-8 w-8 text-white" />,
       title: 'Fleet Management System',
       description: [
         'Real-time vehicle tracking and monitoring',
@@ -30,7 +30,7 @@ export default function FreightLogisticsPage() {
       ]
     },
     {
-      icon: <Package className="h-12 w-12 text-[#10b981] mb-4" />,
+      icon: <Package className="h-8 w-8 text-white" />,
       title: 'Warehouse Management',
       description: [
         'Inventory tracking and management',
@@ -39,7 +39,7 @@ export default function FreightLogisticsPage() {
       ]
     },
     {
-      icon: <MapPin className="h-12 w-12 text-[#10b981] mb-4" />,
+      icon: <MapPin className="h-8 w-8 text-white" />,
       title: 'Route Optimization',
       description: [
         'AI-powered route planning',
@@ -48,7 +48,7 @@ export default function FreightLogisticsPage() {
       ]
     },
     {
-      icon: <BarChart3 className="h-12 w-12 text-[#10b981] mb-4" />,
+      icon: <BarChart3 className="h-8 w-8 text-white" />,
       title: 'Supply Chain Analytics',
       description: [
         'End-to-end supply chain visibility',
@@ -57,7 +57,7 @@ export default function FreightLogisticsPage() {
       ]
     },
     {
-      icon: <Clock className="h-12 w-12 text-[#10b981] mb-4" />,
+      icon: <Clock className="h-8 w-8 text-white" />,
       title: 'Transportation Management',
       description: [
         'Load planning and optimization',
@@ -66,7 +66,7 @@ export default function FreightLogisticsPage() {
       ]
     },
     {
-      icon: <Shield className="h-12 w-12 text-[#10b981] mb-4" />,
+      icon: <Shield className="h-8 w-8 text-white" />,
       title: 'Compliance & Safety',
       description: [
         'Regulatory compliance monitoring',
@@ -148,20 +148,20 @@ export default function FreightLogisticsPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-32 text-white">
+      <section className="relative py-20 text-white">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{
-            backgroundImage: 'url(/images/Screenshot.png)',
+            backgroundImage: 'url(/images/Services.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <div className="absolute inset-0 bg-[#1a1f3a]/95"></div>
+          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
         </div>
         <div className="container-custom text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Freight & Logistics Solutions – Streamline Your Supply Chain</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">Freight & Logistics Solutions</h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
             Transform your logistics operations with our cutting-edge technology solutions. From fleet management to warehouse optimization, we help you deliver faster, smarter, and more efficiently.
           </p>
@@ -169,25 +169,45 @@ export default function FreightLogisticsPage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-white">
-        <div className="container-custom">
-          <h2 className="text-4xl font-bold text-center text-[#1a1f3a] mb-16">Our Freight & Logistics Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-10 bg-[#faeef2]">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="space-y-4 mb-6">
+            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+              OUR SERVICES
+            </div>
+            <h2 className="text-center text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+              Freight & Logistics Solutions
+            </h2>
+            <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-1 text-center px-2">
+              <p className="text-sm text-white font-medium">
+                Streamline your supply chain with our comprehensive logistics technology solutions.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="flex flex-col bg-gradient-to-br from-[#10b981]/10 to-gray-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#10b981]/20"
+                className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform relative"
               >
-                {service.icon}
-                <h3 className="text-2xl font-bold text-[#1a1f3a] mb-4">{service.title}</h3>
-                <ul className="space-y-3 flex-grow">
-                  {service.description.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-[#10b981] flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex flex-col items-center gap-4 flex-1">
+                  <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-[#33202b]">{service.title}</h3>
+                  <ul className="space-y-2 text-sm text-[#4f2c33] leading-relaxed">
+                    {service.description.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-[#17b58f] flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button className="mt-4 inline-flex items-center gap-2 rounded-none bg-[#1f4f78] text-white font-semibold py-2 px-6 border border-[#112a45] shadow-[0_6px_0_#0e2e46] text-xs tracking-[0.25em] uppercase">
+                      <span>Learn More</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
               </div>
             ))}
           </div>
@@ -195,101 +215,138 @@ export default function FreightLogisticsPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20 bg-white">
-        <div className="container-custom max-w-2xl">
-          <h2 className="text-4xl font-bold text-center text-[#1a1f3a] mb-4">Get Started Today</h2>
-          <p className="text-center text-gray-600 mb-12">Submit your inquiry and our team will contact you within 24 hours to discuss your freight and logistics needs.</p>
+      <section id="contact-form" className="py-10 bg-[#faeef2]">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="space-y-4 mb-6">
+            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+              GET IN TOUCH
+            </div>
+            <h2 className="text-center text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+              Get Started Today
+            </h2>
+            <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_4px_0_rgba(255,255,255,0.35)] py-1 text-center px-1">
+              <p className="text-sm text-white font-medium">
+                Submit your inquiry and our team will contact you within 24 hours to discuss your freight and logistics needs.
+              </p>
+            </div>
+          </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-8 rounded-xl">
-            {formError && (
-              <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                {formError}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            {/* Contact Info Stack */}
+            <div className="space-y-6">
+              <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
+                <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                  <Truck className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-[#33202b]">Logistics Solutions</h3>
+                <p className="text-sm text-[#4f2c33] leading-relaxed">Comprehensive freight and logistics management</p>
               </div>
-            )}
-
-            {formSuccess && (
-              <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                Thank you! Your inquiry has been submitted successfully. We'll contact you soon.
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Full Name *</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  placeholder="Your Name"
-                  className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Email *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
-                />
+              <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
+                <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                  <Mail className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-[#33202b]">Email</h3>
+                <p className="text-sm text-[#4f2c33] leading-relaxed hover:text-[#1f4f78] transition-colors cursor-pointer">logistics@drivepixel.com</p>
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Company</label>
-              <input
-                type="text"
-                name="company"
-                value={formData.company}
-                onChange={handleInputChange}
-                placeholder="Your Company Name"
-                className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all"
-              />
-            </div>
+            {/* Contact Form Section */}
+            <div className="lg:col-span-2">
+              <div className="rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-8 py-10 shadow-[0_12px_0_0_#d37377]">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {formError && (
+                    <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                      {formError}
+                    </div>
+                  )}
 
-            <div>
-              <label className="block text-sm font-semibold text-[#1a1f3a] mb-2">Message *</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={6}
-                placeholder="Tell us about your logistics needs and what solutions you're interested in..."
-                className="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#10b981] focus:ring-2 focus:ring-[#10b981]/20 transition-all resize-none"
-              />
-            </div>
+                  {formSuccess && (
+                    <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                      Thank you! Your inquiry has been submitted successfully. We'll contact you soon.
+                    </div>
+                  )}
 
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-cta hover:bg-cta-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? 'Submitting...' : 'Contact Us Today'}
-              {!isSubmitting && <ArrowRight className="h-5 w-5" />}
-            </Button>
-          </form>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-[#33202b] mb-2">Full Name *</label>
+                      <input
+                        type="text"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        placeholder="Your Name"
+                        className="w-full px-4 py-2 bg-white border border-[#c3868b] text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#1f4f78] focus:ring-2 focus:ring-[#1f4f78]/20"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-[#33202b] mb-2">Email *</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="your@email.com"
+                        className="w-full px-4 py-2 bg-white border border-[#c3868b] text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#1f4f78] focus:ring-2 focus:ring-[#1f4f78]/20"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-[#33202b] mb-2">Company</label>
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      placeholder="Your Company Name"
+                      className="w-full px-4 py-2 bg-white border border-[#c3868b] text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#1f4f78] focus:ring-2 focus:ring-[#1f4f78]/20"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-[#33202b] mb-2">Message *</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows={6}
+                      placeholder="Tell us about your logistics needs and what solutions you're interested in..."
+                      className="w-full px-4 py-2 bg-white border border-[#c3868b] text-gray-900 placeholder:text-gray-400 rounded-lg focus:outline-none focus:border-[#1f4f78] focus:ring-2 focus:ring-[#1f4f78]/20 resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Contact Us Today'}
+                    {!isSubmitting && <ArrowRight className="h-5 w-5" />}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#1d3b66] to-[#0f172a]" />
-          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, #ffffff33, transparent 45%)' }} />
-        </div>
-        <div className="container-custom text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Transform Your Logistics Operations?</h2>
-          <p className="text-lg text-gray-100 mb-8 max-w-2xl mx-auto">
-            Join hundreds of logistics companies who are already using our solutions to streamline operations and increase efficiency.
-          </p>
+      <section className="py-16 bg-[#080f24]">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="space-y-4 mb-12 text-center">
+            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#c76d6f] shadow-[inset_0_4px_0_rgba(255,255,255,0.4)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#2f0f16]">
+              READY TO TRANSFORM
+            </div>
+            <h2 className="text-[clamp(1.9rem,4vw,2.9rem)] font-black text-white">
+              Ready to Transform Your Logistics Operations?
+            </h2>
+            
+          </div>
           <div className="flex justify-center">
             <Link href="/contact">
-              <Button size="lg" className="bg-[#10b981] hover:bg-[#059669] text-white font-semibold flex items-center gap-2 px-10 py-4 shadow-xl shadow-[#10b981]/30">
-                Schedule a Demo
-                <ArrowRight className="h-5 w-5" />
+              <Button size="lg" className="w-full sm:w-auto bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Contact Us
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
           </div>

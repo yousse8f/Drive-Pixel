@@ -233,28 +233,30 @@ export default function HomePage() {
                                 return (
                                     <div
                                         key={service.id}
-                                        className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform"
+                                        className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform relative"
                                     >
-                                        <div className="h-24 w-24 rounded-lg border border-white/60 bg-white/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] flex items-center justify-center p-4">
-                                            {iconUrl ? (
-                                                <Image
-                                                    src={iconUrl}
-                                                    alt={`${service.title} icon`}
-                                                    width={48}
-                                                    height={48}
-                                                    unoptimized
-                                                    className="h-full w-full object-contain"
-                                                />
-                                            ) : iconLabel ? (
-                                                <span className="text-3xl leading-none">{iconLabel}</span>
-                                            ) : (
-                                                <span className="text-xl font-semibold tracking-wider">DP</span>
-                                            )}
+                                        <div className="flex flex-col items-center gap-4 flex-1">
+                                            <div className="h-24 w-24 rounded-lg border border-white/60 bg-white/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] flex items-center justify-center p-4">
+                                                {iconUrl ? (
+                                                    <Image
+                                                        src={iconUrl}
+                                                        alt={`${service.title} icon`}
+                                                        width={48}
+                                                        height={48}
+                                                        unoptimized
+                                                        className="h-full w-full object-contain"
+                                                    />
+                                                ) : iconLabel ? (
+                                                    <span className="text-3xl leading-none">{iconLabel}</span>
+                                                ) : (
+                                                    <span className="text-xl font-semibold tracking-wider">DP</span>
+                                                )}
+                                            </div>
+                                            <h3 className="text-xl font-bold text-[#33202b]">{service.title}</h3>
+                                            <p className="text-sm text-[#4f2c33] leading-relaxed">{service.description}</p>
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#33202b]">{service.title}</h3>
-                                        <p className="text-sm text-[#4f2c33] leading-relaxed">{service.description}</p>
                                         
-                                        <button className="mt-6 self-stretch rounded-none bg-[#1f4f78] text-white font-semibold py-3 border border-[#112a45] shadow-[0_6px_0_#0e2e46] flex items-center justify-center gap-2 text-sm tracking-wide uppercase">
+                                        <button className="w-full rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105 flex items-center justify-center gap-2">
                                             <span>Learn More</span>
                                             <span aria-hidden>→</span>
                                         </button>
@@ -374,7 +376,7 @@ export default function HomePage() {
                     {/* CTA Button */}
                     <div className="text-center">
                         <Link href="/real-estate">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[2px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
                                 Learn More About Real Estate Solutions
                             </button>
                         </Link>
@@ -423,13 +425,13 @@ export default function HomePage() {
                     {/* Service Links CTA */}
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link href="/services/mobile-app-development">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
                                 Learn More About Mobile App Development
                             </button>
                         </Link>
 
                         <Link href="/services/software-solutions">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
                                 Learn More About Software Solutions
                             </button>
                         </Link>
@@ -740,12 +742,12 @@ export default function HomePage() {
                     </div>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link href="/contact">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
                                 Get a Free Consultation
                             </button>
                         </Link>
                         <Link href="/contact">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold tracking-wide px-6 py-2 border-[3px] border-white shadow-[0_12px_25px_rgba(87,63,133,0.35)] hover:-translate-y-1 hover:shadow-[0_18px_28px_rgba(87,63,133,0.4)] transition-all duration-300 text-base">
+                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
                                 Request a Project Quote
                             </button>
                         </Link>
