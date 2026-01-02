@@ -54,17 +54,54 @@ export default function ChatbotAdminPage() {
   const loadSessions = async () => {
     setLoadingSessions(true);
     try {
-      const res = await apiClient.getChatSessions({
-        page,
-        limit,
-        email: emailFilter || undefined,
-        dateFrom: dateFrom || undefined,
-        dateTo: dateTo || undefined,
-      });
-      if (res.success && res.data) {
-        const data = res.data as { sessions?: Session[]; pagination?: { total?: number } };
-        setSessions(data.sessions || []);
-        setTotal(data.pagination?.total || 0);
+      const response = await fetch('/api/chat/message');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.data) {
+          // Transform the data to match expected format
+          const transformedSessions = data.data.map((session: any) => ({
+            id: session.sessionId,
+            name: session.name || null,
+            email: session.email || null,
+            ip_address: null,
+            initial_email_sent: false,
+            email_sent_status: null,
+            email_sent_at: null,
+            last_email_status: null,
+            last_email_at: null,
+            last_activity: session.lastMessageAt || session.startedAt,
+            created_at: session.startedAt,
+            last_message: session.messages && session.messages.length > 0 
+              ? session.messages[session.messages.length - 1].message 
+              : null,
+          }));
+          
+          // Apply filters
+          let filtered = transformedSessions;
+          if (emailFilter) {
+            filtered = filtered.filter((s: any) => 
+              s.email && s.email.toLowerCase().includes(emailFilter.toLowerCase())
+            );
+          }
+          if (dateFrom) {
+            filtered = filtered.filter((s: any) => 
+              new Date(s.created_at) >= new Date(dateFrom)
+            );
+          }
+          if (dateTo) {
+            filtered = filtered.filter((s: any) => 
+              new Date(s.created_at) <= new Date(dateTo)
+            );
+          }
+          
+          // Apply pagination
+          const start = (page - 1) * limit;
+          const end = start + limit;
+          const paginated = filtered.slice(start, end);
+          
+          setSessions(paginated);
+          setTotal(filtered.length);
+        }
       }
     } catch (err) {
       console.error('Failed to load sessions', err);
@@ -76,10 +113,22 @@ export default function ChatbotAdminPage() {
   const loadMessages = async (sessionId: string) => {
     setLoadingMessages(true);
     try {
-      const res = await apiClient.getChatMessages(sessionId);
-      if (res.success && res.data) {
-        const data = res.data as Message[];
-        setMessages(Array.isArray(data) ? data : []);
+      const response = await fetch(`/api/chat/message?sessionId=${sessionId}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.data && data.data.messages) {
+          // Transform messages to match expected format
+          const transformedMessages = data.data.messages.map((msg: any) => ({
+            id: msg.id,
+            sender: msg.sender,
+            message: msg.message,
+            page_url: data.data.pageUrl || null,
+            created_at: msg.timestamp,
+          }));
+          setMessages(transformedMessages);
+        } else {
+          setMessages([]);
+        }
       } else {
         setMessages([]);
       }

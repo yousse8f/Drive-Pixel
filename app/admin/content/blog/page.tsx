@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Plus, Trash2, Edit, Save, Loader2 } from 'lucide-react';
+import { Plus, Trash2, Edit, Save, Loader2, Mail } from 'lucide-react';
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -27,9 +27,13 @@ export default function BlogPage() {
   });
   const [saving, setSaving] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [subscribers, setSubscribers] = useState<any[]>([]);
+  const [loadingSubscribers, setLoadingSubscribers] = useState(false);
+  const [deletingSubscriberId, setDeletingSubscriberId] = useState<string | null>(null);
 
   useEffect(() => {
     loadPosts();
+    loadSubscribers();
   }, []);
 
   const loadPosts = async () => {
@@ -43,6 +47,40 @@ export default function BlogPage() {
       console.error('Failed to load blog posts:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadSubscribers = async () => {
+    setLoadingSubscribers(true);
+    try {
+      const response = await fetch('/api/newsletter');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.data) {
+          setSubscribers(data.data);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load subscribers:', error);
+    } finally {
+      setLoadingSubscribers(false);
+    }
+  };
+
+  const handleDeleteSubscriber = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this subscriber?')) return;
+    try {
+      setDeletingSubscriberId(id);
+      const response = await fetch(`/api/newsletter?id=${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        loadSubscribers();
+      }
+    } catch (error) {
+      console.error('Failed to delete subscriber:', error);
+    } finally {
+      setDeletingSubscriberId(null);
     }
   };
 
@@ -336,6 +374,90 @@ export default function BlogPage() {
               </TableBody>
             </Table>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Newsletter Subscribers Section */}
+      <Card className="border border-gray-200 bg-white shadow-sm">
+        <CardHeader className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-2">
+            <Mail className="h-5 w-5 text-emerald-600" />
+            <CardTitle className="text-xl font-semibold text-gray-900">Newsletter Subscribers</CardTitle>
+          </div>
+          <p className="text-sm text-gray-500">
+            {subscribers.length} {subscribers.length === 1 ? 'subscriber' : 'subscribers'}
+          </p>
+        </CardHeader>
+        <CardContent className="p-0">
+          {loadingSubscribers ? (
+            <div className="flex items-center justify-center py-16 text-gray-600">
+              <Loader2 className="mr-2 h-5 w-5 animate-spin text-emerald-500" />
+              Loading subscribers...
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50">
+                    <TableHead className="text-gray-600">Email</TableHead>
+                    <TableHead className="text-gray-600">Source</TableHead>
+                    <TableHead className="text-gray-600">Subscribed Date</TableHead>
+                    <TableHead className="text-gray-600">Status</TableHead>
+                    <TableHead className="text-gray-600">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {subscribers.length === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={5} className="py-10 text-center text-gray-500">
+                        No newsletter subscribers yet.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                  {subscribers.map((subscriber) => (
+                    <TableRow key={subscriber.id} className="border-b border-gray-100 hover:bg-gray-50/70">
+                      <TableCell className="font-semibold text-gray-900">
+                        <div className="flex items-center gap-2">
+                          <Mail className="h-4 w-4 text-gray-400" />
+                          {subscriber.email}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-700">
+                        {subscriber.source || 'blog-page'}
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-700">
+                        {new Date(subscriber.created_at).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </TableCell>
+                      <TableCell>
+                        <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold bg-emerald-50 text-emerald-700">
+                          Active
+                        </span>
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="border-red-200 text-red-600 hover:bg-red-50"
+                          onClick={() => handleDeleteSubscriber(subscriber.id)}
+                          disabled={deletingSubscriberId === subscriber.id}
+                        >
+                          {deletingSubscriberId === subscriber.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <Trash2 className="h-4 w-4" />
+                          )}
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

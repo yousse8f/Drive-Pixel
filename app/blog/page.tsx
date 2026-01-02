@@ -11,6 +11,10 @@ import { publicApiClient } from '@/lib/public-api-client';
 export default function BlogPage() {
     const [posts, setPosts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [email, setEmail] = useState('');
+    const [subscribing, setSubscribing] = useState(false);
+    const [subscribeMessage, setSubscribeMessage] = useState('');
+    const [subscribeError, setSubscribeError] = useState('');
 
     useEffect(() => {
         loadPosts();
@@ -26,6 +30,44 @@ export default function BlogPage() {
             console.error('Failed to load blog posts:', error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleSubscribe = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            setSubscribeError('Please enter a valid email address');
+            return;
+        }
+        
+        setSubscribing(true);
+        setSubscribeError('');
+        setSubscribeMessage('');
+        
+        try {
+            const response = await fetch('/api/newsletter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    source: 'blog-page'
+                }),
+            });
+            
+            if (response.ok) {
+                setSubscribeMessage('Thank you for subscribing! Check your email for confirmation.');
+                setEmail('');
+                setTimeout(() => setSubscribeMessage(''), 5000);
+            } else {
+                setSubscribeError('Failed to subscribe. Please try again.');
+            }
+        } catch (error) {
+            setSubscribeError('An error occurred. Please try again later.');
+        } finally {
+            setSubscribing(false);
         }
     };
 
@@ -61,7 +103,7 @@ export default function BlogPage() {
             <section className="py-10 bg-white">
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="flex flex-wrap gap-3 justify-center">
-                        {categories.map((category) => {
+                        {categories.map((category: string) => {
                             const isActive = category === 'All';
                             return (
                                 <button
@@ -143,16 +185,38 @@ export default function BlogPage() {
                             </p>
                         </div>
                     </div>
-                    <div className="max-w-md mx-auto flex gap-2">
-                        <input 
-                            type="email" 
-                            placeholder="your@email.com" 
-                            className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#c45c4b] font-medium border border-[#c3868b]"
-                        />
-                        <Button size="lg" className="bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-bold transition-all duration-300 hover:shadow-lg">
-                            Subscribe
-                        </Button>
-                    </div>
+                    <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
+                        {subscribeError && (
+                            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
+                                {subscribeError}
+                            </div>
+                        )}
+                        
+                        {subscribeMessage && (
+                            <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
+                                {subscribeMessage}
+                            </div>
+                        )}
+                        
+                        <div className="flex gap-2">
+                            <input 
+                                type="email" 
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="your@email.com" 
+                                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#c45c4b] font-medium border border-[#c3868b]"
+                                required
+                            />
+                            <Button 
+                                type="submit"
+                                disabled={subscribing}
+                                size="lg" 
+                                className="bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-bold transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {subscribing ? 'Subscribing...' : 'Subscribe'}
+                            </Button>
+                        </div>
+                    </form>
                 </div>
             </section>
 
