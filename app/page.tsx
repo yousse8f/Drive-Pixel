@@ -188,14 +188,14 @@ export default function HomePage() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center">
                             <Link href="/contact">
-                                <Button size="lg" className="w-full sm:w-auto bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <Button size="lg" className="w-full sm:w-auto bg-metallic-gold hover:bg-amber text-midnight-blue font-bold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl">
                                     Get a Free Consultation
                                 </Button>
                             </Link>
                             <Link href="/contact">
                                 <Button
                                     size="lg"
-                                    className="w-full sm:w-auto bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                    className="w-full sm:w-auto bg-metallic-gold hover:bg-amber text-midnight-blue font-bold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl"
                                 >
                                     Request a Project Quote
                                 </Button>
@@ -206,14 +206,14 @@ export default function HomePage() {
             </section>
 
             {/* Key Services Overview Section */}
-            <section className="py-16 bg-[#faeef2]">
+            <section className="py-20 md:py-24 bg-off-white">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="space-y-4 mb-12">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+                    <div className="space-y-6 mb-16">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
                             KEY SERVICES OVERVIEW
                         </div>
-                        <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_6px_0_rgba(88,70,150,0.35)] py-1 text-center">
-                            <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+                        <div className="w-full rounded-none bg-royal-purple border border-muted-indigo shadow-[0_6px_0_rgba(88,70,150,0.35)] py-3 text-center">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                                 We Build Future-Ready Digital Solutions
                             </h2>
                         </div>
@@ -233,10 +233,10 @@ export default function HomePage() {
                                 return (
                                     <div
                                         key={service.id}
-                                        className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform relative"
+                                        className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform relative"
                                     >
                                         <div className="flex flex-col items-center gap-4 flex-1">
-                                            <div className="h-24 w-24 rounded-lg border border-white/60 bg-white/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] flex items-center justify-center p-4">
+                                            <div className="h-24 w-24 rounded-lg border border-royal-blue/30 bg-light-beige shadow-[0_6px_20px_rgba(0,0,0,0.08)] flex items-center justify-center p-4">
                                                 {iconUrl ? (
                                                     <Image
                                                         src={iconUrl}
@@ -252,11 +252,11 @@ export default function HomePage() {
                                                     <span className="text-xl font-semibold tracking-wider">DP</span>
                                                 )}
                                             </div>
-                                            <h3 className="text-xl font-bold text-[#33202b]">{service.title}</h3>
-                                            <p className="text-sm text-[#4f2c33] leading-relaxed">{service.description}</p>
+                                            <h3 className="text-xl font-bold text-midnight-blue">{service.title}</h3>
+                                            <p className="text-sm text-muted-indigo leading-relaxed">{service.description}</p>
                                         </div>
                                         
-                                        <button className="w-full rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105 flex items-center justify-center gap-2">
+                                        <button className="w-full rounded-none bg-royal-blue hover:bg-royal-purple text-white font-bold tracking-wide px-2 py-1 border-[3px] border-light-beige transition-all duration-300 text-lg transform hover:scale-105 flex items-center justify-center gap-2 shadow-md">
                                             <span>Learn More</span>
                                             <span aria-hidden>→</span>
                                         </button>
@@ -271,13 +271,13 @@ export default function HomePage() {
             </section>
 
             {/* Solutions Overview Section - Advisory / Build / Operate */}
-            <section className="py-16 bg-[#080f24]">
+            <section className="py-20 md:py-24 bg-midnight-blue">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="space-y-4 mb-12 text-center">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#c76d6f] shadow-[inset_0_4px_0_rgba(255,255,255,0.4)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#2f0f16]">
+                    <div className="space-y-6 mb-16 text-center">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.4)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
                             OUR APPROACH
                         </div>
-                        <h2 className="text-[clamp(2.2rem,4vw,3rem)] font-black text-white">
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                             Advisory • Build • Operate
                         </h2>
                         <p className="text-lg text-white/85 max-w-3xl mx-auto">
@@ -304,14 +304,14 @@ export default function HomePage() {
                             return (
                                 <div
                                     key={item.title}
-                                    className="rounded-none border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c8] px-8 py-10 text-center shadow-[0_12px_0_0_#d37377] approach-card"
+                                    className="rounded-none border border-muted-indigo/30 bg-light-beige px-8 py-10 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] approach-card"
                                     style={{ animationDelay: `${idx * 0.6}s` }}
                                 >
-                                    <div className="mx-auto mb-6 h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                                    <div className="mx-auto mb-6 h-16 w-16 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                                         <Icon className="h-8 w-8" />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-[#1f1830] mb-4">{item.title}</h3>
-                                    <p className="text-[#241b2c] leading-relaxed text-sm">{item.description}</p>
+                                    <h3 className="text-2xl font-bold text-midnight-blue mb-4">{item.title}</h3>
+                                    <p className="text-muted-indigo leading-relaxed text-sm">{item.description}</p>
                                 </div>
                             );
                         })}
@@ -320,18 +320,18 @@ export default function HomePage() {
             </section>
 
             {/* Real Estate IT Solutions Section */}
-            <section className="py-16 bg-[#faeef2]">
+            <section className="py-20 md:py-24 bg-off-white">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="space-y-4 mb-12">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#3c1d26]">
+                    <div className="space-y-6 mb-16">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             SPECIALIZED SOLUTIONS
                         </div>
                         <div className="w-full py-5 text-center">
-                            <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight-blue tracking-tight">
                                 Real Estate IT Solutions – Streamline Your Property Business
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
+                        <div className="w-full rounded-none bg-royal-purple border-2 border-light-beige shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                             <p className="text-sm text-white font-medium">
                                 Specialized IT services designed for real estate agencies and property managers to manage listings, track leads, and grow their business efficiently.
                             </p>
@@ -340,43 +340,43 @@ export default function HomePage() {
 
                     {/* Features Cards Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
+                        <div className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
+                            <div className="h-20 w-20 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
                                 <DollarSign className="h-10 w-10" />
                             </div>
-                            <h3 className="text-xl font-bold text-[#33202b]">Agent Commission 100%</h3>
-                            <p className="text-sm text-[#4f2c33] leading-relaxed">Maximize your earnings with our 100% commission brokerage model.</p>
+                            <h3 className="text-xl font-bold text-midnight-blue">Agent Commission 100%</h3>
+                            <p className="text-sm text-muted-indigo leading-relaxed">Maximize your earnings with our 100% commission brokerage model.</p>
                         </div>
 
-                        <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
+                        <div className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
+                            <div className="h-20 w-20 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
                                 <HelpCircle className="h-10 w-10" />
                             </div>
-                            <h3 className="text-xl font-bold text-[#33202b]">Why OneDrive Realty?</h3>
-                            <p className="text-sm text-[#4f2c33] leading-relaxed">Discover our tech-enabled support system built to empower every agent.</p>
+                            <h3 className="text-xl font-bold text-midnight-blue">Why OneDrive Realty?</h3>
+                            <p className="text-sm text-muted-indigo leading-relaxed">Discover our tech-enabled support system built to empower every agent.</p>
                         </div>
 
-                        <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
+                        <div className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
+                            <div className="h-20 w-20 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
                                 <Landmark className="h-10 w-10" />
                             </div>
-                            <h3 className="text-xl font-bold text-[#33202b]">Halal Financing</h3>
-                            <p className="text-sm text-[#4f2c33] leading-relaxed">Connect with Sharia-compliant financing partners for ethical investments.</p>
+                            <h3 className="text-xl font-bold text-midnight-blue">Halal Financing</h3>
+                            <p className="text-sm text-muted-indigo leading-relaxed">Connect with Sharia-compliant financing partners for ethical investments.</p>
                         </div>
 
-                        <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
+                        <div className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
+                            <div className="h-20 w-20 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white text-3xl">
                                 <BarChart3 className="h-10 w-10" />
                             </div>
-                            <h3 className="text-xl font-bold text-[#33202b]">CAP-ROR-REO</h3>
-                            <p className="text-sm text-[#4f2c33] leading-relaxed">Analyze cap rates, returns, and REO deals with real-time investment data.</p>
+                            <h3 className="text-xl font-bold text-midnight-blue">CAP-ROR-REO</h3>
+                            <p className="text-sm text-muted-indigo leading-relaxed">Analyze cap rates, returns, and REO deals with real-time investment data.</p>
                         </div>
                     </div>
 
                     {/* CTA Button */}
-                    <div className="text-center">
+                    <div className="text-center mt-12">
                         <Link href="/real-estate">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
+                            <button className="inline-flex items-center justify-center rounded-none bg-royal-blue hover:bg-royal-purple text-white font-bold tracking-wide px-2 py-1 border-[3px] border-light-beige transition-all duration-300 text-lg transform hover:scale-105 shadow-md">
                                 Learn More About Real Estate Solutions
                             </button>
                         </Link>
@@ -385,18 +385,18 @@ export default function HomePage() {
             </section>
 
             {/* Technologies & Tools Section */}
-            <section className="py-16 bg-[#faeef2]">
+            <section className="py-20 md:py-24 bg-off-white">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="space-y-4 mb-12">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#3c1d26]">
+                    <div className="space-y-6 mb-16">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             TECHNOLOGIES & TOOLS
                         </div>
                         <div className="w-full py-5 text-center">
-                            <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight-blue tracking-tight">
                                 Modern, Reliable Technology Stacks
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-2">
+                        <div className="w-full rounded-none bg-royal-purple border-2 border-light-beige shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-2">
                             <p className="text-sm text-white font-medium">
                                 We work with modern, reliable technology stacks to deliver solutions that are stable, scalable, and future-proof.
                             </p>
@@ -406,8 +406,8 @@ export default function HomePage() {
                     {/* Tech Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                         {['React.js / Next.js', 'Node.js / Express', 'Python / Django / FastAPI', 'Flutter / React Native', 'AWS / Google Cloud / Azure', 'Docker / Kubernetes', 'CI/CD & DevOps Automation', 'PostgreSQL / MongoDB / Redis'].map((tech, index) => (
-                            <div key={index} className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-4 py-6 text-center shadow-[0_10px_0_0_#d37377] hover:-translate-y-2 transition-transform">
-                                <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                            <div key={index} className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-4 py-6 text-center shadow-[0_10px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
+                                <div className="h-16 w-16 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                                     {index === 0 && <Code className="h-8 w-8" />}
                                     {index === 1 && <Server className="h-8 w-8" />}
                                     {index === 2 && <Terminal className="h-8 w-8" />}
@@ -417,21 +417,21 @@ export default function HomePage() {
                                     {index === 6 && <Settings className="h-8 w-8" />}
                                     {index === 7 && <Database className="h-8 w-8" />}
                                 </div>
-                                <p className="font-semibold text-[#1f1830] text-sm">{tech}</p>
+                                <p className="font-semibold text-midnight-blue text-sm">{tech}</p>
                             </div>
                         ))}
                     </div>
 
                     {/* Service Links CTA */}
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                        <Link href="/services/mobile-app-development">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
+                        <Link href="/services/mobile-app-development" className="flex-1">
+                            <button className="w-full inline-flex items-center justify-center rounded-none bg-royal-blue hover:bg-royal-purple text-white font-bold tracking-wide px-2 py-1 border-[3px] border-light-beige transition-all duration-300 text-lg transform hover:scale-105 shadow-md">
                                 Learn More About Mobile App Development
                             </button>
                         </Link>
 
-                        <Link href="/services/software-solutions">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
+                        <Link href="/services/software-solutions" className="flex-1">
+                            <button className="w-full inline-flex items-center justify-center rounded-none bg-royal-blue hover:bg-royal-purple text-white font-bold tracking-wide px-2 py-1 border-[3px] border-light-beige transition-all duration-300 text-lg transform hover:scale-105 shadow-md">
                                 Learn More About Software Solutions
                             </button>
                         </Link>
@@ -440,13 +440,13 @@ export default function HomePage() {
             </section>
 
             {/* Portfolio Highlights Section */}
-            <section className="py-16 bg-[#080f24]">
+            <section className="py-20 md:py-24 bg-midnight-blue">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="space-y-4 mb-12 text-center">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16]">
+                    <div className="space-y-6 mb-16 text-center">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             PORTFOLIO HIGHLIGHTS
                         </div>
-                        <h2 className="text-[clamp(1.9rem,4vw,2.9rem)] font-black text-white">
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                             Digital Solutions We've Built
                         </h2>
                         <p className="text-lg text-white/80 max-w-3xl mx-auto">
@@ -474,13 +474,13 @@ export default function HomePage() {
                         }].map((item) => {
                             const Icon = item.icon;
                             return (
-                                <div key={item.title} className="flex flex-col gap-4 rounded-none border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
-                                    <div className="mx-auto h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                                <div key={item.title} className="flex flex-col gap-4 rounded-none border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
+                                    <div className="mx-auto h-16 w-16 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                                         <Icon className="h-8 w-8" />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-[#1f1830]">{item.title}</h3>
-                                    <p className="text-sm font-semibold text-[#4f2c33]">{item.meta}</p>
-                                    <p className="text-sm text-[#4f2c33] leading-relaxed">{item.description}</p>
+                                    <h3 className="text-2xl font-bold text-midnight-blue">{item.title}</h3>
+                                    <p className="text-sm font-semibold text-muted-indigo">{item.meta}</p>
+                                    <p className="text-sm text-muted-indigo leading-relaxed">{item.description}</p>
                                 </div>
                             );
                         })}
@@ -489,18 +489,18 @@ export default function HomePage() {
             </section>
 
             {/* End-to-End Digital Solutions Section */}
-            <section className="py-16 bg-[#faeef2]">
+            <section className="py-20 md:py-24 bg-off-white">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="space-y-4 mb-12">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#3c1d26]">
+                    <div className="space-y-6 mb-16">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             END-TO-END DIGITAL SOLUTIONS
                         </div>
                         <div className="w-full py-5 text-center">
-                            <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight-blue tracking-tight">
                                 End-to-End Digital Solutions
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
+                        <div className="w-full rounded-none bg-royal-purple border-2 border-light-beige shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                             <p className="text-sm text-white font-medium">
                                 From custom applications and mobile development to cloud and email solutions, we provide scalable, secure, and future-ready services.
                             </p>
@@ -510,31 +510,31 @@ export default function HomePage() {
                     {/* Solutions Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Advisory & Strategy */}
-                        <div className="flex flex-col gap-5 rounded-none border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-7 py-8 shadow-[0_12px_0_0_#d37377]">
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                        <div className="flex flex-col gap-5 rounded-none border border-muted-indigo/30 bg-light-beige px-7 py-8 shadow-[0_12px_0_0_rgba(45,58,107,0.3)]">
+                            <div className="w-16 h-16 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                                 <Lightbulb className="h-8 w-8" />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold text-[#1f1830] mb-4">Advisory & Strategy</h3>
-                                <ul className="space-y-3 text-[#33202b] text-sm">
+                                <h3 className="text-2xl font-bold text-midnight-blue mb-4">Advisory & Strategy</h3>
+                                <ul className="space-y-3 text-muted-indigo text-sm">
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Requirement Analysis & Technology Consultation</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Solution Architecture & Scalability Planning</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>UI/UX Consulting for Web & Mobile Apps</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Security, Compliance & Performance Reviews</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Digital Transformation & Automation Roadmaps</span>
                                     </li>
                                 </ul>
@@ -542,31 +542,31 @@ export default function HomePage() {
                         </div>
 
                         {/* Build & Deploy */}
-                        <div className="flex flex-col gap-5 rounded-none border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-7 py-8 shadow-[0_12px_0_0_#d37377]">
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                        <div className="flex flex-col gap-5 rounded-none border border-muted-indigo/30 bg-light-beige px-7 py-8 shadow-[0_12px_0_0_rgba(45,58,107,0.3)]">
+                            <div className="w-16 h-16 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                                 <Rocket className="h-8 w-8" />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold text-[#1f1830] mb-4">Build & Deploy</h3>
-                                <ul className="space-y-3 text-[#33202b] text-sm">
+                                <h3 className="text-2xl font-bold text-midnight-blue mb-4">Build & Deploy</h3>
+                                <ul className="space-y-3 text-muted-indigo text-sm">
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Custom Web & Enterprise Application Development</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Mobile App Development (iOS, Android, React Native, Flutter)</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>API Development & Third-Party Integrations</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Cloud-Native Applications (AWS, Azure, GCP)</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Email & Communication Solutions (Google Workspace, Microsoft 365, WhatsApp API)</span>
                                     </li>
                                 </ul>
@@ -574,31 +574,31 @@ export default function HomePage() {
                         </div>
 
                         {/* Operate & Enhance */}
-                        <div className="flex flex-col gap-5 rounded-none border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-7 py-8 shadow-[0_12px_0_0_#d37377]">
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                        <div className="flex flex-col gap-5 rounded-none border border-muted-indigo/30 bg-light-beige px-7 py-8 shadow-[0_12px_0_0_rgba(45,58,107,0.3)]">
+                            <div className="w-16 h-16 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                                 <Cog className="h-8 w-8" />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold text-[#1f1830] mb-4">Operate & Enhance</h3>
-                                <ul className="space-y-3 text-[#33202b] text-sm">
+                                <h3 className="text-2xl font-bold text-midnight-blue mb-4">Operate & Enhance</h3>
+                                <ul className="space-y-3 text-muted-indigo text-sm">
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Future Ready, Managed Services & Maintenance</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Application Optimization & Version Upgrades</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Continuous Monitoring, Backup & Disaster Recovery</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>DevOps & CI/CD Automation</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-[#17b58f] font-bold mt-1">●</span>
+                                        <span className="text-sea-green font-bold mt-1">●</span>
                                         <span>Cost Optimization</span>
                                     </li>
                                 </ul>
@@ -609,18 +609,18 @@ export default function HomePage() {
             </section>
 
             {/* Cloud Solutions Section */}
-            <section className="py-16 bg-[#faeef2]">
+            <section className="py-20 md:py-24 bg-off-white">
                 <div className="max-w-6xl mx-auto px-4">
-                    <div className="space-y-4 mb-12 text-center">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16]">
+                    <div className="space-y-6 mb-16 text-center">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             END-TO-END MANAGED SOLUTIONS
                         </div>
                         <div className="w-full py-5">
-                            <h2 className="text-[clamp(1.9rem,4vw,2.9rem)] font-black text-[#1d1a3a]">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight-blue">
                                 Cloud Solutions That Scale With Your Business
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
+                        <div className="w-full rounded-none bg-royal-purple border-2 border-light-beige shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                             <p className="text-sm text-white font-medium">
                                 From planning to continuous optimization, we architect, migrate, monitor, and operate multi-cloud environments so your teams can innovate faster with less risk.
                             </p>
@@ -648,12 +648,12 @@ export default function HomePage() {
                         }].map((item) => {
                             const Icon = item.icon;
                             return (
-                                <div key={item.label} className="flex flex-col items-center gap-3 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-5 py-6 text-center shadow-[0_10px_0_0_#d37377]">
-                                    <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                                <div key={item.label} className="flex flex-col items-center gap-3 rounded-lg border border-muted-indigo/30 bg-light-beige px-5 py-6 text-center shadow-[0_10px_0_0_rgba(45,58,107,0.3)]">
+                                    <div className="h-16 w-16 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                                         <Icon className="h-8 w-8" />
                                     </div>
-                                    <div className="text-3xl md:text-4xl font-black text-[#1f1830]">{item.value}</div>
-                                    <p className="text-sm text-[#4f2c33] font-medium">{item.label}</p>
+                                    <div className="text-3xl md:text-4xl font-black text-midnight-blue">{item.value}</div>
+                                    <p className="text-sm text-muted-indigo font-medium">{item.label}</p>
                                 </div>
                             );
                         })}
@@ -663,14 +663,14 @@ export default function HomePage() {
             </section>
 
             {/* Testimonials Section */}
-            <section className="py-16 bg-[#080f24]">
+            <section className="py-20 md:py-24 bg-midnight-blue">
                 <div className="max-w-6xl mx-auto px-4">
                     {/* Header */}
-                    <div className="space-y-4 mb-12 text-center">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16]">
+                    <div className="space-y-6 mb-16 text-center">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             CLIENT TESTIMONIALS
                         </div>
-                        <h2 className="text-[clamp(1.9rem,4vw,2.9rem)] font-black text-white">
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                             What Our Clients Say
                         </h2>
                         <p className="text-lg text-white/80 max-w-3xl mx-auto">
@@ -680,37 +680,37 @@ export default function HomePage() {
 
                     {/* Testimonial Card */}
                     <div className="max-w-4xl mx-auto">
-                        <div className="rounded-none border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-8 py-10 shadow-[0_12px_0_0_#d37377]">
+                        <div className="rounded-none border border-muted-indigo/30 bg-light-beige px-8 py-10 shadow-[0_12px_0_0_rgba(45,58,107,0.3)]">
                             <div className="text-center space-y-3">
                                 {/* Stars */}
                                 <div className="flex gap-2 justify-center">
                                     {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                                        <Star key={i} className="h-6 w-6 fill-[#f7b733] text-[#f7b733] drop-shadow-lg" />
+                                        <Star key={i} className="h-6 w-6 fill-amber text-amber drop-shadow-lg" />
                                     ))}
                                 </div>
 
                                 {/* Testimonial Text */}
-                                <p className="text-xl md:text-2xl text-[#2a1a24] leading-relaxed font-medium">
+                                <p className="text-xl md:text-2xl text-midnight-blue leading-relaxed font-medium">
                                     {testimonials[currentTestimonial].text}
                                 </p>
 
                                 {/* Author Info */}
                                 <div>
-                                    <h3 className="text-2xl font-bold text-[#1f1830]">{testimonials[currentTestimonial].name}</h3>
+                                    <h3 className="text-2xl font-bold text-midnight-blue">{testimonials[currentTestimonial].name}</h3>
                                 </div>
 
                                 {/* Navigation Buttons */}
                                 <div className="flex gap-6 justify-center">
                                     <button
                                         onClick={prevTestimonial}
-                                        className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold px-5 py-3 border-[3px] border-white shadow-[0_10px_20px_rgba(87,63,133,0.35)] hover:-translate-y-1 transition-all duration-300"
+                                        className="inline-flex items-center justify-center rounded-none bg-royal-blue hover:bg-royal-purple text-white font-semibold px-5 py-3 border-[3px] border-light-beige shadow-md hover:-translate-y-1 transition-all duration-300"
                                         aria-label="Previous testimonial"
                                     >
                                         <ChevronLeft className="h-5 w-5" />
                                     </button>
                                     <button
                                         onClick={nextTestimonial}
-                                        className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-semibold px-5 py-3 border-[3px] border-white shadow-[0_10px_20px_rgba(87,63,133,0.35)] hover:-translate-y-1 transition-all duration-300"
+                                        className="inline-flex items-center justify-center rounded-none bg-royal-blue hover:bg-royal-purple text-white font-semibold px-5 py-3 border-[3px] border-light-beige shadow-md hover:-translate-y-1 transition-all duration-300"
                                         aria-label="Next testimonial"
                                     >
                                         <ChevronRight className="h-5 w-5" />
@@ -723,36 +723,36 @@ export default function HomePage() {
             </section>
 
             {/* Final CTA Section */}
-            <section className="py-16 bg-[#faeef2]">
+            <section className="py-20 md:py-24 bg-off-white">
                 <div className="max-w-6xl mx-auto px-4 text-center">
-                    <div className="space-y-4 mb-10">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16]">
+                    <div className="space-y-6 mb-12">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             READY TO BUILD SOMETHING POWERFUL?
                         </div>
                         <div className="w-full py-5">
-                            <h2 className="text-[clamp(1.9rem,4vw,3rem)] font-black text-[#1d1a3a]">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight-blue">
                                 Ready to Build Something Powerful?
                             </h2>
                         </div>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
+                        <div className="w-full rounded-none bg-royal-purple border-2 border-light-beige shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                             <p className="text-sm text-white font-medium">
-                                Let’s discuss your goals and create a technology roadmap that turns bold ideas into measurable outcomes.
+                                Let's discuss your goals and create a technology roadmap that turns bold ideas into measurable outcomes.
                             </p>
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link href="/contact">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
+                            <button className="inline-flex items-center justify-center rounded-none bg-metallic-gold hover:bg-amber text-midnight-blue font-bold tracking-wide px-2 py-1 border-[3px] border-light-beige transition-all duration-300 text-lg transform hover:scale-105 shadow-md">
                                 Get a Free Consultation
                             </button>
                         </Link>
                         <Link href="/contact">
-                            <button className="inline-flex items-center justify-center rounded-none bg-gradient-to-b from-[#8c6fca] to-[#7a5cb4] text-white font-bold tracking-wide px-2 py-1 border-[4px] border-white hover:from-[#9b7cd9] hover:to-[#8a6bc4] transition-all duration-300 text-lg transform hover:scale-105">
+                            <button className="inline-flex items-center justify-center rounded-none bg-metallic-gold hover:bg-amber text-midnight-blue font-bold tracking-wide px-2 py-1 border-[3px] border-light-beige transition-all duration-300 text-lg transform hover:scale-105 shadow-md">
                                 Request a Project Quote
                             </button>
                         </Link>
                     </div>
-                    <p className="text-[#4f2c33] mt-10 text-sm font-medium">
+                    <p className="text-muted-indigo mt-10 text-sm font-medium">
                         Prefer speaking directly? Our specialists are available to map out your next big move.
                     </p>
                 </div>

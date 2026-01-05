@@ -4,100 +4,101 @@
 
 @layer base {
   :root {
-    /* Dark Navy & Emerald Color Palette */
-    --background: 228 45% 11%; /* Dark Navy - main background #0f1629 */
+    /* New Professional Color Palette */
+    /* Main Background & Structure */
+    --background: 222 59% 15%; /* Dark Midnight Blue #0F1C3F - main background */
     --foreground: 0 0% 100%; /* Pure White - main text */
-    --card: 228 40% 14%; /* Slightly lighter navy for cards */
-    --card-foreground: 0 0% 100%; /* White text on cards */
-    --popover: 228 40% 14%; /* Matching card color for popovers */
-    --popover-foreground: 0 0% 100%; /* White text on popovers */
+    --card: 36 26% 91%; /* Light Beige #EDE6DA - card backgrounds */
+    --card-foreground: 222 59% 15%; /* Dark Midnight Blue text on cards */
+    --popover: 36 26% 91%; /* Light Beige for popovers */
+    --popover-foreground: 222 59% 15%; /* Dark text on popovers */
     
-    /* Primary Colors - Dark Navy */
-    --primary: 0 0% 100%; /* White - primary UI elements */
-    --primary-foreground: 228 45% 11%; /* Dark Navy text on primary */
+    /* Primary Colors - Royal Blue */
+    --primary: 218 65% 32%; /* Royal Blue #1E3A8A - primary UI elements */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
     
-    /* Secondary Colors - Navy Blue */
-    --secondary: 228 40% 18%; /* Lighter navy for secondary elements */
+    /* Secondary Colors - Muted Indigo */
+    --secondary: 229 29% 30%; /* Muted Indigo #2D3A6B - secondary elements */
     --secondary-foreground: 0 0% 100%; /* White text on secondary */
     
     /* Muted/Neutral Colors */
-    --muted: 228 35% 20%; /* Muted navy for backgrounds */
-    --muted-foreground: 0 0% 85%; /* Light gray for muted text */
+    --muted: 36 15% 85%; /* Warm Grey #DCD6C9 - muted backgrounds */
+    --muted-foreground: 229 29% 30%; /* Muted Indigo for muted text */
     
-    /* Accent Colors - Emerald Green */
-    --accent: 160 84% 39%; /* Emerald accent #10b981 */
+    /* Accent Colors - Sea Green */
+    --accent: 152 51% 36%; /* Sea Green #2E8B57 - eco-friendly accents */
     --accent-foreground: 0 0% 100%; /* White text on accent */
     
-    /* CTA - Emerald Green */
-    --cta: 160 84% 39%; /* Emerald - main CTA buttons #10b981 */
-    --cta-foreground: 0 0% 100%; /* White text on CTA */
+    /* CTA - Metallic Gold */
+    --cta: 43 65% 52%; /* Metallic Gold #D4AF37 - primary CTA buttons */
+    --cta-foreground: 222 59% 15%; /* Dark Midnight Blue text on CTA */
     
-    /* Highlight - Gold */
-    --highlight: 45 100% 50%; /* Gold - accents and highlights */
-    --highlight-foreground: 228 45% 11%; /* Dark Navy text on gold */
+    /* Highlight - Amber */
+    --highlight: 45 100% 50%; /* Amber #FFBF00 - alerts and highlights */
+    --highlight-foreground: 222 59% 15%; /* Dark text on highlights */
     
-    /* Success - Emerald Green */
-    --success: 160 84% 39%; /* Emerald - success indicators */
+    /* Success - Sea Green */
+    --success: 152 51% 36%; /* Sea Green - success indicators */
     --success-foreground: 0 0% 100%; /* White text on success */
     
-    /* Destructive - Red */
-    --destructive: 0 84% 60%;
+    /* Destructive - Burnt Orange */
+    --destructive: 16 85% 42%; /* Burnt Orange #C1440E - urgent CTAs */
     --destructive-foreground: 0 0% 100%;
     
     /* Borders and Inputs */
-    --border: 228 30% 25%; /* Lighter navy for borders */
-    --input: 228 30% 25%; /* Matching border color for inputs */
-    --ring: 160 84% 39%; /* Emerald for focus rings */
+    --border: 229 29% 30%; /* Muted Indigo for borders */
+    --input: 36 26% 91%; /* Light Beige for inputs */
+    --ring: 43 65% 52%; /* Metallic Gold for focus rings */
     
     --radius: 0.5rem;
     
-    --chart-1: 12 76% 61%;
+    --chart-1: 43 65% 52%;
     
-    --chart-2: 173 58% 39%;
+    --chart-2: 152 51% 36%;
     
-    --chart-3: 197 37% 24%;
+    --chart-3: 218 65% 32%;
     
-    --chart-4: 43 74% 66%;
+    --chart-4: 16 85% 42%;
     
-    --chart-5: 27 87% 67%;
+    --chart-5: 274 91% 35%;
   }
 
   .dark {
-    /* Dark theme - even darker navy */
-    --background: 228 50% 8%; /* Very dark navy for dark mode */
+    /* Dark theme with new palette */
+    --background: 222 59% 10%; /* Darker Midnight Blue for dark mode */
     --foreground: 0 0% 100%; /* White text */
-    --card: 228 45% 11%; /* Slightly lighter than background */
+    --card: 222 59% 15%; /* Dark Midnight Blue for cards */
     --card-foreground: 0 0% 100%; /* White text */
-    --popover: 228 45% 11%; /* Matching card color */
+    --popover: 222 59% 15%; /* Matching card color */
     --popover-foreground: 0 0% 100%; /* White text */
     
-    --primary: 0 0% 100%; /* White for primary elements */
-    --primary-foreground: 228 50% 8%; /* Very dark navy text */
+    --primary: 218 65% 32%; /* Royal Blue for primary elements */
+    --primary-foreground: 0 0% 100%; /* White text */
     
-    --secondary: 228 40% 15%; /* Slightly lighter than background */
+    --secondary: 229 29% 30%; /* Muted Indigo */
     --secondary-foreground: 0 0% 100%; /* White text */
     
-    --muted: 228 35% 18%; /* Matching secondary */
-    --muted-foreground: 0 0% 75%; /* Light gray for muted text */
+    --muted: 229 29% 25%; /* Darker Muted Indigo */
+    --muted-foreground: 36 15% 85%; /* Warm Grey for muted text */
     
-    --accent: 160 84% 39%; /* Emerald accent */
+    --accent: 152 51% 36%; /* Sea Green accent */
     --accent-foreground: 0 0% 100%; /* White text on accent */
     
-    --cta: 160 84% 39%; /* Emerald - main CTA buttons */
-    --cta-foreground: 0 0% 100%; /* White text on CTA */
+    --cta: 43 65% 52%; /* Metallic Gold - main CTA buttons */
+    --cta-foreground: 222 59% 15%; /* Dark text on CTA */
     
-    --highlight: 45 100% 50%; /* Gold */
-    --highlight-foreground: 228 50% 8%; /* Very dark navy text on gold */
+    --highlight: 45 100% 50%; /* Amber */
+    --highlight-foreground: 222 59% 15%; /* Dark text on gold */
     
-    --success: 160 84% 39%; /* Emerald */
+    --success: 152 51% 36%; /* Sea Green */
     --success-foreground: 0 0% 100%; /* White text */
     
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 16 85% 42%; /* Burnt Orange */
     --destructive-foreground: 0 0% 100%;
     
-    --border: 228 25% 22%; /* Lighter navy for borders */
-    --input: 228 25% 22%; /* Matching border */
-    --ring: 160 84% 39%; /* Emerald for focus */ --chart-1: 160 84% 39%; --chart-2: 228 70% 50%; --chart-3: 45 100% 50%; --chart-4: 280 65% 60%; --chart-5: 340 75% 55%;
+    --border: 229 29% 30%; /* Muted Indigo for borders */
+    --input: 229 29% 25%; /* Darker Muted Indigo */
+    --ring: 43 65% 52%; /* Metallic Gold for focus */ --chart-1: 43 65% 52%; --chart-2: 152 51% 36%; --chart-3: 218 65% 32%; --chart-4: 16 85% 42%; --chart-5: 274 91% 35%;
   }
 }
 

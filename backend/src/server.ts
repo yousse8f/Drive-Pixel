@@ -18,6 +18,8 @@ import chatAdminRoutes from "./routes/chatAdminRoutes";
 import paymentRoutes from "./routes/paymentRoutes";
 import paypalRoutes from "./routes/paypalRoutes";
 import clientRoutes from "./routes/clientRoutes";
+import newsletterRoutes from "./routes/newsletterRoutes";
+import contactRoutes from "./routes/contactRoutes";
 import { authMiddleware } from "./utils/authUtils";
 import { adminMiddleware } from "./utils/adminMiddleware";
 import { initializeDatabase } from "./config/database";
@@ -58,6 +60,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Public routes (no authentication required)
 app.use("/api/public", publicRoutes);
+app.use("/api/newsletter", newsletterRoutes);
+app.use("/api/contact", contactRoutes);
 
 // Auth routes
 app.use("/api/auth", authRoutes);

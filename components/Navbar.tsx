@@ -47,19 +47,7 @@ export default function Navbar() {
                     links: [
                         { 
                             href: '/real-estate/agent-commission', 
-                            label: 'Agent 100% Commission',
-                            dropdown: [
-                                { href: '/real-estate/full-sponsorship', label: 'FULL SPONSORSHIP' },
-                                { href: '/real-estate/referral-fees', label: 'REFERRALS FEES' },
-                                { href: '/real-estate/park-license', label: 'PARK YOUR LICENSE' },
-                                { href: '/real-estate/marketing-fees', label: 'MARKETING FEES' },
-                                { href: '/real-estate/ce-training', label: 'C/E TRAINING' },
-                                { href: '/real-estate/broker-mentors', label: 'BROKER MENTORS' },
-                                { href: '/real-estate/build-2-suit', label: 'BUILD 2 SUIT' },
-                                { href: '/real-estate/list-2-last-agents', label: 'LIST 2 LAST AGENTS' },
-                                { href: '/real-estate/branch-offices', label: 'BRANCH OFFICES' },
-                                { href: '/real-estate/own-website', label: 'OWN R/E WEBSITE' }
-                            ]
+                            label: 'Agent 100% Commission'
                         },
                         { href: '/real-estate/why-onedrive', label: 'Why OneDrive Realty' },
                         { href: '/real-estate/halal-financing', label: 'Halal Funding' },
@@ -167,14 +155,14 @@ export default function Navbar() {
         { href: '/shop', label: 'Shop' },
     ];
 
-    const navBgClass = 'bg-[#050b1d]/95 backdrop-blur-xl';
-    const navBorderClass = 'border-white/5';
+    const navBgClass = 'bg-midnight-blue/95 backdrop-blur-xl';
+    const navBorderClass = 'border-muted-indigo/30';
     const linkBaseClass =
-        'text-sm font-medium text-white/90 hover:text-white transition-colors';
+        'text-sm font-medium text-white/90 hover:text-metallic-gold transition-colors';
     const dropdownItemClass =
-        'block px-4 py-2.5 rounded-md text-sm text-white hover:bg-white/5 transition-colors';
+        'block px-4 py-2.5 rounded-md text-sm text-white hover:bg-royal-blue/20 transition-colors';
     const megaCardClass =
-        'group block rounded-lg border border-white/5 bg-white/[0.02] px-4 py-3 text-sm text-white hover:bg-white/[0.06] hover:border-white/20 transition-all duration-200';
+        'group block rounded-lg border border-muted-indigo/30 bg-royal-blue/10 px-4 py-3 text-sm text-white hover:bg-royal-blue/20 hover:border-metallic-gold/40 transition-all duration-200';
 
     const handleMouseEnter = (label: string) => {
         if (closeTimeoutRef.current) {
@@ -223,10 +211,10 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className="bg-[#08122b] sticky top-0 z-50">
+        <nav className="bg-midnight-blue sticky top-0 z-50 shadow-lg">
             {/* Top Bar */}
-            <div className="hidden md:flex items-center justify-center py-1.5 px-6 lg:px-12 text-xs text-white/80">
-                <span className="text-white/70">Global Technology for Operations & Growth</span>
+            <div className="hidden md:flex items-center justify-center py-1.5 px-6 lg:px-12 text-xs bg-royal-blue/30">
+                <span className="text-pale-goldenrod font-medium">Global Technology for Operations & Growth</span>
             </div>
 
             {/* Main Navigation */}
@@ -268,7 +256,7 @@ export default function Navbar() {
                                     </Link>
 
                                     {hasMega && openDropdown === link.label && (
-                                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-screen max-w-4xl bg-[#070f25]/95 border border-white/8 rounded-xl shadow-[0_18px_40px_-18px_rgba(0,0,0,0.65)] z-50 opacity-100 translate-y-0 transition duration-200 ease-out backdrop-blur">
+                                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-screen max-w-4xl bg-midnight-blue/95 border border-muted-indigo/40 rounded-xl shadow-[0_18px_40px_-18px_rgba(0,0,0,0.65)] z-50 opacity-100 translate-y-0 transition duration-200 ease-out backdrop-blur">
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
                                                 {link.megaSections?.map((section) => (
                                                     <div key={section.title} className="space-y-3">
@@ -292,7 +280,7 @@ export default function Navbar() {
                                                                             
                                                                             {hasNestedDropdown && openNestedDropdown === item.label && (
                                                                                 <div 
-                                                                                    className="absolute left-full top-0 ml-2 w-64 bg-[#070f25]/95 border border-white/8 rounded-lg shadow-[0_18px_40px_-18px_rgba(0,0,0,0.65)] z-50 opacity-100 translate-y-0 transition duration-200 ease-out backdrop-blur"
+                                                                                    className="absolute left-full top-0 ml-2 w-64 bg-midnight-blue/95 border border-muted-indigo/40 rounded-lg shadow-[0_18px_40px_-18px_rgba(0,0,0,0.65)] z-50 opacity-100 translate-y-0 transition duration-200 ease-out backdrop-blur"
                                                                                     onMouseEnter={() => handleNestedMouseEnter(item.label)}
                                                                                     onMouseLeave={handleNestedMouseLeave}
                                                                                 >
@@ -320,7 +308,7 @@ export default function Navbar() {
                                     )}
 
                                     {hasDropdown && openDropdown === link.label && (
-                                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[420px] bg-[#070f25]/95 border border-white/8 rounded-xl shadow-[0_18px_40px_-18px_rgba(0,0,0,0.65)] z-50 opacity-100 translate-y-0 transition duration-200 ease-out backdrop-blur">
+                                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[420px] bg-midnight-blue/95 border border-muted-indigo/40 rounded-xl shadow-[0_18px_40px_-18px_rgba(0,0,0,0.65)] z-50 opacity-100 translate-y-0 transition duration-200 ease-out backdrop-blur">
                                             <div className="p-5 space-y-1.5">
                                                 {link.dropdown?.map((item) => (
                                                     <Link
@@ -349,7 +337,7 @@ export default function Navbar() {
                     {/* Contact Us Button - Desktop */}
                     <div className="hidden md:block">
                         <Link href="/contact">
-                            <Button className="bg-[#07090d] hover:bg-[#0f1218] text-white font-medium px-6 py-2 rounded-md transition-all duration-200">
+                            <Button className="bg-metallic-gold hover:bg-amber text-midnight-blue font-semibold px-6 py-2 rounded-md transition-all duration-200 shadow-md hover:shadow-lg">
                                 Contact Us
                             </Button>
                         </Link>
@@ -369,11 +357,11 @@ export default function Navbar() {
                 </div>
             </div>
 
-            <div className="h-0.5 w-full bg-white" />
+            <div className="h-0.5 w-full bg-gradient-to-r from-metallic-gold via-amber to-metallic-gold" />
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <div className="md:hidden bg-[#08122b] border-t border-white/10">
+                <div className="md:hidden bg-midnight-blue border-t border-muted-indigo/30">
                     <div className="px-6 py-4 space-y-2">
                         {navLinks.map((link) => {
                             const hasMega = link.megaSections && link.megaSections.length > 0;
@@ -473,7 +461,7 @@ export default function Navbar() {
                         })}
                         <div className="pt-3">
                             <Link href="/contact">
-                                <Button className="w-full bg-[#07090d] hover:bg-[#0f1218] text-white font-medium px-4 py-2 rounded-md transition-all duration-200">
+                                <Button className="w-full bg-metallic-gold hover:bg-amber text-midnight-blue font-semibold px-4 py-2 rounded-md transition-all duration-200">
                                     Contact Us
                                 </Button>
                             </Link>
