@@ -268,18 +268,18 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-20 text-white">
+      <section className="relative py-32 text-white">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
-        style={{
-          backgroundImage: 'url(/images/Services.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          style={{
+            backgroundImage: 'url(/images/Services.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
-            </div>
+          <div className="absolute inset-0 bg-midnight-blue/90"></div>
+        </div>
         <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
@@ -289,16 +289,18 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact-form" className="py-10 bg-[#faeef2]">
+      <section id="contact-form" className="py-16 bg-off-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="space-y-4 mb-6">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+          <div className="space-y-4 mb-16 text-center">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               GET IN TOUCH
             </div>
-            <h2 className="text-center text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+            <div className="w-full rounded-none bg-royal-purple border border-muted-indigo shadow-[0_6px_0_rgba(88,70,150,0.35)] py-3 text-center">
+              <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-white tracking-tight">
                 Send us a Message
               </h2>
-            <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_6px_0_rgba(255,255,255,0.35)] py-1 text-center px-2">
+            </div>
+            <div className="w-full rounded-none bg-royal-blue border-2 border-light-beige shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
               <p className="text-sm text-white font-medium">
                 Fill out the form below and we'll get back to you as soon as possible.
               </p>
@@ -377,7 +379,7 @@ export default function ContactPage() {
                     type="submit"
                     disabled={isSubmitting}
                     size="lg" 
-                    className="w-full bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-metallic-gold hover:bg-amber text-midnight-blue font-bold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -390,10 +392,10 @@ export default function ContactPage() {
       </section>
 
       {/* Map Embed Section */}
-      <section className="py-10 bg-white">
+      <section className="py-16 bg-midnight-blue">
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-4 mb-6 text-center">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               FIND US
             </div>
           </div>
