@@ -85,22 +85,22 @@ export default function BlogPage() {
                     backgroundImage: 'url(/images/our-blog.jpg)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                    }}
+                    backgroundRepeat: 'no-repeat',
+                }}
                 >
                     <div className="absolute inset-0 bg-[#1a1f3a]/80"></div>
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0f172a]/40 to-[#0f172a]/80"></div>
-                        </div>
+                </div>
                 <div className="container-custom relative z-10 flex flex-col items-center text-center">
                     <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Blog</h1>
                     <p className="text-xl text-white/90 max-w-3xl mx-auto">
-                        Insights, tutorials, and case studies from our team of experts.
-                    </p>
-                </div>
+                                Insights, tutorials, and case studies from our team of experts.
+                            </p>
+                        </div>
             </section>
 
             {/* Filter Section */}
-            <section className="py-10 bg-white">
+            <section className="py-16 bg-off-white">
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="flex flex-wrap gap-3 justify-center">
                         {categories.map((category: string) => {
@@ -109,10 +109,10 @@ export default function BlogPage() {
                                 <button
                                     key={category}
                                     className={[
-                                        'px-4 py-2 rounded-none text-sm font-semibold transition-all duration-200 border',
+                                        'px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border',
                                         isActive
-                                            ? 'bg-[#c45c4b] text-white border-[#c45c4b] shadow-lg shadow-[#c45c4b]/20'
-                                            : 'bg-[#faeef2] text-[#1d1a3a] border-[#c3868b] hover:bg-[#ffe1e1] hover:text-[#c45c4b]'
+                                            ? 'bg-royal-purple text-white border-royal-purple shadow-lg shadow-royal-purple/20'
+                                            : 'bg-white text-midnight-blue border-muted-indigo/30 hover:bg-royal-blue/10 hover:text-royal-purple'
                                     ].join(' ')}
                                 >
                                     {category}
@@ -124,37 +124,37 @@ export default function BlogPage() {
             </section>
 
             {/* Blog Posts Grid */}
-            <section className="py-16 bg-[#faeef2]">
+            <section className="py-16 bg-off-white">
                 <div className="max-w-6xl mx-auto px-4">
                     {loading ? (
-                        <div className="text-center py-8 text-[#4f2c33]">Loading blog posts...</div>
+                        <div className="text-center py-8 text-muted-indigo">Loading blog posts...</div>
                     ) : posts.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {posts.map((post) => (
-                                <div key={post.id} className="bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_-20px_rgba(195,134,139,0.4)] hover:-translate-y-1 border border-[#c3868b] shadow-[0_8px_30px_-12px_rgba(195,134,139,0.3)]">
-                                    <div className="bg-gradient-to-br from-[#faeef2] to-[#ffe1e1] p-8 flex items-center justify-center min-h-32">
+                                <div key={post.id} className="bg-light-beige rounded-lg overflow-hidden transition-all duration-300 shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2">
+                                    <div className="bg-gradient-to-br from-off-white to-light-beige p-8 flex items-center justify-center min-h-32">
                                         <div className="text-6xl">{post.image}</div>
                                     </div>
                                     <div className="p-6">
                                         <div className="mb-3">
-                                            <span className="inline-block bg-[#c45c4b] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">
+                                            <span className="inline-block bg-royal-purple text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">
                                                 {post.category}
                                             </span>
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#1d1a3a] mb-3 line-clamp-2 hover:text-[#c45c4b] transition-colors">{post.title}</h3>
-                                        <p className="text-[#4f2c33] mb-5 text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
-                                        <div className="flex items-center gap-4 text-xs text-[#4f2c33] mb-6 pb-6 border-b border-[#c3868b]">
+                                        <h3 className="text-xl font-bold text-midnight-blue mb-3 line-clamp-2 hover:text-royal-purple transition-colors">{post.title}</h3>
+                                        <p className="text-muted-indigo mb-5 text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
+                                        <div className="flex items-center gap-4 text-xs text-muted-indigo mb-6 pb-6 border-b border-muted-indigo/30">
                                             <div className="flex items-center gap-1.5">
-                                                <Calendar className="h-4 w-4 text-[#c45c4b]" />
+                                                <Calendar className="h-4 w-4 text-royal-purple" />
                                                 <span className="font-medium">{post.date}</span>
                                             </div>
                                             <div className="flex items-center gap-1.5">
-                                                <User className="h-4 w-4 text-[#c45c4b]" />
+                                                <User className="h-4 w-4 text-royal-purple" />
                                                 <span className="font-medium">{post.author}</span>
                                             </div>
                                         </div>
                                         <Link href="/blog">
-                                            <Button className="w-full bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-bold transition-all duration-300 hover:shadow-lg py-2.5">
+                                            <Button className="w-full bg-metallic-gold hover:bg-amber text-midnight-blue font-bold transition-all duration-300 hover:shadow-lg hover:scale-105 py-2.5">
                                                 Read More
                                                 <ArrowRight className="ml-2 h-4 w-4" />
                                             </Button>
@@ -164,22 +164,24 @@ export default function BlogPage() {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-8 text-[#4f2c33]">No blog posts available</div>
+                        <div className="text-center py-8 text-muted-indigo">No blog posts available</div>
                     )}
                 </div>
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 bg-[#080f24] text-white">
+            <section className="py-16 bg-midnight-blue text-white">
                 <div className="max-w-6xl mx-auto px-4 text-center">
-                    <div className="space-y-4 mb-10">
-                        <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16]">
+                    <div className="space-y-4 mb-16">
+                        <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
                             STAY UPDATED
                         </div>
-                        <h2 className="text-[clamp(1.9rem,4vw,3rem)] font-black text-white">
-                            Subscribe to Our Newsletter
-                        </h2>
-                        <div className="w-full rounded-none bg-[#8c75b6] border-2 border-white shadow-[0_2px_0_rgba(255,255,255,0.25)] py-1 text-center px-1">
+                        <div className="w-full rounded-none bg-royal-purple border border-muted-indigo shadow-[0_6px_0_rgba(88,70,150,0.35)] py-0 text-center">
+                            <h2 className="text-[clamp(1.9rem,4vw,3rem)] font-black text-white">
+                                Subscribe to Our Newsletter
+                            </h2>
+                        </div>
+                        <div className="w-full rounded-none bg-royal-blue border-2 border-light-beige shadow-[0_2px_0_rgba(255,255,255,0.35)] py-0 text-center px-2">
                             <p className="text-sm text-white font-medium">
                                 Get the latest insights, tutorials, and case studies delivered to your inbox every week.
                             </p>
@@ -204,14 +206,14 @@ export default function BlogPage() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="your@email.com" 
-                                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#c45c4b] font-medium border border-[#c3868b]"
+                                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-royal-purple font-medium border border-muted-indigo/30"
                                 required
                             />
                             <Button 
                                 type="submit"
                                 disabled={subscribing}
                                 size="lg" 
-                                className="bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-bold transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="bg-metallic-gold hover:bg-amber text-midnight-blue font-bold transition-all duration-300 hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {subscribing ? 'Subscribing...' : 'Subscribe'}
                             </Button>

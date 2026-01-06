@@ -310,25 +310,25 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             {/* Contact Info Stack */}
             <div className="space-y-6">
-              <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
+              <div className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
                 <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                   <MapPin className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-[#33202b]">Address</h3>
-                <p className="text-sm text-[#4f2c33] leading-relaxed">WA</p>
+                <h3 className="text-xl font-bold text-midnight-blue">Address</h3>
+                <p className="text-sm text-muted-indigo leading-relaxed">WA</p>
               </div>
-              <div className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform">
+              <div className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
                 <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                   <Mail className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-[#33202b]">Email</h3>
-                <p className="text-sm text-[#4f2c33] leading-relaxed hover:text-[#1f4f78] transition-colors cursor-pointer">Contact@drivepixel.com</p>
+                <h3 className="text-xl font-bold text-midnight-blue">Email</h3>
+                <p className="text-sm text-muted-indigo leading-relaxed hover:text-[#1f4f78] transition-colors cursor-pointer">Contact@drivepixel.com</p>
               </div>
             </div>
 
             {/* Contact Form Section */}
             <div className="lg:col-span-2">
-              <div className="rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-8 py-10 shadow-[0_12px_0_0_#d37377]">
+              <div className="rounded-lg border border-muted-indigo/30 bg-light-beige px-8 py-10 shadow-[0_12px_0_0_rgba(45,58,107,0.3)]">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {submitError && (
                     <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
@@ -392,7 +392,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Embed Section */}
-      <section className="py-16 bg-midnight-blue">
+      <section className="py-16 bg-off-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-4 mb-6 text-center">
             <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
