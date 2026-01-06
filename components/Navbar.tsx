@@ -37,158 +37,166 @@ export default function Navbar() {
     const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const nestedTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    const realEstateSections: DropdownItem[] = [
+        {
+            href: '/real-estate/agent-commission',
+            label: 'Agent 100% Commission',
+            dropdown: [
+                { href: '/real-estate/agent-commission/full-sponsorship', label: 'Full Sponsorship' },
+                { href: '/real-estate/agent-commission/referrals-fees', label: 'Referrals Fees' },
+                { href: '/real-estate/agent-commission/park-your-license', label: 'Park Your License' },
+                { href: '/real-estate/agent-commission/marketing-fees', label: 'Marketing Fees' },
+                { href: '/real-estate/agent-commission/ce-training', label: 'C/E Training' },
+                { href: '/real-estate/agent-commission/broker-mentors', label: 'Broker Mentors' },
+                { href: '/real-estate/agent-commission/build-2-suite', label: 'Build 2 Suite' },
+                { href: '/real-estate/agent-commission/list-2-last-agents', label: 'List 2 Last Agents' },
+                { href: '/real-estate/agent-commission/branch-offices', label: 'Branch Offices' },
+                { href: '/real-estate/agent-commission/own-real-estate-website', label: 'Own R/E Website' },
+            ],
+        },
+        {
+            href: '/real-estate/why-onedrive',
+            label: 'Why OneDrive Realty',
+            dropdown: [
+                { href: '/real-estate/why-onedrive/plan-1', label: 'Plan 1' },
+                { href: '/real-estate/why-onedrive/plan-2', label: 'Plan 2' },
+                { href: '/real-estate/why-onedrive/cyps-patent', label: 'CYPS Patent' },
+                { href: '/real-estate/why-onedrive/membership', label: 'Membership' },
+                { href: '/real-estate/why-onedrive/partners', label: 'Partners' },
+                { href: '/real-estate/why-onedrive/our-listings', label: 'Our Listings' },
+                { href: '/real-estate/why-onedrive/search-your-listing', label: 'Search Your Listing' },
+                { href: '/real-estate/why-onedrive/nwmls-access', label: 'NWMLS Access' },
+                { href: '/real-estate/why-onedrive/re-contract-forms', label: 'RE Contract Forms' },
+                { href: '/real-estate/why-onedrive/list-your-property', label: 'List Your Property' },
+            ],
+        },
+        {
+            href: '/real-estate/halal-financing',
+            label: 'Halal Funding',
+            dropdown: [
+                { href: '/real-estate/halal-financing/residential', label: 'Residential' },
+                { href: '/real-estate/halal-financing/multi-family', label: 'Multi-Family' },
+                { href: '/real-estate/halal-financing/commercial', label: 'Commercial' },
+                { href: '/real-estate/halal-financing/vacant-land', label: 'Vacant Land' },
+                { href: '/real-estate/halal-financing/dairy-farming', label: 'Dairy Farming' },
+                { href: '/real-estate/halal-financing/agriculture-land', label: 'Agriculture Land' },
+                { href: '/real-estate/halal-financing/development', label: 'Development' },
+                { href: '/real-estate/halal-financing/business', label: 'Business' },
+                { href: '/real-estate/halal-financing/unit-share-cert', label: 'Unit Share Cert' },
+                { href: '/real-estate/halal-financing/invest-with-us', label: 'Invest With Us' },
+            ],
+        },
+        {
+            href: '/real-estate/build-dream-home',
+            label: 'Build 2 Suit',
+            dropdown: [
+                { href: '/real-estate/build-dream-home/envelope-structures', label: 'Envelope Structures' },
+                { href: '/real-estate/build-dream-home/multi-family', label: 'Multi-Family' },
+                { href: '/real-estate/build-dream-home/residential', label: 'Residential' },
+                { href: '/real-estate/build-dream-home/commercial', label: 'Commercial' },
+                { href: '/real-estate/build-dream-home/dairy-farming', label: 'Dairy Farming' },
+                { href: '/real-estate/build-dream-home/log-homes-kit', label: 'Log Homes Kit' },
+                { href: '/real-estate/build-dream-home/cyps-list-2-last', label: 'CYPS List 2 Last' },
+                { href: '/real-estate/build-dream-home/development', label: 'Development' },
+                { href: '/real-estate/build-dream-home/vacant-land-api', label: 'Vacant Land API' },
+                { href: '/real-estate/build-dream-home/sms-mms-blast', label: 'SMS-MMS BLAST' },
+            ],
+        },
+        {
+            href: '/real-estate/list-property',
+            label: 'List Your Property',
+            dropdown: [
+                { href: '/real-estate/list-property/residential', label: 'Residential' },
+                { href: '/real-estate/list-property/multi-family', label: 'Multi-Family' },
+                { href: '/real-estate/list-property/commercial', label: 'Commercial' },
+                { href: '/real-estate/list-property/vacant-lots', label: 'Vacant Lots' },
+                { href: '/real-estate/list-property/vacant-acreage', label: 'Vacant Acreage' },
+                { href: '/real-estate/list-property/business', label: 'Business' },
+                { href: '/real-estate/list-property/sms-mms-blast', label: 'SMS-MMS BLAST' },
+                { href: '/real-estate/list-property/1-drive-listings', label: '1 Drive Listings' },
+                { href: '/real-estate/list-property/cyps-marketing', label: 'CYPS Marketing' },
+                { href: '/real-estate/list-property/property-trade', label: 'Property Trade' },
+            ],
+        },
+        {
+            href: '/real-estate/api-leads',
+            label: 'API-LEADS-DFXL',
+            dropdown: [
+                { href: '/real-estate/api-leads/property-owners', label: 'Property Owners' },
+                { href: '/real-estate/api-leads/multi-family', label: 'Multi-Family' },
+                { href: '/real-estate/api-leads/residential', label: 'Residential' },
+                { href: '/real-estate/api-leads/commercial', label: 'Commercial' },
+                { href: '/real-estate/api-leads/business', label: 'Business' },
+                { href: '/real-estate/api-leads/vacant-lots', label: 'Vacant Lots' },
+                { href: '/real-estate/api-leads/vacant-acreage', label: 'Vacant Acreage' },
+                { href: '/real-estate/api-leads/cyps-patent', label: 'CYPS Patent' },
+                { href: '/real-estate/api-leads/short-code-data', label: 'Short-Code Data' },
+                { href: '/real-estate/api-leads/sms-mms-blast', label: 'SMS-MMS BLAST' },
+            ],
+        },
+        {
+            href: '/real-estate/exchange-1031',
+            label: '1031 Exchange',
+            dropdown: [
+                { href: '/real-estate/exchange-1031/residential', label: 'Residential' },
+                { href: '/real-estate/exchange-1031/multi-family', label: 'Multi-Family' },
+                { href: '/real-estate/exchange-1031/commercial', label: 'Commercial' },
+                { href: '/real-estate/exchange-1031/vacant-land', label: 'Vacant Land' },
+                { href: '/real-estate/exchange-1031/farming', label: 'Farming' },
+                { href: '/real-estate/exchange-1031/vested-equity', label: 'Vested Equity' },
+                { href: '/real-estate/exchange-1031/reit-trade', label: 'REIT-TRADE' },
+                { href: '/real-estate/exchange-1031/mraeit-trade', label: 'MRAEIT-TRADE' },
+                { href: '/real-estate/exchange-1031/usa-escrow-title', label: 'USA Escrow Title' },
+                { href: '/real-estate/exchange-1031/world-escrow-title', label: 'World Escrow Title' },
+            ],
+        },
+        {
+            href: '/real-estate/blogs',
+            label: 'R/E BLOGS',
+            dropdown: [
+                { href: '/real-estate/blogs/emerging-markets', label: 'Emerging Markets' },
+                { href: '/real-estate/blogs/global', label: 'Global' },
+                { href: '/real-estate/blogs/national', label: 'National' },
+                { href: '/real-estate/blogs/regional', label: 'Regional' },
+                { href: '/real-estate/blogs/residential', label: 'Residential' },
+                { href: '/real-estate/blogs/commercial', label: 'Commercial' },
+                { href: '/real-estate/blogs/financing', label: 'Financing' },
+                { href: '/real-estate/blogs/investment', label: 'Investment' },
+                { href: '/real-estate/blogs/blogger-biography', label: 'Blogger Biography' },
+                { href: '/real-estate/blogs/blogger-police-report', label: 'Blogger Police Report' },
+            ],
+        },
+        {
+            href: '/real-estate/cap-ror-reo',
+            label: 'CAP-ROR-REO',
+            dropdown: [
+                { href: '/real-estate/cap-ror-reo/capitalization-rate', label: 'Capitalization Rate' },
+                { href: '/real-estate/cap-ror-reo/rate-of-return-rate', label: 'Rate Of Return Rate' },
+                { href: '/real-estate/cap-ror-reo/real-estate-owned', label: 'Real Estate Owned' },
+                { href: '/real-estate/cap-ror-reo/residential', label: 'Residential' },
+                { href: '/real-estate/cap-ror-reo/multi-family', label: 'Multi-Family' },
+                { href: '/real-estate/cap-ror-reo/commercial', label: 'Commercial' },
+                { href: '/real-estate/cap-ror-reo/vacant-land', label: 'Vacant Land' },
+                { href: '/real-estate/cap-ror-reo/crop-farming', label: 'Crop Farming' },
+                { href: '/real-estate/cap-ror-reo/livestock-farm', label: 'Livestock Farm' },
+                { href: '/real-estate/cap-ror-reo/build-2-suit-profit', label: 'Build 2 Suit Profit' },
+            ],
+        },
+    ];
+
+    const realEstateMegaSections: MegaSection[] = Array.from(
+        { length: Math.ceil(realEstateSections.length / 3) },
+        (_, index) => ({
+            title: '',
+            links: realEstateSections.slice(index * 3, index * 3 + 3),
+        })
+    );
+
     const navLinks: NavLink[] = [
         {
             href: '/real-estate',
             label: 'Real Estate',
-            megaSections: [
-                {
-                    title: '',
-                    links: [
-                        { 
-                            href: '/real-estate/agent-commission', 
-                            label: 'Agent 100% Commission',
-                            dropdown: [
-                                { href: '/real-estate/full-sponsorship', label: 'FULL SPONSORSHIP' },
-                                { href: '/real-estate/referral-fees', label: 'REFERRALS FEES' },
-                                { href: '/real-estate/park-license', label: 'PARK YOUR LICENSE' },
-                                { href: '/real-estate/marketing-fees', label: 'MARKETING FEES' },
-                                { href: '/real-estate/ce-training', label: 'C/E TRAINING' },
-                                { href: '/real-estate/broker-mentors', label: 'BROKER MENTORS' },
-                                { href: '/real-estate/list-2-last-agents', label: 'LIST 2 LAST AGENTS' },
-                                { href: '/real-estate/branch-offices', label: 'BRANCH OFFICES' },
-                                { href: '/real-estate/own-website', label: 'OWN R/E WEBSITE' },
-                                { href: '/real-estate/plan-01', label: 'PLAN 01' },
-                                { href: '/real-estate/plan-02', label: 'PLAN 02' },
-                                { href: '/real-estate/membership', label: 'MEMBERSHIP' },
-                                { href: '/real-estate/partners', label: 'PARTNERS' },
-                                { href: '/real-estate/board-members', label: 'BOARD MEMBERS' },
-                                { href: '/real-estate/agent-contract', label: 'AGENT CONTRACT' }
-                            ]
-                        },
-                        { 
-                            href: '/real-estate/why-onedrive', 
-                            label: 'Why OneDrive Realty',
-                            dropdown: [
-                                { href: '/real-estate/cyps-patent', label: 'CYPS PATENT' },
-                                { href: '/real-estate/cyps-list-2-last', label: 'CYPS LIST 2 LAST' },
-                                { href: '/real-estate/cyps-marketing', label: 'CYPS MARKETING' },
-                                { href: '/real-estate/short-code-data', label: 'SHORT CODE DATA' },
-                                { href: '/real-estate/license-regulators', label: 'LICENSE REGULATORS' },
-                                { href: '/real-estate/obtain-real-estate', label: 'OBTAIN REAL ESTATE' },
-                                { href: '/real-estate/connect-with-us', label: 'CONNECT WITH US' },
-                                { href: '/real-estate/we-support-gf', label: 'WE SUPPORT GF' }
-                            ]
-                        },
-                        { 
-                            href: '/real-estate/halal-financing', 
-                            label: 'Halal Funding',
-                            dropdown: [
-                                { href: '/real-estate/financing', label: 'FINANCING' },
-                                { href: '/real-estate/investment', label: 'INVESTMENT' },
-                                { href: '/real-estate/unit-share-cert', label: 'UNIT SHARE CERT' },
-                                { href: '/real-estate/invest-with-us', label: 'INVEST WITH US' },
-                                { href: '/real-estate/usa-escrow-title', label: 'USA ESCROW TITLE' },
-                                { href: '/real-estate/world-escrow-title', label: 'WORLD ESCROW TITLE' }
-                            ]
-                        },
-                    ],
-                },
-                {
-                    title: '',
-                    links: [
-                        { 
-                            href: '/real-estate/build-dream-home', 
-                            label: 'BUILT 2 SUIT',
-                            dropdown: [
-                                { href: '/real-estate/envelope-structures', label: 'ENVELOPE STRUCTURES' },
-                                { href: '/real-estate/log-home-kits', label: 'LOG HOME KITS' },
-                                { href: '/real-estate/development', label: 'DEVELOPMENT' },
-                                { href: '/real-estate/build-2-suit-profit', label: 'BUILD 2 SUIT PROFIT' }
-                            ]
-                        },
-                        { 
-                            href: '/real-estate/list-property', 
-                            label: 'List Your Property',
-                            dropdown: [
-                                { href: '/real-estate/property-owners', label: 'PROPERTY OWNERS' },
-                                { href: '/real-estate/our-listings', label: 'OUR LISTINGS' },
-                                { href: '/real-estate/search-four-listing', label: 'SEARCH FOUR LISTING' },
-                                { href: '/real-estate/nwmls-access', label: 'NWMLS ACCESS' },
-                                { href: '/real-estate/re-contracts-form', label: 'R/E CONTRACTS FORM' },
-                                { href: '/real-estate/property-trade', label: 'PROPERTY TRADE' },
-                                { href: '/real-estate/1drive-listings', label: '1DRIVE LISTINGS' },
-                                { href: '/real-estate/residential', label: 'RESIDENTIAL' },
-                                { href: '/real-estate/multifamily', label: 'MULTIFAMILY' },
-                                { href: '/real-estate/commercial', label: 'COMMERCIAL' },
-                                { href: '/real-estate/business', label: 'BUSINESS' },
-                                { href: '/real-estate/vacant-lots', label: 'VACANT LOTS' },
-                                { href: '/real-estate/vacant-acreage', label: 'VACANT ACREAGE' }
-                            ]
-                        },
-                        { 
-                            href: '/real-estate/api-leads', 
-                            label: 'API-LEADS-DFLX',
-                            dropdown: [
-                                { href: '/real-estate/vacant-land-api', label: 'VACANT LAND API' },
-                                { href: '/real-estate/sms-mms-blast', label: 'SMS MMS BLAST' },
-                                { href: '/real-estate/cyps-patent-api', label: 'CYPS PATENT' },
-                                { href: '/real-estate/short-code-data-api', label: 'SHORT CODE DATA' }
-                            ]
-                        },
-                    ],
-                },
-                {
-                    title: '',
-                    links: [
-                        { 
-                            href: '/real-estate/exchange-1031', 
-                            label: '1031 Exchange',
-                            dropdown: [
-                                { href: '/real-estate/1031-residential', label: 'RESIDENTIAL' },
-                                { href: '/real-estate/1031-multifamily', label: 'MULTIFAMILY' },
-                                { href: '/real-estate/1031-commercial', label: 'COMMERCIAL' },
-                                { href: '/real-estate/1031-vacant-land', label: 'VACANT LAND' },
-                                { href: '/real-estate/1031-farming', label: 'FARMING' },
-                                { href: '/real-estate/vested-equity', label: 'VESTED EQUITY' },
-                                { href: '/real-estate/reit-trade', label: 'REIT-TRADE' },
-                                { href: '/real-estate/mreit-trade', label: 'MREIT-TRADE' }
-                            ]
-                        },
-                        { 
-                            href: '/real-estate/cap-ror-reo', 
-                            label: 'CAP-ROR-REO',
-                            dropdown: [
-                                { href: '/real-estate/capitalization-rate', label: 'CAPITALIZATION RATE' },
-                                { href: '/real-estate/rate-of-return', label: 'RATE OF RETURN RATE' },
-                                { href: '/real-estate/real-estate-owned', label: 'REAL ESTATE OWNED' },
-                                { href: '/real-estate/cap-residential', label: 'RESIDENTIAL' },
-                                { href: '/real-estate/cap-multifamily', label: 'MULTIFAMILY' },
-                                { href: '/real-estate/cap-commercial', label: 'COMMERCIAL' },
-                                { href: '/real-estate/cap-vacant-land', label: 'VACANT LAND' },
-                                { href: '/real-estate/crop-farming', label: 'CROP FARMING' },
-                                { href: '/real-estate/livestock-farm', label: 'LIVESTOCK FARM' }
-                            ]
-                        },
-                        { 
-                            href: '/real-estate/blogs', 
-                            label: 'R/E BLOGS',
-                            dropdown: [
-                                { href: '/real-estate/emerging-markets', label: 'EMERGING MARKETS' },
-                                { href: '/real-estate/global', label: 'GLOBAL' },
-                                { href: '/real-estate/national', label: 'NATIONAL' },
-                                { href: '/real-estate/regional', label: 'REGIONAL' },
-                                { href: '/real-estate/blog-residential', label: 'RESIDENTIAL' },
-                                { href: '/real-estate/blog-commercial', label: 'COMMERCIAL' },
-                                { href: '/real-estate/blog-financing', label: 'FINANCING' },
-                                { href: '/real-estate/blog-investment', label: 'INVESTMENT' },
-                                { href: '/real-estate/blogger-biography', label: 'BLOGGER BIOGRAPHY' },
-                                { href: '/real-estate/blogger-police-report', label: 'BLOGGER POLICE REPORT' }
-                            ]
-                        },
-                    ],
-                },
-            ],
+            megaSections: realEstateMegaSections,
         },
         {
             href: '/logistics',
