@@ -5,4 +5,6 @@ const authController_1 = require("../controllers/authController");
 const router = (0, express_1.Router)();
 router.post("/signup", authController_1.signup);
 router.post("/login", authController_1.login);
+router.get("/first-login/validate", authController_1.validateFirstLogin);
+router.post("/first-login", authController_1.completeFirstLogin);
 exports.default = router;

@@ -27,7 +27,7 @@ class ApiClient {
     }
   }
 
-  private async request<T>(
+  private async internalRequest<T>(
     endpoint: string,
     options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
@@ -63,6 +63,30 @@ class ApiClient {
         error: error.message,
       };
     }
+  }
+
+  // Public request method for dynamic API calls
+  async request<T = any>(
+    endpoint: string,
+    options: { method?: string; body?: string; params?: Record<string, any> } = {}
+  ): Promise<ApiResponse<T>> {
+    let url = endpoint;
+    if (options.params) {
+      const searchParams = new URLSearchParams();
+      Object.entries(options.params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== '') {
+          searchParams.append(key, String(value));
+        }
+      });
+      const queryString = searchParams.toString();
+      if (queryString) {
+        url += `?${queryString}`;
+      }
+    }
+    return this.internalRequest<T>(url, {
+      method: options.method || 'GET',
+      body: options.body,
+    });
   }
 
   // Auth

@@ -67,45 +67,45 @@ export default function HalalFundingPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#faeef2]">
+      <section className="py-16 bg-off-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-4 mb-12">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               OVERVIEW
             </div>
-            <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_2px_0_rgba(88,70,150,0.35)] py-1 text-center">
-              <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+            <div className="w-full rounded-none bg-royal-purple border border-muted-indigo shadow-[0_6px_0_rgba(88,70,150,0.35)] py-3 text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                 Diverse Financing Options for Your Needs
               </h2>
             </div>
           </div>
 
           <div className="space-y-6 mb-16">
-            <p className="text-lg text-[#4f2c33] leading-relaxed text-center max-w-4xl mx-auto">
+            <p className="text-lg text-muted-indigo leading-relaxed text-center max-w-4xl mx-auto">
               One Drive Realty recognizes the importance of offering diverse financing options that cater to the needs of our clients. Halal funding is a significant consideration for those who seek to finance their real estate transactions in accordance with Islamic principles.
             </p>
           </div>
 
           <div className="space-y-4 mb-12">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               WHAT IS HALAL FUNDING?
             </div>
           </div>
 
-          <div className="rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-8 py-10 shadow-[0_12px_0_0_#d37377] mb-16">
+          <div className="rounded-lg border border-muted-indigo/30 bg-light-beige px-8 py-10 shadow-[0_12px_0_0_rgba(45,58,107,0.3)] mb-16">
             <div className="space-y-4">
-              <p className="text-lg text-[#4f2c33] leading-relaxed">
+              <p className="text-lg text-muted-indigo leading-relaxed">
                 Halal Funding refers to financial products and services that comply with Islamic law, which prohibits interest-based transactions (Riba) and requires investments to be made in ethical and permissible (Halal) ventures. In real estate, this often means structuring transactions in a way that avoids traditional interest-bearing loans.
               </p>
             </div>
           </div>
 
           <div className="space-y-4 mb-12">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               ONE DRIVE REALTY'S APPROACH
             </div>
-            <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_2px_0_rgba(88,70,150,0.35)] py-1 text-center">
-              <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+            <div className="w-full rounded-none bg-royal-purple border border-muted-indigo shadow-[0_6px_0_rgba(88,70,150,0.35)] py-3 text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                 To Halal Funding
               </h2>
             </div>
@@ -115,23 +115,23 @@ export default function HalalFundingPage() {
             {approaches.map((approach) => {
               const Icon = approach.icon;
               return (
-                <div key={approach.title} className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform min-h-[320px]">
-                  <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white flex-shrink-0">
+                <div key={approach.title} className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform min-h-[320px]">
+                  <div className="h-20 w-20 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white flex-shrink-0">
                     <Icon className="h-10 w-10" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#33202b] leading-tight">{approach.title}</h3>
-                  <p className="text-sm text-[#4f2c33] leading-relaxed break-words flex-1">{approach.description}</p>
+                  <h3 className="text-xl font-bold text-midnight-blue leading-tight">{approach.title}</h3>
+                  <p className="text-sm text-muted-indigo leading-relaxed break-words flex-1">{approach.description}</p>
                 </div>
               );
             })}
           </div>
 
           <div className="space-y-4 mb-12">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               BENEFITS OF HALAL FUNDING
             </div>
-            <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_2px_0_rgba(88,70,150,0.35)] py-1 text-center">
-              <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+            <div className="w-full rounded-none bg-royal-purple border border-muted-indigo shadow-[0_6px_0_rgba(88,70,150,0.35)] py-3 text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                 With One Drive Realty
               </h2>
             </div>
@@ -141,26 +141,26 @@ export default function HalalFundingPage() {
             {benefits.map((benefit) => {
               const Icon = benefit.icon;
               return (
-                <div key={benefit.title} className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform min-h-[260px]">
-                  <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white flex-shrink-0">
+                <div key={benefit.title} className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform min-h-[260px]">
+                  <div className="h-20 w-20 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white flex-shrink-0">
                     <Icon className="h-10 w-10" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#33202b] leading-tight">{benefit.title}</h3>
-                  <p className="text-sm text-[#4f2c33] leading-relaxed break-words flex-1">{benefit.description}</p>
+                  <h3 className="text-xl font-bold text-midnight-blue leading-tight">{benefit.title}</h3>
+                  <p className="text-sm text-muted-indigo leading-relaxed break-words flex-1">{benefit.description}</p>
                 </div>
               );
             })}
           </div>
 
           <div className="space-y-4 mb-12">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               OUR COMMITMENT
             </div>
           </div>
 
-          <div className="rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-8 py-10 shadow-[0_12px_0_0_#d37377]">
+          <div className="rounded-lg border border-muted-indigo/30 bg-light-beige px-8 py-10 shadow-[0_12px_0_0_rgba(45,58,107,0.3)]">
             <div className="space-y-4">
-              <p className="text-lg text-[#4f2c33] leading-relaxed text-center">
+              <p className="text-lg text-muted-indigo leading-relaxed text-center">
                 One Drive Realty is committed to supporting clients who seek Halal funding for their real estate transactions. By offering referrals to Halal-compliant financial institutions and providing guidance on Islamic finance principles, we ensure that our clients can invest in real estate in a way that aligns with their values and beliefs.
               </p>
             </div>
@@ -168,27 +168,25 @@ export default function HalalFundingPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#080f24] text-white">
+      <section className="py-16 bg-midnight-blue text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-          <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16] bg-opacity-90">
+          <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.4)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue bg-opacity-90">
             CONTACT US
           </div>
           <h2 className="text-[clamp(2rem,4vw,3rem)] font-black">Looking for Shariah-Compliant Financing?</h2>
-          <p className="text-lg text-white/80 leading-relaxed">
-            Looking for Shariah-compliant financing for your real estate needs? One Drive Realty can help! We understand the importance of ethical financial practices and offer a variety of options to suit your needs.
-          </p>
+          
           <p className="text-lg text-white/80 leading-relaxed">
             Contact us to learn more about our services.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
             <a href="mailto:info@onedriverealty.com">
-              <Button size="lg" className="w-full sm:w-auto bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Button size="lg" className="w-full sm:w-auto bg-metallic-gold hover:bg-amber text-midnight-blue font-bold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl">
                 <Mail className="mr-2 h-5 w-5" />
                 Email Us Now
               </Button>
             </a>
             <Link href="/contact">
-              <Button size="lg" className="w-full sm:w-auto bg-[#17b58f] hover:bg-[#0e8f6a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Button size="lg" className="w-full sm:w-auto bg-metallic-gold hover:bg-amber text-midnight-blue font-bold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl">
                 Contact Us
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

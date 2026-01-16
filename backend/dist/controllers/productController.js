@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProducts = exports.getPublicProduct = exports.getPublicProducts = void 0;
+exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProducts = exports.getProduct = exports.getPublicProduct = exports.getPublicProducts = void 0;
 const database_1 = require("../config/database");
 const apiResponse_1 = require("../utils/apiResponse");
 const mapProductRow = (row) => ({
@@ -55,6 +55,22 @@ const getPublicProduct = async (req, res) => {
     }
 };
 exports.getPublicProduct = getPublicProduct;
+const getProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await (0, database_1.query)("SELECT * FROM products WHERE id = $1", [id]);
+        if (result.rows.length === 0) {
+            return res.status(404).json((0, apiResponse_1.errorResponse)("Product not found"));
+        }
+        return res.json((0, apiResponse_1.successResponse)("Product retrieved successfully", mapProductRow(result.rows[0])));
+    }
+    catch (error) {
+        return res
+            .status(500)
+            .json((0, apiResponse_1.errorResponse)("Server error", error.message || "Error"));
+    }
+};
+exports.getProduct = getProduct;
 const getProducts = async (req, res) => {
     try {
         const { includeInactive } = req.query;

@@ -16,7 +16,12 @@ import {
   MessageSquare,
   Briefcase,
   Sparkles,
-  Activity
+  Activity,
+  Layers,
+  UserCheck,
+  Mail,
+  Upload,
+  Download
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { apiClient } from '@/lib/api-client';
@@ -47,6 +52,9 @@ export default function AdminLayout({
     { href: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
     { href: '/admin/users', icon: Users, label: 'Users' },
     { href: '/admin/analytics', icon: BarChart3, label: 'Analytics' },
+    { href: '/admin/crm', icon: UserCheck, label: 'CRM' },
+    { href: '/admin/cms', icon: Layers, label: 'CMS' },
+    { href: '/admin/email', icon: Mail, label: 'Email' },
     { href: '/admin/products', icon: Briefcase, label: 'Products' },
     { href: '/admin/subscriptions', icon: Sparkles, label: 'Subscriptions' },
     { href: '/admin/content/services', icon: Briefcase, label: 'Services' },
@@ -56,6 +64,7 @@ export default function AdminLayout({
     { href: '/admin/content/hero-texts', icon: FileText, label: 'Hero Texts' },
     { href: '/admin/orders', icon: Activity, label: 'Orders' },
     { href: '/admin/chatbot', icon: MessageSquare, label: 'Chatbot' },
+    { href: '/admin/import-export', icon: Upload, label: 'Import/Export' },
     { href: '/admin/settings', icon: Settings, label: 'Settings' },
     { href: '/admin/logs', icon: Activity, label: 'Logs' },
   ];

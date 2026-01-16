@@ -72,20 +72,20 @@ export default function ListPropertyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#faeef2]">
+      <section className="py-16 bg-off-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-6 mb-16">
-            <p className="text-lg text-[#4f2c33] leading-relaxed text-center max-w-4xl mx-auto">
+            <p className="text-lg text-muted-indigo leading-relaxed text-center max-w-4xl mx-auto">
               Listing your property with One Drive Realty gives you access to a powerful virtual real estate platform designed to maximize exposure and deliver results. Whether you are selling residential or commercial property, our team provides the tools, technology, and expertise needed to market your property effectively.
             </p>
           </div>
 
           <div className="space-y-4 mb-12">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               WHY LIST WITH ONE DRIVE REALTY?
             </div>
-            <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_2px_0_rgba(88,70,150,0.35)] py-1 text-center">
-              <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+            <div className="w-full rounded-none bg-royal-purple border border-muted-indigo shadow-[0_6px_0_rgba(88,70,150,0.35)] py-3 text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                 Tools, Technology, and Expertise
               </h2>
             </div>
@@ -95,14 +95,14 @@ export default function ListPropertyPage() {
             {whyListFeatures.map((feature) => {
               const Icon = feature.icon;
               return (
-                <div key={feature.title} className="flex flex-col gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 shadow-[0_12px_0_0_#d37377] min-h-[200px]">
+                <div key={feature.title} className="flex flex-col gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 shadow-[0_12px_0_0_rgba(45,58,107,0.3)] min-h-[200px]">
                   <div className="flex items-start gap-4">
-                    <div className="h-16 w-16 flex-shrink-0 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
+                    <div className="h-16 w-16 flex-shrink-0 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                       <Icon className="h-8 w-8" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-[#33202b] mb-2 leading-tight">{feature.title}</h3>
-                      <p className="text-sm text-[#4f2c33] leading-relaxed break-words">{feature.description}</p>
+                      <h3 className="text-xl font-bold text-midnight-blue mb-2 leading-tight">{feature.title}</h3>
+                      <p className="text-sm text-muted-indigo leading-relaxed break-words">{feature.description}</p>
                     </div>
                   </div>
                 </div>
@@ -111,11 +111,11 @@ export default function ListPropertyPage() {
           </div>
 
           <div className="space-y-4 mb-12">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               OUR LISTING PROCESS
             </div>
-            <div className="w-full rounded-none bg-[#a799e4] border border-[#7b6cc0] shadow-[0_2px_0_rgba(88,70,150,0.35)] py-1 text-center">
-              <h2 className="text-[clamp(1.7rem,3.4vw,2.4rem)] font-black text-[#1d1a3a] tracking-wide">
+            <div className="w-full rounded-none bg-royal-purple border border-muted-indigo shadow-[0_6px_0_rgba(88,70,150,0.35)] py-3 text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                 Streamlined and Efficient
               </h2>
             </div>
@@ -125,26 +125,26 @@ export default function ListPropertyPage() {
             {listingProcess.map((step) => {
               const Icon = step.icon;
               return (
-                <div key={step.title} className="flex flex-col items-center gap-4 rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-6 py-8 text-center shadow-[0_12px_0_0_#d37377] hover:-translate-y-2 transition-transform min-h-[240px]">
-                  <div className="h-20 w-20 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white flex-shrink-0">
+                <div key={step.title} className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform min-h-[240px]">
+                  <div className="h-20 w-20 rounded-full bg-sea-green shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white flex-shrink-0">
                     <Icon className="h-10 w-10" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#33202b] leading-tight">{step.title}</h3>
-                  <p className="text-sm text-[#4f2c33] leading-relaxed break-words flex-1">{step.description}</p>
+                  <h3 className="text-xl font-bold text-midnight-blue leading-tight">{step.title}</h3>
+                  <p className="text-sm text-muted-indigo leading-relaxed break-words flex-1">{step.description}</p>
                 </div>
               );
             })}
           </div>
 
           <div className="space-y-4 mb-12">
-            <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-[#3c1d26]">
+            <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               SELL WITH CONFIDENCE
             </div>
           </div>
 
-          <div className="rounded-lg border border-[#c3868b] bg-gradient-to-b from-[#ffe1e1] to-[#ffc5c9] px-8 py-10 shadow-[0_12px_0_0_#d37377]">
+          <div className="rounded-lg border border-muted-indigo/30 bg-light-beige px-8 py-10 shadow-[0_12px_0_0_rgba(45,58,107,0.3)]">
             <div className="space-y-4">
-              <p className="text-lg text-[#4f2c33] leading-relaxed text-center">
+              <p className="text-lg text-muted-indigo leading-relaxed text-center">
                 At One Drive Realty, we are committed to transparency, communication, and performance. Our goal is to help property owners achieve the best possible outcome while making the listing and selling process simple and stress-free.
               </p>
             </div>
@@ -152,24 +152,22 @@ export default function ListPropertyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#080f24] text-white">
+      <section className="py-16 bg-midnight-blue text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-          <div className="w-full rounded-none bg-[#f3b0b0] border border-[#d27a7c] shadow-[inset_0_2px_0_rgba(255,255,255,0.55)] py-1 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-[#2f0f16] bg-opacity-90">
+          <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.4)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue bg-opacity-90">
             CONTACT US
           </div>
           <h2 className="text-[clamp(2rem,4vw,3rem)] font-black">Ready to List Your Property?</h2>
-          <p className="text-lg text-white/80 leading-relaxed">
-            If you're ready to list your property or would like more information, contact One Drive Realty today and take the next step toward a successful sale.
-          </p>
+          
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
             <a href="mailto:info@onedriverealty.com">
-              <Button size="lg" className="w-full sm:w-auto bg-[#c45c4b] hover:bg-[#b04a3a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Button size="lg" className="w-full sm:w-auto bg-metallic-gold hover:bg-amber text-midnight-blue font-bold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl">
                 <Mail className="mr-2 h-5 w-5" />
                 Email Us Now
               </Button>
             </a>
             <Link href="/contact">
-              <Button size="lg" className="w-full sm:w-auto bg-[#17b58f] hover:bg-[#0e8f6a] text-white font-semibold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Button size="lg" className="w-full sm:w-auto bg-metallic-gold hover:bg-amber text-midnight-blue font-bold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl">
                 Contact Us
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

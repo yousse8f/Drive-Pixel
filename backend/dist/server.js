@@ -18,6 +18,17 @@ const publicRoutes_1 = __importDefault(require("./routes/publicRoutes"));
 const productRoutes_1 = __importDefault(require("./routes/productRoutes"));
 const cartRoutes_1 = __importDefault(require("./routes/cartRoutes"));
 const orderRoutes_1 = __importDefault(require("./routes/orderRoutes"));
+const chatRoutes_1 = __importDefault(require("./routes/chatRoutes"));
+const chatAdminRoutes_1 = __importDefault(require("./routes/chatAdminRoutes"));
+const paymentRoutes_1 = __importDefault(require("./routes/paymentRoutes"));
+const paypalRoutes_1 = __importDefault(require("./routes/paypalRoutes"));
+const clientRoutes_1 = __importDefault(require("./routes/clientRoutes"));
+const newsletterRoutes_1 = __importDefault(require("./routes/newsletterRoutes"));
+const contactRoutes_1 = __importDefault(require("./routes/contactRoutes"));
+const cmsRoutes_1 = __importDefault(require("./routes/cmsRoutes"));
+const crmRoutes_1 = __importDefault(require("./routes/crmRoutes"));
+const emailRoutes_1 = __importDefault(require("./routes/emailRoutes"));
+const importExportRoutes_1 = __importDefault(require("./routes/importExportRoutes"));
 const authUtils_1 = require("./utils/authUtils");
 const adminMiddleware_1 = require("./utils/adminMiddleware");
 const database_1 = require("./config/database");
@@ -46,36 +57,23 @@ app.use((req, res, next) => {
     });
     next();
 });
-// Auth middleware
-const authMiddleware = (req, res, next) => {
-    const token = req.headers.authorization?.split(" ")[1];
-    if (!token) {
-        return res.status(401).json({
-            success: false,
-            message: "Unauthorized",
-            error: "No token provided",
-        });
-    }
-    const decoded = (0, authUtils_1.verifyToken)(token);
-    if (!decoded) {
-        return res.status(401).json({
-            success: false,
-            message: "Unauthorized",
-            error: "Invalid token",
-        });
-    }
-    req.userId = decoded.userId;
-    next();
-};
 // Public routes (no authentication required)
 app.use("/api/public", publicRoutes_1.default);
+app.use("/api/newsletter", newsletterRoutes_1.default);
+app.use("/api/contact", contactRoutes_1.default);
 // Auth routes
 app.use("/api/auth", authRoutes_1.default);
+// Payment webhook (public, provider should verify signatures)
+app.use("/api/payments", paymentRoutes_1.default);
+// PayPal routes (public for checkout)
+app.use("/api/paypal", paypalRoutes_1.default);
 // Protected routes (authentication required)
-app.use("/api/users", authMiddleware, usersRoutes_1.default);
-app.use("/api/leads", authMiddleware, leadsRoutes_1.default);
-app.use("/api/properties", authMiddleware, propertiesRoutes_1.default);
+app.use("/api/users", authUtils_1.authMiddleware, usersRoutes_1.default);
+app.use("/api/leads", authUtils_1.authMiddleware, leadsRoutes_1.default);
+app.use("/api/properties", authUtils_1.authMiddleware, propertiesRoutes_1.default);
 app.use("/api/cart", cartRoutes_1.default);
+app.use("/api/chat", chatRoutes_1.default);
+app.use("/api", clientRoutes_1.default);
 // Admin routes (admin authentication required)
 app.use("/api/admin/content", adminMiddleware_1.adminMiddleware, contentRoutes_1.default);
 app.use("/api/admin/settings", adminMiddleware_1.adminMiddleware, settingsRoutes_1.default);
@@ -83,6 +81,13 @@ app.use("/api/admin/analytics", adminMiddleware_1.adminMiddleware, analyticsRout
 app.use("/api/admin/logs", adminMiddleware_1.adminMiddleware, logsRoutes_1.default);
 app.use("/api/admin/products", adminMiddleware_1.adminMiddleware, productRoutes_1.default);
 app.use("/api/admin/orders", adminMiddleware_1.adminMiddleware, orderRoutes_1.default);
+app.use("/api/admin/chat", adminMiddleware_1.adminMiddleware, chatAdminRoutes_1.default);
+app.use("/api/admin/cms", adminMiddleware_1.adminMiddleware, cmsRoutes_1.default);
+app.use("/api/admin/crm", adminMiddleware_1.adminMiddleware, crmRoutes_1.default);
+app.use("/api/admin/email", adminMiddleware_1.adminMiddleware, emailRoutes_1.default);
+app.use("/api/admin/data", adminMiddleware_1.adminMiddleware, importExportRoutes_1.default);
+// Public email tracking routes (no auth)
+app.use("/api/email", emailRoutes_1.default);
 // Health check
 app.get("/api/health", (req, res) => {
     res.json({ success: true, message: "Server is running" });
