@@ -18,6 +18,12 @@ interface CmsComponent {
   is_active: boolean;
 }
 
+export async function generateStaticParams() {
+  return [
+    { id: 'new' }
+  ];
+}
+
 export default function CmsComponentDetailPage() {
   const params = useParams();
   const router = useRouter();
