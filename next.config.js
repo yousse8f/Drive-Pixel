@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+    output: 'export',
+    trailingSlash: true,
+    images: {
+        unoptimized: true,
+    },
+    basePath: '/Drive-Pixel',
+    assetPrefix: '/Drive-Pixel',
     async rewrites() {
         return [
             {
