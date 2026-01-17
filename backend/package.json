@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed:admin": "ts-node src/scripts/seedAdminDashboard.ts",
     "test:admin": "ts-node src/scripts/testAdminDashboard.ts",
-    "admin:setup": "npm run seed:admin && npm run test:admin"
+    "admin:setup": "npm run seed:admin && npm run test:admin",
+    "seed:site-content": "ts-node src/scripts/seedSiteContent.ts"
   },
   "keywords": [],
   "author": "",

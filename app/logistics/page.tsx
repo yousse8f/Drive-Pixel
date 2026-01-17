@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useState } from 'react';
+import DynamicPageContent from '@/components/DynamicPageContent';
 
 export default function FreightLogisticsPage() {
   const [formData, setFormData] = useState({
@@ -147,30 +148,32 @@ export default function FreightLogisticsPage() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      {/* Hero Section with Image Background */}
-      <section
-        className="relative text-white overflow-hidden pt-16 pb-12"
-        style={{
-          backgroundImage: 'url(/images/Services.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          minHeight: '50vh',
-        }}
-      >
-        <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
-        
-        {/* Content */}
-        <div className="container-custom relative z-10 flex justify-center items-center" style={{ minHeight: '40vh' }}>
-          <div className="max-w-4xl w-full text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
-              Freight-Logistics
-            </h1>
-            <p className="text-lg md:text-xl mb-8 text-white/80 leading-relaxed max-w-3xl mx-auto">
-              Transform your logistics operations with our cutting-edge technology solutions. From fleet management to warehouse optimization, we help you deliver faster, smarter, and more efficiently.
+      {/* Hero Section - CMS Controlled */}
+      <DynamicPageContent pagePath="/logistics" fallbackContent={
+        <section
+          className="relative text-white overflow-hidden pt-16 pb-12"
+          style={{
+            backgroundImage: 'url(/images/Services.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '50vh',
+          }}
+        >
+          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
+          
+          {/* Content */}
+          <div className="container-custom relative z-10 flex justify-center items-center" style={{ minHeight: '40vh' }}>
+            <div className="max-w-4xl w-full text-center">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
+                Freight-Logistics
+              </h1>
+              <p className="text-lg md:text-xl mb-8 text-white/80 leading-relaxed max-w-3xl mx-auto">
+                Transform your logistics operations with our cutting-edge technology solutions. From fleet management to warehouse optimization, we help you deliver faster, smarter, and more efficiently.
             </p>
           </div>
         </div>
       </section>
+      } />
 
       {/* Services Section */}
       <section className="py-20 md:py-24 bg-off-white">

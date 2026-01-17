@@ -24,6 +24,7 @@ import cmsRoutes from "./routes/cmsRoutes";
 import crmRoutes from "./routes/crmRoutes";
 import emailRoutes from "./routes/emailRoutes";
 import importExportRoutes from "./routes/importExportRoutes";
+import siteContentRoutes from "./routes/siteContent";
 import { authMiddleware } from "./utils/authUtils";
 import { adminMiddleware } from "./utils/adminMiddleware";
 import { initializeDatabase } from "./config/database";
@@ -94,6 +95,7 @@ app.use("/api/admin/cms", adminMiddleware, cmsRoutes);
 app.use("/api/admin/crm", adminMiddleware, crmRoutes);
 app.use("/api/admin/email", adminMiddleware, emailRoutes);
 app.use("/api/admin/data", adminMiddleware, importExportRoutes);
+app.use("/api/admin/site-content", adminMiddleware, siteContentRoutes);
 
 // Public email tracking routes (no auth)
 app.use("/api/email", emailRoutes);

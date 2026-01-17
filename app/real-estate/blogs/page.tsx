@@ -5,6 +5,7 @@ import { ArrowRight, BookOpen, TrendingUp, FileText, Lightbulb, Mail } from 'luc
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import DynamicPageContent from '@/components/DynamicPageContent';
 
 export default function REBlogsPage() {
   const contentAreas = [
@@ -34,25 +35,28 @@ export default function REBlogsPage() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <section className="relative py-32 text-white">
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{
-            backgroundImage: 'url(/images/Real%20Estate.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
-        </div>
-        <div className="container-custom text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">R/E BLOGS</h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-            Real estate insights, updates, and educational resources
-          </p>
-        </div>
-      </section>
+      {/* Hero Section - CMS Controlled */}
+      <DynamicPageContent pagePath="/real-estate" fallbackContent={
+        <section className="relative py-32 text-white">
+          <div 
+            className="absolute inset-0 bg-cover bg-center z-0"
+            style={{
+              backgroundImage: 'url(/images/Real%20Estate.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          >
+            <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
+          </div>
+          <div className="container-custom text-center relative z-10">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">R/E BLOGS</h1>
+            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+              Real estate insights, updates, and educational resources
+            </p>
+          </div>
+        </section>
+      } />
 
       <section className="py-16 bg-off-white">
         <div className="max-w-6xl mx-auto px-4">

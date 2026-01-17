@@ -5,6 +5,7 @@ import { ArrowRight, Monitor, Smartphone, Code, Headphones, Shield, Home } from 
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import DynamicPageContent from '@/components/DynamicPageContent';
 
 const services = [
   {
@@ -50,30 +51,32 @@ export default function ServicesPage() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      {/* Hero Section with Image Background */}
-      <section
-        className="relative text-white overflow-hidden pt-16 pb-12"
-        style={{
-          backgroundImage: 'url(/images/Services.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          minHeight: '50vh',
-        }}
-      >
-        <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
-        
-        {/* Content */}
-        <div className="container-custom relative z-10 flex justify-center items-center" style={{ minHeight: '40vh' }}>
-          <div className="max-w-4xl w-full text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
-              All IT Services – Explore Our Expertise
-            </h1>
-            <p className="text-lg md:text-xl mb-8 text-white/80 leading-relaxed max-w-3xl mx-auto">
-              At Drive Pixel, we provide a wide range of IT services to meet the needs of businesses across different industries. Browse through our services and click on any to learn more.
-            </p>
+      {/* Hero Section - CMS Controlled */}
+      <DynamicPageContent pagePath="/services" fallbackContent={
+        <section
+          className="relative text-white overflow-hidden pt-16 pb-12"
+          style={{
+            backgroundImage: 'url(/images/Services.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '50vh',
+          }}
+        >
+          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
+          
+          {/* Content */}
+          <div className="container-custom relative z-10 flex justify-center items-center" style={{ minHeight: '40vh' }}>
+            <div className="max-w-4xl w-full text-center">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
+                All IT Services – Explore Our Expertise
+              </h1>
+              <p className="text-lg md:text-xl mb-8 text-white/80 leading-relaxed max-w-3xl mx-auto">
+                At Drive Pixel, we provide a wide range of IT services to meet the needs of businesses across different industries. Browse through our services and click on any to learn more.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      } />
 
       {/* Services Section */}
       <section className="py-20 md:py-24 bg-off-white">

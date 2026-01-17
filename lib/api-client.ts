@@ -401,6 +401,35 @@ class ApiClient {
       method: 'DELETE',
     });
   }
+
+  // Site Content Management
+  async getSitePages() {
+    return this.request<any[]>('/admin/site-content/pages');
+  }
+
+  async getSitePage(id: string) {
+    return this.request<any>(`/admin/site-content/pages/${id}`);
+  }
+
+  async updateSitePage(id: string, data: any) {
+    return this.request(`/admin/site-content/pages/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async uploadSiteImage(data: { filename: string; base64: string }) {
+    return this.request<any>('/admin/site-content/upload-image', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async deleteSiteImage(filename: string) {
+    return this.request(`/admin/site-content/image/${filename}`, {
+      method: 'DELETE',
+    });
+  }
 }
 
 export const apiClient = new ApiClient(API_BASE_URL);

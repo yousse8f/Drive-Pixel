@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useEffect, useState } from 'react';
 import { publicApiClient } from '@/lib/public-api-client';
+import DynamicPageContent from '@/components/DynamicPageContent';
 
 export default function BlogPage() {
     const [posts, setPosts] = useState<any[]>([]);
@@ -77,27 +78,29 @@ export default function BlogPage() {
         <div className="min-h-screen flex flex-col">
             <Navbar />
 
-            {/* Hero Section */}
-            <section className="relative py-20 text-white">
-                <div 
-                    className="absolute inset-0 bg-cover bg-center z-0"
-                style={{
-                    backgroundImage: 'url(/images/our-blog.jpg)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                }}
-                >
-                    <div className="absolute inset-0 bg-[#1a1f3a]/80"></div>
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0f172a]/40 to-[#0f172a]/80"></div>
-                </div>
-                <div className="container-custom relative z-10 flex flex-col items-center text-center">
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Blog</h1>
-                    <p className="text-xl text-white/90 max-w-3xl mx-auto">
-                                Insights, tutorials, and case studies from our team of experts.
-                            </p>
-                        </div>
-            </section>
+            {/* Hero Section - CMS Controlled */}
+            <DynamicPageContent pagePath="/blog" fallbackContent={
+                <section className="relative py-20 text-white">
+                    <div 
+                        className="absolute inset-0 bg-cover bg-center z-0"
+                    style={{
+                        backgroundImage: 'url(/images/our-blog.jpg)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                    >
+                        <div className="absolute inset-0 bg-[#1a1f3a]/80"></div>
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0f172a]/40 to-[#0f172a]/80"></div>
+                    </div>
+                    <div className="container-custom relative z-10 flex flex-col items-center text-center">
+                        <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Blog</h1>
+                        <p className="text-xl text-white/90 max-w-3xl mx-auto">
+                                    Insights, tutorials, and case studies from our team of experts.
+                                </p>
+                            </div>
+                </section>
+            } />
 
             {/* Filter Section */}
             <section className="py-16 bg-off-white">

@@ -5,6 +5,7 @@ import { ArrowRight, Building2, DollarSign, HelpCircle, Landmark, Hammer, FileTe
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import DynamicPageContent from '@/components/DynamicPageContent';
 
 export default function RealEstatePage() {
   const propertyTypes = [
@@ -68,25 +69,28 @@ export default function RealEstatePage() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <section className="relative py-32 text-white">
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{
-            backgroundImage: 'url(/images/Real%20Estate.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
-        </div>
-        <div className="container-custom text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Real Estate Services</h1>
-          <p className="text-sm md:text-base text-white font-medium whitespace-nowrap">
-                Comprehensive real estate solutions across all property types
-              </p>
-        </div>
-      </section>
+      {/* Hero Section - CMS Controlled */}
+      <DynamicPageContent pagePath="/real-estate" fallbackContent={
+        <section className="relative py-32 text-white">
+          <div 
+            className="absolute inset-0 bg-cover bg-center z-0"
+            style={{
+              backgroundImage: 'url(/images/Real%20Estate.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          >
+            <div className="absolute inset-0 bg-[#1a1f3a]/70"></div>
+          </div>
+          <div className="container-custom text-center relative z-10">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Real Estate Services</h1>
+            <p className="text-sm md:text-base text-white font-medium whitespace-nowrap">
+                  Comprehensive real estate solutions across all property types
+                </p>
+          </div>
+        </section>
+      } />
 
       <section className="py-16 bg-off-white">
         <div className="max-w-6xl mx-auto px-4">
