@@ -123,34 +123,34 @@ function CartContent() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-gray-900">
-                <Loader2 className="h-12 w-12 animate-spin text-primary-600 mb-4" />
-                <div className="text-xl font-semibold">Loading Cart...</div>
+            <div className="min-h-screen flex flex-col items-center justify-center" style={{backgroundColor: '#1E3A8A'}}>
+                <Loader2 className="h-12 w-12 animate-spin text-white mb-4" />
+                <div className="text-xl font-semibold text-white">Loading Cart...</div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+        <div className="min-h-screen flex flex-col" style={{backgroundColor: '#1E3A8A'}}>
             <Navbar />
 
             <main className="flex-1 py-12">
                 <div className="container-custom">
-                    <h1 className="text-3xl font-bold mb-8 flex items-center gap-2">
-                        <ShoppingCart className="h-8 w-8 text-primary-600" />
+                    <h1 className="text-3xl font-bold mb-8 flex items-center gap-2 text-white">
+                        <ShoppingCart className="h-8 w-8 text-white" />
                         Your Shopping Cart
                     </h1>
 
                     <div className="grid lg:grid-cols-[1.5fr,1fr] gap-10">
                         {/* Cart Items */}
                         <div className="space-y-6">
-                            <Card className="bg-white shadow-sm border-gray-200">
+                            <Card className="bg-off-white shadow-sm border-metallic-gold">
                                 <CardContent className="p-0">
                                     {items.length === 0 ? (
                                         <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-                                            <ShoppingCart className="h-16 w-16 text-gray-300 mb-4" />
-                                            <h2 className="text-xl font-semibold text-gray-700 mb-2">Your cart is empty</h2>
-                                            <p className="text-gray-500 mb-6">Looks like you haven't added anything yet.</p>
+                                            <ShoppingCart className="h-16 w-16 text-[#1E3A8A]/30 mb-4" />
+                                            <h2 className="text-xl font-semibold text-[#1E3A8A] mb-2">Your cart is empty</h2>
+                                            <p className="text-[#1E3A8A]/70 mb-6">Looks like you haven't added anything yet.</p>
                                             <Link href="/shop">
                                                 <Button className="bg-cta hover:bg-cta-600 text-[#041028] font-semibold">
                                                     Start Shopping
@@ -158,10 +158,10 @@ function CartContent() {
                                             </Link>
                                         </div>
                                     ) : (
-                                        <div className="divide-y divide-gray-100">
+                                        <div className="divide-y divide-metallic-gold/30">
                                             {items.map((item) => (
                                                 <div key={item.id} className="p-6 flex flex-col sm:flex-row gap-6 items-start">
-                                                    <div className="h-24 w-24 rounded-lg bg-gray-100 overflow-hidden relative flex-shrink-0 border border-gray-200">
+                                                    <div className="h-24 w-24 rounded-lg bg-light-beige overflow-hidden relative flex-shrink-0 border border-metallic-gold">
                                                         {item.imageUrl ? (
                                                             <Image src={item.imageUrl} alt={`${item.name} image`} fill className="object-cover" />
                                                         ) : (
@@ -173,10 +173,10 @@ function CartContent() {
                                                     <div className="flex-1 w-full">
                                                         <div className="flex items-start justify-between gap-4 mb-2">
                                                             <div>
-                                                                <Link href={`/shop`} className="font-bold text-lg text-primary-900 hover:text-primary-700 transition-colors">
+                                                                <Link href={`/shop`} className="font-bold text-lg text-[#1E3A8A] hover:text-[#1E3A8A]/80 transition-colors">
                                                                     {item.name}
                                                                 </Link>
-                                                                <div className="text-primary-600 font-medium mt-1">${item.priceEach.toFixed(2)}</div>
+                                                                <div className="text-[#1E3A8A] font-medium mt-1">${item.priceEach.toFixed(2)}</div>
                                                             </div>
                                                             <Button
                                                                 variant="ghost"
@@ -218,10 +218,10 @@ function CartContent() {
                         {/* Checkout Form */}
                         {items.length > 0 && (
                             <div className="space-y-6">
-                                <Card className="bg-white shadow-sm border-gray-200 sticky top-24">
-                                    <CardHeader className="bg-gray-50 border-b border-gray-100 pb-4">
-                                        <CardTitle className="flex items-center gap-2 text-primary-900 text-xl">
-                                            <CreditCard className="h-5 w-5 text-primary-600" />
+                                <Card className="bg-pale-goldenrod shadow-sm border-metallic-gold sticky top-24">
+                                    <CardHeader className="bg-light-beige border-b border-metallic-gold pb-4">
+                                        <CardTitle className="flex items-center gap-2 text-[#1E3A8A] text-xl">
+                                            <CreditCard className="h-5 w-5 text-[#1E3A8A]" />
                                             Checkout Details
                                         </CardTitle>
                                     </CardHeader>
@@ -259,23 +259,23 @@ function CartContent() {
                                             </div>
                                         </div>
 
-                                        <div className="pt-4 border-t border-gray-200 space-y-3">
+                                        <div className="pt-4 border-t border-metallic-gold space-y-3">
                                             <div className="flex justify-between text-base">
-                                                <span className="text-gray-700 font-medium">Subtotal</span>
-                                                <span className="font-semibold text-gray-900">${total.toFixed(2)}</span>
+                                                <span className="text-[#1E3A8A] font-medium">Subtotal</span>
+                                                <span className="font-semibold text-[#1E3A8A]">${total.toFixed(2)}</span>
                                             </div>
                                             <div className="flex justify-between text-base">
-                                                <span className="text-gray-700 font-medium">Taxes</span>
-                                                <span className="font-semibold text-gray-900">$0.00</span>
+                                                <span className="text-[#1E3A8A] font-medium">Taxes</span>
+                                                <span className="font-semibold text-[#1E3A8A]">$0.00</span>
                                             </div>
-                                            <div className="flex justify-between text-xl font-bold text-gray-900 border-t-2 border-gray-300 pt-4">
+                                            <div className="flex justify-between text-xl font-bold text-[#1E3A8A] border-t-2 border-metallic-gold pt-4">
                                                 <span>Total</span>
-                                                <span className="text-primary-600">${total.toFixed(2)}</span>
+                                                <span className="text-[#1E3A8A]">${total.toFixed(2)}</span>
                                             </div>
 
                                             {!showPayPal ? (
                                                 <Button
-                                                    className="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 text-lg font-semibold shadow-md hover:shadow-lg transition-all"
+                                                    className="w-full bg-[#1E3A8A] hover:bg-[#1E3A8A]/90 text-white py-3 text-lg font-semibold shadow-md hover:shadow-lg transition-all"
                                                     onClick={handleProceedToPayment}
                                                     disabled={checkoutLoading || items.length === 0}
                                                 >
@@ -283,7 +283,7 @@ function CartContent() {
                                                 </Button>
                                             ) : (
                                                 <div className="space-y-3">
-                                                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+                                                    <div className="bg-light-beige border border-metallic-gold rounded-lg p-3 text-sm text-[#1E3A8A]">
                                                         <div className="flex items-start gap-2">
                                                             <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
                                                             <div>
@@ -320,7 +320,7 @@ function CartContent() {
                                                     )}
                                                     <Button
                                                         variant="outline"
-                                                        className="w-full"
+                                                        className="w-full border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white"
                                                         onClick={() => setShowPayPal(false)}
                                                         disabled={checkoutLoading}
                                                     >
@@ -344,9 +344,9 @@ function CartContent() {
 export default function CartPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-gray-900">
-                <Loader2 className="h-12 w-12 animate-spin text-primary-600 mb-4" />
-                <div className="text-xl font-semibold">Loading Cart...</div>
+            <div className="min-h-screen flex flex-col items-center justify-center" style={{backgroundColor: '#1E3A8A'}}>
+                <Loader2 className="h-12 w-12 animate-spin text-white mb-4" />
+                <div className="text-xl font-semibold text-white">Loading Cart...</div>
             </div>
         }>
             <CartContent />

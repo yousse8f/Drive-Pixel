@@ -85,13 +85,13 @@ export default function ShopPageClient() {
   }, [products]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-off-white text-slate-900">
+    <div className="min-h-screen flex flex-col" style={{backgroundColor: '#1E3A8A'}}>
       <Navbar />
 
       <main className="flex-1 relative overflow-hidden">
         {/* Decorative background elements */}
-        <div className="absolute top-0 left-0 w-full h-[420px] bg-gradient-to-b from-off-white via-white to-transparent pointer-events-none" />
-        <div className="absolute -top-10 right-0 w-[480px] h-[480px] bg-royal-blue/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-[420px] bg-gradient-to-b from-[#1E3A8A] via-[#1E3A8A]/90 to-transparent pointer-events-none" />
+        <div className="absolute -top-10 right-0 w-[480px] h-[480px] bg-white/10 rounded-full blur-3xl pointer-events-none" />
 
         <section className="relative py-16 lg:py-24">
           <div className="container-custom relative z-10">
@@ -105,7 +105,7 @@ export default function ShopPageClient() {
                     Shop the tools that power modern brands
                   </h1>
                 </div>
-                <div className="w-full rounded-none bg-royal-blue border-2 border-light-beige shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
+                <div className="w-full rounded-none bg-white/20 border border-white/30 shadow-[0_6px_0_rgba(255,255,255,0.35)] py-2 text-center px-4">
                   <p className="text-sm text-white font-medium">
                     Curated templates, services, and integrations built to launch faster. Seamless checkout and instant delivery backed by our team.
                   </p>
@@ -146,13 +146,13 @@ export default function ShopPageClient() {
           <div className="container-custom">
 
             {/* Filters Bar */}
-            <div className="sticky top-4 z-40 bg-light-beige/95 backdrop-blur-xl border border-muted-indigo/30 p-4 mb-10 shadow-[0_12px_0_0_rgba(45,58,107,0.3)] flex flex-col lg:flex-row gap-4 justify-between items-center transition-all rounded-lg">
+            <div className="sticky top-4 z-40 bg-white backdrop-blur-xl border border-gray-200 p-4 mb-10 shadow-[0_12px_0_0_rgba(30,58,138,0.3)] flex flex-col lg:flex-row gap-4 justify-between items-center transition-all rounded-lg">
               <div className="flex items-center gap-2 w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 no-scrollbar">
                 <button
                   onClick={() => setCategoryFilter('all')}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${categoryFilter === 'all'
-                    ? 'bg-royal-purple text-white shadow-lg shadow-royal-purple/20'
-                    : 'bg-white text-midnight-blue hover:bg-royal-blue/10'
+                    ? 'bg-[#1E3A8A] text-white shadow-lg shadow-[#1E3A8A]/30'
+                    : 'bg-white text-[#1E3A8A] hover:bg-gray-100'
                     }`}
                 >
                   All products
@@ -162,8 +162,8 @@ export default function ShopPageClient() {
                     key={c}
                     onClick={() => setCategoryFilter(c)}
                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap capitalize ${categoryFilter === c
-                      ? 'bg-royal-purple text-white shadow-lg shadow-royal-purple/20'
-                      : 'bg-white text-midnight-blue hover:bg-royal-blue/10'
+                      ? 'bg-[#1E3A8A] text-white shadow-lg shadow-[#1E3A8A]/30'
+                      : 'bg-white text-[#1E3A8A] hover:bg-gray-100'
                       }`}
                   >
                     {c}
@@ -173,20 +173,20 @@ export default function ShopPageClient() {
 
               <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
                 <div className="w-full sm:w-72 relative group">
-                  <Search className="h-4 w-4 text-muted-indigo absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-royal-purple transition-colors" />
+                  <Search className="h-4 w-4 text-[#1E3A8A]/60 absolute left-3 top-1/2 -translate-y-1/2 group-focus-within:text-[#1E3A8A] transition-colors" />
                   <input
                     type="text"
                     placeholder="Search products..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full bg-white border border-muted-indigo/30 py-2.5 pl-10 pr-4 text-sm text-midnight-blue placeholder:text-muted-indigo focus:outline-none focus:border-royal-purple focus:ring-2 focus:ring-royal-purple/10 transition-all rounded-lg"
+                    className="w-full bg-white border border-gray-300 py-2.5 pl-10 pr-4 text-sm text-[#1E3A8A] placeholder:text-[#1E3A8A]/60 focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-[#1E3A8A]/10 transition-all rounded-lg"
                   />
                 </div>
                 <div className="w-full sm:w-52">
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as any)}
-                    className="w-full bg-white border border-muted-indigo/30 py-2.5 px-4 text-sm text-midnight-blue focus:outline-none focus:border-royal-purple focus:ring-2 focus:ring-royal-purple/10 transition-all rounded-lg"
+                    className="w-full bg-white border border-gray-300 py-2.5 px-4 text-sm text-[#1E3A8A] focus:outline-none focus:border-[#1E3A8A] focus:ring-2 focus:ring-[#1E3A8A]/10 transition-all rounded-lg"
                   >
                     <option value="featured">Sort: Featured</option>
                     <option value="price-asc">Price: Low to High</option>
@@ -200,11 +200,11 @@ export default function ShopPageClient() {
             {statusMessage && (
               <div
                 className={`mb-8 rounded-xl px-4 py-3 border flex items-center gap-3 ${statusMessage.type === 'success'
-                  ? 'bg-light-beige text-midnight-blue border-muted-indigo/30'
-                  : 'bg-[#ffe1e1] text-[#4f2c33] border-[#d37377]'
+                  ? 'bg-white text-[#1E3A8A] border-gray-200'
+                  : 'bg-red-50 text-red-800 border-red-200'
                   }`}
               >
-                <div className={`h-2 w-2 rounded-full ${statusMessage.type === 'success' ? 'bg-royal-purple' : 'bg-[#d37377]'}`} />
+                <div className={`h-2 w-2 rounded-full ${statusMessage.type === 'success' ? 'bg-[#1E3A8A]' : 'bg-red-500'}`} />
                 {statusMessage.text}
               </div>
             )}
@@ -212,25 +212,25 @@ export default function ShopPageClient() {
             {productsLoading ? (
               <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {[1, 2, 3, 4, 5, 6].map(i => (
-                  <div key={i} className="h-96 rounded-lg bg-light-beige animate-pulse border border-muted-indigo/30" />
+                  <div key={i} className="h-96 rounded-lg bg-white animate-pulse border border-gray-200" />
                 ))}
               </div>
             ) : filteredProducts.length === 0 ? (
               <div className="text-center py-20">
-                <div className="bg-light-beige h-20 w-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Search className="h-8 w-8 text-royal-purple" />
+                <div className="bg-white h-20 w-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Search className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-midnight-blue mb-2">No products found</h3>
-                <p className="text-muted-indigo">Try adjusting your search or filters</p>
+                <h3 className="text-xl font-semibold text-white mb-2">No products found</h3>
+                <p className="text-white/80">Try adjusting your search or filters</p>
               </div>
             ) : (
               <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredProducts.map((product) => (
                   <div
                     key={product.id}
-                    className="group relative bg-light-beige rounded-lg overflow-hidden transition-all duration-300 flex flex-col h-full shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2"
+                    className="group relative bg-white rounded-lg overflow-hidden transition-all duration-300 flex flex-col h-full shadow-[0_12px_0_0_rgba(30,58,138,0.3)] hover:-translate-y-2"
                   >
-                    <div className="relative w-full h-56 overflow-hidden bg-gradient-to-br from-off-white to-light-beige">
+                    <div className="relative w-full h-56 overflow-hidden bg-white">
                       {product.imageUrl ? (
                         <Image
                           src={product.imageUrl}
@@ -239,14 +239,14 @@ export default function ShopPageClient() {
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-muted-indigo bg-gradient-to-br from-off-white to-light-beige">
+                        <div className="absolute inset-0 flex items-center justify-center text-[#1E3A8A]/60 bg-white">
                           <span className="text-sm font-semibold">No Preview</span>
                         </div>
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
                       <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/95 backdrop-blur-sm text-midnight-blue uppercase tracking-wider shadow-sm">
+                        <span className="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white text-[#1E3A8A] uppercase tracking-wider shadow-sm">
                           {product.category || 'Product'}
                         </span>
                       </div>
@@ -254,14 +254,14 @@ export default function ShopPageClient() {
 
                     <div className="p-5 flex flex-col flex-1">
                       <div className="mb-4 flex-1">
-                        <h3 className="text-lg font-bold text-midnight-blue mb-2 line-clamp-2 leading-tight group-hover:text-royal-purple transition-colors">
+                        <h3 className="text-lg font-bold text-[#1E3A8A] mb-2 line-clamp-2 leading-tight group-hover:text-[#1E3A8A]/80 transition-colors">
                           {product.name}
                         </h3>
-                        <p className="text-muted-indigo text-sm line-clamp-2 leading-relaxed mb-3">
+                        <p className="text-[#1E3A8A]/70 text-sm line-clamp-2 leading-relaxed mb-3">
                           {product.description}
                         </p>
                         <div className="flex items-baseline gap-1">
-                          <span className="text-3xl font-extrabold text-royal-purple">
+                          <span className="text-3xl font-extrabold text-[#1E3A8A]">
                             ${product.price.toFixed(2)}
                           </span>
                         </div>
@@ -269,16 +269,16 @@ export default function ShopPageClient() {
 
                       <div className="space-y-3">
                         <div className="flex items-center justify-between text-xs font-medium">
-                          <span className="flex items-center gap-1.5 text-muted-indigo">
-                            <div className={`h-2 w-2 rounded-full ${product.availability && product.availability > 0 ? 'bg-royal-purple' : 'bg-[#d37377]'}`} />
+                          <span className="flex items-center gap-1.5 text-[#1E3A8A]/70">
+                            <div className={`h-2 w-2 rounded-full ${product.availability && product.availability > 0 ? 'bg-green-500' : 'bg-orange-500'}`} />
                             {product.availability && product.availability > 0 ? 'In stock' : 'Made to order'}
                           </span>
-                          <span className="text-royal-purple font-semibold">Instant delivery</span>
+                          <span className="text-[#1E3A8A] font-semibold">Instant delivery</span>
                         </div>
 
                         <AddToCartButton
                           productId={product.id}
-                          className="w-full bg-metallic-gold text-midnight-blue hover:bg-amber border-0 py-3 text-sm font-bold transition-all duration-300 rounded-lg shadow-md hover:shadow-lg hover:scale-105"
+                          className="w-full bg-white text-[#1E3A8A] hover:bg-gray-100 border-0 py-3 text-sm font-bold transition-all duration-300 rounded-lg shadow-md hover:shadow-lg hover:scale-105"
                         />
                       </div>
                     </div>

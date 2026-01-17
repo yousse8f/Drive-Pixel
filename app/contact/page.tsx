@@ -278,7 +278,7 @@ export default function ContactPage() {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <div className="absolute inset-0 bg-midnight-blue/90"></div>
+          <div className="absolute inset-0 bg-[#1E3A8A]/90"></div>
         </div>
         <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
@@ -289,7 +289,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact-form" className="py-16 bg-off-white">
+      <section id="contact-form" className="py-16" style={{backgroundColor: '#1E3A8A'}}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-4 mb-16 text-center">
             <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
@@ -310,14 +310,14 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             {/* Contact Info Stack */}
             <div className="space-y-6">
-              <div className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
+              <div className="flex flex-col items-center gap-4 rounded-lg border border-metallic-gold bg-pale-goldenrod px-6 py-8 text-center shadow-[0_12px_0_0_rgba(30,58,138,0.3)] hover:-translate-y-2 transition-transform">
                 <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                   <MapPin className="h-8 w-8" />
                 </div>
                 <h3 className="text-xl font-bold text-midnight-blue">Address</h3>
                 <p className="text-sm text-muted-indigo leading-relaxed">WA</p>
               </div>
-              <div className="flex flex-col items-center gap-4 rounded-lg border border-muted-indigo/30 bg-light-beige px-6 py-8 text-center shadow-[0_12px_0_0_rgba(45,58,107,0.3)] hover:-translate-y-2 transition-transform">
+              <div className="flex flex-col items-center gap-4 rounded-lg border border-metallic-gold bg-pale-goldenrod px-6 py-8 text-center shadow-[0_12px_0_0_rgba(30,58,138,0.3)] hover:-translate-y-2 transition-transform">
                 <div className="h-16 w-16 rounded-full bg-gradient-to-b from-[#17b58f] to-[#0e8f6a] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)] flex items-center justify-center text-white">
                   <Mail className="h-8 w-8" />
                 </div>
@@ -328,7 +328,7 @@ export default function ContactPage() {
 
             {/* Contact Form Section */}
             <div className="lg:col-span-2">
-              <div className="rounded-lg border border-muted-indigo/30 bg-light-beige px-8 py-10 shadow-[0_12px_0_0_rgba(45,58,107,0.3)]">
+              <div className="rounded-lg border border-metallic-gold bg-pale-goldenrod px-8 py-10 shadow-[0_12px_0_0_rgba(30,58,138,0.3)]">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {submitError && (
                     <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
@@ -392,19 +392,19 @@ export default function ContactPage() {
       </section>
 
       {/* Map Embed Section */}
-      <section className="py-16 bg-off-white">
+      <section className="py-16" style={{backgroundColor: '#1E3A8A'}}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-4 mb-6 text-center">
             <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
               FIND US
             </div>
           </div>
-          <div className="bg-white rounded-3xl shadow-2xl border border-white/10 overflow-hidden">
+          <div className="bg-pale-goldenrod rounded-3xl shadow-2xl border border-metallic-gold overflow-hidden">
             {mapError ? (
-              <div className="p-8 text-center text-gray-600">
+              <div className="p-8 text-center text-[#1E3A8A]">
                 <p className="text-xl font-semibold mb-2">Map temporarily unavailable</p>
                 <p className="text-sm mb-4">{mapError}</p>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-gray-700">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-light-beige text-[#1E3A8A]">
                   <MapPin className="h-4 w-4 text-[#10b981]" />
                   Washington, United States
                 </div>
