@@ -6,8 +6,6 @@ const nextConfig = {
     images: {
         unoptimized: true,
     },
-    basePath: '/Drive-Pixel',
-    assetPrefix: '/Drive-Pixel',
     async rewrites() {
         return [
             {
