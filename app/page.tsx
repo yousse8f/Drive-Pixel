@@ -206,7 +206,7 @@ export default function HomePage() {
             </section>
 
             {/* Key Services Overview Section */}
-            <section className="py-20 md:py-24 bg-off-white">
+            <section className="py-20 md:py-24" style={{backgroundColor: '#2D3A6B'}}>
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="space-y-6 mb-16">
                         <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
@@ -320,14 +320,14 @@ export default function HomePage() {
             </section>
 
             {/* Real Estate IT Solutions Section */}
-            <section className="py-20 md:py-24 bg-off-white">
+            <section className="py-20 md:py-24" style={{backgroundColor: '#2D3A6B'}}>
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="space-y-6 mb-16">
                         <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             SPECIALIZED SOLUTIONS
                         </div>
                         <div className="w-full py-5 text-center">
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight-blue tracking-tight">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                                 Real Estate IT Solutions – Streamline Your Property Business
                             </h2>
                         </div>
@@ -385,14 +385,14 @@ export default function HomePage() {
             </section>
 
             {/* Technologies & Tools Section */}
-            <section className="py-20 md:py-24 bg-off-white">
+            <section className="py-20 md:py-24" style={{backgroundColor: '#2D3A6B'}}>
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="space-y-6 mb-16">
                         <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             TECHNOLOGIES & TOOLS
                         </div>
                         <div className="w-full py-5 text-center">
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight-blue tracking-tight">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                                 Modern, Reliable Technology Stacks
                             </h2>
                         </div>
@@ -489,14 +489,14 @@ export default function HomePage() {
             </section>
 
             {/* End-to-End Digital Solutions Section */}
-            <section className="py-20 md:py-24 bg-off-white">
+            <section className="py-20 md:py-24" style={{backgroundColor: '#2D3A6B'}}>
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="space-y-6 mb-16">
                         <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             END-TO-END DIGITAL SOLUTIONS
                         </div>
                         <div className="w-full py-5 text-center">
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-midnight-blue tracking-tight">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                                 End-to-End Digital Solutions
                             </h2>
                         </div>
@@ -609,14 +609,14 @@ export default function HomePage() {
             </section>
 
             {/* Cloud Solutions Section */}
-            <section className="py-20 md:py-24 bg-off-white">
+            <section className="py-20 md:py-24" style={{backgroundColor: '#2D3A6B'}}>
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="space-y-6 mb-16 text-center">
                         <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             END-TO-END MANAGED SOLUTIONS
                         </div>
                         <div className="w-full py-5">
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight-blue">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                                 Cloud Solutions That Scale With Your Business
                             </h2>
                         </div>
@@ -723,14 +723,14 @@ export default function HomePage() {
             </section>
 
             {/* Final CTA Section */}
-            <section className="py-20 md:py-24 bg-off-white">
+            <section className="py-20 md:py-24" style={{backgroundColor: '#2D3A6B'}}>
                 <div className="max-w-6xl mx-auto px-4 text-center">
                     <div className="space-y-6 mb-12">
                         <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 uppercase text-[11px] font-extrabold tracking-[0.35em] text-midnight-blue">
                             READY TO BUILD SOMETHING POWERFUL?
                         </div>
                         <div className="w-full py-5">
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight-blue">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                                 Ready to Build Something Powerful?
                             </h2>
                         </div>

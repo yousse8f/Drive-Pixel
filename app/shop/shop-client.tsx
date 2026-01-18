@@ -85,7 +85,7 @@ export default function ShopPageClient() {
   }, [products]);
 
   return (
-    <div className="min-h-screen flex flex-col" style={{backgroundColor: '#1E3A8A'}}>
+    <div className="min-h-screen flex flex-col" style={{backgroundColor: '#2D3A6B'}}>
       <Navbar />
 
       <main className="flex-1 relative overflow-hidden">
@@ -278,7 +278,7 @@ export default function ShopPageClient() {
 
                         <AddToCartButton
                           productId={product.id}
-                          className="w-full bg-white text-[#1E3A8A] hover:bg-gray-100 border-0 py-3 text-sm font-bold transition-all duration-300 rounded-lg shadow-md hover:shadow-lg hover:scale-105"
+                          className="w-full bg-metallic-gold hover:bg-amber text-midnight-blue font-bold px-8 py-6 text-lg rounded-md transition-all duration-300 transform hover:scale-105 shadow-xl"
                         />
                       </div>
                     </div>

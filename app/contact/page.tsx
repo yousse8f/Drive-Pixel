@@ -268,7 +268,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-32 text-white">
+      <section className="relative py-16 text-white">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{
@@ -277,9 +277,7 @@ export default function ContactPage() {
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}
-        >
-          <div className="absolute inset-0 bg-[#1E3A8A]/90"></div>
-        </div>
+        ></div>
         <div className="container-custom text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
@@ -289,7 +287,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact-form" className="py-16" style={{backgroundColor: '#1E3A8A'}}>
+      <section id="contact-form" className="py-16" style={{backgroundColor: '#2D3A6B'}}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-4 mb-16 text-center">
             <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
@@ -392,7 +390,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Embed Section */}
-      <section className="py-16" style={{backgroundColor: '#1E3A8A'}}>
+      <section className="py-16" style={{backgroundColor: '#2D3A6B'}}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-4 mb-6 text-center">
             <div className="w-full rounded-none bg-pale-goldenrod border border-metallic-gold shadow-[inset_0_4px_0_rgba(255,255,255,0.55)] py-2 text-center uppercase text-[11px] font-semibold tracking-[0.35em] text-midnight-blue">
