@@ -29,7 +29,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading dashboard...</div>
+        <div className="text-muted-foreground">Loading dashboard...</div>
       </div>
     );
   }
@@ -39,60 +39,60 @@ export default function AdminDashboard() {
       title: 'Total Users',
       value: stats?.counts?.users || 0,
       icon: Users,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
     },
     {
       title: 'Total Leads',
       value: stats?.counts?.leads || 0,
       icon: TrendingUp,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
+      color: 'text-success',
+      bgColor: 'bg-success/10',
     },
     {
       title: 'Services',
       value: stats?.counts?.services || 0,
       icon: Briefcase,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
+      color: 'text-secondary',
+      bgColor: 'bg-secondary/10',
     },
     {
       title: 'Portfolio Items',
       value: stats?.counts?.portfolio || 0,
       icon: FileText,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
+      color: 'text-cta',
+      bgColor: 'bg-cta/10',
     },
     {
       title: 'Blog Posts',
       value: stats?.counts?.blogPosts || 0,
       icon: FileText,
-      color: 'text-pink-600',
-      bgColor: 'bg-pink-50',
+      color: 'text-highlight',
+      bgColor: 'bg-highlight/10',
     },
     {
       title: 'Testimonials',
       value: stats?.counts?.testimonials || 0,
       icon: MessageSquare,
-      color: 'text-teal-600',
-      bgColor: 'bg-teal-50',
+      color: 'text-accent',
+      bgColor: 'bg-accent/10',
     },
   ];
 
   return (
     <div className="space-y-8">
-      <div className="bg-gradient-to-r from-[#1a1f3a] to-[#2d3561] rounded-2xl p-6 shadow-lg">
-        <h1 className="text-3xl font-bold text-white mb-2">Dashboard Overview</h1>
-        <p className="text-gray-200">Welcome to the admin dashboard - Monitor your system statistics</p>
+      <div className="bg-primary rounded-2xl p-6 shadow-lg">
+        <h1 className="text-3xl font-bold text-primary-foreground mb-2">Dashboard Overview</h1>
+        <p className="text-primary-foreground/80">Welcome to the admin dashboard - Monitor your system statistics</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {statCards.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
+            <Card key={index} className="admin-card border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-bold text-gray-900">
+                <CardTitle className="text-sm font-bold text-card-foreground">
                   {stat.title}
                 </CardTitle>
                 <div className={`${stat.bgColor} p-3 rounded-xl shadow-sm`}>
@@ -100,8 +100,8 @@ export default function AdminDashboard() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-4xl font-extrabold text-gray-900">{stat.value}</div>
-                <p className="text-xs text-gray-500 mt-1 font-medium">Total count</p>
+                <div className="text-4xl font-extrabold text-card-foreground">{stat.value}</div>
+                <p className="text-xs text-muted-foreground mt-1 font-medium">Total count</p>
               </CardContent>
             </Card>
           );

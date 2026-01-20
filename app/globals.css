@@ -4,101 +4,103 @@
 
 @layer base {
   :root {
-    /* New Professional Color Palette */
+    /* High Contrast Admin Dashboard Colors */
     /* Main Background & Structure */
-    --background: 222 59% 15%; /* Dark Midnight Blue #0F1C3F - main background */
-    --foreground: 0 0% 100%; /* Pure White - main text */
-    --card: 36 26% 91%; /* Light Beige #EDE6DA - card backgrounds */
-    --card-foreground: 222 59% 15%; /* Dark Midnight Blue text on cards */
-    --popover: 36 26% 91%; /* Light Beige for popovers */
-    --popover-foreground: 222 59% 15%; /* Dark text on popovers */
+    --background: 0 0% 100%; /* Pure White - main background */
+    --foreground: 0 0% 20%; /* Dark Gray - main text */
+    --card: 0 0% 98%; /* Very Light Gray - card backgrounds */
+    --card-foreground: 0 0% 20%; /* Dark Gray text on cards */
+    --popover: 0 0% 98%; /* Very Light Gray for popovers */
+    --popover-foreground: 0 0% 20%; /* Dark text on popovers */
     
-    /* Primary Colors - Royal Blue */
-    --primary: 218 65% 32%; /* Royal Blue #1E3A8A - primary UI elements */
+    /* Primary Colors - Bright Blue */
+    --primary: 210 100% 50%; /* Bright Blue #007AFF - primary UI elements */
     --primary-foreground: 0 0% 100%; /* White text on primary */
     
-    /* Secondary Colors - Muted Indigo */
-    --secondary: 229 29% 30%; /* Muted Indigo #2D3A6B - secondary elements */
+    /* Secondary Colors - Medium Blue */
+    --secondary: 210 100% 60%; /* Lighter Blue #3399FF - secondary elements */
     --secondary-foreground: 0 0% 100%; /* White text on secondary */
     
     /* Muted/Neutral Colors */
-    --muted: 36 15% 85%; /* Warm Grey #DCD6C9 - muted backgrounds */
-    --muted-foreground: 229 29% 30%; /* Muted Indigo for muted text */
+    --muted: 0 0% 96%; /* Light Gray - muted backgrounds */
+    --muted-foreground: 0 0% 45%; /* Medium Gray for muted text */
     
-    /* Accent Colors - Sea Green */
-    --accent: 152 51% 36%; /* Sea Green #2E8B57 - eco-friendly accents */
+    /* Accent Colors - Green */
+    --accent: 120 100% 40%; /* Green #00CC66 - success accents */
     --accent-foreground: 0 0% 100%; /* White text on accent */
     
-    /* CTA - Metallic Gold */
-    --cta: 43 65% 52%; /* Metallic Gold #D4AF37 - primary CTA buttons */
-    --cta-foreground: 222 59% 15%; /* Dark Midnight Blue text on CTA */
+    /* CTA - Orange */
+    --cta: 25 100% 50%; /* Orange #FF8800 - primary CTA buttons */
+    --cta-foreground: 0 0% 100%; /* White text on CTA */
     
-    /* Highlight - Amber */
-    --highlight: 45 100% 50%; /* Amber #FFBF00 - alerts and highlights */
-    --highlight-foreground: 222 59% 15%; /* Dark text on highlights */
+    /* Highlight - Yellow */
+    --highlight: 45 100% 50%; /* Yellow #FFD700 - alerts and highlights */
+    --highlight-foreground: 0 0% 20%; /* Dark text on highlights */
     
-    /* Success - Sea Green */
-    --success: 152 51% 36%; /* Sea Green - success indicators */
+    /* Success - Green */
+    --success: 120 100% 40%; /* Green - success indicators */
     --success-foreground: 0 0% 100%; /* White text on success */
     
-    /* Destructive - Burnt Orange */
-    --destructive: 16 85% 42%; /* Burnt Orange #C1440E - urgent CTAs */
+    /* Destructive - Red */
+    --destructive: 0 100% 50%; /* Red #FF0000 - error indicators */
     --destructive-foreground: 0 0% 100%;
     
     /* Borders and Inputs */
-    --border: 229 29% 30%; /* Muted Indigo for borders */
-    --input: 36 26% 91%; /* Light Beige for inputs */
-    --ring: 43 65% 52%; /* Metallic Gold for focus rings */
+    --border: 0 0% 85%; /* Light Gray for borders */
+    --input: 0 0% 100%; /* White for inputs */
+    --ring: 210 100% 50%; /* Bright Blue for focus rings */
     
     --radius: 0.5rem;
     
-    --chart-1: 43 65% 52%;
-    
-    --chart-2: 152 51% 36%;
-    
-    --chart-3: 218 65% 32%;
-    
-    --chart-4: 16 85% 42%;
-    
-    --chart-5: 274 91% 35%;
+    --chart-1: 210 100% 50%;
+    --chart-2: 120 100% 40%;
+    --chart-3: 25 100% 50%;
+    --chart-4: 0 100% 50%;
+    --chart-5: 270 100% 50%;
   }
 
   .dark {
-    /* Dark theme with new palette */
-    --background: 222 59% 10%; /* Darker Midnight Blue for dark mode */
-    --foreground: 0 0% 100%; /* White text */
-    --card: 222 59% 15%; /* Dark Midnight Blue for cards */
-    --card-foreground: 0 0% 100%; /* White text */
-    --popover: 222 59% 15%; /* Matching card color */
-    --popover-foreground: 0 0% 100%; /* White text */
+    /* Dark theme with high contrast */
+    --background: 0 0% 10%; /* Very Dark Gray - dark mode background */
+    --foreground: 0 0% 95%; /* Very Light Gray - dark mode text */
+    --card: 0 0% 15%; /* Dark Gray for cards */
+    --card-foreground: 0 0% 95%; /* Very Light Gray text */
+    --popover: 0 0% 15%; /* Matching card color */
+    --popover-foreground: 0 0% 95%; /* Very Light Gray text */
     
-    --primary: 218 65% 32%; /* Royal Blue for primary elements */
-    --primary-foreground: 0 0% 100%; /* White text */
+    --primary: 210 100% 60%; /* Lighter Blue for primary elements */
+    --primary-foreground: 0 0% 10%; /* Dark text on primary */
     
-    --secondary: 229 29% 30%; /* Muted Indigo */
-    --secondary-foreground: 0 0% 100%; /* White text */
+    --secondary: 210 100% 70%; /* Even Lighter Blue */
+    --secondary-foreground: 0 0% 10%; /* Dark text on secondary */
     
-    --muted: 229 29% 25%; /* Darker Muted Indigo */
-    --muted-foreground: 36 15% 85%; /* Warm Grey for muted text */
+    --muted: 0 0% 20%; /* Darker Gray for muted backgrounds */
+    --muted-foreground: 0 0% 70%; /* Medium Gray for muted text */
     
-    --accent: 152 51% 36%; /* Sea Green accent */
-    --accent-foreground: 0 0% 100%; /* White text on accent */
+    --accent: 120 100% 50%; /* Brighter Green accent */
+    --accent-foreground: 0 0% 10%; /* Dark text on accent */
     
-    --cta: 43 65% 52%; /* Metallic Gold - main CTA buttons */
-    --cta-foreground: 222 59% 15%; /* Dark text on CTA */
+    --cta: 25 100% 60%; /* Lighter Orange - main CTA buttons */
+    --cta-foreground: 0 0% 10%; /* Dark text on CTA */
     
-    --highlight: 45 100% 50%; /* Amber */
-    --highlight-foreground: 222 59% 15%; /* Dark text on gold */
+    --highlight: 45 100% 60%; /* Lighter Yellow */
+    --highlight-foreground: 0 0% 10%; /* Dark text on highlights */
     
-    --success: 152 51% 36%; /* Sea Green */
-    --success-foreground: 0 0% 100%; /* White text */
+    --success: 120 100% 50%; /* Brighter Green */
+    --success-foreground: 0 0% 10%; /* Dark text on success */
     
-    --destructive: 16 85% 42%; /* Burnt Orange */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 100% 60%; /* Lighter Red */
+    --destructive-foreground: 0 0% 10%;
     
-    --border: 229 29% 30%; /* Muted Indigo for borders */
-    --input: 229 29% 25%; /* Darker Muted Indigo */
-    --ring: 43 65% 52%; /* Metallic Gold for focus */ --chart-1: 43 65% 52%; --chart-2: 152 51% 36%; --chart-3: 218 65% 32%; --chart-4: 16 85% 42%; --chart-5: 274 91% 35%;
+    --border: 0 0% 30%; /* Medium Gray for borders */
+    --input: 0 0% 20%; /* Dark Gray for inputs */
+    --ring: 210 100% 60%; /* Lighter Blue for focus */
+    
+    --chart-1: 210 100% 60%;
+    --chart-2: 120 100% 50%;
+    --chart-3: 25 100% 60%;
+    --chart-4: 0 100% 60%;
+    --chart-5: 270 100% 60%;
   }
 }
 
@@ -218,5 +220,91 @@
   
   .animate-slideOutToLeft {
     animation: slideOutToLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+}
+
+/* Admin Dashboard High Contrast Styles */
+@layer components {
+  /* Input fields with high contrast */
+  .admin-input {
+    @apply bg-input border-border text-foreground placeholder-muted-foreground;
+    @apply focus:ring-2 focus:ring-primary focus:border-primary;
+    @apply dark:bg-input dark:border-border dark:text-foreground;
+  }
+  
+  /* Card backgrounds with high contrast */
+  .admin-card {
+    @apply bg-card text-card-foreground border-border;
+    @apply dark:bg-card dark:text-card-foreground dark:border-border;
+  }
+  
+  /* Form labels */
+  .admin-label {
+    @apply text-foreground font-medium;
+    @apply dark:text-foreground;
+  }
+  
+  /* Buttons with high contrast */
+  .admin-btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90;
+  }
+  
+  .admin-btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+    @apply dark:bg-secondary dark:text-secondary-foreground dark:hover:bg-secondary/90;
+  }
+  
+  .admin-btn-outline {
+    @apply border-border text-foreground hover:bg-muted hover:text-foreground;
+    @apply dark:border-border dark:text-foreground dark:hover:bg-muted dark:hover:text-foreground;
+  }
+  
+  /* Table styles */
+  .admin-table {
+    @apply bg-card text-card-foreground;
+    @apply dark:bg-card dark:text-card-foreground;
+  }
+  
+  .admin-table-header {
+    @apply bg-muted text-muted-foreground font-semibold;
+    @apply dark:bg-muted dark:text-muted-foreground;
+  }
+  
+  .admin-table-row {
+    @apply border-border hover:bg-muted;
+    @apply dark:border-border dark:hover:bg-muted;
+  }
+  
+  /* Status badges */
+  .admin-badge-success {
+    @apply bg-success text-success-foreground;
+    @apply dark:bg-success dark:text-success-foreground;
+  }
+  
+  .admin-badge-warning {
+    @apply bg-highlight text-highlight-foreground;
+    @apply dark:bg-highlight dark:text-highlight-foreground;
+  }
+  
+  .admin-badge-error {
+    @apply bg-destructive text-destructive-foreground;
+    @apply dark:bg-destructive dark:text-destructive-foreground;
+  }
+  
+  /* Sidebar specific styles */
+  .admin-sidebar {
+    @apply bg-card border-r-border;
+    @apply dark:bg-card dark:border-r-border;
+  }
+  
+  .admin-sidebar-item {
+    @apply text-foreground hover:bg-muted;
+    @apply dark:text-foreground dark:hover:bg-muted;
+  }
+  
+  .admin-sidebar-item-active {
+    @apply bg-primary text-primary-foreground;
+    @apply dark:bg-primary dark:text-primary-foreground;
   }
 }
